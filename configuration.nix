@@ -22,10 +22,9 @@
 #    };
 #  };
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub.device = "/dev/disk/by-id/usb-Samsung_Flash_Drive_0374218070021442-0:0";
 
-  networking.hostName = "silvio-nb";
+  networking.hostName = "arch-stick";
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Berlin";
@@ -52,8 +51,9 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  # Enable sound.
+  # sound.enable = true;
+  # hardware.pulseaudio.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -71,7 +71,6 @@
     wget
     tmux
     yadm
-    git
     home-manager
     htop
     efibootmgr
