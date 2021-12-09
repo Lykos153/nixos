@@ -27,7 +27,6 @@
   time.timeZone = "Europe/Berlin";
 
   networking.useDHCP = false;
-  networking.interfaces.wlp1s0.useDHCP = true;
 
   i18n.defaultLocale = "de_DE.UTF-8";
   console = {
