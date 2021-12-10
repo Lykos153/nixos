@@ -4,24 +4,7 @@
 
 { config, pkgs, ... }:
 
-#let
-#  homeManagerTarball = 
-#    fetchTarball https://github.com/nix-community/home-manager/archive/release-21.05.tar.gz;
-#in
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
-
-#  nixpkgs.config = {
-#    packageOverrides = pkgs: {
-#      homeManager = import homeManagerTarball {
-#        config = config.nixpkgs.config
-#      };
-#    };
-#  };
-
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = ''
