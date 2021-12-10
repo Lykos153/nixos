@@ -109,7 +109,9 @@ in
         "${cfg.modifier}+space" = "focus mode_toggle";
 
         # Scratchpad
+        "${cfg.modifier}+Shift+less" = "move scratchpad";
         "${cfg.modifier}+Shift+minus" = "move scratchpad";
+        "${cfg.modifier}+less" = "scratchpad show";
         "${cfg.modifier}+minus" = "scratchpad show";
 
         # Resize mode
