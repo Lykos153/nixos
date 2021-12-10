@@ -9,8 +9,6 @@ in
   home.username = "silvio";
   home.homeDirectory = "/home/silvio";
   
-  home.stateVersion = "21.05";
-
   programs.home-manager.enable = true;
   programs.firefox.enable = true;
   programs.direnv.enable = true;
