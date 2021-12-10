@@ -22,6 +22,7 @@
       fsType = "btrfs";
       options = [ "subvol=nixos" ];
     };
+  fileSystems."/boot".device = "/dev/disk/by-uuid/9E7D-E776";
 
   boot.initrd.luks.devices."arch-root".device = "/dev/disk/by-uuid/b474463d-7d93-4abf-95cd-35db2f9a6490";
   boot.initrd.luks.devices."arch-root2".device = "/dev/disk/by-uuid/efae7e7f-5c77-4957-9a75-f2862e620d15";
