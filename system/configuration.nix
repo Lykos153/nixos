@@ -22,6 +22,13 @@
 #    };
 #  };
 
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
+
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Berlin";
