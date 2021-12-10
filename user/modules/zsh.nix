@@ -132,6 +132,4 @@
     enableZshIntegration = true;
   };
 
-  home.file.".local/bin".source = ./files/scripts;
-  home.file.".local/bin".recursive = true;
 }
