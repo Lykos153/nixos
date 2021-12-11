@@ -28,6 +28,7 @@
       nixpkgs = "nix-env -f '<nixpkgs>' -iA";
       hmb = "home-manager build --flake \"$HOME/nixos/user#home\"";
       hms = "home-manager switch --flake \"$HOME/nixos/user#home\"";
+      renix = "sudo nixos-rebuild switch --flake \"$HOME/nixos/system#pc\"";
     };
 
     initExtra = ''
