@@ -8,6 +8,8 @@
       jnoortheen.nix-ide
       ms-python.python
       hashicorp.terraform
+      ms-azuretools.vscode-docker
     ];
   };
+  programs.zsh.shellAliases.code = "codium";
 }
