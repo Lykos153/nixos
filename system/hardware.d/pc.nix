@@ -16,9 +16,21 @@
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-  # Blacklist nvidia because it's annoying.
-  # TODO: pcie passthrough using ie. https://github.com/CRTified/nur-packages
-  boot.blacklistedKernelModules = [ "nvidia" "nouveau" ];
+  boot.kernelParams = [ "amd_iommu=on" "pcie_acs_override=downstream,multifunction" ];
+  boot.extraModprobeConfig = "options vfio-pci ids=10de:1380,10de:0fbc";
+  boot.kernelPackages = pkgs.linuxPackages_5_10;
+  nixpkgs.config.packageOverrides = pkgs: {
+      linux_5_10 = pkgs.linux_5_10.override {
+        kernelPatches = pkgs.linux_5_10.kernelPatches ++ [
+          { name = "acs";
+            patch = pkgs.fetchurl {
+              url = "https://aur.archlinux.org/cgit/aur.git/plain/add-acs-overrides.patch?h=linux-vfio&id=5c88f2651e21831bd92bcf856254d7cc20cb1bde";
+              sha256 = "b90be7b79652be61f7d50691000f6a8c75a240dc2eee2667b68d984f67583f77";
+            };
+          }
+        ];
+      };
+    };
 
   fileSystems."/" =
     { device = "/dev/mapper/arch-root";
@@ -39,4 +51,11 @@
   swapDevices = [ ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
+
+  virtualisation = {
+    libvirtd = {
+      enable = true;
+      qemu.ovmf.enable = true;
+    };
+  };
 }
