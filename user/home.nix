@@ -11,6 +11,7 @@ in
   programs.home-manager.enable = true;
   programs.firefox.enable = true;
   programs.direnv.enable = true;
+  programs.password-store.enable = true;
 
   programs.bat = {
     enable = true;
@@ -23,9 +24,12 @@ in
     vimPlugins.vim-plug
     termite
     vifm
-    pass
     gajim
     htop
+    thunderbird
+    pwgen
+    haskellPackages.git-annex
+    jq
   ];
 
   services.redshift = {
