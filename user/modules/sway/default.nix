@@ -2,7 +2,7 @@
 { config, lib, nixosConfig, pkgs, ... }:
 let
   cfg = config.wayland.windowManager.sway.config;
-  lock = "${pkgs.swaylock}/bin/swaylock -f -c000000";
+  lockcmd = "${pkgs.swaylock}/bin/swaylock -f -c000000";
 in
 {  
   imports = [
@@ -35,8 +35,9 @@ in
         "${cfg.modifier}+d" = "exec ${cfg.menu}";
         "${cfg.modifier}+Shift+q" = "kill";
         "${cfg.modifier}+Shift+r" = "reload";
-        "${cfg.modifier}+Shift+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
-
+        "${cfg.modifier}+Shift+e" = "exec _sway_exit_menu";
+        "${cfg.modifier}+Shift+p" = "exec _sway_poweroff_menu";
+        
         # Focus
         "${cfg.modifier}+${cfg.left}" = "focus left";
         "${cfg.modifier}+${cfg.down}" = "focus down";
@@ -48,6 +49,14 @@ in
         "${cfg.modifier}+Up" = "focus up";
         "${cfg.modifier}+Right" = "focus right";
 
+        # using tab
+        "${cfg.modifier}+Tab"       = "focus right";
+        "${cfg.modifier}+Shift+Tab" = "focus left";
+
+        # using the scrollwheel
+        "--whole-window ${cfg.modifier}+button4" = "exec _sway_utils scrollwheel_focus up";
+        "--whole-window ${cfg.modifier}+button5" = "exec _sway_utils scrollwheel_focus down";
+
         # Moving
         "${cfg.modifier}+Shift+${cfg.left}" = "move left";
         "${cfg.modifier}+Shift+${cfg.down}" = "move down";
@@ -58,6 +67,8 @@ in
         "${cfg.modifier}+Shift+Down" = "move down";
         "${cfg.modifier}+Shift+Up" = "move up";
         "${cfg.modifier}+Shift+Right" = "move right";
+
+        "${cfg.modifier}+x" = "exec _sway_utils container-to-other-output";
 
         # Workspaces
         "${cfg.modifier}+1" = "workspace number 1";
@@ -93,19 +104,23 @@ in
         "${cfg.modifier}+Control+Up" = "move workspace to output up";
         "${cfg.modifier}+Control+Right" = "move workspace to output right";
 
+        "${cfg.modifier}+Shift+x" = "exec _sway_utils workspace-to-other-output";
+        "${cfg.modifier}+Shift+y" = "exec _sway_utils switch-outputs";
+
         # Splits
         "${cfg.modifier}+b" = "splith";
         "${cfg.modifier}+v" = "splitv";
 
         # Layouts
         "${cfg.modifier}+s" = "layout stacking";
-        "${cfg.modifier}+t" = "layout tabbed";
+        "${cfg.modifier}+w" = "layout tabbed";
         "${cfg.modifier}+e" = "layout toggle split";
         "${cfg.modifier}+f" = "fullscreen toggle";
 
         "${cfg.modifier}+a" = "focus parent";
+        "${cfg.modifier}+Shift+a" = "focus child";
 
-        "${cfg.modifier}+Control+space" = "floating toggle";
+        "${cfg.modifier}+Shift+space" = "floating toggle";
         "${cfg.modifier}+space" = "focus mode_toggle";
 
         # Scratchpad
@@ -136,13 +151,35 @@ in
         # # reset
         # "Shift_R+Shift" = "exec ${pkgs.dbus}/bin/dbus-send --session --type=method_call --dest=net.sourceforge.mumble.mumble / net.sourceforge.mumble.Mumble.stopTalking";
 
+        # Screenshots
+        "Print" = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot save screen Bilder/Screenshots/$(date +'%Y-%m-%d-%H%M%S.png')";
+        "Ctrl+Print" = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot save area Bilder/Screenshots/$(date +'%Y-%m-%d-%H%M%S.png')";
+
+        # Clipboard
+          "${cfg.modifier}+c" = "exec clipman pick --tool dmenu";
+
         # Locking and DPMS
-        "${cfg.modifier}+Escape" = "exec ${lock}";
-        "Pause" = "exec ${lock}";
-        "--no-repeat --locked ${cfg.modifier}+q" = ''exec 'test $(swaymsg -t get_outputs | ${pkgs.jq}/bin/jq "[.[].dpms] | any") = "true" && swaymsg "output * dpms off" || swaymsg "output * dpms on"'';
+        "${cfg.modifier}+Escape" = "exec ${lockcmd}";
+        "Pause" = "exec ${lockcmd}";
+        "--no-repeat --locked ${cfg.modifier}+Pause" = ''exec 'test $(swaymsg -t get_outputs | ${pkgs.jq}/bin/jq "[.[].dpms] | any") = "true" && swaymsg "output * dpms off" || swaymsg "output * dpms on"'';
       };
     };
     extraConfig = ''
+      exec ${pkgs.wl-clipboard}/bin/wl-paste -p -t text --watch ${pkgs.clipman}/bin/clipman store -P
+
+      exec ${pkgs.swayidle}/bin/swayidle -w \
+        timeout 300 '${lockcmd}' \
+        timeout 600 'swaymsg "output * dpms off"' \
+             resume 'swaymsg "output * dpms on"' \
+        before-sleep '${lockcmd}'
+
+        exec --no-startup-id gajim
+        for_window [app_id="org.gajim.Gajim"] floating enable
+        for_window [app_id="org.gajim.Gajim" title="Gajim"] move scratchpad
+
+        for_window [app_id="firefox"] inhibit_idle fullscreen
+        for_window [app_id="firefox"] assign workspace 2
+        for_window [app_id="thunderbird"] assign workspace 3
     '';
   };
 
@@ -157,5 +194,11 @@ in
     light
     i3status
     sway-contrib.grimshot # screenshots
+    bemenu
   ];
+
+  #TODO: maybe make all of those a derivation some day
+  home.file.".local/bin/_sway_exit_menu".source = ./exit_menu.sh;
+  home.file.".local/bin/_sway_poweroff_menu".source = ./poweroff_menu.sh;
+  home.file.".local/bin/_sway_utils".source = ./lib.sh;
 }
