@@ -27,6 +27,7 @@
     pwgen
     haskellPackages.git-annex
     jq
+    element-desktop
   ];
 
   services.redshift = {
