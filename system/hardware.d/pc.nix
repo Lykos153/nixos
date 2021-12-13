@@ -25,6 +25,11 @@
       fsType = "btrfs";
       options = [ "subvol=nixos" ];
     };
+  fileSystems."/btrfs" =
+    { device = "/dev/mapper/arch-root";
+      fsType = "btrfs";
+      options = [ "subvol=/" ];
+    };
   fileSystems."/boot".device = "/dev/disk/by-uuid/9E7D-E776";
 
   boot.initrd.luks.devices."arch-root".device = "/dev/disk/by-uuid/b474463d-7d93-4abf-95cd-35db2f9a6490";
