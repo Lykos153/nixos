@@ -1,7 +1,4 @@
 { config, lib, nixosConfig, pkgs, ... }:
-let
-  editor = "vim";
-in
 {
   imports = map (n: "${./modules}/${n}") (builtins.attrNames (builtins.readDir ./modules));
 
@@ -40,4 +37,7 @@ in
     temperature.day = 5000;
   };
 
+  home.sessionVariables = {
+    # MOZ_ENABLE_WAYLAND = "1"; not yet, because of https://github.com/swaywm/wlroots/issues/3189
+  };
 }

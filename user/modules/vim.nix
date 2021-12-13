@@ -14,4 +14,7 @@
                 set number
     '';
   };
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
 }
