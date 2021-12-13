@@ -1,6 +1,11 @@
 { pkgs, ... }:
 {
-  programs.gpg.enable = true;
+  programs.gpg = {
+    enable = true;
+    settings = {
+      keyserver = "hkp://keys.gnupg.net";
+    };
+  };
 
   services.gpg-agent = {
     enable = true;

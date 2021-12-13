@@ -6,5 +6,6 @@
     extraConfig = ''
       AddKeysToAgent yes
     '';
+    includes = [ "local.d/*" ];
   };
 }
