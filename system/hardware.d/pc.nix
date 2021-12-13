@@ -16,6 +16,9 @@
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  # Blacklist nvidia because it's annoying.
+  # TODO: pcie passthrough using ie. https://github.com/CRTified/nur-packages
+  boot.blacklistedKernelModules = [ "nvidia" "nouveau" ];
 
   fileSystems."/" =
     { device = "/dev/mapper/arch-root";
