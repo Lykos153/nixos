@@ -173,9 +173,20 @@ in
       #        resume 'swaymsg "output * dpms on"' \
       #   before-sleep '${lockcmd}'
 
-        exec --no-startup-id gajim
+        exec gajim
         for_window [app_id="org.gajim.Gajim"] floating enable
         for_window [app_id="org.gajim.Gajim" title="Gajim"] move scratchpad
+        
+        for_window [class="Element"] move scratchpad
+        exec element-desktop
+
+        assign [app_id="firefox"] 2
+        assign [class="Firefox"] 2
+        exec firefox
+
+        assign [app_id="thunderbird"] 3
+        assign [class="Thunderbird"] 3
+        exec thunderbird
 
         for_window [app_id="firefox"] inhibit_idle fullscreen
         for_window [app_id="firefox"] assign workspace 2
