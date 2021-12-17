@@ -167,11 +167,11 @@ in
     extraConfig = ''
       exec ${pkgs.wl-clipboard}/bin/wl-paste -p -t text --watch ${pkgs.clipman}/bin/clipman store -P
 
-      exec ${pkgs.swayidle}/bin/swayidle -w \
-        timeout 300 '${lockcmd}' \
-        timeout 600 'swaymsg "output * dpms off"' \
-             resume 'swaymsg "output * dpms on"' \
-        before-sleep '${lockcmd}'
+      # exec ${pkgs.swayidle}/bin/swayidle -w \
+      #   timeout 300 '${lockcmd}' \
+      #   timeout 600 'swaymsg "output * dpms off"' \
+      #        resume 'swaymsg "output * dpms on"' \
+      #   before-sleep '${lockcmd}'
 
         exec --no-startup-id gajim
         for_window [app_id="org.gajim.Gajim"] floating enable
