@@ -197,7 +197,6 @@ in
   home.packages = with pkgs; [
     swayidle
     wl-clipboard
-    mako
     alacritty
     wdisplays
     clipman
@@ -212,4 +211,9 @@ in
   home.file.".local/bin/_sway_exit_menu".source = ./exit_menu.sh;
   home.file.".local/bin/_sway_poweroff_menu".source = ./poweroff_menu.sh;
   home.file.".local/bin/_sway_utils".source = ./lib.sh;
+
+  programs.mako = {
+    enable = true;
+    defaultTimeout = 5000;
+  };
 }
