@@ -29,7 +29,7 @@
           authMechs = "PLAIN";
         };
       };
-      passwordCommand = "ssh-askpass-fullscreen";
+      passwordCommand = "pass booq/mail/silvio";
 
       msmtp = {
         enable = true;
