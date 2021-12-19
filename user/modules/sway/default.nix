@@ -191,6 +191,9 @@ in
         for_window [app_id="firefox"] inhibit_idle fullscreen
         for_window [app_id="firefox"] assign workspace 2
         for_window [app_id="thunderbird"] assign workspace 3
+
+        # Workaround for https://todo.sr.ht/~emersion/kanshi/35
+        exec_always "systemctl --user restart kanshi.service"
     '';
   };
 
@@ -200,7 +203,6 @@ in
     alacritty
     wdisplays
     clipman
-    kanshi
     light
     i3status
     sway-contrib.grimshot # screenshots
