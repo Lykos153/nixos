@@ -9,6 +9,7 @@
       ms-python.python
       hashicorp.terraform
       ms-azuretools.vscode-docker
+      james-yu.latex-workshop
     ];
   };
   programs.zsh.shellAliases.code = "codium";
