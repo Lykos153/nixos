@@ -25,6 +25,11 @@
       fsType = "vfat";
     };
 
+  fileSystems."/stick-fat" =
+    { device = "/dev/disk/by-uuid/122A-BAF6";
+      fsType = "vfat";
+    };
+
   swapDevices = [ ];
 
 }
