@@ -28,6 +28,8 @@
     haskellPackages.git-annex
     jq
     element-desktop
+    pavucontrol
+    libreoffice
   ];
 
   services.redshift = {
