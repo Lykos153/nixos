@@ -5,6 +5,9 @@
     settings = {
       keyserver = "hkp://keys.gnupg.net";
     };
+    publicKeys = [
+      { source = ./pubkeys/A63BA766.gpg; }
+    ];
   };
 
   services.gpg-agent = {
