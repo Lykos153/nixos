@@ -30,6 +30,7 @@
     element-desktop
     pavucontrol
     libreoffice
+    nomacs
   ];
 
   services.redshift = {
