@@ -31,6 +31,8 @@
     pavucontrol
     libreoffice
     nomacs
+    xfce.thunar
+    mate.caja
   ];
 
   services.redshift = {
