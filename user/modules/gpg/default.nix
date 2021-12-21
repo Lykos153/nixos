@@ -6,7 +6,10 @@
       keyserver = "hkp://keys.gnupg.net";
     };
     publicKeys = [
-      { source = ./pubkeys/A63BA766.gpg; }
+      {
+        source = ./pubkeys/A63BA766.gpg;
+        trust = 5;
+      }
     ];
   };
 
