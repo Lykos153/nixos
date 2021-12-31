@@ -31,7 +31,7 @@
     pavucontrol
     libreoffice
     nomacs
-    xfce.thunar
+    okular
     mate.caja
   ];
 
