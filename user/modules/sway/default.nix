@@ -167,12 +167,6 @@ in
     extraConfig = ''
       exec ${pkgs.wl-clipboard}/bin/wl-paste -p -t text --watch ${pkgs.clipman}/bin/clipman store -P
 
-      # exec ${pkgs.swayidle}/bin/swayidle -w \
-      #   timeout 300 '${lockcmd}' \
-      #   timeout 600 'swaymsg "output * dpms off"' \
-      #        resume 'swaymsg "output * dpms on"' \
-      #   before-sleep '${lockcmd}'
-
         exec gajim
         for_window [app_id="org.gajim.Gajim"] floating enable
         for_window [app_id="org.gajim.Gajim" title="Gajim"] move scratchpad
@@ -194,7 +188,73 @@ in
 
         # Workaround for https://todo.sr.ht/~emersion/kanshi/35
         exec_always "systemctl --user restart kanshi.service"
-    '';
+    '' + (
+      let
+        environmentVariables = lib.concatStringsSep " " [
+          "DBUS_SESSION_BUS_ADDRESS"
+          "DISPLAY"
+          "SWAYSOCK"
+          "WAYLAND_DISPLAY"
+        ];
+      in
+      ''
+        # From https://github.com/swaywm/sway/wiki#gtk-applications-take-20-seconds-to-start
+        exec systemctl --user import-environment ${environmentVariables} && \
+          hash dbus-update-activation-environment 2>/dev/null && \
+          dbus-update-activation-environment --systemd ${environmentVariables} && \
+          systemctl --user start sway-session.target
+      ''
+    );
+  };
+
+  systemd.user.targets.sway-session = {
+    Unit = {
+      Description = "sway compositor session";
+      Documentation = [ "man:systemd.special(7)" ];
+      BindsTo = [ "graphical-session.target" ];
+      Wants = [ "graphical-session-pre.target" ];
+      After = [ "graphical-session-pre.target" ];
+    };
+  };
+
+  systemd.user.services.swayidle = {
+    Unit.PartOf = [ "sway-session.target" ];
+    Install.WantedBy = [ "sway-session.target" ];
+
+    Service = {
+      # swayidle requires sh and swaymsg to be in path
+      Environment = "PATH=${pkgs.bash}/bin:${config.wayland.windowManager.sway.package}/bin";
+      ExecStart = ''
+        ${pkgs.swayidle}/bin/swayidle -w \
+            timeout 300 "${lockcmd}" \
+            timeout 300 'swaymsg "output * dpms off"' \
+                resume 'swaymsg "output * dpms on"' \
+            before-sleep "${lockcmd}"
+      '';
+      Restart = "on-failure";
+    };
+  };
+
+  # Start on tty1
+  programs.zsh.initExtra = /* sh */ ''
+    if [[ -z $WAYLAND_DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+        export XDG_SESSION_TYPE="wayland" # otherwise set to tty
+        unset __HM_SESS_VARS_SOURCED __NIXOS_SET_ENVIRONMENT_DONE # otherwise sessionVariables are not updated
+        exec systemd-cat -t sway sway
+    fi
+  '';
+
+  home.sessionVariables = {
+    CLUTTER_BACKEND = "wayland";
+    GDK_BACKEND = "wayland";
+    GDK_DPI_SCALE = 1;
+    MOZ_ENABLE_WAYLAND = 1;
+    QT_QPA_PLATFORM = "wayland-egl";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = 1;
+    SDL_VIDEODRIVER = "wayland";
+    WLR_NO_HARDWARE_CURSORS = 1;
+    _JAVA_AWT_WM_NONREPARENTING = 1;
+    _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=on";
   };
 
   home.packages = with pkgs; [
