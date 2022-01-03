@@ -27,6 +27,7 @@ in
       input = {
         "*" = {
           xkb_layout = "de";
+          xkb_numlock = "enable";
         };
       };
 
