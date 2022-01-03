@@ -35,13 +35,6 @@
     mate.caja
   ];
 
-  services.redshift = {
-    enable = true;
-    package = pkgs.redshift-wlr;
-    provider = "geoclue2";
-    temperature.night = 3000;
-    temperature.day = 5000;
-  };
 
   home.sessionVariables = {
     # MOZ_ENABLE_WAYLAND = "1"; not yet, because of https://github.com/swaywm/wlroots/issues/3189

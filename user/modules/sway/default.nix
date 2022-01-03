@@ -7,6 +7,7 @@ in
 {  
   imports = [
     ./kanshi.nix
+    ./gammastep.nix
   ];
 
   wayland.windowManager.sway = {
