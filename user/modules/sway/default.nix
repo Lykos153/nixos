@@ -8,6 +8,7 @@ in
   imports = [
     ./kanshi.nix
     ./gammastep.nix
+    ./waybar.nix
   ];
 
   wayland.windowManager.sway = {
@@ -172,6 +173,7 @@ in
         size = 10.0;
       };
 
+      bars = [ ]; # managed as systemd user unit
     };
     extraConfig = ''
       exec ${pkgs.wl-clipboard}/bin/wl-paste -p -t text --watch ${pkgs.clipman}/bin/clipman store -P
