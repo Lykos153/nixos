@@ -53,13 +53,16 @@
 
   environment.systemPackages = with pkgs; [
     vim
-    wget
     tmux
-    yadm
+
+    wget
+    curl
     git
-    home-manager
+
     htop
+
     efibootmgr
+    gptfdisk
   ];
 
   programs.sway = {
