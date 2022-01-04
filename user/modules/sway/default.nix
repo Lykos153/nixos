@@ -275,6 +275,7 @@ in
     wdisplays
     clipman
     light
+    brightnessctl
     i3status
     sway-contrib.grimshot # screenshots
     bemenu

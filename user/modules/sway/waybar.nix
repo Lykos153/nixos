@@ -81,7 +81,7 @@ in
       format = "{percent}% {icon}";
       format-icons = [ " " " " " " " " " " " " " " ];
       on-scroll-up = "${pkgs.brightnessctl}/bin/brightnessctl -q set +5%";
-      on-scroll-down = "${pkgs.brightnessctl}/bin/brightnessctl -q set 5%-";
+      on-scroll-down = "${pkgs.brightnessctl}/bin/brightnessctl -n5 -q set 5%-";
     };
     pulseaudio = {
       format = "{volume}% {icon} {format_source}";
