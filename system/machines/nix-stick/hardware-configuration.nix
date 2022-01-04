@@ -5,12 +5,6 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  networking.hostName = "nix-stick";
-
-  hardware.cpu.intel.updateMicrocode = true;
-  hardware.cpu.amd.updateMicrocode = true;
-
-  boot.loader.grub.device = "/dev/disk/by-id/usb-Samsung_Flash_Drive_0374218070021442-0:0";
   boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usb_storage" "sd_mod" "rtsx_usb_sdmmc" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
@@ -35,4 +29,6 @@
 
   swapDevices = [ ];
 
+  hardware.cpu.intel.updateMicrocode = true;
+  hardware.cpu.amd.updateMicrocode = true;
 }
