@@ -288,6 +288,7 @@ in
 
   programs.mako = {
     enable = true;
+    anchor = "bottom-right";
     defaultTimeout = 5000;
   };
 }
