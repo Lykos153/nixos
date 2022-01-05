@@ -9,6 +9,7 @@ in
     ./kanshi.nix
     ./gammastep.nix
     ./waybar.nix
+    ./default-apps.nix
   ];
 
   wayland.windowManager.sway = {
