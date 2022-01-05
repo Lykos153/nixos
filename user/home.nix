@@ -18,15 +18,18 @@
   };
 
   home.packages = with pkgs; [
+    #cli applications
     vimPlugins.vim-plug
-    termite
     vifm
-    gajim
     htop
-    thunderbird
     pwgen
     haskellPackages.git-annex
     jq
+
+    # gui applications
+    termite
+    gajim
+    thunderbird
     element-desktop
     pavucontrol
     libreoffice
