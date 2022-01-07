@@ -25,6 +25,9 @@
     pwgen
     haskellPackages.git-annex
     jq
+    mr
+    ripgrep
+    ncdu
 
     # gui applications
     termite
