@@ -3,6 +3,9 @@
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
+    userSettings = {
+      "[nix]"."editor.tabSize" = 2;
+    };
     extensions = with pkgs.vscode-extensions; [
       yzhang.markdown-all-in-one
       jnoortheen.nix-ide
