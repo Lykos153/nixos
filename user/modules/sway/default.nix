@@ -34,6 +34,8 @@ in
         };
       };
 
+      workspaceAutoBackAndForth = true;
+
       keybindings = {
         # Basics
         "${cfg.modifier}+Return" = "exec ${cfg.terminal}";
