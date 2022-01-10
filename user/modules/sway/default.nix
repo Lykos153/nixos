@@ -3,6 +3,7 @@
 let
   cfg = config.wayland.windowManager.sway.config;
   lockcmd = "${pkgs.swaylock}/bin/swaylock -f -c000000";
+  workspace_chat = "Chat";
 in
 {  
   imports = [
@@ -101,6 +102,12 @@ in
         "--whole-window ${cfg.modifier}+Shift+button4" = "exec _sway_utils previous_workspace";
         "--whole-window ${cfg.modifier}+Shift+button5" = "exec _sway_utils next_workspace";
 
+        # Chat workspace
+        "${cfg.modifier}+Shift+less" = "move container to workspace ${workspace_chat}";
+        "${cfg.modifier}+Shift+minus" = "move container to workspace ${workspace_chat}";
+        "${cfg.modifier}+less" = "workspace ${workspace_chat}";
+        "${cfg.modifier}+minus" = "workspace ${workspace_chat}";
+
         # Moving workspaces between outputs
         "${cfg.modifier}+Control+${cfg.left}" = "move workspace to output left";
         "${cfg.modifier}+Control+${cfg.down}" = "move workspace to output down";
@@ -131,11 +138,6 @@ in
         "${cfg.modifier}+Shift+space" = "floating toggle";
         "${cfg.modifier}+space" = "focus mode_toggle";
 
-        # Scratchpad
-        "${cfg.modifier}+Shift+less" = "move scratchpad";
-        "${cfg.modifier}+Shift+minus" = "move scratchpad";
-        "${cfg.modifier}+less" = "scratchpad show";
-        "${cfg.modifier}+minus" = "scratchpad show";
 
         # Resize mode
         "${cfg.modifier}+r" = "mode resize";
@@ -189,11 +191,13 @@ in
           { app_id="thunderbird"; }
           { class="Thunderbird"; }
         ];
+        ${workspace_chat} = [
+          { class="Element"; }
+          { app_id="org.gajim.Gajim"; title="Gajim"; }
+        ];
       };
     };
     extraConfig = ''
-        for_window [app_id="org.gajim.Gajim"] floating enable
-        for_window [app_id="org.gajim.Gajim" title="Gajim"] move scratchpad
         for_window [app_id="firefox"] inhibit_idle fullscreen
         for_window [class="Firefox"] inhibit_idle fullscreen
 
