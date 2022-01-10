@@ -55,6 +55,7 @@ in
 
     "sway/workspaces" = {
       disable-scroll = false;
+      disable-scroll-wraparound = true;
     };
     "sway/mode" = {
       format = "{}";
