@@ -101,8 +101,12 @@ in
         "${cfg.modifier}+Shift+0" = "move container to workspace number 10";
 
         # using the scrollwheel
-        "--whole-window ${cfg.modifier}+Shift+button4" = "exec _sway_utils previous_workspace";
-        "--whole-window ${cfg.modifier}+Shift+button5" = "exec _sway_utils next_workspace";
+        "--whole-window ${cfg.modifier}+Alt+button4" = "exec _sway_utils previous_workspace";
+        "--whole-window ${cfg.modifier}+Alt+button5" = "exec _sway_utils next_workspace";
+
+        # Using Ctrl and Alt
+        "${cfg.modifier}+Alt+Left" = "workspace prev";
+        "${cfg.modifier}+Alt+Right" = "workspace next";
 
         # Chat workspace
         "${cfg.modifier}+Shift+less" = "move container to workspace ${workspace_chat}";
