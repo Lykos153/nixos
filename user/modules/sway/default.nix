@@ -97,6 +97,10 @@ in
         "${cfg.modifier}+Shift+9" = "move container to workspace number 9";
         "${cfg.modifier}+Shift+0" = "move container to workspace number 10";
 
+        # using the scrollwheel
+        "--whole-window ${cfg.modifier}+Shift+button4" = "exec _sway_utils previous_workspace";
+        "--whole-window ${cfg.modifier}+Shift+button5" = "exec _sway_utils next_workspace";
+
         # Moving workspaces between outputs
         "${cfg.modifier}+Control+${cfg.left}" = "move workspace to output left";
         "${cfg.modifier}+Control+${cfg.down}" = "move workspace to output down";
