@@ -26,6 +26,9 @@ in
 {
   home.packages = [ (pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; }) ];
   # home-manager’s waybar module performs additional checks that are overly strict
+  xdg.configFile."waybar/config".onChange = ''
+          ${pkgs.systemd}/bin/systemctl --user reload waybar
+        '';
   xdg.configFile."waybar/config".text = lib.generators.toJSON { } {
     layer = "top";
     position = "bottom";
