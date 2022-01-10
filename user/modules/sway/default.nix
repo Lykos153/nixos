@@ -179,28 +179,23 @@ in
       };
 
       bars = [ ]; # managed as systemd user unit
+
+      assigns = {
+        "2" = [
+          { app_id="firefox"; }
+          { class="Firefox"; }
+        ];
+        "3" = [
+          { app_id="thunderbird"; }
+          { class="Thunderbird"; }
+        ];
+      };
     };
     extraConfig = ''
-      exec ${pkgs.wl-clipboard}/bin/wl-paste -p -t text --watch ${pkgs.clipman}/bin/clipman store -P
-
-        exec gajim
         for_window [app_id="org.gajim.Gajim"] floating enable
         for_window [app_id="org.gajim.Gajim" title="Gajim"] move scratchpad
-        
-        for_window [class="Element"] move scratchpad
-        exec element-desktop
-
-        assign [app_id="firefox"] 2
-        assign [class="Firefox"] 2
-        exec firefox
-
-        assign [app_id="thunderbird"] 3
-        assign [class="Thunderbird"] 3
-        exec thunderbird
-
         for_window [app_id="firefox"] inhibit_idle fullscreen
-        for_window [app_id="firefox"] assign workspace 2
-        for_window [app_id="thunderbird"] assign workspace 3
+        for_window [class="Firefox"] inhibit_idle fullscreen
 
         # Workaround for https://todo.sr.ht/~emersion/kanshi/35
         exec_always "systemctl --user restart kanshi.service"
@@ -246,6 +241,66 @@ in
             timeout 300 'swaymsg "output * dpms off"' \
                 resume 'swaymsg "output * dpms on"' \
             before-sleep "${lockcmd}"
+      '';
+      Restart = "on-failure";
+    };
+  };
+
+  systemd.user.services.clipman = {
+    Unit.PartOf = [ "sway-session.target" ];
+    Install.WantedBy = [ "sway-session.target" ];
+
+    Service = {
+      ExecStart = ''
+        ${pkgs.wl-clipboard}/bin/wl-paste -p -t text --watch ${pkgs.clipman}/bin/clipman store -P
+      '';
+      Restart = "on-failure";
+    };
+  };
+
+  systemd.user.services.firefox = {
+    Unit.PartOf = [ "sway-session.target" ];
+    Install.WantedBy = [ "sway-session.target" ];
+
+    Service = {
+      ExecStart = ''
+        ${pkgs.firefox}/bin/firefox
+      '';
+      Restart = "on-failure";
+    };
+  };
+
+  systemd.user.services.thunderbird = {
+    Unit.PartOf = [ "sway-session.target" ];
+    Install.WantedBy = [ "sway-session.target" ];
+
+    Service = {
+      ExecStart = ''
+        ${pkgs.thunderbird}/bin/thunderbird
+      '';
+      Restart = "on-failure";
+    };
+  };
+
+  systemd.user.services.gajim = {
+    Unit.PartOf = [ "sway-session.target" ];
+    Install.WantedBy = [ "sway-session.target" ];
+
+    Service = {
+      ExecStart = ''
+        ${pkgs.gajim}/bin/gajim
+      '';
+      Restart = "on-failure";
+    };
+  };
+
+  systemd.user.services.element-desktop = {
+    Unit.PartOf = [ "sway-session.target" ];
+    Install.WantedBy = [ "sway-session.target" ];
+
+    Service = {
+      ExecStart = ''
+        ${pkgs.element-desktop}/bin/element-desktop
       '';
       Restart = "on-failure";
     };
