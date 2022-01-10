@@ -143,9 +143,10 @@ in
       tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
     };
   };
-  #xdg.configFile."waybar/style.css".source = pkgs.substituteAll ({
-  #  src = ./waybar.css;
-  #} // (import ../common.nix).colorschemes.solarized);
+  xdg.configFile."waybar/style.css".onChange = ''
+          ${pkgs.systemd}/bin/systemctl --user restart waybar
+        '';
+  xdg.configFile."waybar/style.css".source = ./waybar.css;
 
   systemd.user.services.waybar = {
     Unit = {
