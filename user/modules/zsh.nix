@@ -25,11 +25,12 @@
       g   = "git";
       ga  = "git annex";
 
-      nixpkgs = "nix-env -f '<nixpkgs>' -iA";
       hmb = "home-manager build --flake \"$HOME/nixos/user#home\"";
       hms = "home-manager switch --flake \"$HOME/nixos/user#home\"";
       renix = "sudo nixos-rebuild switch --flake \"$HOME/nixos/system#$(hostname)\"";
       nix = "noglob nix";
+
+      manix = "nix run 'github:mlvzk/manix' --"; # too big to be installed by default. Rather only pull it when needed
     };
 
     initExtra = ''
@@ -45,6 +46,25 @@
       autoload -z edit-command-line
       zle -N edit-command-line
       bindkey "^X^E" edit-command-line
+
+      nsh () {
+        cmd="nix shell"
+        for arg in $@; do
+          if [ "''${arg#*\#}" = "$arg" ]; then
+            arg="nixpkgs#$arg"
+          fi
+          cmd="$cmd $arg"
+        done
+        setopt shwordsplit
+        $cmd
+        unsetopt shwordsplit
+      }
+
+      nr () {
+        cmd=$1
+        shift
+        nix run "nixpkgs#$cmd -- " $@
+      }
 
       gesehen () {
         CDIR=$(pwd)
