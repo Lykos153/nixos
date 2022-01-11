@@ -28,6 +28,7 @@
     mr
     ripgrep
     ncdu
+    python3Packages.ipython
 
     # gui applications
     termite
