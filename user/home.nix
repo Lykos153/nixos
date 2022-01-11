@@ -40,6 +40,7 @@
     nomacs
     okular
     mate.caja
+    vlc
   ];
 
   services.udiskie.enable = true;
