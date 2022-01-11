@@ -8,6 +8,7 @@
         enable = true;
         defaultApplications = {
             "text/html" = "firefox.desktop";
+            "application/pdf" = "okularApplication_pdf.desktop";
         };
     };
 }
