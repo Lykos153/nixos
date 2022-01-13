@@ -47,7 +47,7 @@
       zle -N edit-command-line
       bindkey "^X^E" edit-command-line
 
-      alias -s pdf=xdg-open
+      alias -s pdf="setsid xdg-open"
 
       nsh () {
         cmd="nix shell"
