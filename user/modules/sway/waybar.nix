@@ -138,8 +138,9 @@ in
       };
     };
     clock = {
-      format = "{:%H:%M %Z}";
-      format-alt = "{:%Y-%m-%d (%a)}";
+      interval = 1;
+      format = "{:%Y-%m-%d (%a) %H:%M:%S %Z}";
+      on-click = "";
       tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
     };
   };
