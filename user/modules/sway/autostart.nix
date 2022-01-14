@@ -27,6 +27,8 @@
   systemd.user.services.gajim = {
     Unit = {
       PartOf = [ "sway-session.target" ];
+      Wants = [ "keepassxc.service" ];
+      After = [ "keepassxc.service" ];
     };
 
     Install.WantedBy = [ "sway-session.target" ];
@@ -42,6 +44,8 @@
   systemd.user.services.element-desktop = {
     Unit = {
       PartOf = [ "sway-session.target" ];
+      Wants = [ "keepassxc.service" ];
+      After = [ "keepassxc.service" ];
     };
 
     Install.WantedBy = [ "sway-session.target" ];
