@@ -23,7 +23,8 @@
     vifm
     htop
     pwgen
-    haskellPackages.git-annex
+    git-annex
+    git-annex-remote-googledrive
     jq
     mr
     ripgrep
