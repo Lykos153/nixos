@@ -65,6 +65,7 @@
 
     efibootmgr
     gptfdisk
+    parted #for partprobe
   ];
 
   programs.sway = {
