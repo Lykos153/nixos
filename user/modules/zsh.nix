@@ -24,9 +24,9 @@
       g   = "git";
       ga  = "git annex";
 
-      hmb = "home-manager build --flake \"$HOME/nixos/user#home\"";
-      hms = "home-manager switch --flake \"$HOME/nixos/user#home\"";
-      renix = "sudo nixos-rebuild switch --flake \"$HOME/nixos/system#$(hostname)\"";
+      hmb = "_hm_nix_build_switch build user";
+      hms = "_hm_nix_build_switch switch user";
+      renix = "_hm_nix_build_switch switch system";
       nix = "noglob nix";
 
       manix = "nix run 'github:mlvzk/manix' --"; # too big to be installed by default. Rather only pull it when needed
@@ -65,6 +65,48 @@
         cmd=$1
         shift
         nix run "nixpkgs#$cmd -- " $@
+      }
+
+      _hm_nix_build_switch() {
+        case $2 in
+          system)
+            noglob sudo nixos-rebuild $1 --flake "$HOME/nixos/system#$(hostname)"
+            ;;
+          user)
+            noglob home-manager $1 --flake "$HOME/nixos/user#home"
+            ;;
+          *)
+            echo "Usage: $0 build|switch system|user"
+            return 1
+            ;;
+        esac
+      }
+
+      upgrade () {
+        case $1 in
+          _check)
+            flake=$2
+            git -C $flake status --short . | grep -v flake.lock && echo "$flake is dirty" && return 1
+            return 0
+            ;;
+
+          system | user)
+            flake="$HOME/nixos/$1"
+            upgrade _check "$flake" || return 1
+            nix flake update "$flake" &&
+            if git -C "$flake" diff --quiet flake.lock; then
+              echo "Nothing to do!"
+              return 0
+            fi
+            _hm_nix_build_switch switch $1 &&
+            git -C "$flake" commit -m "Upgrade $(basename "$flake")" flake.lock
+            ;;
+
+          *)
+            echo "$0 system"
+            echo "$0 user"
+            ;;
+        esac
       }
 
       cdt () {
