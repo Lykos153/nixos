@@ -9,7 +9,6 @@
     enableCompletion = true;
     shellAliases = {
       ip  = "ip --color=auto";
-      cdt = "cd $(mktemp -d)";
       l   = "ls -l";
       lh  = "ls -lh";
       la  = "ls -la";
@@ -66,6 +65,32 @@
         cmd=$1
         shift
         nix run "nixpkgs#$cmd -- " $@
+      }
+
+      cdt () {
+        template=$1
+        suffix=".XXXXX"
+        cd $(mktemp -d --tmpdir=/tmp "''${template:="cdt"}$suffix")
+      }
+
+      tclone () {
+        repo=$1
+
+        # Derive directory from the repository name
+        # Try using "humanish" part of source repo if user didn't specify one
+        if test -f "$repo"
+        then
+            # Cloning from a bundle
+            dir=$(echo "$repo" | sed -e 's|/*\.bundle$||' -e 's|.*/||g')
+        else
+            dir=$(echo "$repo" |
+                sed -e 's|/$||' -e 's|:*/*\.git$||' -e 's|.*[/:]||g')
+        fi
+
+        cdt $dir
+        pwd
+
+        git clone "$repo" .
       }
 
       gesehen () {
