@@ -4,7 +4,7 @@
         xdg-utils
     ];
 
-    options.xdg-mime-apps = {
+    config.xdg.mimeApps = {
         enable = true;
         defaultApplications = {
             "text/html" = "firefox.desktop";
