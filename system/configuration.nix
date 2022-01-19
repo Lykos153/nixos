@@ -109,6 +109,7 @@
   programs.zsh.promptInit = ""; # otherwise it'll override the grml prompt
 
   virtualisation.podman.enable = true;
+  virtualisation.podman.dockerCompat = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
