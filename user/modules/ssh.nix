@@ -1,3 +1,4 @@
+{ config, lib, nixosConfig, pkgs, ... }:
 {
   programs.ssh = {
     enable = true;
@@ -8,4 +9,7 @@
     '';
     includes = [ "local.d/*" ];
   };
+  home.packages = with pkgs; [
+    mosh
+  ];
 }
