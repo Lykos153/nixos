@@ -109,6 +109,19 @@
         esac
       }
 
+      #TODO: Maybe implement this as a target
+      dnd () { 
+        com_services="element-desktop.service gajim.service thunderbird.service"
+        case $1 in
+          off)
+            printf $com_services | xargs -d' ' systemctl --user start
+            ;;
+          *)
+            printf $com_services | xargs -d' ' systemctl --user stop
+            ;;
+        esac
+      }
+
       cdt () {
         template=$1
         suffix=".XXXXX"
