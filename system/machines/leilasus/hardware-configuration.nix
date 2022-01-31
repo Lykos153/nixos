@@ -20,6 +20,11 @@
 
   boot.initrd.luks.devices."leilasus".device = "/dev/disk/by-uuid/22a113fb-fd79-40bf-8d28-53abe042fcef";
 
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/EAD8-E590";
+      fsType = "vfat";
+    };
+
   swapDevices = [ ];
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

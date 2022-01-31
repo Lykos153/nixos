@@ -1,4 +1,13 @@
 {
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = false;
+    };
+    grub = {
+      device = "/dev/disk/by-id/ata-SanDisk_SDSSDA-1T00_20074D800780";
+      efiSupport = true;
+      efiInstallAsRemovable = true;
+      useOSProber = true;
+    };
+  };
 }
