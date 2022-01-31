@@ -65,6 +65,8 @@
 
     efibootmgr
     gptfdisk
+    btrfs-progs
+    bindfs
   ];
 
   programs.sway = {
