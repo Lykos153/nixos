@@ -7,7 +7,7 @@
 {
   nix = {
     package = pkgs.nixFlakes;
-    autoOptimiseStore = true;
+    settings.auto-optimise-store = true;
 
     gc = {
       automatic = true;
