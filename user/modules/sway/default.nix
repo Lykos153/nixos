@@ -208,6 +208,8 @@ in
         for_window [app_id="firefox"] inhibit_idle fullscreen
         for_window [class="Firefox"] inhibit_idle fullscreen
 
+        for_window [shell="xwayland"] title_format "%title (XWayland)"
+
         # Workaround for https://todo.sr.ht/~emersion/kanshi/35
         exec_always "systemctl --user restart kanshi.service"
     '' + (
