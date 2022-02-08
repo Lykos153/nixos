@@ -23,9 +23,12 @@
     vifm
     htop
     pwgen
+    git
     git-annex
     git-annex-remote-googledrive
+    tig
     jq
+    yq
     mr
     ripgrep
     ncdu
