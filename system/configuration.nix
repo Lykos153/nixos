@@ -20,6 +20,12 @@
       min-free = ${toString (1024 * 1024 * 1024)}
       max-free = ${toString (5 * 1024 * 1024 * 1024)}
     '';
+    settings.substituters = [
+      "https://lykos153.cachix.org"
+    ];
+    settings.trusted-public-keys = [
+      "lykos153.cachix.org-1:BLGtaZpIKqZOTOboODw4qGfSasflvle3RFIgUQI2bwQ="
+    ];
   };
 
   networking.networkmanager.enable = true;
