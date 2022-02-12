@@ -6,6 +6,7 @@
     userSettings = {
       "[nix]"."editor.tabSize" = 2;
       "files.insertFinalNewline" = true;
+      "editor.acceptSuggestionOnEnter" = "off";
     };
     extensions = with pkgs.vscode-extensions; [
       yzhang.markdown-all-in-one
