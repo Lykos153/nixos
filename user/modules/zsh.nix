@@ -13,6 +13,8 @@
       lh  = "ls -lh";
       la  = "ls -la";
 
+      n	  = "$TERM&!";
+
       os  = "openstack";
       k   = "kubectl";
 
