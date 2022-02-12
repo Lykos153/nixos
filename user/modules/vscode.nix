@@ -5,6 +5,7 @@
     package = pkgs.vscodium;
     userSettings = {
       "[nix]"."editor.tabSize" = 2;
+      "files.insertFinalNewline" = true;
     };
     extensions = with pkgs.vscode-extensions; [
       yzhang.markdown-all-in-one
