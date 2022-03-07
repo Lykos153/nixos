@@ -74,6 +74,9 @@
     parted #for partprobe
     btrfs-progs
     bindfs
+    pciutils
+    usbutils
+    lshw
   ];
 
   programs.sway = {
