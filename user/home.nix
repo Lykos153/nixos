@@ -34,6 +34,9 @@
     ripgrep
     ncdu
     python3Packages.ipython
+    screen
+    pv
+    unzip
 
     # gui applications
     termite
