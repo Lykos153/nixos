@@ -111,6 +111,10 @@
         esac
       }
 
+      nixtemplate () {
+        noglob nix flake new -t github:Lykos153/nixos#$1 .
+      }
+
       #TODO: Maybe implement this as a target
       dnd () { 
         com_services="element-desktop.service gajim.service thunderbird.service"
