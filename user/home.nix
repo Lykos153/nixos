@@ -37,6 +37,7 @@
     screen
     pv
     unzip
+    moreutils
 
     # gui applications
     termite
