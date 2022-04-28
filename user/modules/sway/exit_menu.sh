@@ -4,5 +4,5 @@ while [ "$select" != "NO" -a "$select" != "YES" ]; do
     [ -z "$select" ] && exit 0
 done
 [ "$select" = "NO" ] && exit 0
-systemctl --user stop sway-session.target
+systemctl --user stop sway-session.target &&
 swaymsg exit
