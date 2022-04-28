@@ -54,11 +54,6 @@
 
   services.udiskie.enable = true;
 
-  services.nextcloud-client = {
-    enable = true;
-    startInBackground = true;
-  };
-
   home.sessionVariables = {
     # MOZ_ENABLE_WAYLAND = "1"; not yet, because of https://github.com/swaywm/wlroots/issues/3189
   };
