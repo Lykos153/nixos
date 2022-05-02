@@ -4,7 +4,7 @@ let
     echo | ${pkgs.libsecret}/bin/secret-tool store --label=dummy dummy dummy &&
     exec ${pkgs.element-desktop}/bin/element-desktop
   '';
-  nextcloud-client = pkgs.writeShellScriptBin "nextcloud-client" ''
+  nextcloud-client = pkgs.writeShellScriptBin "nextcloud" ''
     echo | ${pkgs.libsecret}/bin/secret-tool store --label=dummy dummy dummy &&
     exec ${pkgs.nextcloud-client}/bin/nextcloud $@
   '';
