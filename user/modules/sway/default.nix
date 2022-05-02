@@ -304,6 +304,7 @@ in
     i3status
     sway-contrib.grimshot # screenshots
     bemenu
+    gnome3.adwaita-icon-theme
   ];
 
   #TODO: maybe make all of those a derivation some day
