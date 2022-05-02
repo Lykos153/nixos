@@ -1,4 +1,16 @@
 { config, lib, nixosConfig, pkgs, ... }:
+let
+  okular-x11 = pkgs.symlinkJoin {
+    name = "okular";
+    paths = [ pkgs.okular ];
+    buildInputs = [ pkgs.makeWrapper ];
+    # force okular to use xwayland, because of https://github.com/swaywm/sway/issues/4973
+    postBuild = ''
+      wrapProgram $out/bin/okular \
+        --set QT_QPA_PLATFORM xcb
+    '';
+  };
+in
 {
   imports = map (n: "${./modules}/${n}") (builtins.attrNames (builtins.readDir ./modules));
 
@@ -47,7 +59,7 @@
     pavucontrol
     libreoffice
     nomacs
-    okular
+    okular-x11
     mate.caja
     vlc
   ];
