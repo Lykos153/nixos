@@ -1,5 +1,7 @@
 {
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+  inputs.sops-nix.url = github:Mic92/sops-nix;
+
   outputs = { self, nixpkgs }:
   let
     #machinedir = ./machines
@@ -9,6 +11,8 @@
           ./configuration.nix
           (./machines + "/${name}")
           { networking.hostName = name; }
+
+          sops-nix.nixosModules.sops
       ];
     };
   in
