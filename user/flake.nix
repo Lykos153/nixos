@@ -4,6 +4,7 @@
     description = "Home manager flake";
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+        # nixpkgs-master.url = "github:nixos/nixpkgs/master";
         home-manager.url = "github:nix-community/home-manager";
         # nur.url = "github:nix-community/NUR";
     };
