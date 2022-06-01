@@ -37,6 +37,7 @@ in
     htop
     pwgen
     git
+    git-remote-gcrypt
     git-annex
     git-annex-remote-googledrive
     tig
