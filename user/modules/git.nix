@@ -1,3 +1,4 @@
+{ config, lib, nixosConfig, pkgs, ... }:
 {
   programs.git = {
     enable = true;
@@ -19,4 +20,8 @@
       };
     };
   };
+
+  home.packages = [
+    pkgs.pre-commit
+  ];
 }
