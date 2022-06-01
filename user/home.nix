@@ -16,7 +16,7 @@ in
 
   home.username = "silvio";
   home.homeDirectory = "/home/silvio";
-  
+
   programs.home-manager.enable = true;
   programs.firefox.enable = true;
   programs.chromium.enable = true;

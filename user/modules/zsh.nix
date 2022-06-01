@@ -13,7 +13,7 @@
       lh  = "ls -lh";
       la  = "ls -la";
 
-      n	  = "$TERM&!";
+      n      = "$TERM&!";
 
       os  = "openstack";
       k   = "kubectl";
@@ -116,7 +116,7 @@
       }
 
       #TODO: Maybe implement this as a target
-      dnd () { 
+      dnd () {
         com_services="element-desktop.service gajim.service thunderbird.service"
         case $1 in
           off)

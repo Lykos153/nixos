@@ -24,7 +24,7 @@ def all_children_are_repos(dir: Path):
             continue
         elif not all_children_are_repos(child):
             return False
-    return True 
+    return True
 
 def print_relative_path(path: Path, relative_to: Path):
     print(str(path).lstrip(str(relative_to)))
@@ -46,4 +46,3 @@ if __name__ == "__main__":
     print("Files that are not versioned by yadm:")
     for f in get_untracked_files_in_home():
         print("\t", term.red(str(f)))
-

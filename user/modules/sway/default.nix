@@ -5,7 +5,7 @@ let
   lockcmd = "${pkgs.swaylock}/bin/swaylock -f -c000000";
   workspace_chat = "Chat";
 in
-{  
+{
   imports = [
     ./kanshi.nix
     ./gammastep.nix
@@ -45,7 +45,7 @@ in
         "${cfg.modifier}+Shift+r" = "reload";
         "${cfg.modifier}+Shift+e" = "exec _sway_exit_menu";
         "${cfg.modifier}+Shift+p" = "exec _sway_poweroff_menu";
-        
+
         # Focus
         "${cfg.modifier}+${cfg.left}" = "focus left";
         "${cfg.modifier}+${cfg.down}" = "focus down";
