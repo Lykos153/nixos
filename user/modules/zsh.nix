@@ -115,6 +115,16 @@
         noglob nix flake new -t github:Lykos153/nixos#$1 .
       }
 
+      rbtohex() {
+        # Convert a raw binary string to a hexadecimal string
+        ( od -An -vtx1 | tr -d ' \n' )
+      }
+
+      hextorb() {
+        # Convert a hexadecimal string to a raw binary string
+        ( tr '[:lower:]' '[:upper:]' | sed -e 's/\([0-9A-F]\{2\}\)/\\\\\\x\1/gI'| xargs printf )
+      }
+
       #TODO: Maybe implement this as a target
       dnd () {
         com_services="element-desktop.service gajim.service thunderbird.service"
