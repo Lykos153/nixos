@@ -34,6 +34,19 @@
           transform = "270";
         }
       ];
+      berlin.outputs = [
+        {
+          criteria = "Fujitsu Siemens Computers GmbH B24-8 TS Pro YV9T711375";
+          mode = "1920x1080";
+          position = "0,0";
+          transform = "90";
+        }
+        {
+          criteria = "Fujitsu Siemens Computers GmbH B24-8 TS Pro YV9T711377";
+          mode = "1920x1080";
+          position = "1080,450";
+        }
+      ];
     };
   };
 }
