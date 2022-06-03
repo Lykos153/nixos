@@ -15,6 +15,7 @@
       hashicorp.terraform
       ms-azuretools.vscode-docker
       james-yu.latex-workshop
+      ms-ceintl.vscode-language-pack-de
     ];
   };
   programs.zsh.shellAliases.code = "codium";
