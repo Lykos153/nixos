@@ -134,6 +134,19 @@
 
   # Yubikey
   services.udev.packages = [ pkgs.yubikey-personalization ];
+  security.pam = {
+    yubico = {
+      enable = false; # true would enable for all PAM, including ssh, see https://bytemeta.vip/repo/NixOS/nixpkgs/issues/166076
+
+      debug = false;
+      mode = "challenge-response";
+      # control = "required"; # Require password AND Yubikey
+    };
+    # Only enable Yubikey for the following services
+    services.login.yubicoAuth = true;
+    services.swaylock.yubicoAuth = true;
+    services.sudo.yubicoAuth = true;
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
