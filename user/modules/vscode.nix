@@ -7,6 +7,7 @@
       "[nix]"."editor.tabSize" = 2;
       "files.insertFinalNewline" = true;
       "editor.acceptSuggestionOnEnter" = "off";
+      "workbench.colorTheme" = "Default Dark+";
     };
     extensions = with pkgs.vscode-extensions; [
       yzhang.markdown-all-in-one
