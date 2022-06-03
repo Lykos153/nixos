@@ -132,6 +132,9 @@
   virtualisation.podman.enable = true;
   virtualisation.podman.dockerCompat = true;
 
+  # Yubikey
+  services.udev.packages = [ pkgs.yubikey-personalization ];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
