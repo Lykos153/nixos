@@ -19,7 +19,8 @@
       options = [ "subvol=nixos" ];
     };
 
-  boot.initrd.luks.devices."asdf".device = "/dev/disk/by-uuid/f05b6cf0-5f7f-4cef-8ad5-e45c5568ee2d";
+  boot.initrd.luks.devices."root1".device = "/dev/disk/by-uuid/f05b6cf0-5f7f-4cef-8ad5-e45c5568ee2d";
+  boot.initrd.luks.devices."root2".device = "/dev/disk/by-uuid/9a3682fa-2551-44d1-9ff1-5b5af5e808a1";
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/A2D6-6042";
