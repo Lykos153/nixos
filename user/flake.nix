@@ -16,8 +16,8 @@
         homeConfigurations = {
             home = inputs.home-manager.lib.homeManagerConfiguration {
                 system = "x86_64-linux";
-                homeDirectory = "/home/silvio";
-                username = "silvio";
+                homeDirectory = "/home/leila";
+                username = "leila";
                 stateVersion = "22.05";
                 configuration = { config, lib, nixosConfig, pkgs, ... }@configInput: {
                     imports = [ ./home.nix ];
