@@ -30,6 +30,7 @@
       hms = "_hm_nix_build_switch switch user";
       renix = "_hm_nix_build_switch switch system";
       nix = "noglob nix";
+      findnix = "nix search nixpkgs";
 
       manix = "nix run 'github:mlvzk/manix' --"; # too big to be installed by default. Rather only pull it when needed
     };
