@@ -104,9 +104,15 @@
             git -C "$flake" commit -m "Upgrade $(basename "$flake")" flake.lock
             ;;
 
+          all)
+            upgrade system &&
+            upgrade user
+            ;;
+
           *)
             echo "$0 system"
             echo "$0 user"
+            echo "$0 all"
             ;;
         esac
       }
