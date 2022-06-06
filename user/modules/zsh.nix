@@ -31,6 +31,7 @@
       renix = "_hm_nix_build_switch switch system";
       nix = "noglob nix";
       findnix = "nix search nixpkgs";
+      nownix = "nsh";
 
       manix = "nix run 'github:mlvzk/manix' --"; # too big to be installed by default. Rather only pull it when needed
     };
