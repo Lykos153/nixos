@@ -66,6 +66,14 @@
     ];
   };
 
+  users.users.leila = {
+    uid = 1002;
+    isNormalUser = true;
+    shell = pkgs.zsh;
+    packages = with pkgs; [
+    ];
+  };
+
   users.users.root.shell = pkgs.zsh;
 
   environment.systemPackages = with pkgs; [
