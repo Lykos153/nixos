@@ -2,8 +2,6 @@
 {
   programs.git = {
     enable = true;
-    userEmail = "silvio@booq.org";
-    userName = "Silvio Ankermann";
     aliases = {
       graph = "log --all --oneline --graph --decorate";
     };
