@@ -2,7 +2,7 @@
 {
   programs.git = {
     enable = true;
-    userEmail = "silvio@booq.org";
+    userEmail = "leila@booq.org";
     userName = "Silvio Ankermann";
     aliases = {
       graph = "log --all --oneline --graph --decorate";
