@@ -1,14 +1,4 @@
 { config, lib, nixosConfig, pkgs, ... }:
-let
-  element-desktop = pkgs.writeShellScriptBin "element-desktop" ''
-    echo | ${pkgs.libsecret}/bin/secret-tool store --label=dummy dummy dummy &&
-    exec ${pkgs.element-desktop}/bin/element-desktop
-  '';
-  nextcloud-client = pkgs.writeShellScriptBin "nextcloud" ''
-    echo | ${pkgs.libsecret}/bin/secret-tool store --label=dummy dummy dummy &&
-    exec ${pkgs.nextcloud-client}/bin/nextcloud $@
-  '';
-in
 {
   systemd.user.services.firefox = {
     Unit.PartOf = [ "sway-session.target" ];
@@ -37,8 +27,6 @@ in
   systemd.user.services.gajim = {
     Unit = {
       PartOf = [ "sway-session.target" ];
-      Wants = [ "keepassxc.service" ];
-      After = [ "keepassxc.service" ];
     };
 
     Install.WantedBy = [ "sway-session.target" ];
@@ -54,15 +42,13 @@ in
   systemd.user.services.element-desktop = {
     Unit = {
       PartOf = [ "sway-session.target" ];
-      Wants = [ "keepassxc.service" ];
-      After = [ "keepassxc.service" ];
     };
 
     Install.WantedBy = [ "sway-session.target" ];
 
     Service = {
       ExecStart = ''
-        ${element-desktop}/bin/element-desktop
+        ${pkgs.element-desktop}/bin/element-desktop
       '';
       Restart = "on-failure";
     };
@@ -80,7 +66,7 @@ in
 
     Service = {
       Environment = "PATH=${config.home.profileDirectory}/bin";
-      ExecStart = "${nextcloud-client}/bin/nextcloud --background";
+      ExecStart = "${pkgs.nextcloud-client}/bin/nextcloud --background";
     };
   };
 
