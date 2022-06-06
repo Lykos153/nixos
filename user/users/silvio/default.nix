@@ -4,5 +4,6 @@
 
   imports = [
     ./mail.nix
+    ./autostart.nix
   ];
 }
