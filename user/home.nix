@@ -14,8 +14,8 @@ in
 {
   imports = map (n: "${./modules}/${n}") (builtins.attrNames (builtins.readDir ./modules));
 
-  home.username = "silvio";
-  home.homeDirectory = "/home/silvio";
+  home.username = "leila";
+  home.homeDirectory = "/home/leila";
 
   programs.home-manager.enable = true;
   programs.firefox.enable = true;
@@ -66,6 +66,7 @@ in
   ];
 
   services.udiskie.enable = true;
+  services.gnome-keyring.enable = true;
 
   home.sessionVariables = {
     # MOZ_ENABLE_WAYLAND = "1"; not yet, because of https://github.com/swaywm/wlroots/issues/3189
