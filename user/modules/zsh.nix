@@ -84,6 +84,18 @@
         esac
       }
 
+      donix () {
+        case $1 in
+          system | user )
+            _hm_nix_build_switch switch $1
+            ;;
+
+          *)
+            donix user
+            ;;
+        esac
+      }
+
       upgrade () {
         case $1 in
           _check)
