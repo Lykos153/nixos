@@ -53,7 +53,7 @@ in
     termite
     gajim
     thunderbird
-    element-desktop
+    schildichat-desktop
     pavucontrol
     libreoffice
     nomacs
