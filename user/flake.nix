@@ -3,26 +3,37 @@
 {
     description = "Home manager flake";
     inputs = {
+        system.url = "../system"; # this is not ideal. lock will change with every modification in the repo
         nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
         # nixpkgs-master.url = "github:nixos/nixpkgs/master";
         home-manager.url = "github:nix-community/home-manager";
         # nur.url = "github:nix-community/NUR";
     };
     outputs = { self, nur, ... }@inputs:
-    # let
+    let
     #     overlays = [ nur.overlay ];
-    # in
+        mkConfig = name: config: (
+            # inputs.nixpkgs.lib.nameValuePair
+            #     (name + "silvio-pc")
+                {
+                    "name" = name + "@silvio-pc";
+                    "value" = inputs.home-manager.lib.homeManagerConfiguration {
+                        system = "x86_64-linux";
+                        homeDirectory = config.home;
+                        username = name;
+                        stateVersion = "22.05";
+                        configuration = { config, lib, nixosConfig, pkgs, ... }@configInput:
+                        let
+                        userpath = (./users + "/${name}");
+                        in
+                        {
+                            imports = [ ./home.nix ] ++ (if builtins.pathExists userpath then [userpath] else []);
+                        };
+                    };
+                }
+        );
+    in
     {
-        homeConfigurations = {
-            home = inputs.home-manager.lib.homeManagerConfiguration {
-                system = "x86_64-linux";
-                homeDirectory = "/home/silvio";
-                username = "silvio";
-                stateVersion = "22.05";
-                configuration = { config, lib, nixosConfig, pkgs, ... }@configInput: {
-                    imports = [ ./home.nix ];
-                };
-            };
-        };
+        homeConfigurations = inputs.nixpkgs.lib.mapAttrs' mkConfig (inputs.system.outputs.nixosConfigurations.silvio-pc.config.users.users);
     };
 }
