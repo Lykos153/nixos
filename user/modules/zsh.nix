@@ -30,6 +30,8 @@
       hms = "_hm_nix_build_switch switch user";
       renix = "_hm_nix_build_switch switch system";
       nix = "noglob nix";
+      findnix = "nix search nixpkgs";
+      nownix = "nsh";
 
       manix = "nix run 'github:mlvzk/manix' --"; # too big to be installed by default. Rather only pull it when needed
     };
@@ -84,6 +86,18 @@
         esac
       }
 
+      donix () {
+        case $1 in
+          system | user )
+            _hm_nix_build_switch switch $1
+            ;;
+
+          *)
+            donix user
+            ;;
+        esac
+      }
+
       upgrade () {
         case $1 in
           _check)
@@ -104,9 +118,15 @@
             git -C "$flake" commit -m "Upgrade $(basename "$flake")" flake.lock
             ;;
 
+          all)
+            upgrade system &&
+            upgrade user
+            ;;
+
           *)
             echo "$0 system"
             echo "$0 user"
+            echo "$0 all"
             ;;
         esac
       }
