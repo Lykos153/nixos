@@ -77,7 +77,7 @@
             noglob sudo nixos-rebuild $1 --flake "$HOME/nixos/system#$(hostname)"
             ;;
           user)
-            noglob home-manager $1 --flake "$HOME/nixos/user#home"
+            noglob home-manager $1 --flake "$HOME/nixos/user#$(id -un)"
             ;;
           *)
             echo "Usage: $0 build|switch system|user"
