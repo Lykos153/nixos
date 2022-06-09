@@ -3,6 +3,7 @@
 {
     description = "Home manager flake";
     inputs = {
+        system.url = "../system"; # this is not ideal. lock will change with every modification in the repo
         nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
         # nixpkgs-master.url = "github:nixos/nixpkgs/master";
         home-manager.url = "github:nix-community/home-manager";
@@ -11,24 +12,33 @@
     };
     outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
-        # overlays = [ nur.overlay ];
-        system = "x86_64-linux";
+    #     overlays = [ nur.overlay ];
+        mkConfig = name: config: (
+            # inputs.nixpkgs.lib.nameValuePair
+            #     (name + "silvio-pc")
+                let
+                    system = "x86_64-linux";
+                    userpath = (./users + "/${name}");
+                in
+                {
+                    "name" = name + "@silvio-pc";
+                    "value" = inputs.home-manager.lib.homeManagerConfiguration {
+                        pkgs = nixpkgs.legacyPackages.${system};
+                        modules = [
+                            ./home.nix
+                            {
+                                home = {
+                                    homeDirectory = config.home;
+                                    username = name;
+                                    stateVersion = "22.05";
+                                };
+                            }
+                        ] ++ (if builtins.pathExists userpath then [userpath] else []);
+                    };
+                }
+        );
     in
     {
-        homeConfigurations = {
-            home = home-manager.lib.homeManagerConfiguration {
-                pkgs = nixpkgs.legacyPackages.${system};
-                modules = [
-                    ./home.nix
-                    {
-                        home = {
-                            homeDirectory = "/home/silvio";
-                            username = "silvio";
-                            stateVersion = "22.05";
-                        };
-                    }
-                ];
-            };
-        };
+        homeConfigurations = inputs.nixpkgs.lib.mapAttrs' mkConfig (inputs.system.outputs.nixosConfigurations.silvio-pc.config.users.users);
     };
 }
