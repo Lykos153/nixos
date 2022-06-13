@@ -28,6 +28,8 @@
     ];
   };
 
+  boot.supportedFilesystems = [ "ntfs" ];
+
   networking.networkmanager.enable = true;
 
   services.resolved = {
