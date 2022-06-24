@@ -6,16 +6,19 @@
         nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
         # nixpkgs-master.url = "github:nixos/nixpkgs/master";
         home-manager.url = "github:nix-community/home-manager";
+        home-manager.inputs.nixpkgs.follows = "nixpkgs";
         # nur.url = "github:nix-community/NUR";
     };
-    outputs = { self, nur, ... }@inputs:
-    # let
-    #     overlays = [ nur.overlay ];
-    # in
+    outputs = { self, nixpkgs, home-manager, ... }@inputs:
+    let
+        # overlays = [ nur.overlay ];
+        system = "x86_64-linux";
+    in
     {
         homeConfigurations = {
-            home = inputs.home-manager.lib.homeManagerConfiguration {
-                system = "x86_64-linux";
+            home = home-manager.lib.homeManagerConfiguration {
+                inherit system;
+                pkgs = nixpkgs.legacyPackages.${system};
                 homeDirectory = "/home/silvio";
                 username = "silvio";
                 stateVersion = "22.05";
