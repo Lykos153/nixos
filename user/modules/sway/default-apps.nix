@@ -9,6 +9,9 @@ in
 
     config.xdg.mimeApps = {
         enable = true;
+        associations.added = {
+            "text/x-tex" = "codium.desktop";
+        };
         defaultApplications = {
             "text/html" = defaultBrowser;
             "x-scheme-handler/http" = defaultBrowser;
