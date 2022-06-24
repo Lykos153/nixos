@@ -17,11 +17,12 @@
       ms-azuretools.vscode-docker
       james-yu.latex-workshop
       ms-ceintl.vscode-language-pack-de
-      hirse.vscode-ungit
-      ipedrazas.kubernetes-snippets
-      tumido.crd-snippets
       redhat.vscode-yaml
-      zardoy.fix-all-json
+      # TODO: Request or package these extensions:
+      # zardoy.fix-all-json
+      # hirse.vscode-ungit
+      # ipedrazas.kubernetes-snippets
+      # tumido.crd-snippets
     ];
   };
   programs.zsh.shellAliases.code = "codium";
