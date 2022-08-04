@@ -83,4 +83,16 @@ in
       ExecStart = "${nextcloud-client}/bin/nextcloud --background";
     };
   };
+
+  systemd.user.services.autotiling = {
+    Unit.PartOf = [ "sway-session.target" ];
+    Install.WantedBy = [ "sway-session.target" ];
+
+    Service = {
+      ExecStart = ''
+        ${pkgs.autotiling}/bin/autotiling
+      '';
+      Restart = "on-failure";
+    };
+  };
 }
