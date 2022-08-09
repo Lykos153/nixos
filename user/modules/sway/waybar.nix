@@ -104,8 +104,8 @@ in
         phone = " ";
         portable = " ";
       };
-      on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
-      on-click-right = "${pkgs.helvum}/bin/helvum";
+      on-click = "${pkgs.pulseaudio}/bin/pactl set-sink-mute 0 toggle";
+      on-click-right = "${pkgs.pavucontrol}/bin/pavucontrol";
     };
     network = {
       format-wifi = "{essid} ({signalStrength}%) 直 ";
