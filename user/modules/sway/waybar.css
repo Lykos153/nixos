@@ -1,254 +1,220 @@
-* {
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: Roboto, Helvetica, Arial, sans-serif;
-    font-size: 13px;
-}
+/* =============================================================================
+ *
+ * Waybar styles
+ *
+ * Styles reference: https://github.com/Alexays/Waybar/wiki/Configuration
+ *
+ * =========================================================================== */
 
-window#waybar {
-    background-color: rgba(43, 48, 59, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-    color: #ffffff;
-    transition-property: background-color;
-    transition-duration: .5s;
-}
+/* -----------------------------------------------------------------------------
+ * Keyframes
+ * -------------------------------------------------------------------------- */
 
-window#waybar.hidden {
-    opacity: 0.2;
-}
+@keyframes blink-warning {
+    70% {
+        color: white;
+    }
 
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.solo {
-    background-color: #FFFFFF;
-}
-*/
-
-window#waybar.termite {
-    background-color: #3F3F3F;
-}
-
-window#waybar.chromium {
-    background-color: #000000;
-    border: none;
-}
-
-#workspaces button {
-    padding: 0 5px;
-    background-color: transparent;
-    color: #ffffff;
-    /* Use box-shadow instead of border so the text isn't offset */
-    box-shadow: inset 0 -3px transparent;
-    /* Avoid rounded borders under each workspace name */
-    border: none;
-    border-radius: 0;
-}
-
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-#workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
-    box-shadow: inset 0 -3px #ffffff;
-}
-
-#workspaces button.focused {
-    background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
-}
-
-#workspaces button.urgent {
-    background-color: #eb4d4b;
-}
-
-#mode {
-    background-color: #64727D;
-    border-bottom: 3px solid #ffffff;
-}
-
-#clock,
-#battery,
-#cpu,
-#memory,
-#disk,
-#temperature,
-#backlight,
-#network,
-#pulseaudio,
-#custom-media,
-#tray,
-#mode,
-#idle_inhibitor,
-#mpd {
-    padding: 0 10px;
-    color: #ffffff;
-}
-
-#window,
-#workspaces {
-    margin: 0 4px;
-}
-
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
-}
-
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
-}
-
-#clock {
-    background-color: #64727D;
-}
-
-#battery {
-    background-color: #ffffff;
-    color: #000000;
-}
-
-#battery.charging, #battery.plugged {
-    color: #ffffff;
-    background-color: #26A65B;
-}
-
-@keyframes blink {
     to {
-        background-color: #ffffff;
-        color: #000000;
+        color: white;
+        background-color: orange;
     }
 }
 
-#battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
+@keyframes blink-critical {
+    70% {
+      color: white;
+    }
+
+    to {
+        color: white;
+        background-color: red;
+    }
+}
+
+
+/* -----------------------------------------------------------------------------
+ * Base styles
+ * -------------------------------------------------------------------------- */
+
+/* Reset all styles */
+* {
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* The whole bar */
+#waybar {
+    background-color: #222222; /* Sway palette: unfocused/background */
+    color: #ffffff; /* Sway palette: focused/text */
+    font-family: system-ui, sans-serif;
+    font-size: 14px;
+}
+
+/* -----------------------------------------------------------------------------
+ * Module styles
+ * -------------------------------------------------------------------------- */
+
+/* Each module */
+#backlight,
+#battery,
+#clock,
+#cpu,
+#custom-keyboard-layout,
+#idle_inhibitor,
+#memory,
+#mode,
+#network,
+#pulseaudio,
+#temperature,
+#tray {
+    margin-left: 18px;
+}
+
+#backlight {
+    /* No styles */
+}
+
+#battery {
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
 
-label:focus {
-    background-color: #000000;
+#battery.warning {
+    color: orange;
+}
+
+#battery.critical {
+    color: red;
+}
+
+#battery.warning.discharging {
+    animation-name: blink-warning;
+    animation-duration: 3s;
+}
+
+#battery.critical.discharging {
+    animation-name: blink-critical;
+    animation-duration: 2s;
+}
+
+#clock {
+    /* No styles */
+}
+
+#clock.time {
+    margin-left: 12px;
+    margin-right: 12px;
+    min-width: 60px;
 }
 
 #cpu {
-    background-color: #2e1ae2;
-    /* color: #000000; */
+  /* No styles */
+}
+
+#cpu.warning {
+    color: orange;
+}
+
+#cpu.critical {
+    color: red;
+}
+
+#custom-keyboard-layout {
+    margin-left: 22px;
 }
 
 #memory {
-    background-color: #8628c5;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
-#disk {
-    background-color: #964B00;
+#memory.warning {
+    color: orange;
 }
 
-#backlight {
-    background-color: #90b1b1;
+#memory.critical {
+    color: red;
+    animation-name: blink-critical;
+    animation-duration: 2s;
+}
+
+#mode {
+    color: #ffffff; /* Sway palette: urgent/text */
+    background-color: #900000; /* Sway palette: urgent/background */
+    margin-left: 0;
+    /* To compensate for the top border and still have vertical centering */
+    padding: 0 16px;
 }
 
 #network {
-    background-color: #3102b1;
+    /* No styles */
 }
 
 #network.disconnected {
-    background-color: #f53c3c;
+    color: orange;
 }
 
 #pulseaudio {
-    background-color: #4b0ff1;
-    /* color: #000000; */
+    /* No styles */
 }
 
 #pulseaudio.muted {
-    background-color: rgb(91, 76, 230);
-    /* color: #2a5c45; */
-}
-
-#custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
-    min-width: 100px;
-}
-
-#custom-media.custom-spotify {
-    background-color: #66cc99;
-}
-
-#custom-media.custom-vlc {
-    background-color: #ffa000;
+    /* No styles */
 }
 
 #temperature {
-    background-color: #f0932b;
+    /* No styles */
 }
 
 #temperature.critical {
-    background-color: #eb4d4b;
+    color: red;
 }
 
 #tray {
-    background-color: #2980b9;
+    /* No styles */
 }
 
-#tray > .passive {
-    -gtk-icon-effect: dim;
+#window {
+    margin-left: 32px;
+    margin-right: 32px;
 }
 
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
+#workspaces button {
+    border-top: 2px solid transparent;
+    /* To compensate for the top border and still have vertical centering */
+    padding-bottom: 2px;
+    padding-left: 15px;
+    padding-right: 18px;
+    color: #888888; /* Sway palette: unfocused/text */
 }
 
-#idle_inhibitor {
-    background-color: #2d3436;
+#workspaces button:hover {
+    /* Reset all hover styles */
+    background: inherit;
+    box-shadow: inherit;
+    text-shadow: inherit;
+    background-color: #184567;
 }
 
-#idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
+#workspaces button.visible {
+    border-color: #333333; /* Sway palette focused_inactive/border */
+    color: #ffffff; /* Sway palette: focused_inactive/text */
+    background-color: #5f676a; /* Sway palette focused_inactive/background */
 }
 
-#mpd {
-    background-color: #66cc99;
-    color: #2a5c45;
+#workspaces button.focused {
+    border-color: #4c7899; /* Sway palette: focused/border */
+    color: #ffffff; /* Sway palette: focused/text */
 }
 
-#mpd.disconnected {
-    background-color: #f53c3c;
-}
-
-#mpd.stopped {
-    background-color: #90b1b1;
-}
-
-#mpd.paused {
-    background-color: #51a37a;
-}
-
-#language {
-    background: #00b093;
-    color: #740864;
-    padding: 0 5px;
-    margin: 0 5px;
-    min-width: 16px;
-}
-
-#keyboard-state {
-    background: #97e1ad;
-    color: #000000;
-    padding: 0 0px;
-    margin: 0 5px;
-    min-width: 16px;
-}
-
-#keyboard-state > label {
-    padding: 0 5px;
-}
-
-#keyboard-state > label.locked {
-    background: rgba(0, 0, 0, 0.2);
+#workspaces button.urgent {
+    border-color: #2f343a; /* Sway palette: urgent/border */
+    color: #ffffff; /* Sway palette: urgent/text */
+    background-color: #900000; /* Sway palette: urgent/background */
 }

@@ -215,6 +215,7 @@ in
 
         # Workaround for https://todo.sr.ht/~emersion/kanshi/35
         exec_always "systemctl --user restart kanshi.service"
+        exec_always ${pkgs.swaybg}/bin/swaybg -i ~/.wallpaper.jpg -m fill
     '' + (
       let
         environmentVariables = lib.concatStringsSep " " [

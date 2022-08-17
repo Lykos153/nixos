@@ -30,40 +30,57 @@ in
           ${pkgs.systemd}/bin/systemctl --user reload waybar
         '';
   xdg.configFile."waybar/config".text = lib.generators.toJSON { } {
-    layer = "top";
-    position = "bottom";
-    height = 24;
+    layer = "bottom";
+    position = "top";
+    height = 10;
 
-    modules-center = [
-      "sway/mode"
-    ];
     modules-left = [
       "sway/workspaces"
+      "sway/mode"
+    ];
+    modules-center = [
+      "sway/window"
     ];
     modules-right = [
-      "custom/redshift"
+      # "custom/redshift"
       "idle_inhibitor"
-      "backlight"
       "pulseaudio"
-      "network"
-      "memory"
-      "cpu"
-      "battery"
       "tray"
-      "clock"
+      "clock#date"
+      "clock#time"
     ];
 
     "sway/workspaces" = {
       disable-scroll = false;
       disable-scroll-wraparound = true;
       enable-bar-scroll = true;
+      format = "{icon} {name}";
+      format-icons = {
+          "1:WWW" = ""; # Icon: firefox-browser
+          "2:Editor" = ""; # Icon: code
+          "3:Terminals" = ""; # Icon: terminal
+          "4:Mail" = ""; # Icon: mail
+          "8:Documents" = ""; # Icon: book
+          "9:Multimedia" = ""; # Icon: music
+          "10:Torrent" = ""; # Icon: cloud-download-alt
+          urgent = "";
+          focused = "";
+          default = "";
+      };
     };
     "sway/mode" = {
+      format = "<span style=\"italic\"> {}</span>"; # Icon: expand-arrows-alt
+      tooltip = false;
+    };
+
+    "sway/window" = {
       format = "{}";
+      max-length = 120;
     };
 
     tray = {
-      spacing = 5;
+      icon-size = 21;
+      spacing = 10;
     };
     "custom/redshift" = {
       exec = watchUserUnitState
@@ -76,11 +93,11 @@ in
       tooltip = false;
     };
     idle_inhibitor = {
-      format = "{icon}";
-      format-icons = {
-        activated = " ";
-        deactivated = " ";
-      };
+        format = "{icon}";
+        "format-icons" = {
+            activated = "";
+            deactivated = "";
+        };
     };
     backlight = {
       format = "{percent}% {icon}";
@@ -89,23 +106,21 @@ in
       on-scroll-down = "${pkgs.brightnessctl}/bin/brightnessctl -n5 -q set 5%-";
     };
     pulseaudio = {
-      format = "{volume}% {icon} {format_source}";
-      format-bluetooth = "{volume}% {icon} {format_source}";
-      format-bluetooth-muted = "${lrm}ﱝ${lrm}  {icon} {format_source}";
-      format-muted = "${lrm}ﱝ${lrm}  {format_source}";
-      format-source = "{volume}% ${thinsp}";
-      format-source-muted = "{volume}% ${thinsp}";
-      format-icons = {
-        car = " ";
-        default = [ "奄" "奔" "墳" ];
-        hands-free = " ";
-        headphone = " ";
-        headset = " ";
-        phone = " ";
-        portable = " ";
-      };
-      on-click = "${pkgs.pulseaudio}/bin/pactl set-sink-mute 0 toggle";
-      on-click-right = "${pkgs.pavucontrol}/bin/pavucontrol";
+        scroll-step = 2;
+        format = "{icon} {volume}%";
+        format-muted = " Muted"; # Icon: volume-mute
+        format-icons = {
+            headphones = ""; # Icon: headphones
+            handsfree = ""; # Icon: headset
+            headset = ""; # Icon: headset
+            phone = ""; # Icon: phone
+            portable = ""; # Icon: phone
+            car = ""; # Icon: car
+            default = ["" ""]; # Icons: volume-down, volume-up
+        };
+        on-click = "${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
+        on-click-right = "${pkgs.pavucontrol}/bin/pavucontrol";
+        tooltip = true;
     };
     network = {
       format-wifi = "{essid} ({signalStrength}%) 直 ";
@@ -138,12 +153,21 @@ in
         warning = 30;
       };
     };
-    clock = {
-      interval = 1;
-      format = "{:%a %Y-%m-%d (%V) %H:%M:%S %Z}";
-      on-click = "";
-      tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+
+    "clock#time" = {
+        interval = 1;
+        format = "{:%H:%M:%S}";
+        tooltip = false;
     };
+
+    "clock#date" = {
+      interval = 10;
+      format = " {:%e %b %Y}"; # # Icon: calendar-alt
+      tooltip-format = "{:%e %B %Y}";
+      locale = "de_DE.UTF-8";
+      timezone = "Europe/Berlin";
+    };
+
   };
   xdg.configFile."waybar/style.css".onChange = ''
           ${pkgs.systemd}/bin/systemctl --user restart waybar
