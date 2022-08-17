@@ -28,6 +28,8 @@ in
   };
 
   home.packages = with pkgs; [
+    xboxdrv
+
     #cli applications
     vimPlugins.vim-plug
     vifm
@@ -48,6 +50,7 @@ in
     pv
     unzip
     moreutils
+    android-file-transfer
 
     # gui applications
     termite
@@ -61,6 +64,20 @@ in
     xfce.thunar
     vlc
     system-config-printer
+    gnome.gedit
+    feh # image viewer
+    darktable
+    solaar # TODO udev rules https://search.nixos.org/packages?channel=unstable&show=solaar&from=0&size=50&sort=relevance&type=packages&query=solaar
+
+    tdesktop # telegram
+
+    # unfree
+    zoom-us
+    spotify
+    steam
+    geogebra
+    gitkraken
+    playonlinux
   ];
 
   services.udiskie.enable = true;
