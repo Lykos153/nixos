@@ -21,6 +21,11 @@
                 hostpath = (userpath + "/${hostname}");
                 userlist = if builtins.pathExists userpath then [userpath] else [];
                 hostlist = if builtins.pathExists hostpath then [hostpath] else [];
+                nixpkgsConfigPath = userpath + "/nixpkgs-config.nix";
+                pkgs = import nixpkgs {
+                    inherit system;
+                    config = if builtins.pathExists nixpkgsConfigPath then import nixpkgsConfigPath else {};
+                };
             in
             (
             # inputs.nixpkgs.lib.nameValuePair
@@ -28,7 +33,7 @@
                 {
                     "name" = username;
                     "value" = inputs.home-manager.lib.homeManagerConfiguration {
-                        pkgs = nixpkgs.legacyPackages.${system};
+                        inherit pkgs;
                         modules = [
                             ./home.nix
                             {
