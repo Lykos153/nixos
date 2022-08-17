@@ -13,11 +13,15 @@
     let
         # overlays = [ nur.overlay ];
         system = "x86_64-linux";
+        pkgs = import nixpkgs {
+            inherit system;
+            config = { allowUnfree = true; };
+        };
     in
     {
         homeConfigurations = {
             home = home-manager.lib.homeManagerConfiguration {
-                pkgs = nixpkgs.legacyPackages.${system};
+                inherit pkgs;
                 modules = [
                     ./home.nix
                     {
