@@ -1,6 +1,7 @@
 # More inspiration: https://git.sbruder.de/simon/nixos-config/src/branch/master/users/simon/modules/sway/default.nix
 { config, lib, nixosConfig, pkgs, ... }:
 let
+  colorscheme = import ./colors.nix;
   cfg = config.wayland.windowManager.sway.config;
   lockcmd = "${pkgs.swaylock}/bin/swaylock -f -c000000";
   workspace_chat = "Chat";
