@@ -53,6 +53,9 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+
   users.users.silvio = {
     uid = 1000;
     isNormalUser = true;
