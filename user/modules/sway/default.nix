@@ -111,10 +111,11 @@ in
         "${cfg.modifier}+Alt+Right" = "workspace next";
 
         # Chat workspace
-        "${cfg.modifier}+Shift+less" = "move container to workspace ${workspace_chat}";
         "${cfg.modifier}+Shift+minus" = "move container to workspace ${workspace_chat}";
-        "${cfg.modifier}+less" = "workspace ${workspace_chat}";
         "${cfg.modifier}+minus" = "workspace ${workspace_chat}";
+
+        # rofi
+        "${cfg.modifier}+less" = "exec --no-startup-id ${pkgs.rofi}/bin/rofi -show drun -run-shell-command '{terminal} -e \" {cmd}; read -n 1 -s\"'";
 
         # Moving workspaces between outputs
         "${cfg.modifier}+Control+${cfg.left}" = "move workspace to output left";
