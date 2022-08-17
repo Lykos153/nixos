@@ -3,5 +3,6 @@
   programs.git.userName = "Leila Höll";
 
   imports = [
+    ./waybar.nix
   ];
 }

@@ -5,5 +5,6 @@
   imports = [
     ./mail.nix
     ./autostart.nix
+    ./gui
   ];
 }
