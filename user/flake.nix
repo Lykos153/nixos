@@ -17,14 +17,17 @@
     {
         homeConfigurations = {
             home = home-manager.lib.homeManagerConfiguration {
-                inherit system;
                 pkgs = nixpkgs.legacyPackages.${system};
-                homeDirectory = "/home/silvio";
-                username = "silvio";
-                stateVersion = "22.05";
-                configuration = { config, lib, nixosConfig, pkgs, ... }@configInput: {
-                    imports = [ ./home.nix ];
-                };
+                modules = [
+                    ./home.nix
+                    {
+                        home = {
+                            homeDirectory = "/home/silvio";
+                            username = "silvio";
+                            stateVersion = "22.05";
+                        };
+                    }
+                ];
             };
         };
     };
