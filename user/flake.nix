@@ -13,7 +13,7 @@
     outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
     #     overlays = [ nur.overlay ];
-        mkConfig = name: config: (
+        mkUserConfig = host: name: config: (
             # inputs.nixpkgs.lib.nameValuePair
             #     (name + "silvio-pc")
                 let
@@ -21,7 +21,7 @@
                     userpath = (./users + "/${name}");
                 in
                 {
-                    "name" = name + "@silvio-pc";
+                    "name" = name + "@" + host;
                     "value" = inputs.home-manager.lib.homeManagerConfiguration {
                         pkgs = nixpkgs.legacyPackages.${system};
                         modules = [
@@ -39,6 +39,6 @@
         );
     in
     {
-        homeConfigurations = inputs.nixpkgs.lib.mapAttrs' mkConfig (inputs.system.outputs.nixosConfigurations.silvio-pc.config.users.users);
+        homeConfigurations = inputs.nixpkgs.lib.mapAttrs' (mkUserConfig "silvio-pc") (inputs.system.outputs.nixosConfigurations.silvio-pc.config.users.users);
     };
 }
