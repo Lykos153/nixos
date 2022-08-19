@@ -226,10 +226,12 @@ in
         "2" = [
           { app_id="firefox"; }
           { class="Firefox"; }
+          { class="firefox"; }
         ];
         "3" = [
           { app_id="thunderbird"; }
           { class="Thunderbird"; }
+          { class="thunderbird"; }
         ];
         ${workspace_chat} = [
           { class="SchildiChat"; }
