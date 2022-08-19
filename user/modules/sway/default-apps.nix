@@ -11,6 +11,7 @@ in
         enable = true;
         associations.added = {
             "text/x-tex" = "codium.desktop";
+            "x-scheme-handler/tg" = "userapp-Telegram Desktop-0IRXQ1.desktop";
         };
         defaultApplications = {
             "text/html" = defaultBrowser;
@@ -19,6 +20,7 @@ in
             "x-scheme-handler/about" = defaultBrowser;
             "x-scheme-handler/unknown" = defaultBrowser;
             "application/pdf" = "okularApplication_pdf.desktop";
+            "x-scheme-handler/tg" = "userapp-Telegram Desktop-0IRXQ1.desktop"
         };
     };
 }
