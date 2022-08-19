@@ -19,11 +19,18 @@
     };
 
   boot.initrd.luks.devices."leilasus".device = "/dev/disk/by-uuid/22a113fb-fd79-40bf-8d28-53abe042fcef";
+  boot.initrd.luks.devices."arch-home".device = "/dev/disk/by-uuid/ae264b70-6cfc-49e3-9777-213e0c1b6169";
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/EAD8-E590";
       fsType = "vfat";
     };
+
+  fileSystems."/oldhome" =
+  {
+    device = "/dev/disk/by-uuid/70a2a513-2a33-4702-a106-2512ef58605f";
+    fsType = "ext4";
+  };
 
   swapDevices = [ ];
 
