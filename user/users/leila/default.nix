@@ -28,5 +28,6 @@
     ./sway.nix
     ./waybar.nix
     ./sway.nix
+    ./autostart.nix
   ];
 }
