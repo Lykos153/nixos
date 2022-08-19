@@ -33,6 +33,8 @@
       findnix = "nix search nixpkgs";
       nownix = "nsh";
 
+      oldhome = "sudo bindfs -uleila -gusers /oldhome/leila/ ~leila/arch-home";
+
       manix = "nix run 'github:mlvzk/manix' --"; # too big to be installed by default. Rather only pull it when needed
     };
 
