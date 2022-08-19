@@ -29,5 +29,6 @@
     ./waybar.nix
     ./sway.nix
     ./autostart.nix
+    ./zsh.nix
   ];
 }
