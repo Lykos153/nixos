@@ -61,7 +61,7 @@ in
     libreoffice
     nomacs
     okular-x11
-    mate.caja
+    xfce.thunar
     vlc
     gnome.gedit
     feh # image viewer
