@@ -13,4 +13,19 @@
       ExecStart = "${pkgs.nextcloud-client}/bin/nextcloud --background";
     };
   };
+
+  systemd.user.services.gajim = {
+    Unit = {
+      PartOf = [ "sway-session.target" ];
+    };
+
+    Install.WantedBy = [ "sway-session.target" ];
+
+    Service = {
+      ExecStart = ''
+        ${pkgs.gajim}/bin/gajim
+      '';
+      Restart = "on-failure";
+    };
+  };
 }
