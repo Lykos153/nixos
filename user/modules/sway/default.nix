@@ -232,8 +232,9 @@ in
           { class="Thunderbird"; }
         ];
         ${workspace_chat} = [
-          { class="Element"; }
+          { class="SchildiChat"; }
           { app_id="org.gajim.Gajim"; title="Gajim"; }
+          { app_id="telegramdesktop"; }
         ];
       };
     };
