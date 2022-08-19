@@ -37,8 +37,12 @@
                     };
                 }
         );
+        mkHostConfig = host: nixosConfiguration: (
+            inputs.nixpkgs.lib.mapAttrs' (mkUserConfig host) (nixosConfiguration.config.users.users)
+        );
     in
     {
-        homeConfigurations = inputs.nixpkgs.lib.mapAttrs' (mkUserConfig "silvio-pc") (inputs.system.outputs.nixosConfigurations.silvio-pc.config.users.users);
+        # homeConfigurations = mkHostConfig "silvio-pc" inputs.system.outputs.nixosConfigurations.silvio-pc;
+        homeConfigurations = inputs.nixpkgs.lib.mapAttrs mkHostConfig (inputs.system.outputs.nixosConfigurations);
     };
 }
