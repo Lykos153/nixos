@@ -37,9 +37,9 @@ in
       "sway/window"
     ];
     modules-right = [
-      # "custom/redshift"
       "idle_inhibitor"
       "pulseaudio"
+      "custom/redshift"
       "tray"
       "clock#date"
       "clock#time"
