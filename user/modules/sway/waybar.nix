@@ -94,7 +94,7 @@ in
       format-bluetooth-muted = "${lrm}ﱝ${lrm}  {icon} {format_source}";
       format-muted = "${lrm}ﱝ${lrm}  {format_source}";
       format-source = "{volume}% ${thinsp}";
-      format-source-muted = "${thinsp}";
+      format-source-muted = "{volume}% ${thinsp}";
       format-icons = {
         car = " ";
         default = [ "奄" "奔" "墳" ];
