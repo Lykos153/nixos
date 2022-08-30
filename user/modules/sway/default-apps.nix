@@ -19,6 +19,7 @@ in
             "x-scheme-handler/about" = defaultBrowser;
             "x-scheme-handler/unknown" = defaultBrowser;
             "application/pdf" = "okularApplication_pdf.desktop";
+            "inode/directory" = "thunar.desktop";
         };
     };
 }
