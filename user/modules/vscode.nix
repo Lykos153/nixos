@@ -7,6 +7,7 @@
       "[nix]"."editor.tabSize" = 2;
       "files.insertFinalNewline" = true;
       "editor.acceptSuggestionOnEnter" = "off";
+      "editor.fontFamily" = "'FuraCode Mono Nerd Font', 'monospace', monospace";
       "workbench.colorTheme" = "Default Dark+";
     };
     extensions = with pkgs.vscode-extensions; [
