@@ -63,6 +63,7 @@ in
     okular-x11
     xfce.thunar
     vlc
+    system-config-printer
   ];
 
   services.udiskie.enable = true;
