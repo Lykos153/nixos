@@ -150,12 +150,12 @@ in
         "${cfg.modifier}+r" = "mode resize";
 
         # # Multimedia Keys
-        "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
+        "XF86AudioMute" = "exec ${pkgs.avizo}/bin/volumectl toggle-mute";
         "XF86AudioMicMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-source-mute @DEFAULT_SOURCE@ toggle";
-        "--locked XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
-        "--locked XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +5%";
-        "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
-        "XF86AudioLowerVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
+        "--locked XF86MonBrightnessDown" = "exec ${pkgs.avizo}/bin/lightctl down";
+        "--locked XF86MonBrightnessUp" = "exec ${pkgs.avizo}/bin/lightctl up";
+        "XF86AudioRaiseVolume" = "exec ${pkgs.avizo}/bin/volumectl -u up";
+        "XF86AudioLowerVolume" = "exec ${pkgs.avizo}/bin/volumectl -u down";
 
         # "XF86AudioPrev" = "exec ${pkgs.mpc_cli}/bin/mpc -q next";
         # "XF86AudioNext" = "exec ${pkgs.mpc_cli}/bin/mpc -q prev";
@@ -273,6 +273,18 @@ in
     };
   };
 
+  systemd.user.services.avizo = {
+    Unit.PartOf = [ "sway-session.target" ];
+    Install.WantedBy = [ "sway-session.target" ];
+
+    Service = {
+      ExecStart = ''
+        ${pkgs.avizo}/bin/avizo-service
+      '';
+      Restart = "on-failure";
+    };
+  };
+
   # Start on tty1
   programs.zsh.initExtra = /* sh */ ''
     if [[ -z $WAYLAND_DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
@@ -307,6 +319,8 @@ in
     sway-contrib.grimshot # screenshots
     bemenu
     gnome3.adwaita-icon-theme
+    avizo # volumectl, lightctl
+    pamixer # for avizo. TODO: wrap pamixer inside avizo?
   ];
 
   #TODO: maybe make all of those a derivation some day
