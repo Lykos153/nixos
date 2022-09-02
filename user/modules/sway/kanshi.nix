@@ -75,6 +75,27 @@
           scale = 1.6;
         }
       ];
+      ch-mobile.outputs = [
+        {
+          criteria = "Unknown 0x103D 0x00000000";
+          mode = "1920x1080";
+          position = "0,0";
+          scale = 1.;
+        }
+      ];
+      ch.outputs = [
+        {
+          criteria = "Unknown 0x103D 0x00000000";
+          mode = "1920x1080";
+          position = "4902,2660";
+          scale = 1.5;
+        }
+        {
+          criteria = "Unknown HL274HPB 0x00000000";
+          mode = "1920x1080";
+          position = "6182,2110";
+        }
+      ];
     };
   };
 }
