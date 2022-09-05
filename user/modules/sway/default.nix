@@ -209,6 +209,7 @@ in
     extraConfig = ''
         for_window [app_id="firefox"] inhibit_idle fullscreen
         for_window [class="Firefox"] inhibit_idle fullscreen
+        for_window [class="firefox"] inhibit_idle fullscreen
 
         for_window [shell="xwayland"] title_format "%title (XWayland)"
 
