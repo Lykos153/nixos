@@ -320,7 +320,7 @@ in
     sway-contrib.grimshot # screenshots
     libnotify # screenshots
     bemenu
-    gnome3.adwaita-icon-theme
+    numix-icon-theme
     avizo # volumectl, lightctl
     pamixer # for avizo. TODO: wrap pamixer inside avizo?
   ];
