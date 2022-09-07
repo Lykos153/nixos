@@ -47,6 +47,8 @@
     keyMap = "de";
   };
 
+  services.udisks2.enable = true;
+
   # https://nixos.wiki/wiki/Printing
   services.printing.enable = true;
   services.avahi.enable = true;
