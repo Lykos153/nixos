@@ -169,8 +169,8 @@ in
         # "Shift_R+Shift" = "exec ${pkgs.dbus}/bin/dbus-send --session --type=method_call --dest=net.sourceforge.mumble.mumble / net.sourceforge.mumble.Mumble.stopTalking";
 
         # Screenshots
-        "Print" = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot save screen Bilder/Screenshots/$(date +'%Y-%m-%d-%H%M%S.png')";
-        "Ctrl+Print" = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot save area Bilder/Screenshots/$(date +'%Y-%m-%d-%H%M%S.png')";
+        "Print" = "exec screenshot screen";
+        "Ctrl+Print" = "exec screenshot area";
 
         # Clipboard
           "${cfg.modifier}+c" = "exec clipman pick --tool dmenu";
@@ -318,6 +318,7 @@ in
     brightnessctl
     i3status
     sway-contrib.grimshot # screenshots
+    libnotify # screenshots
     bemenu
     gnome3.adwaita-icon-theme
     avizo # volumectl, lightctl
@@ -327,6 +328,7 @@ in
   #TODO: maybe make all of those a derivation some day
   home.file.".local/bin/_sway_exit_menu".source = ./exit_menu.sh;
   home.file.".local/bin/_sway_poweroff_menu".source = ./poweroff_menu.sh;
+  home.file.".local/bin/screenshot".source = ./screenshot.sh;
   home.file.".local/bin/_sway_utils".source = ./lib.sh;
 
   programs.mako = {

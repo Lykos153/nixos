@@ -14,9 +14,6 @@ in
 {
   imports = map (n: "${./modules}/${n}") (builtins.attrNames (builtins.readDir ./modules));
 
-  home.username = "silvio";
-  home.homeDirectory = "/home/silvio";
-
   programs.home-manager.enable = true;
   programs.firefox.enable = true;
   programs.chromium.enable = true;
