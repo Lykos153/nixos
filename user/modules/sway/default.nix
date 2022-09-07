@@ -308,6 +308,8 @@ in
     _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=on";
   };
 
+  xsession.preferStatusNotifierItems = true;
+
   home.packages = with pkgs; [
     swayidle
     wl-clipboard
