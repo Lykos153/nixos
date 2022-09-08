@@ -88,6 +88,10 @@
 
   users.users.root.shell = pkgs.zsh;
 
+  # GTK themes.
+  #See https://www.reddit.com/r/NixOS/comments/b255k5/home_manager_cannot_set_gnome_themes/
+  programs.dconf.enable = true;
+
   environment.systemPackages = with pkgs; [
     vim
     tmux
