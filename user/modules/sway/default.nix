@@ -322,10 +322,22 @@ in
     sway-contrib.grimshot # screenshots
     libnotify # screenshots
     bemenu
-    numix-icon-theme
     avizo # volumectl, lightctl
     pamixer # for avizo. TODO: wrap pamixer inside avizo?
   ];
+
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Materia-dark";
+      package = pkgs.materia-theme;
+    };
+    iconTheme = {
+      name = "Numix";
+      package = pkgs.numix-icon-theme;
+    };
+  };
 
   #TODO: maybe make all of those a derivation some day
   home.file.".local/bin/_sway_exit_menu".source = ./exit_menu.sh;
