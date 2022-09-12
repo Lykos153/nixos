@@ -52,7 +52,7 @@ in
     # gui applications
     termite
     gajim
-    thunderbird
+    thunderbird-unwrapped
     element-desktop
     pavucontrol
     libreoffice
