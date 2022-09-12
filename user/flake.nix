@@ -14,15 +14,18 @@
     let
     #     overlays = [ nur.overlay ];
         system = "x86_64-linux";
-        mkConfig = name: config:
+        mkConfig = hostname: username: config:
             let
-                userpath = (./users + "/${name}");
+                userpath = (./users + "/${username}");
+                hostpath = (userpath + "/${hostname}");
+                userlist = if builtins.pathExists userpath then [userpath] else [];
+                hostlist = if builtins.pathExists hostpath then [hostpath] else [];
             in
             (
             # inputs.nixpkgs.lib.nameValuePair
             #     (name + "silvio-pc")
                 {
-                    "name" = name;
+                    "name" = username;
                     "value" = inputs.home-manager.lib.homeManagerConfiguration {
                         pkgs = nixpkgs.legacyPackages.${system};
                         modules = [
@@ -30,16 +33,20 @@
                             {
                                 home = {
                                     homeDirectory = config.home;
-                                    username = name;
+                                    username = username;
                                     stateVersion = "22.05";
                                 };
                             }
-                        ] ++ (if builtins.pathExists userpath then [userpath] else []);
+                        ] ++ userlist ++ hostlist;
                     };
                 }
         );
+        # mkHost = hostname: config:
+        # (
+
+        # )
     in
     {
-        homeConfigurations = inputs.nixpkgs.lib.mapAttrs' mkConfig (inputs.system.outputs.nixosConfigurations.silvio-pc.config.users.users);
+        homeConfigurations = inputs.nixpkgs.lib.mapAttrs' (mkConfig "silvio-pc") inputs.system.outputs.nixosConfigurations.silvio-pc.config.users.users;
     };
 }

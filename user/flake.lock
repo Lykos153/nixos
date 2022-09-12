@@ -67,11 +67,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-4bR71wCSZ3yN+luw09OIOJnwgQ4l+ETonmmwAXHhWx0=",
-        "path": "/nix/store/x0gc08kz5m05qqd1d8h86bpmpj3zmk6i-source/system",
+        "path": "/nix/store/nrgij5mqg0f1xsmlr28nml3clspnc3ds-source/system",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/x0gc08kz5m05qqd1d8h86bpmpj3zmk6i-source/system",
+        "path": "/nix/store/nrgij5mqg0f1xsmlr28nml3clspnc3ds-source/system",
         "type": "path"
       }
     },
