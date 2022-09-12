@@ -3,16 +3,17 @@
 {
     description = "Home manager flake";
     inputs = {
-        system.url = "../system"; # this is not ideal. lock will change with every modification in the repo
         nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
         # nixpkgs-master.url = "github:nixos/nixpkgs/master";
         home-manager.url = "github:nix-community/home-manager";
         home-manager.inputs.nixpkgs.follows = "nixpkgs";
         # nur.url = "github:nix-community/NUR";
+        get-flake.url = "github:ursi/get-flake";
     };
-    outputs = { self, nixpkgs, home-manager, ... }@inputs:
+    outputs = { self, nixpkgs, home-manager, get-flake, ... }@inputs:
     let
     #     overlays = [ nur.overlay ];
+        systemFlake = get-flake ../system;
         system = "x86_64-linux";
         mkConfig = hostname: username: config:
             let
@@ -47,6 +48,6 @@
         # )
     in
     {
-        homeConfigurations = inputs.nixpkgs.lib.mapAttrs' (mkConfig "silvio-pc") inputs.system.outputs.nixosConfigurations.silvio-pc.config.users.users;
+        homeConfigurations = inputs.nixpkgs.lib.mapAttrs' (mkConfig "silvio-pc") systemFlake.outputs.nixosConfigurations.silvio-pc.config.users.users;
     };
 }

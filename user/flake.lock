@@ -1,5 +1,20 @@
 {
   "nodes": {
+    "get-flake": {
+      "locked": {
+        "lastModified": 1644686428,
+        "narHash": "sha256-zkhYsURWFrvEZLkIoBeqFBzSu+cA2u5mo6M8vq9LN7M=",
+        "owner": "ursi",
+        "repo": "get-flake",
+        "rev": "703f15558daa56dfae19d1858bb3046afe68831a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ursi",
+        "repo": "get-flake",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -37,42 +52,11 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1662934689,
-        "narHash": "sha256-mXi8hmhiunOVTeHiuouWXb0vTqjzp9v9kshMmI561Us=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "a0b7e70db7a55088d3de0cc370a59f9fbcc906c3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
+        "get-flake": "get-flake",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs",
-        "system": "system"
-      }
-    },
-    "system": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_2"
-      },
-      "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-4bR71wCSZ3yN+luw09OIOJnwgQ4l+ETonmmwAXHhWx0=",
-        "path": "/nix/store/nrgij5mqg0f1xsmlr28nml3clspnc3ds-source/system",
-        "type": "path"
-      },
-      "original": {
-        "path": "/nix/store/nrgij5mqg0f1xsmlr28nml3clspnc3ds-source/system",
-        "type": "path"
+        "nixpkgs": "nixpkgs"
       }
     },
     "utils": {
