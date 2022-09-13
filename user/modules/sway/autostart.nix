@@ -1,5 +1,8 @@
 { config, lib, nixosConfig, pkgs, ... }:
 {
+  # TODO: a more specific solution to the problem that apps from services
+  #       won't see eg. xdg-open. Idea: function that creates systemd user
+  #       unit and includes necessary PATHs
   systemd.user.services.firefox = {
     Unit.PartOf = [ "sway-session.target" ];
     Install.WantedBy = [ "sway-session.target" ];

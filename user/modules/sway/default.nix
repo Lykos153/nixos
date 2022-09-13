@@ -63,6 +63,7 @@ in
           "DISPLAY"
           "SWAYSOCK"
           "WAYLAND_DISPLAY"
+          "PATH" # or else apps won't see xdg-open. TODO: a more specific solution
         ];
       in
       ''
