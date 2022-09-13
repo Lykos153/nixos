@@ -18,7 +18,7 @@
 
     Service = {
       ExecStart = ''
-        ${pkgs.thunderbird-unwrapped}/bin/thunderbird
+        ${pkgs.thunderbird}/bin/thunderbird
       '';
       Restart = "on-failure";
     };
