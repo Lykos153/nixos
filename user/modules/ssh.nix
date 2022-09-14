@@ -3,7 +3,7 @@
   programs.ssh = {
     enable = true;
     compression = true;
-    forwardAgent = true;
+    forwardAgent = false;
     extraConfig = ''
       AddKeysToAgent yes
     '';
