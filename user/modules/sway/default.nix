@@ -32,6 +32,8 @@ in
         "type:keyboard" = {
           xkb_layout = "de";
           xkb_numlock = "enable";
+          tap = "enable";
+          natural_scroll = "enable";
         };
         "type:touchpad" = {
           tap = "enable";
