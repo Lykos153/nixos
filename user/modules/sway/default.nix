@@ -29,9 +29,13 @@ in
       down = "k";
 
       input = {
-        "*" = {
+        "type:keyboard" = {
           xkb_layout = "de";
           xkb_numlock = "enable";
+        };
+        "type:touchpad" = {
+          tap = "enable";
+          natural_scroll = "enable";
         };
       };
 
