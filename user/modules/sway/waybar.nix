@@ -24,7 +24,7 @@
       # ensure sway is already started, otherwise workspaces will not work
       ExecStartPre = "${config.wayland.windowManager.sway.package}/bin/swaymsg";
       ExecStart = "${pkgs.waybar}/bin/waybar";
-      ExecReload = "${pkgs.utillinux}/bin/kill -SIGUSR2 $MAINPID";
+      ExecReload = "${pkgs.util-linux}/bin/kill -SIGUSR2 $MAINPID";
       Restart = "on-failure";
       RestartSec = "1s";
     };
