@@ -12,6 +12,7 @@ in
     ./waybar.nix
     ./default-apps.nix
     ./autostart.nix
+    ./xdg-desktop-portal.nix
   ];
 
   wayland.windowManager.sway = {
