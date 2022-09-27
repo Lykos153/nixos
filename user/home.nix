@@ -16,6 +16,7 @@ in
 
   programs.home-manager.enable = true;
   programs.firefox.enable = true;
+  programs.firefox.package = pkgs.firefox-wayland;
   programs.chromium.enable = true;
   programs.direnv.enable = true;
   programs.password-store.enable = true;

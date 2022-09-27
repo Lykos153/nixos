@@ -14,6 +14,7 @@ in
     ./autostart.nix
     ./alacritty.nix
     ./keymaps.nix
+    ./xdg-desktop-portal.nix
   ];
 
   wayland.windowManager.sway = {
@@ -156,6 +157,8 @@ in
     WLR_NO_HARDWARE_CURSORS = 1;
     _JAVA_AWT_WM_NONREPARENTING = 1;
     _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=on";
+    XDG_CURRENT_DESKTOP = "sway"; # https://github.com/emersion/xdg-desktop-portal-wlr/issues/20
+    XDG_SESSION_TYPE = "wayland"; # https://github.com/emersion/xdg-desktop-portal-wlr/pull/11
   };
 
   xsession.preferStatusNotifierItems = true;

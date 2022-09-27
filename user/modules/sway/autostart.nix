@@ -12,7 +12,7 @@
         "MOZ_ENABLE_WAYLAND=1" #TODO: Somehow deduplicate this with thunderbird and the setting in ./default.nix
       ];
       ExecStart = ''
-        ${pkgs.firefox}/bin/firefox
+        ${pkgs.firefox-wayland}/bin/firefox
       '';
       Restart = "on-failure";
     };
