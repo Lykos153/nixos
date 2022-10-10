@@ -82,17 +82,17 @@
     #     "default.clock.max-quantum" = 8192;
     # };
   };
-  # screensharing:
-  xdg = {
-    portal = {
-      enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-wlr
-        xdg-desktop-portal-gtk
-      ];
-      gtkUsePortal = true;
-    };
-  };
+  # screensharing: ... but only for flatpack?
+  # xdg = {
+  #   portal = {
+  #     enable = true;
+  #     extraPortals = with pkgs; [
+  #       xdg-desktop-portal-wlr
+  #       xdg-desktop-portal-gtk
+  #     ];
+  #     # gtkUsePortal = true;
+  #   };
+  # };
 
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
