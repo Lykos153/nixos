@@ -9,6 +9,10 @@
       "editor.acceptSuggestionOnEnter" = "off";
       "editor.fontFamily" = "'FuraCode Mono Nerd Font', 'monospace', monospace";
       "workbench.colorTheme" = "Default Dark+";
+      "[python]" = {
+          "editor.defaultFormatter" = "ms-python.black-formatter"; # needs extension to be present
+          "editor.formatOnSave" = true;
+        };
     };
     extensions = with pkgs.vscode-extensions; [
       yzhang.markdown-all-in-one
@@ -20,6 +24,7 @@
       ms-ceintl.vscode-language-pack-de
       redhat.vscode-yaml
       # TODO: Request or package these extensions:
+      # ms-python.black-formatter
       # zardoy.fix-all-json
       # hirse.vscode-ungit
       # ipedrazas.kubernetes-snippets
