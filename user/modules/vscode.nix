@@ -14,6 +14,12 @@
           "editor.formatOnSave" = true;
         };
     };
+    keybindings = [
+      {
+        key = "alt+t";
+        command = "go.test.cursor";
+      }
+    ];
     extensions = with pkgs.vscode-extensions; [
       yzhang.markdown-all-in-one
       jnoortheen.nix-ide
