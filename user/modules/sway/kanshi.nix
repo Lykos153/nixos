@@ -80,7 +80,7 @@
           criteria = "Unknown 0x103D 0x00000000";
           mode = "1920x1080";
           position = "0,0";
-          scale = 1.;
+          scale = 1.2;
         }
       ];
       ch.outputs = [
