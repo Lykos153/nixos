@@ -96,6 +96,19 @@
           position = "6182,2110";
         }
       ];
+      ch-leila.outputs = [
+        {
+          criteria = "Unknown 0x103D 0x00000000";
+          mode = "1920x1080";
+          position = "0,740";
+          scale = 1.5;
+        }
+        {
+          criteria = "Philips Consumer Electronics Company PHL 243V5 ZV01626032761";
+          mode = "1920x1080";
+          position = "1280,200";
+        }
+      ];
     };
   };
 }
