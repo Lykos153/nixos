@@ -9,9 +9,9 @@
     enableCompletion = true;
     shellAliases = {
       ip  = "ip --color=auto";
-      l   = "ls -l";
-      lh  = "ls -lh";
-      la  = "ls -la";
+      l   = "lsd -l";
+      lh  = "lsd -lh";
+      la  = "lsd -la";
 
       n      = "$TERM&!";
 
@@ -49,6 +49,8 @@
       autoload -z edit-command-line
       zle -N edit-command-line
       bindkey "^X^E" edit-command-line
+
+      unalias lsd # where does that come from anyway?
 
       alias -s pdf="setsid xdg-open"
 

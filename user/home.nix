@@ -42,12 +42,17 @@ in
     yq
     mr
     ripgrep
+    ripgrep-all # search in docs, pdfs etc.
+    fd # simpler find
     ncdu
     python3Packages.ipython
     screen
     pv
     unzip
     moreutils
+    ranger
+    tldr
+    lsd # new ls
 
     # gui applications
     termite
