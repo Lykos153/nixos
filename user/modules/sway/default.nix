@@ -12,6 +12,7 @@ in
     ./waybar.nix
     ./default-apps.nix
     ./autostart.nix
+    ./alacritty.nix
   ];
 
   wayland.windowManager.sway = {
@@ -19,7 +20,6 @@ in
     wrapperFeatures.gtk = true;
     config = {
       modifier = "Mod4";
-      terminal = "alacritty";
 
       menu = "${pkgs.j4-dmenu-desktop}/bin/j4-dmenu-desktop --usage-log=$HOME/.cache/j4-dmenu-desktop.log --no-exec --dmenu=\"${pkgs.dmenu-wayland}/bin/dmenu-wl -i -nb '#002b36' -nf '#839496' -sb '#859900' -sf '#073642'\" | ${pkgs.findutils}/bin/xargs swaymsg exec --";
 
@@ -161,7 +161,6 @@ in
   home.packages = with pkgs; [
     swayidle
     wl-clipboard
-    alacritty
     wdisplays
     clipman
     light
