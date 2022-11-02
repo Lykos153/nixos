@@ -106,6 +106,7 @@
     wget
     curl
     git
+    dnsutils
 
     htop
 
