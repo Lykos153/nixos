@@ -70,6 +70,13 @@
     shell = pkgs.zsh;
   };
 
+  users.users.sa = {
+    uid = 1003;
+    isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" ];
+    shell = pkgs.zsh;
+  };
+
   users.users.mine = {
     uid = 1001;
     isNormalUser = true;
