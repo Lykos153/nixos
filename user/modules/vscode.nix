@@ -38,4 +38,9 @@
     ];
   };
   programs.zsh.shellAliases.code = "codium";
+
+  home.file.".config/electron-flags.conf".text = ''
+    --enable-features=WaylandWindowDecorations
+    --ozone-platform-hint=auto
+  '';
 }
