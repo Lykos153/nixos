@@ -70,7 +70,7 @@
       nr () {
         cmd=$1
         shift
-        nix run "nixpkgs#$cmd -- " $@
+        nix run "nixpkgs#$cmd" -- $@
       }
 
       _hm_nix_build_switch() {
