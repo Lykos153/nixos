@@ -8,6 +8,9 @@
     Install.WantedBy = [ "sway-session.target" ];
 
     Service = {
+      Environment = [
+        "MOZ_ENABLE_WAYLAND=1" #TODO: Somehow deduplicate this with thunderbird and the setting in ./default.nix
+      ];
       ExecStart = ''
         ${pkgs.firefox}/bin/firefox
       '';
@@ -20,6 +23,9 @@
     Install.WantedBy = [ "sway-session.target" ];
 
     Service = {
+      Environment = [
+        "MOZ_ENABLE_WAYLAND=1"
+      ];
       ExecStart = ''
         ${pkgs.thunderbird}/bin/thunderbird
       '';
