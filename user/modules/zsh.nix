@@ -55,7 +55,15 @@
       alias -s pdf="setsid xdg-open"
 
       nsh () {
-        cmd="nix shell"
+        local nsopts
+        local cmd
+        local NIXPKGS_ALLOW_UNFREE
+        if [ "$1" = "--unfree" ]; then
+          nsopts="--impure"
+          export NIXPKGS_ALLOW_UNFREE=1
+          shift
+        fi
+        cmd="nix shell $nsopts"
         for arg in $@; do
           if [ "''${arg#*\#}" = "$arg" ]; then
             arg="nixpkgs#$arg"
@@ -68,9 +76,17 @@
       }
 
       nr () {
+        local nropts
+        local cmd
+        local NIXPKGS_ALLOW_UNFREE
+        if [ "$1" = "--unfree" ]; then
+          nropts="--impure"
+          export NIXPKGS_ALLOW_UNFREE=1
+          shift
+        fi
         cmd=$1
         shift
-        nix run "nixpkgs#$cmd" -- $@
+        nix run $nropts "nixpkgs#$cmd" -- $@
       }
 
       _hm_nix_build_switch() {
