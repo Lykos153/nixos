@@ -201,6 +201,12 @@
   # https://unix.stackexchange.com/questions/344402/how-to-unlock-gnome-keyring-automatically-in-nixos
   services.gnome.gnome-keyring.enable = true;
 
+  services.smartd = {
+    enable = true;
+    notifications.test = true;
+    notifications.mail.enable = false;
+  };
+
   networking.firewall.enable = true;
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
