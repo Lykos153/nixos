@@ -176,6 +176,14 @@
         esac
       }
 
+      remote-debug() {
+        tmux new-session -s remote-debug -d
+        tmux send-keys -t remote-debug 'nix run "nixpkgs#upterm" -- host --server ssh://nbg.booq.org:2222 --force-command "tmux attach -t remote-debug"' Enter
+        tmux send-keys -t remote-debug 'q' Enter
+        tmux send-keys -t remote-debug Enter
+        tmux attach -t remote-debug
+      }
+
       cdt () {
         template=$1
         suffix=".XXXXX"
