@@ -60,6 +60,14 @@
           position = "1200,0";
         }
       ];
+      leilasus-onlytv.outputs = [
+        {
+          criteria = "Philips Consumer Electronics Company Philips FTV 0x00000101";
+          mode = "1920x1080";
+          position = "0,0";
+          scale = 1.6;
+        }
+      ];
     };
   };
 }
