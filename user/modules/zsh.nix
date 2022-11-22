@@ -9,9 +9,11 @@
     enableCompletion = true;
     shellAliases = {
       ip  = "ip --color=auto";
+      ls = "lsd";
       l   = "lsd -l";
       lh  = "lsd -lh";
       la  = "lsd -la";
+      tree = "lsd --tree";
 
       n      = "$TERM&!";
 
