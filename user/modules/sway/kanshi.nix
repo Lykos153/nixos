@@ -60,6 +60,13 @@
           position = "1200,0";
         }
       ];
+      leilasus-onlybenq.outputs = [
+        {
+          criteria = "BenQ Corporation BenQ GL2450H HAF04109019";
+          mode = "1920x1080";
+          position = "1200,0";
+        }
+      ];
       leilasus-onlytv.outputs = [
         {
           criteria = "Philips Consumer Electronics Company Philips FTV 0x00000101";
