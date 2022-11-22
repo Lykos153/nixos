@@ -11,5 +11,6 @@
   imports = [
     ./autostart.nix
     ./gui
+    ./gpg
   ];
 }
