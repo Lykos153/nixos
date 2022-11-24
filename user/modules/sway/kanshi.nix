@@ -96,6 +96,25 @@
           position = "6182,2110";
         }
       ];
+      ch-home.outputs = [
+        {
+          criteria = "Unknown 0x103D 0x00000000";
+          mode = "1920x1080";
+          position = "5441,1019";
+          scale = 1.601562;
+        }
+        {
+          criteria = "Samsung Electric Company SyncMaster HMBB602462";
+          mode = "1920x1200";
+          position = "3521,350";
+        }
+        {
+          criteria = "BenQ Corporation BenQ GL2450H 76H05996019";
+          mode = "1920x1080";
+          position = "2441,0";
+          transform = "270";
+        }
+      ];
       ch-leila.outputs = [
         {
           criteria = "Unknown 0x103D 0x00000000";
