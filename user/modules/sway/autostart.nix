@@ -47,16 +47,4 @@
       Restart = "on-failure";
     };
   };
-
-  systemd.user.services.autotiling = {
-    Unit.PartOf = [ "sway-session.target" ];
-    Install.WantedBy = [ "sway-session.target" ];
-
-    Service = {
-      ExecStart = ''
-        ${pkgs.autotiling}/bin/autotiling
-      '';
-      Restart = "on-failure";
-    };
-  };
 }
