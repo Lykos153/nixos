@@ -13,6 +13,7 @@ in
     ./default-apps.nix
     ./autostart.nix
     ./alacritty.nix
+    ./keymaps.nix
   ];
 
   wayland.windowManager.sway = {
@@ -32,6 +33,9 @@ in
         "type:keyboard" = {
           xkb_layout = "de";
           xkb_numlock = "enable";
+        };
+        "1118:1957:Microsoft_Microsoft___Nano_Transceiver_v2.1" = {
+          xkb_layout = "de_menu_to_super";
         };
         "type:touchpad" = {
           tap = "enable";
