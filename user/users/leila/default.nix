@@ -1,5 +1,8 @@
 {pkgs, ...}:
 {
+  booq.gui.enable = true;
+  booq.gui.sway.enable = true;
+
   programs.git.userEmail = "leila@booq.org";
   programs.git.userName = "Leila Höll";
 

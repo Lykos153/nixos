@@ -23,7 +23,7 @@ let
   # for fine-grained control over spacing
   thinsp = "&#8201;";
 in
-{
+lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
   xdg.configFile."waybar/config".text = lib.generators.toJSON { } {
     layer = "top";
     position = "bottom";

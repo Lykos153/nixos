@@ -1,10 +1,10 @@
-{pkgs, config, ...}:
+{lib, config, pkgs, ...}:
 let
   cfg = config.wayland.windowManager.sway.config;
   lockcmd = "${pkgs.swaylock}/bin/swaylock -f -c000000";
   workspace_chat = "Chat";
 in
-{
+lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
   wayland.windowManager.sway.config = {
       keybindings = {
         # Basics

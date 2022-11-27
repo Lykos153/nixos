@@ -35,6 +35,10 @@
                     "value" = inputs.home-manager.lib.homeManagerConfiguration {
                         inherit pkgs;
                         modules = [
+                            {
+                                options.booq.gui.enable = inputs.nixpkgs.lib.mkEnableOption "gui";
+                                options.booq.gui.sway.enable = inputs.nixpkgs.lib.mkEnableOption "sway";
+                            }
                             ./home.nix
                             {
                                 home = {
