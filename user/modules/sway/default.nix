@@ -10,9 +10,7 @@ in
     ./kanshi.nix
     ./gammastep.nix
     ./waybar.nix
-    ./default-apps.nix
     ./autostart.nix
-    ./alacritty.nix
     ./keymaps.nix
     ./xdg-desktop-portal.nix
   ];
@@ -36,7 +34,7 @@ in
           xkb_numlock = "enable";
         };
         "1118:1957:Microsoft_Microsoft___Nano_Transceiver_v2.1" = {
-          xkb_layout = "de_menu_to_super";
+          xkb_layout = "de_menu_to_super"; # depends on keymaps.nix
         };
         "type:touchpad" = {
           tap = "enable";
