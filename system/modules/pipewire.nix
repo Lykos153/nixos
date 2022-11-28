@@ -1,0 +1,36 @@
+{ config, lib, pkgs, ... }:
+lib.mkIf (config.booq.audio == "pipewire") {
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    jack.enable = true;
+    # Some useful knobs if you want to finetune or debug your setup:
+    # NOTE: Arrays are replaced rather than merged with defaults,
+    # so in order to keep any default items in the configuration,
+    # they HAVE to be listed.
+    # config.pipewire = {
+    #   "context.properties" = {
+    #     "link.max-buffers" = 64;
+    #     "link.max-buffers" = 16; # version < 3 clients can't handle more than this
+    #     "log.level" = 2; # https://docs.pipewire.org/page_daemon.html
+    #     "default.clock.rate" = 48000;
+    #     "default.clock.quantum" = 1024;
+    #     "default.clock.min-quantum" = 32;
+    #     "default.clock.max-quantum" = 8192;
+    # };
+  };
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-gtk
+      ];
+      gtkUsePortal = true;
+    };
+  };
+}

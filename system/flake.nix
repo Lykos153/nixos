@@ -3,9 +3,16 @@
   outputs = { self, nixpkgs }:
   let
     #machinedir = ./machines
-    mkHost = name: nixpkgs.lib.nixosSystem {
+    lib = nixpkgs.lib;
+    mkHost = name: lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
+          {
+           options.booq.audio = lib.mkOption {
+            default = "pulseaudio";
+            type = lib.types.str;
+           };
+          }
           ./configuration.nix
           (./machines + "/${name}")
           {
