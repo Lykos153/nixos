@@ -197,6 +197,7 @@
 
   virtualisation.podman.enable = true;
   virtualisation.podman.dockerCompat = true;
+  boot.enableContainers = false; # TODO: Maybe set to true after migrating to state version 22.05
 
   # Yubikey
   ## Missing prompt issue: https://github.com/Yubico/yubico-pam/issues/208
