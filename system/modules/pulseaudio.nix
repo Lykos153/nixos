@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }:
-lib.mkIf (config.booq.audio == "pipewire") {
-  sound.enable = false;
-  hardware.pulseaudio.enable = false;
+lib.mkIf (config.booq.audio == "pulseaudio") {
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
 }
