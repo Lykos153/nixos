@@ -25,7 +25,7 @@ in
       termite
       gajim
       thunderbird
-      schildichat-desktop
+      element-desktop
       pavucontrol
       libreoffice
       nomacs

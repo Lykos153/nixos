@@ -33,7 +33,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
     };
   };
 
-  systemd.user.services.schildichat-desktop = {
+  systemd.user.services.element-desktop = {
     Unit = {
       PartOf = [ "sway-session.target" ];
     };
@@ -42,7 +42,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
 
     Service = {
       ExecStart = ''
-        ${pkgs.schildichat-desktop}/bin/schildichat-desktop
+        ${pkgs.element-desktop}/bin/element-desktop
       '';
       Restart = "on-failure";
     };
