@@ -1,5 +1,5 @@
-{config, pkgs, ...}:
-{
+{ config, lib, pkgs, ... }:
+lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
   systemd.user.services.nextcloud-client = {
     Unit = {
       Description = "Nextcloud Client";

@@ -1,6 +1,5 @@
-{ nixosConfig, ... }:
-
-{
+{ config, lib, ... }:
+lib.mkIf config.booq.gui.enable {
   services.gammastep = {
     enable = true;
 #    inherit (nixosConfig.location) latitude longitude;
