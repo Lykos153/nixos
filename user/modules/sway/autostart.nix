@@ -33,7 +33,7 @@
     };
   };
 
-  systemd.user.services.schildichat-desktop = {
+  systemd.user.services.element-desktop = {
     Unit = {
       PartOf = [ "sway-session.target" ];
     };
@@ -42,7 +42,7 @@
 
     Service = {
       ExecStart = ''
-        ${pkgs.schildichat-desktop}/bin/schildichat-desktop
+        ${pkgs.element-desktop}/bin/element-desktop
       '';
       Restart = "on-failure";
     };
