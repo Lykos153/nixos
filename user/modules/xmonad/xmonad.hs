@@ -1,10 +1,12 @@
 import XMonad
 
+import XMonad.Hooks.EwmhDesktops
+
 import System.Exit
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
-main = xmonad def
+main = xmonad $ ewmhFullscreen . ewmh $ def
         { modMask = mod4Mask -- Use Super instead of Alt
         , terminal = "alacritty"
 	, keys = myKeys
