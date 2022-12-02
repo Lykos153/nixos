@@ -214,6 +214,8 @@
         git clone "$repo" .
       }
 
+      rg2code() { rg $@ -l | xargs codium; }
+
       gesehen () {
         CDIR=$(pwd)
         DIR=$(dirname $1)
