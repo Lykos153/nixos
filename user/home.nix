@@ -35,6 +35,7 @@ in
     htop
     pwgen
     git
+    git-absorb
     git-remote-gcrypt
     git-annex
     git-annex-remote-googledrive
