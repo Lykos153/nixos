@@ -1,9 +1,6 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
-  xsession.enable = true;
+{ config, lib, nixosConfig, pkgs, ... }:
+lib.mkIf (config.booq.gui.enable && config.booq.gui.xmonad.enable) {
+  booq.gui.xorg.enable = true;
   xsession.windowManager.xmonad = {
     enable = true;
     enableContribAndExtras = true;
