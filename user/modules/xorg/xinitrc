@@ -7,5 +7,15 @@ if command -v dbus-update-activation-environment >/dev/null 2>&1; then
         dbus-update-activation-environment DISPLAY XAUTHORITY
 fi
 autorandr --change # TODO: use a service or similar
-setxkbmap de
+
+{ echo "XIDeviceEnabled XISlaveKeyboard"; inputplug -d -c echo; } |
+while read event
+do
+        case $event in
+        XIDeviceEnabled*XISlaveKeyboard*)
+                setxkbmap de
+                ;;
+        esac
+done &
+
 exec "$HOME/.xsession"
