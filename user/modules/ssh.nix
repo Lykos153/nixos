@@ -10,7 +10,7 @@ in
     extraConfig = ''
       AddKeysToAgent yes
     '';
-    includes = [ "local.d/*" ];
+    includes = [ "local.d/*" "config.d/*" ];
     userKnownHostsFile = "~/.ssh/known_hosts ~/${knownHostsCommon}";
   };
   home.packages = with pkgs; [
