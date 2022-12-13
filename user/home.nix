@@ -52,7 +52,6 @@ in
     pv
     unzip
     moreutils
-    ranger
     tldr
     lsd # new ls
 
