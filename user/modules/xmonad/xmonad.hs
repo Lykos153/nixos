@@ -1,16 +1,26 @@
-import XMonad
+import XMonad hiding ( (|||) )  -- don't use the normal ||| operator
+import XMonad.Layout.LayoutCombinators   -- use the one from LayoutCombinators instead
 
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.StatusBar
+import XMonad.Hooks.StatusBar.PP
+import XMonad.Util.Run
 
 import System.Exit
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
-main = xmonad $ ewmhFullscreen . ewmh $ def
-        { modMask = mod4Mask -- Use Super instead of Alt
-        , terminal = "alacritty"
-	, keys = myKeys
+main = do
+        xmonad $ withSB mySB . ewmhFullscreen . ewmh . docks $ def {
+          modMask = mod4Mask -- Use Super instead of Alt
+          , terminal = "alacritty"
+          , keys = myKeys
+          , layoutHook = avoidStruts (tall ||| Mirror tall ||| Full)
         }
+
+tall = Tall 1 (3/100) (1/2)
+mySB = statusBarProp "xmobar" (pure xmobarPP)
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
   [
