@@ -138,8 +138,8 @@ in
         # "Shift_R+Shift" = "exec ${pkgs.dbus}/bin/dbus-send --session --type=method_call --dest=net.sourceforge.mumble.mumble / net.sourceforge.mumble.Mumble.stopTalking";
 
         # Screenshots
-        "Print" = "exec screenshot screen";
-        "Ctrl+Print" = "exec screenshot area";
+        "${cfg.modifier}+F12" = "exec screenshot screen";
+        "${cfg.modifier}+Ctrl+F12" = "exec screenshot area";
 
         # Clipboard
           "${cfg.modifier}+c" = "exec clipman pick --tool dmenu";
