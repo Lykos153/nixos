@@ -131,11 +131,11 @@ in
         # "XF86AudioPlay" = "exec ${pkgs.mpc_cli}/bin/mpc -q toggle";
         # "XF86AudioPause" = "exec ${pkgs.mpc_cli}/bin/mpc -q toggle";
 
-        # # Mumble PTT
-        # "--no-repeat Shift_R" = "exec ${pkgs.dbus}/bin/dbus-send --session --type=method_call --dest=net.sourceforge.mumble.mumble / net.sourceforge.mumble.Mumble.startTalking";
-        # "--no-repeat --release Shift_R" = "exec ${pkgs.dbus}/bin/dbus-send --session --type=method_call --dest=net.sourceforge.mumble.mumble / net.sourceforge.mumble.Mumble.stopTalking";
-        # # reset
-        # "Shift_R+Shift" = "exec ${pkgs.dbus}/bin/dbus-send --session --type=method_call --dest=net.sourceforge.mumble.mumble / net.sourceforge.mumble.Mumble.stopTalking";
+        # Mumble PTT
+        "--no-repeat Shift_R" = "exec ${pkgs.dbus}/bin/dbus-send --session --type=method_call --dest=net.sourceforge.mumble.mumble / net.sourceforge.mumble.Mumble.startTalking";
+        "--no-repeat --release Shift_R" = "exec ${pkgs.dbus}/bin/dbus-send --session --type=method_call --dest=net.sourceforge.mumble.mumble / net.sourceforge.mumble.Mumble.stopTalking";
+        # reset
+        "Shift_R+Shift" = "exec ${pkgs.dbus}/bin/dbus-send --session --type=method_call --dest=net.sourceforge.mumble.mumble / net.sourceforge.mumble.Mumble.stopTalking";
 
         # Screenshots
         "${cfg.modifier}+F12" = "exec screenshot screen";
