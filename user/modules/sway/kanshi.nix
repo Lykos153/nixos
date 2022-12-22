@@ -128,6 +128,24 @@
           position = "1280,200";
         }
       ];
+      ch-papa.outputs = [
+        {
+          criteria = "Unknown 0x103D 0x00000000";
+          mode = "1920x1080";
+          position = "5441,820";
+          scale = 1.5;
+        }
+        {
+          criteria = "Ancor Communications Inc ASUS VS229 HCLMQS082378";
+          mode = "1920x1080";
+          position = "3521,660";
+        }
+        {
+          criteria = "Acer Technologies CB242Y 0x0000F384";
+          mode = "1920x1080";
+          position = "1601,460";
+        }
+      ];
     };
   };
 }
