@@ -19,6 +19,7 @@
     htop
     pwgen
     git
+    git-absorb
     git-remote-gcrypt
     git-annex
     git-annex-remote-googledrive
@@ -35,7 +36,6 @@
     pv
     unzip
     moreutils
-    ranger
     tldr
     lsd # new ls
   ];

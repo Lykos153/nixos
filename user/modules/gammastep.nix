@@ -15,7 +15,7 @@ lib.mkIf config.booq.gui.enable {
     settings = {
       general = {
         brightness-day = "1.0";
-        brightness-night = "0.4";
+        brightness-night = "1.0";
       };
     };
   };
