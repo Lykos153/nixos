@@ -19,6 +19,14 @@
   services.xserver = {
     enable = true;
 
+    libinput = {
+      enable = true;
+
+      touchpad = {
+        naturalScrolling = true;
+      };
+    };
+
     desktopManager = {
       xterm.enable = false;
     };
