@@ -10,7 +10,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
           position = "3000,540";
         }
         {
-          criteria = "BenQ Corporation BenQ GL2450H 76H05996019";
+          criteria = "BNQ BenQ GL2450H 76H05996019";
           mode = "1920x1080";
           position = "1920,0";
           transform = "270";
@@ -29,7 +29,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
           position = "3000,540";
         }
         {
-          criteria = "BenQ Corporation BenQ GL2450H 76H05996019";
+          criteria = "BNQ BenQ GL2450H 76H05996019";
           mode = "1920x1080";
           position = "1920,0";
           transform = "270";
@@ -110,7 +110,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
           position = "3521,350";
         }
         {
-          criteria = "BenQ Corporation BenQ GL2450H 76H05996019";
+          criteria = "BNQ BenQ GL2450H 76H05996019";
           mode = "1920x1080";
           position = "2441,0";
           transform = "270";
