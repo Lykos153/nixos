@@ -3,6 +3,16 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
   services.kanshi = {
     enable = true;
     profiles = {
+      home_kvm_disabled.outputs = [
+        {
+          criteria = "BNQ BenQ GL2450H 76H05996019";
+          status = "disable";
+        }
+        {
+          criteria = "Samsung Electric Company SAMSUNG 0x00000001";
+          status = "disable";
+        }
+      ];
       home.outputs = [
         {
           criteria = "Samsung Electric Company SyncMaster HMBB602462";
@@ -14,6 +24,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
           mode = "1920x1080";
           position = "1920,0";
           transform = "270";
+          status = "enable";
         }
         {
           criteria = "Samsung Electric Company SAMSUNG 0x00000001";
@@ -33,6 +44,13 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
           mode = "1920x1080";
           position = "1920,0";
           transform = "270";
+          status = "enable";
+        }
+      ];
+      home_no_tv_kvm_disabled.outputs = [
+        {
+          criteria = "BNQ BenQ GL2450H 76H05996019";
+          status = "disable";
         }
       ];
       berlin.outputs = [
