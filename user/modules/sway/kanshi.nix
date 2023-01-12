@@ -18,6 +18,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
           criteria = "Samsung Electric Company SyncMaster HMBB602462";
           mode = "1920x1200";
           position = "3000,540";
+          status = "enable";
         }
         {
           criteria = "BenQ Corporation BenQ GL2450H 76H05996019";
@@ -38,6 +39,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
           criteria = "Samsung Electric Company SyncMaster HMBB602462";
           mode = "1920x1200";
           position = "3000,540";
+          status = "enable";
         }
         {
           criteria = "BenQ Corporation BenQ GL2450H 76H05996019";
