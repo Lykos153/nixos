@@ -16,5 +16,6 @@
     ./autostart.nix
     ./gui
     ./gpg
+    ./zoom.nix
   ];
 }
