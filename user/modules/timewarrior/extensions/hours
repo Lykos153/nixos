@@ -83,14 +83,15 @@ def print_intervals(intervals: list[TimeWarriorInterval]) -> None:
                 if i == 0
                 or intervals[i - 1].get_start_date() != current.get_start_date()
                 else "",
+                f"@{current.get_id()}",
                 " ".join(current.get_tags()),
                 delta_to_hhmmss(current.get_duration()),
             )
         )
         total += current.get_duration()
-    times.append(("", "", ""))
-    times.append(("Total", "", delta_to_hhmmss(total)))
-    print(tabulate(times, headers=("Day", "Tags", "Hours")))
+    times.append(("", "", "", ""))
+    times.append(("Total", "", "", delta_to_hhmmss(total)))
+    print(tabulate(times, headers=("Day", "ID", "Tags", "Hours")))
 
 
 if __name__ == "__main__":
