@@ -17,5 +17,6 @@
     ./gui
     ./gpg
     ./zoom.nix
+    ./zsh.nix
   ];
 }
