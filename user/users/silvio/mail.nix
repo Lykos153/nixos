@@ -9,6 +9,17 @@
       preNew = "mbsync --all";
     };
   };
+  programs.neomutt = {
+    enable = true;
+    extraConfig = ''
+      auto_view text/html
+      set mailcap_path = ${config.xdg.configHome + "/neomutt/mailcap"}
+    '';
+  };
+  xdg.configFile."neomutt/mailcap".text = ''
+    text/html; ${pkgs.firefox}/bin/firefox %s;
+    text/html; ${pkgs.lynx}/bin/lynx -assume_charset=%{charset} -display_charset=utf-8 -dump %s; nametemplate=%s.html; copiousoutput
+  '';
 
   accounts.email.accounts = {
     "booq" = {
@@ -34,6 +45,8 @@
       msmtp = {
         enable = true;
       };
+
+      neomutt.enable = true;
     };
   };
 }
