@@ -5,6 +5,10 @@
   programs.home-manager.enable = true;
   programs.direnv.enable = true;
   programs.password-store.enable = true;
+  services.pass-secret-service = {
+    enable = true;
+    storePath = config.programs.password-store.settings.PASSWORD_STORE_DIR;
+  };
 
   programs.bat = {
     enable = true;
