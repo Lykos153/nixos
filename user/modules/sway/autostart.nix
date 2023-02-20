@@ -33,18 +33,4 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
     };
   };
 
-  systemd.user.services.element-desktop = {
-    Unit = {
-      PartOf = [ "sway-session.target" ];
-    };
-
-    Install.WantedBy = [ "sway-session.target" ];
-
-    Service = {
-      ExecStart = ''
-        ${pkgs.element-desktop}/bin/element-desktop
-      '';
-      Restart = "on-failure";
-    };
-  };
 }
