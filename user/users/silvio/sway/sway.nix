@@ -148,6 +148,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
         "${cfg.modifier}+Escape" = "exec ${lockcmd}";
         "Pause" = "exec ${lockcmd}";
         "--no-repeat --locked ${cfg.modifier}+Pause" = ''exec 'test $(swaymsg -t get_outputs | ${pkgs.jq}/bin/jq "[.[].dpms] | any") = "true" && swaymsg "output * dpms off" || swaymsg "output * dpms on"'';
+        "Ctrl+Pause" = "exec systemctl suspend -i";
       };
 
       assigns = {
