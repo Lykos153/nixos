@@ -2,6 +2,7 @@
 
 {
   programs.mbsync.enable = true;
+  services.imapnotify.enable = true;
   programs.msmtp.enable = true;
   programs.notmuch = {
     enable = true;
@@ -52,7 +53,13 @@
           authMechs = "PLAIN";
         };
       };
-      passwordCommand = "pass booq/mail/silvio";
+      imapnotify = {
+        enable = true;
+        boxes = [ "Inbox" "Uni" "Admin" ];
+        onNotify = "notmuch new;";
+        onNotifyPost = "${pkgs.libnotify}/bin/notify-send 'New mail'";
+      };
+      passwordCommand = "${pkgs.libsecret}/bin/secret-tool lookup account mail.booq.org";
 
       msmtp = {
         enable = true;
