@@ -15,4 +15,9 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.xorg.enable) {
         exec systemd-cat -t startx startx
     fi
   '';
+
+  services.betterlockscreen = {
+    enable = true;
+    inactiveInterval = 30;
+  };
 }
