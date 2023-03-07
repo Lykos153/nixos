@@ -3,6 +3,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.xorg.enable) {
   xsession.enable = true;
 
   home.packages = with pkgs; [
+    arandr
     autorandr
     inputplug
   ];
