@@ -59,7 +59,7 @@
         onNotify = "notmuch new;";
         onNotifyPost = "${pkgs.libnotify}/bin/notify-send 'New mail'";
       };
-      passwordCommand = "${pkgs.libsecret}/bin/secret-tool lookup account mail.booq.org";
+      passwordCommand = "${pkgs.pass}/bin/pass booq/mail/silvio";
 
       msmtp = {
         enable = true;
