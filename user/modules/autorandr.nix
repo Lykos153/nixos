@@ -5,6 +5,12 @@ let
   work = "00ffffffffffff00226700000000000035190103803c22782a3581a656489a24125054afcf008100814081809500a940b30001010101023a801871382d40582c4500dd0c1100001e2f2640a060841a3030203500bbf91000001c000000fd00384c1f5311000a202020202020000000fc00484c3237344850420a202020200154020324f14f900504030207061f1413121116150123097f078301000067030c0010000021023a801871382d40582c450009252100001e011d8018711c1620582c250009252100009e011d007251d01e206e28550009252100001e023a80d072382d40102c458009252100001e00000000000000000000000000000000000000f3";
 
   invert = x: 1 / x;
+  scale_to_transform = x: [
+    [ (invert x) 0.0         0.0 ]
+    [ 0.0        (invert x)  0.0 ]
+    [ 0.0        0.0         1.0 ]
+  ];
+
 in
 { config, lib, nixosConfig, pkgs, ... }:
 lib.mkIf (config.booq.gui.enable && config.booq.gui.xorg.enable) {
@@ -21,25 +27,21 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.xorg.enable) {
           eDP-1 = {
             enable = true;
             mode = "1920x1080";
-            position = "0x840";
+            position = "0x1245";
             rate = "60.01";
-            #scale = {
-            #  x = invert 1.6;
-            #  y = invert 1.6;
-            #};
-            #dpi = 166;
+            transform = scale_to_transform 1.6;
           };
           DP-2-1 = {
             enable = true;
             mode = "1920x1200";
-            position = "3840x0";
+            position = "3120x0";
             rate = "59.95";
             rotate = "left";
           };
           DP-2-2 = {
             enable = true;
             mode = "1920x1080";
-            position = "1920x840";
+            position = "1200x840";
             rate = "59.95";
           };
         };
