@@ -130,7 +130,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
           mode = "1920x1200";
           position = "3840,0";
           status = "enable";
-          transform = "270";
+          transform = "90";
         }
         {
           criteria = "BenQ Corporation BenQ GL2450H 76H05996019";
