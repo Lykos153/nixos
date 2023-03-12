@@ -12,6 +12,7 @@
     android-file-transfer
 
     gnome.gedit
+    gnome.file-roller
     feh # image viewer
     darktable
     solaar # TODO udev rules https://search.nixos.org/packages?channel=unstable&show=solaar&from=0&size=50&sort=relevance&type=packages&query=solaar
