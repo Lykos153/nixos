@@ -121,16 +121,34 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
         {
           criteria = "Unknown 0x103D 0x00000000";
           mode = "1920x1080";
-          position = "3734,2268";
-          scale = 1.601562;
+          position = "443,1089";
+          scale = 1.300781;
           status = "enable";
+        }
+        {
+          criteria = "Samsung Electric Company SyncMaster HMBB602462";
+          mode = "1920x1200";
+          position = "3840,0";
+          status = "enable";
+          transform = "270";
         }
         {
           criteria = "BenQ Corporation BenQ GL2450H 76H05996019";
           mode = "1920x1080";
-          position = "4933,1760";
-          transform = "normal";
+          position = "1920,840";
           status = "enable";
+        }
+      ];
+      ch-home-kvm-disabled.outputs = [
+        {
+          criteria = "Unknown 0x103D 0x00000000";
+          mode = "1920x1080";
+          position = "5441,1019";
+          scale = 1.601562;
+        }
+        {
+          criteria = "BenQ Corporation BenQ GL2450H 76H05996019";
+          status = "disable";
         }
       ];
       ch-leila.outputs = [
