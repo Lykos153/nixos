@@ -11,10 +11,12 @@ import System.Exit
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
+import qualified Tools
+
 main = do
         xmonad $ ewmhFullscreen . ewmh . docks . pagerHints $ def {
           modMask = mod4Mask -- Use Super instead of Alt
-          , terminal = "alacritty"
+          , terminal = Tools.terminal
           , keys = myKeys
           , layoutHook = avoidStruts (tall ||| Mirror tall ||| Full)
         }
@@ -27,7 +29,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     ((modm,                 xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((modm,               xK_d     ), spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"")
+    , ((modm,               xK_d     ), spawn Tools.dmenu)
 
     -- close focused window
     , ((modm .|. shiftMask, xK_q     ), kill)

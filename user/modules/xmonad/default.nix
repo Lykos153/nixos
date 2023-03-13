@@ -8,6 +8,13 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.xmonad.enable) {
             haskellPackages.taffybar
           ];
     config = ./xmonad.hs;
+    libFiles = {
+      "Tools.hs" = pkgs.writeText "Tools.hs" ''
+         module Tools where
+         dmenu = "${pkgs.rofi}/bin/rofi -show drun"
+         terminal = "${pkgs.alacritty}/bin/alacritty"
+      '';
+    };
   };
 
   home.packages = with pkgs; [
