@@ -52,4 +52,16 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.xorg.enable) {
       };
     };
   };
+
+  services.picom = {
+    enable = true;
+    activeOpacity = 1.0;
+    inactiveOpacity = 0.8;
+    #backend = "glx"; # makes cursor flicker on thinkpad. maybe find proper driver?
+    fade = true;
+    fadeDelta = 5;
+    opacityRules = [ "100:name *= 'i3lock'" ];
+    shadow = true;
+    shadowOpacity = 0.75;
+  };
 }
