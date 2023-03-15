@@ -37,6 +37,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- lock the screen
     , ((noModMask,          xK_Pause ), spawn Tools.lock)
 
+    -- Screenshot whole screen
+    , ((noModMask,          xK_Print ), spawn Tools.screenshot_full)
+
+    -- Screenshot selection
+    , ((shiftMask,          xK_Print ), spawn Tools.screenshot_selection)
+
     -- close focused window
     , ((modm .|. shiftMask, xK_q     ), kill)
 
