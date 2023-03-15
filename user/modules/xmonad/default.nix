@@ -13,6 +13,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.xmonad.enable) {
          module Tools where
          dmenu = "${pkgs.rofi}/bin/rofi -show drun"
          terminal = "${pkgs.alacritty}/bin/alacritty"
+         lock = "${pkgs.systemd}/bin/loginctl lock-session"
       '';
     };
   };

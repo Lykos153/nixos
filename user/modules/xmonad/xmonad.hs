@@ -31,6 +31,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch dmenu
     , ((modm,               xK_d     ), spawn Tools.dmenu)
 
+    -- lock the screen
+    , ((modm,               xK_Escape ), spawn Tools.lock)
+
+    -- lock the screen
+    , ((noModMask,          xK_Pause ), spawn Tools.lock)
+
     -- close focused window
     , ((modm .|. shiftMask, xK_q     ), kill)
 
