@@ -43,6 +43,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Screenshot selection
     , ((shiftMask,          xK_Print ), spawn Tools.screenshot_selection)
 
+    -- Show clipmenu
+    , ((modm,               xK_c     ), spawn Tools.clipboard)
+
     -- close focused window
     , ((modm .|. shiftMask, xK_q     ), kill)
 

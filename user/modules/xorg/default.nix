@@ -64,4 +64,6 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.xorg.enable) {
     shadow = true;
     shadowOpacity = 0.75;
   };
+
+  services.clipmenu.enable = true;
 }
