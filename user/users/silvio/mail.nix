@@ -56,7 +56,8 @@
       imapnotify = {
         enable = true;
         boxes = [ "Inbox" "Uni" "Admin" ];
-        onNotify = "notmuch new;";
+#FIXME        onNotify = "${pkgs.notmuch}/bin/notmuch new;";
+        onNotify = "true";
         onNotifyPost = "${pkgs.libnotify}/bin/notify-send 'New mail'";
       };
       passwordCommand = "${pkgs.pass}/bin/pass booq/mail/silvio";

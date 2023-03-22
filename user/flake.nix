@@ -38,6 +38,9 @@
                             {
                                 options.booq.gui.enable = inputs.nixpkgs.lib.mkEnableOption "gui";
                                 options.booq.gui.sway.enable = inputs.nixpkgs.lib.mkEnableOption "sway";
+                                options.booq.gui.xorg.enable = inputs.nixpkgs.lib.mkEnableOption "xorg";
+                                options.booq.gui.xmonad.enable = inputs.nixpkgs.lib.mkEnableOption "xmonad";
+                                options.booq.gui.i3.enable = inputs.nixpkgs.lib.mkEnableOption "i3";
                             }
                             ./home.nix
                             {
