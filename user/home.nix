@@ -42,6 +42,8 @@
     moreutils
     tldr
     lsd # new ls
+
+    lykos153.shrinkpdf
   ];
 
 }
