@@ -7,12 +7,14 @@
         # nixpkgs-master.url = "github:nixos/nixpkgs/master";
         home-manager.url = "github:nix-community/home-manager";
         home-manager.inputs.nixpkgs.follows = "nixpkgs";
-        # nur.url = "github:nix-community/NUR";
+        nur.url = "github:nix-community/NUR";
+        mynur.url = "github:Lykos153/NUR";
+        mynur.inputs.nixpkgs.follows = "nixpkgs";
         get-flake.url = "github:ursi/get-flake";
     };
-    outputs = { self, nixpkgs, home-manager, get-flake, ... }@inputs:
+    outputs = { self, nixpkgs, home-manager, get-flake, nur, mynur, ... }@inputs:
     let
-    #     overlays = [ nur.overlay ];
+        overlays = [ nur.overlay mynur.overlay];
         systemFlake = get-flake ../system;
         system = "x86_64-linux";
         mkConfig = hostname: username: config:
@@ -25,6 +27,7 @@
                 pkgs = import nixpkgs {
                     inherit system;
                     config = if builtins.pathExists nixpkgsConfigPath then import nixpkgsConfigPath else {};
+                    overlays = overlays;
                 };
             in
             (
