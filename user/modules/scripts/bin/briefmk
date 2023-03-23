@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-tmpdir="/tmp/$1"
-
-(umask 077; mkdir -p "$tmpdir")
-latexmk -xelatex -interaction=nonstopmode -quiet -outdir="$tmpdir" "$1"
-cp "$tmpdir"/*.pdf .
