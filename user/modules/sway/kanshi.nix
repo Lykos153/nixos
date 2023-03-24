@@ -5,7 +5,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
     profiles = {
       home_kvm_disabled.outputs = [
         {
-          criteria = "BenQ Corporation BenQ GL2450H 76H05996019";
+          criteria = "BNQ BenQ GL2450H 76H05996019";
           status = "disable";
         }
         {
@@ -21,7 +21,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
           status = "enable";
         }
         {
-          criteria = "BenQ Corporation BenQ GL2450H 76H05996019";
+          criteria = "BNQ BenQ GL2450H 76H05996019";
           mode = "1920x1080";
           position = "1920,0";
           transform = "270";
@@ -42,7 +42,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
           status = "enable";
         }
         {
-          criteria = "BenQ Corporation BenQ GL2450H 76H05996019";
+          criteria = "BNQ BenQ GL2450H 76H05996019";
           mode = "1920x1080";
           position = "1920,0";
           transform = "270";
@@ -76,14 +76,14 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
           scale = 1.6;
         }
         {
-          criteria = "BenQ Corporation BenQ GL2450H HAF04109019";
+          criteria = "BNQ BenQ GL2450H HAF04109019";
           mode = "1920x1080";
           position = "1200,0";
         }
       ];
       leilasus-onlybenq.outputs = [
         {
-          criteria = "BenQ Corporation BenQ GL2450H HAF04109019";
+          criteria = "BNQ BenQ GL2450H HAF04109019";
           mode = "1920x1080";
           position = "1200,0";
         }
@@ -98,7 +98,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
       ];
       ch-mobile.outputs = [
         {
-          criteria = "Unknown 0x103D 0x00000000";
+          criteria = "AU Optronics 0x103D Unknown";
           mode = "1920x1080";
           position = "0,0";
           scale = 1.2;
@@ -106,7 +106,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
       ];
       ch.outputs = [
         {
-          criteria = "Unknown 0x103D 0x00000000";
+          criteria = "AU Optronics 0x103D Unknown";
           mode = "1920x1080";
           position = "4902,2660";
           scale = 1.5;
@@ -119,7 +119,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
       ];
       ch-home.outputs = [
         {
-          criteria = "Unknown 0x103D 0x00000000";
+          criteria = "AU Optronics 0x103D Unknown";
           mode = "1920x1080";
           position = "443,1089";
           scale = 1.300781;
@@ -133,7 +133,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
           transform = "90";
         }
         {
-          criteria = "BenQ Corporation BenQ GL2450H 76H05996019";
+          criteria = "BNQ BenQ GL2450H 76H05996019";
           mode = "1920x1080";
           position = "1920,840";
           status = "enable";
@@ -141,19 +141,19 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
       ];
       ch-home-kvm-disabled.outputs = [
         {
-          criteria = "Unknown 0x103D 0x00000000";
+          criteria = "AU Optronics 0x103D Unknown";
           mode = "1920x1080";
           position = "5441,1019";
           scale = 1.601562;
         }
         {
-          criteria = "BenQ Corporation BenQ GL2450H 76H05996019";
+          criteria = "BNQ BenQ GL2450H 76H05996019";
           status = "disable";
         }
       ];
       ch-leila.outputs = [
         {
-          criteria = "Unknown 0x103D 0x00000000";
+          criteria = "AU Optronics 0x103D Unknown";
           mode = "1920x1080";
           position = "0,740";
           scale = 1.5;
@@ -166,7 +166,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
       ];
       ch-papa.outputs = [
         {
-          criteria = "Unknown 0x103D 0x00000000";
+          criteria = "AU Optronics 0x103D Unknown";
           mode = "1920x1080";
           position = "5441,820";
           scale = 1.5;
