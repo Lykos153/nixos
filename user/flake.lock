@@ -46,23 +46,23 @@
         "lastModified": 1679610960,
         "narHash": "sha256-0Ki0MZxExif09/OLUmap2uttgejDdxsm67yBMBtt3Rc=",
         "owner": "Lykos153",
-        "repo": "NUR",
+        "repo": "nur-packages",
         "rev": "710fba970e71218d556642d7c071efc23a93a73d",
         "type": "github"
       },
       "original": {
         "owner": "Lykos153",
-        "repo": "NUR",
+        "repo": "nur-packages",
         "type": "github"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1679410443,
-        "narHash": "sha256-xDHO/jixWD+y5pmW5+2q4Z4O/I/nA4MAa30svnZKK+M=",
+        "lastModified": 1679614379,
+        "narHash": "sha256-2KddLHHmcIlJu0PuS/vISLKxihTyICUwKWGn0R//028=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c9ece0059f42e0ab53ac870104ca4049df41b133",
+        "rev": "994e2ef9e9c70b4dd7257f73452a94e871723685",
         "type": "github"
       },
       "original": {
@@ -74,11 +74,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1679607945,
-        "narHash": "sha256-L8upAhtdt9lZduU/8LL+O3uzSzNNFpiRAZuRoQmNwJc=",
+        "lastModified": 1679661028,
+        "narHash": "sha256-gD8VTVOAEUZBOh+li12zZfWY3gXqSF+/V4DK+mjDYEI=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "b587dc5c03d6421bf3ea867c2a94057ca8c67456",
+        "rev": "3b66de868912e73ec592362ede343ed9fff660bd",
         "type": "github"
       },
       "original": {
