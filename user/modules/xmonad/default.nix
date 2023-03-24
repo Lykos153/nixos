@@ -1,4 +1,22 @@
 { config, lib, nixosConfig, pkgs, ... }:
+let
+  screenshot = pkgs.writeShellApplication {
+    name = "screenshot";
+    runtimeInputs = [ pkgs.shotgun pkgs.slop pkgs.coreutils pkgs.xclip pkgs.libnotify ];
+    text = ''
+      if [ "''${1-}" = "selection" ]; then
+        area=$(slop -f '-i %i -g %g')
+      else
+        area=""
+      fi
+      dirname="$HOME/Bilder/Screenshots"
+      mkdir -p "$dirname" || notify-send "Failed to create directory $dirname"
+      filename="$dirname/$(date +'%Y-%m-%d-%H%M%S.png')"
+      # shellcheck disable=SC2086
+      shotgun $area - | tee "$filename" | xclip -t 'image/png' -selection clipboard && notify-send "Screenshot saved to $filename and copied to clipboard"
+    '';
+  };
+in
 lib.mkIf (config.booq.gui.enable && config.booq.gui.xmonad.enable) {
   booq.gui.xorg.enable = true;
   xsession.windowManager.xmonad = {
@@ -15,10 +33,8 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.xmonad.enable) {
          terminal = "${pkgs.alacritty}/bin/alacritty"
 
          -- Screenshots
-         -- TODO: Make derivation for screnshot scripts
-         screenshot_dir = "$HOME/Bilder/Screenshots"
-         screenshot_full = "export dirname=$HOME/Bilder/Screenshots; export filename=\"$dirname/$(date +'%Y-%m-%d-%H%M%S.png')\"; mkdir -p $dirname && ${pkgs.shotgun}/bin/shotgun - | ${pkgs.coreutils}/bin/tee $filename | ${pkgs.xclip}/bin/xclip -t 'image/png' -selection clipboard && ${pkgs.libnotify}/bin/notify-send \"Screenshot saved to $filename\""
-         screenshot_selection = "export dirname=$HOME/Bilder/Screenshots; export filename=\"$dirname/$(date +'%Y-%m-%d-%H%M%S.png')\"; mkdir -p $dirname && ${pkgs.shotgun}/bin/shotgun $(${pkgs.slop}/bin/slop -f '-i %i -g %g') - | ${pkgs.coreutils}/bin/tee $filename | ${pkgs.xclip}/bin/xclip -t 'image/png' -selection clipboard && ${pkgs.libnotify}/bin/notify-send \"Screenshot saved to $filename\""
+         screenshot_full = "${screenshot}/bin/screenshot"
+         screenshot_selection = "${screenshot}/bin/screenshot selection"
 
          lock = "${pkgs.systemd}/bin/loginctl lock-session"
          clipboard = "${pkgs.clipmenu}/bin/clipmenu -b -i"
@@ -27,6 +43,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.xmonad.enable) {
   };
 
   home.packages = with pkgs; [
+    screenshot
   ];
 
   services.taffybar.enable = true;
