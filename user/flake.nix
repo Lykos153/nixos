@@ -8,7 +8,7 @@
         home-manager.url = "github:nix-community/home-manager";
         home-manager.inputs.nixpkgs.follows = "nixpkgs";
         nur.url = "github:nix-community/NUR";
-        mynur.url = "github:Lykos153/NUR";
+        mynur.url = "github:Lykos153/nur-packages";
         mynur.inputs.nixpkgs.follows = "nixpkgs";
         get-flake.url = "github:ursi/get-flake";
     };
