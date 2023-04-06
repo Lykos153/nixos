@@ -15,6 +15,7 @@
     rocketchat-desktop
     konversation
     mumble
+    lykos153.mum
   ];
   imports = [
     ./autostart.nix
