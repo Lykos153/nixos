@@ -30,6 +30,10 @@
     ];
   };
 
+  security.sudo.extraConfig = ''
+    Defaults closefrom_override
+  '';
+
   boot.supportedFilesystems = [ "ntfs" ];
 
   services.udisks2.enable = true;
