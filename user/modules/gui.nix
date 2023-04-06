@@ -35,6 +35,18 @@ in
       system-config-printer
     ];
 
+    gtk = {
+      enable = true;
+      theme = {
+        name = "Materia-dark";
+        package = pkgs.materia-theme;
+      };
+      iconTheme = {
+        name = "Numix";
+        package = pkgs.numix-icon-theme;
+      };
+    };
+
     services = {
       udiskie.enable = true;
       network-manager-applet.enable = true;

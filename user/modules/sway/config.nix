@@ -171,18 +171,6 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
   ];
 
 
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Materia-dark";
-      package = pkgs.materia-theme;
-    };
-    iconTheme = {
-      name = "Numix";
-      package = pkgs.numix-icon-theme;
-    };
-  };
-
   #TODO: maybe make all of those a derivation some day
   home.file.".local/bin/_sway_exit_menu".source = ./exit_menu.sh;
   home.file.".local/bin/_sway_poweroff_menu".source = ./poweroff_menu.sh;
