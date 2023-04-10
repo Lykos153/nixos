@@ -22,7 +22,6 @@
     zoom-us
     spotify
     steam
-    geogebra
     gitkraken
     playonlinux
   ];
