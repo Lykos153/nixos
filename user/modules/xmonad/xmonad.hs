@@ -1,15 +1,15 @@
-import XMonad hiding ( (|||) )  -- don't use the normal ||| operator
-import XMonad.Layout.LayoutCombinators   -- use the one from LayoutCombinators instead
+import           XMonad                             hiding ((|||))
+import           XMonad.Layout.LayoutCombinators
 
-import XMonad.Hooks.EwmhDesktops
-import XMonad.Hooks.ManageDocks
-import System.Taffybar.Support.PagerHints (pagerHints)
+import           System.Taffybar.Support.PagerHints (pagerHints)
+import           XMonad.Hooks.EwmhDesktops
+import           XMonad.Hooks.ManageDocks
 
-import XMonad.Util.Run
+import           XMonad.Util.Run
 
-import System.Exit
-import qualified XMonad.StackSet as W
-import qualified Data.Map        as M
+import qualified Data.Map                           as M
+import           System.Exit
+import qualified XMonad.StackSet                    as W
 
 import qualified Tools
 
