@@ -13,6 +13,8 @@ import qualified XMonad.StackSet                    as W
 
 import qualified Tools
 
+import           XMonad.Actions.PhysicalScreens
+
 main = do
         xmonad $ ewmhFullscreen . ewmh . docks . pagerHints $ def {
           modMask = mod4Mask -- Use Super instead of Alt
@@ -123,6 +125,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
     -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
     --
-    [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
+    [((modm .|. mask, key), f sc)
         | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
-        , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+        , (f, mask) <- [(viewScreen horizontalScreenOrderer, 0), (sendToScreen horizontalScreenOrderer, shiftMask)]]
