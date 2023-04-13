@@ -40,6 +40,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.xorg.enable) {
           };
           DP-2-2 = {
             enable = true;
+            primary = true;
             mode = "1920x1080";
             position = "1200x840";
             rate = "59.95";
@@ -73,6 +74,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.xorg.enable) {
           };
           DP-2-1 = {
             enable = true;
+            primary = true;
             mode = "1920x1080";
             position = "1920x0";
             rate = "60.00";
