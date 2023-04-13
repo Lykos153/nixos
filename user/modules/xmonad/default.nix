@@ -22,8 +22,9 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.xmonad.enable) {
   xsession.windowManager.xmonad = {
     enable = true;
     enableContribAndExtras = true;
-    extraPackages = haskellPackages: [
-            haskellPackages.taffybar
+    extraPackages = hp: [
+        hp.dbus
+        hp.monad-logger
     ];
     config = ./xmonad.hs;
     libFiles = {
@@ -46,5 +47,4 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.xmonad.enable) {
     screenshot
   ];
 
-  services.taffybar.enable = true;
 }
