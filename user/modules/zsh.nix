@@ -196,7 +196,7 @@
       cdt () {
         template=$1
         suffix=".XXXXX"
-        mkdir -p "$(dirname "$template")"
+        mkdir -p /tmp/"$(dirname "$template")"
         cd $(mktemp -d --tmpdir=/tmp "''${template:="cdt"}$suffix")
       }
 
