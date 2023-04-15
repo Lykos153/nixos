@@ -66,4 +66,5 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.xorg.enable) {
   };
 
   services.clipmenu.enable = true;
+  services.caffeine.enable = true;
 }
