@@ -15,6 +15,9 @@ import qualified Tools
 import           XMonad.Actions.PhysicalScreens
 
 
+import           XMonad.Prompt
+import           XMonad.Prompt.ConfirmPrompt
+
 -- Imports for Polybar --
 import qualified Codec.Binary.UTF8.String        as UTF8
 import qualified DBus                            as D
@@ -172,8 +175,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
 
     -- Quit xmonad
-    , ((modm .|. shiftMask, xK_e     ), io (exitWith ExitSuccess))
-
+    , ((modm .|. shiftMask, xK_p     ), confirmPrompt amberXPConfig "exit" $ io exitSuccess)
     ]
     ++
 
