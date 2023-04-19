@@ -8,6 +8,8 @@
     keyMap = "de";
   };
 
+  services.xserver.layout = "de";
+
   services.xserver.extraLayouts.mine = {
     description = "The latest neo variant";
     languages   = [ "mine" ];

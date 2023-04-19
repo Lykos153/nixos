@@ -8,14 +8,4 @@ if command -v dbus-update-activation-environment >/dev/null 2>&1; then
 fi
 autorandr --change # TODO: use a service or similar
 
-{ echo "XIDeviceEnabled XISlaveKeyboard"; inputplug -d -c echo; } |
-while read event
-do
-        case $event in
-        XIDeviceEnabled*XISlaveKeyboard*)
-                setxkbmap de
-                ;;
-        esac
-done &
-
 exec "$HOME/.xsession"
