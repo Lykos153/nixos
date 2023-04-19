@@ -5,6 +5,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.xorg.enable) {
   home.packages = with pkgs; [
     arandr
     autorandr
+    xclip
   ];
   home.file.".xinitrc".source = ./xinitrc;
 
