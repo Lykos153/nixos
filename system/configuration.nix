@@ -30,6 +30,7 @@
     ];
   };
 
+  # to make <() work with sudo
   security.sudo.extraConfig = ''
     Defaults closefrom_override
   '';
