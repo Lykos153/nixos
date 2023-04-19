@@ -23,14 +23,5 @@ lib.mkIf (config.booq.audio == "pipewire") {
     #     "default.clock.max-quantum" = 8192;
     # };
   };
-  xdg = {
-    portal = {
-      enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-wlr
-        xdg-desktop-portal-gtk
-      ];
-      gtkUsePortal = true;
-    };
-  };
+  xdg.portal.wlr.enable = true;
 }
