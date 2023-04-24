@@ -1,6 +1,7 @@
 {
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-  outputs = { self, nixpkgs }:
+  inputs.nixpkgs-master.url = "github:nixos/nixpkgs/master";
+  outputs = { self, nixpkgs, nixpkgs-master }:
   let
     #machinedir = ./machines
     lib = nixpkgs.lib;
@@ -18,6 +19,7 @@
           {
             networking.hostName = name;
             nix.registry.nixpkgs.flake = nixpkgs; # Pin flakes so search, shell etc. are faster. From https://ianthehenry.com/posts/how-to-learn-nix/more-flakes/
+            nix.registry.nixpkgs-master.flake = nixpkgs-master;
           }
       ];
     };
