@@ -6,6 +6,8 @@ lib.mkIf config.booq.gui.enable {
 #     ^why doesn't this work?
 #    provider = "geoclue2";
 
+    tray = true;
+
     latitude = 51.05;
     longitude = 13.73;
     temperature = {
