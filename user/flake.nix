@@ -9,7 +9,7 @@
         home-manager.inputs.nixpkgs.follows = "nixpkgs";
         nur.url = "github:nix-community/NUR";
         mynur.url = "github:Lykos153/nur-packages";
-        mynur.inputs.nixpkgs.follows = "nixpkgs";
+        #mynur.inputs.nixpkgs.follows = "nixpkgs";
         get-flake.url = "github:ursi/get-flake";
     };
     outputs = { self, nixpkgs, home-manager, get-flake, nur, mynur, ... }@inputs:
