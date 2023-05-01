@@ -27,14 +27,14 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.xorg.enable) {
           eDP-1 = {
             enable = true;
             mode = "1920x1080";
-            position = "0x1245";
+            position = "720x1080";
             rate = "60.01";
             transform = scale_to_transform 1.6;
           };
           DP-2-1 = {
             enable = true;
             mode = "1920x1200";
-            position = "3120x0";
+            position = "1920x0";
             rate = "59.95";
             rotate = "left";
           };
@@ -42,7 +42,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.xorg.enable) {
             enable = true;
             primary = true;
             mode = "1920x1080";
-            position = "1200x840";
+            position = "0x0";
             rate = "59.95";
           };
         };
