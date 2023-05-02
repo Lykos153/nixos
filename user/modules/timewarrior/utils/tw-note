@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 beginswith() { case $2 in "$1"*) true;; *) false;; esac; }
-hasannotation() { test "$(timew get dom.tracked.${1}.json | jq .annotation)" != "null"; }
+hasannotation() { test "$(timew get "dom.tracked.${1}.json" | jq .annotation)" != "null"; }
 
 get_raw_annotation() {
-    id=$1
+    id="$1"
     if hasannotation "$id"; then
-        timew get dom.tracked.${id}.json | jq -r .annotation
+        timew get "dom.tracked.${id}.json" | jq -r .annotation
     fi
 }
 
@@ -17,7 +17,7 @@ line_separator="${TIMEWARRIOR_NOTE_SEPARATOR:=";; "}"
 note_dir="${TIMEWARRIORDB:="${HOME}/.timewarrior"}/notes"
 mkdir -p "$note_dir"
 
-if [ "$1" = "edit" ]; then
+if [ "${1:-""}" = "edit" ]; then
     if [[ $# -gt 2 ]]; then
         echo "ERROR: edit does not support more than one id"
         exit 1
@@ -26,26 +26,27 @@ if [ "$1" = "edit" ]; then
     shift
 fi
 
-for arg in $@; do
+args=( "$@" )
+for arg in "${args[@]}"; do
     if beginswith "@" "$arg"; then
-        ids="$ids ${arg#"@"}"
+        ids="${ids:-""} ${arg#"@"}"
         shift
     else
-        note="$@"
+        note="$*"
         break
     fi
 done
 
 for id in ${ids:="1"}; do
-    if [ "$edit" = "true" ]; then
+    if [ "${edit:-"false"}" = "true" ]; then
         file_name="$(mktemp tw-note.XXXXX)"
-        get_raw_annotation $id | decode_annotation > "$file_name"
+        get_raw_annotation "$id" | decode_annotation > "$file_name"
         $EDITOR "$file_name"
         timew annotate "@$id" "$(encode_annotation < "$file_name")" &&
         rm "$file_name" ||
         echo "Error adding note to @$id. Notes can be retrieved from $file_name"
-    elif [ -n "$note" ]; then
-        raw_annotation="$(get_raw_annotation $id)"
+    elif [ -n "${note:-""}" ]; then
+        raw_annotation="$(get_raw_annotation "$id")"
         raw_note="$(echo "${note}" | encode_annotation)"
 
         if [ -n "$raw_annotation" ]; then
@@ -58,7 +59,7 @@ for id in ${ids:="1"}; do
         echo "Error adding note \"$note\" to @$id"
     else
         echo "Notes for @$id:"
-        get_raw_annotation $id | decode_annotation
+        get_raw_annotation "$id" | decode_annotation
         echo
     fi
 done

@@ -5,11 +5,11 @@ is_today() {
 }
 
 get_dom() {
-  timew get dom.${1} | tail -n1
+  timew get "dom.${1}" | tail -n1
 }
 
 
-while IFS=": " read -r key value || [[ -n "$LINE" ]]; do
+while IFS=": " read -r key value; do
     if [ "$key" = "temp.report.tags" ]; then
         tags=${value//","/" "}
     fi
@@ -23,5 +23,6 @@ elif [ "$(get_dom tracked.count)" -eq 0 ] || ! is_today "$(get_dom tracked.1.end
   echo "ERROR: No tracked tasks today yet. Please use 'track' instead"
   exit 1
 else
+  # shellcheck disable=SC2086
   timew track :adjust "$(get_dom tracked.1.end)" - "$(date '+%FT%T')" $tags
 fi
