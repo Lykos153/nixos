@@ -44,7 +44,7 @@
     lsd # new ls
 
     lykos153.shrinkpdf
-    lykos153.iamb
+    #lykos153.iamb
   ];
 
 }
