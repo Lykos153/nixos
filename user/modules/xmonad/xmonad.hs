@@ -14,6 +14,8 @@ import qualified Tools
 
 import           XMonad.Actions.PhysicalScreens
 
+import           XMonad.Util.EZConfig
+
 
 import           XMonad.Prompt
 import           XMonad.Prompt.ConfirmPrompt
@@ -176,6 +178,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Quit xmonad
     , ((modm .|. shiftMask, xK_p     ), confirmPrompt amberXPConfig "exit" $ io exitSuccess)
+
+    -- PTT
+    , ((noModMask,          xK_Scroll_Lock ), spawn Tools.toggle_mute)
     ]
     ++
 

@@ -16,6 +16,8 @@ let
       shotgun $area - | tee "$filename" | xclip -t 'image/png' -selection clipboard && notify-send "Screenshot saved to $filename and copied to clipboard"
     '';
   };
+
+  pa-mute-unmute = action: "${pkgs.pulseaudio}/bin/pactl list short sources | ${pkgs.gawk}/bin/awk '/input.*RUNNING/ {system(\\\"${pkgs.pulseaudio}/bin/pactl set-source-mute \\\" $1 \\\" ${action}\\\")}'";
 in
 lib.mkIf (config.booq.gui.enable && config.booq.gui.xmonad.enable) {
   booq.gui.xorg.enable = true;
@@ -39,6 +41,11 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.xmonad.enable) {
 
          lock = "${pkgs.systemd}/bin/loginctl lock-session"
          clipboard = "${pkgs.clipmenu}/bin/clipmenu -b -i"
+
+         -- PTT
+         mute_all_inputs = "${pa-mute-unmute "1"}";
+         unmute_all_inputs = "${pa-mute-unmute "0"}";
+         toggle_mute = "${pa-mute-unmute "toggle"}";
       '';
     };
   };
