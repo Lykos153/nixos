@@ -27,6 +27,18 @@
       };
     };
 
+    # FIX for X Error of failed request: BadMatch (invalid parameter attributes)
+    # when changing the layout via arandr/xrandr
+    # https://www.reddit.com/r/NixOS/comments/v9r84l/issue_adding_new_mode_with_xrandr_badmatch/
+    monitorSection = ''
+      Modeline "1920x1080_143.98" 451.65 1920 2080 2296 2672 1080 1081 1084 1174 -HSync +Vsync
+      Modeline "1280x960_143.98" 266.96 1280 1384 1528 1776 960 961 964 1044 -HSync +Vsync
+    '';
+    deviceSection = ''
+      Option "ModeValidation" "AllowNonEdidModes"
+    '';
+    # ENDFIX
+
     desktopManager = {
       xterm.enable = false;
     };
