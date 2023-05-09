@@ -17,6 +17,7 @@
       init = {
         defaultBranch = "main";
       };
+      merge.tool = "nvimdiff2";
     };
   };
 
