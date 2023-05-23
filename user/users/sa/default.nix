@@ -20,6 +20,7 @@
   ];
   imports = [
     ./autostart.nix
+    ./calendar.nix
     ./gui
     ./gpg
     ./zoom.nix
