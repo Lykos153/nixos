@@ -37,6 +37,8 @@
 
   boot.supportedFilesystems = [ "ntfs" ];
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   services.udisks2.enable = true;
 
   hardware.bluetooth.enable = true;
