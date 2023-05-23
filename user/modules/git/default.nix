@@ -1,5 +1,7 @@
 { config, lib, nixosConfig, pkgs, ... }:
 {
+  imports = [ ./delta.nix ];
+
   programs.git = {
     enable = true;
     aliases = {
