@@ -79,7 +79,7 @@ in
       twedit = ''$EDITOR "''${TIMEWARRIORDB:="$HOME/.timewarrior"}/data/$(date +%Y-%m.data)"; rm -f ''${TIMEWARRIORDB:="$HOME/.timewarrior"}/data/tags.data; timew &>/dev/null; :'';
     };
   };
-  home.file.".timewarrior/extensions/hours".source = "${tw-hours}/bin/tw-hours";
+  home.file.".timewarrior/extensions/hours".source = "${tw-hours}/bin/hours";
   home.file.".timewarrior/extensions/now".source = "${tw-now}/bin/tw-now";
   home.file.".timewarrior/extensions/done".source = "${tw-done}/bin/tw-done";
   home.packages = [ tw-note ];
