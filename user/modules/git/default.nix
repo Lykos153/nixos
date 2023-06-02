@@ -19,11 +19,12 @@
       init = {
         defaultBranch = "main";
       };
-      merge.tool = "nvimdiff2";
+      merge.tool = "kdiff3";
     };
   };
 
   home.packages = [
     pkgs.pre-commit
+    pkgs.kdiff3
   ];
 }

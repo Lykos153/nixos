@@ -18,7 +18,6 @@
   };
 
   home.packages = with pkgs; [
-    vimPlugins.vim-plug
     vifm
     htop
     pwgen

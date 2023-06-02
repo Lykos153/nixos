@@ -19,4 +19,11 @@
     pkgs.rust-analyzer
   ];
   xdg.configFile."helix/config.toml".source = ./config.toml;
+  home.sessionVariables = {
+    EDITOR = "hx";
+  };
+  # workaround because the above doesnt seem to work in xorg https://github.com/nix-community/home-manager/issues/1011#issuecomment-1365065753
+  programs.zsh.initExtra = ''
+    export EDITOR="hx"
+  '';
 }
