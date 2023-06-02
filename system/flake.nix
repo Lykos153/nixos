@@ -1,13 +1,16 @@
 {
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
   inputs.nixpkgs-master.url = "github:nixos/nixpkgs/master";
-  outputs = { self, nixpkgs, nixpkgs-master }:
+  inputs.disko.url = "github:nix-community/disko";
+  inputs.disko.inputs.nixpkgs.follows = "nixpkgs";
+  outputs = { self, nixpkgs, nixpkgs-master, disko }:
   let
     #machinedir = ./machines
     lib = nixpkgs.lib;
     mkHost = name: lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
+          disko.nixosModules.disko
           {
            options.booq.audio = lib.mkOption {
             default = "pulseaudio";
