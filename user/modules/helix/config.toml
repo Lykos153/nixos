@@ -7,7 +7,7 @@ mouse = false
 
 auto-format = true
 
-auto-pairs = false
+#auto-pairs = false
 
 [editor.lsp]
 display-messages = true
