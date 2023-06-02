@@ -3,13 +3,10 @@
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     roboto
-    nerdfonts
-    #(pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
     #google-fonts # google font collection (free)
-    lmodern # Latin Modern for non-latex applications
-    source-han-sans
-    source-han-serif # CJK fonts
-    font-awesome
-    noto-fonts-emoji
+    #lmodern # Latin Modern for non-latex applications
+    #source-han-sans
+    #source-han-serif # CJK fonts
   ];
 }
