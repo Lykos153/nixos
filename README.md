@@ -7,3 +7,4 @@
 1. `rm system/machines/$machine_name/configuration.nix`
 1. Copy over `default.nix` and `bootloader.nix` from approriate folder (eg. silvio-pc) to `system/machines/$machine_name` and adapt
 1. `sudo nixos-install --flake ./system\#$machine_name`
+1. `./user/copy.sh`
