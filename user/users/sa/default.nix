@@ -16,7 +16,6 @@
     rocketchat-desktop
     konversation
     mumble
-    lykos153.mum
   ];
   imports = [
     ./autostart.nix
@@ -25,5 +24,6 @@
     ./gpg
     ./zoom.nix
     ./zsh.nix
+    ./mum-rs.nix
   ];
 }
