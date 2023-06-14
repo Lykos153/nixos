@@ -18,12 +18,14 @@ let
       position = "720x1200";
       rate = "60.01";
       transform = scale_to_transform 1.6;
+      rotate = "normal";
     };
     DP-2-1 = lib.mkIf on {
       enable = true;
       mode = "1920x1200";
       position = "0x0";
       rate = "59.95";
+      rotate = "normal";
     };
     DP-2-2 = {
       enable = on;
