@@ -5,9 +5,9 @@ theme = "onedark"
 
 mouse = false
 
-auto-format = true
+auto-format = false
 
-#auto-pairs = false
+auto-pairs = true
 
 [editor.lsp]
 display-messages = true
