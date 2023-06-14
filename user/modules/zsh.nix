@@ -214,7 +214,7 @@
                 sed -e 's|/$||' -e 's|:*/*\.git$||' -e 's|.*[/:]||g')
         fi
 
-        cdt tclone/$dir
+        cdt tclone-$dir
         pwd
 
         git clone "$repo" .
