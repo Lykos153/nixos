@@ -29,10 +29,10 @@ let
       mutefile="/run/user/$(id -u)/global-mute"
       if [ -e "$mutefile" ]; then
         unmute_all
-        mumctl unmute
+        if which mumctl &> /dev/null; then mumctl unmute; fi
         rm "$mutefile"
       else
-        mumctl mute
+        if which mumctl &> /dev/null; then mumctl mute; fi
         mute_all
         touch "$mutefile"
       fi
