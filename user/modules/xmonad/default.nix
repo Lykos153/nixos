@@ -17,7 +17,27 @@ let
     '';
   };
 
-  pa-mute-unmute = action: "${pkgs.pulseaudio}/bin/pactl list short sources | ${pkgs.gawk}/bin/awk '/input.*RUNNING/ {system(\\\"${pkgs.pulseaudio}/bin/pactl set-source-mute \\\" $1 \\\" ${action}\\\")}'";
+  toggle-mute = pkgs.writeShellApplication {
+    name = "toggle-mute";
+    runtimeInputs = [ pkgs.pulseaudio pkgs.gawk ];
+    text = ''
+      mute_unmute () {
+        pactl list short sources | awk '/input.*RUNNING/ {system("pactl set-source-mute " $1 " '"$1"'")}'
+      }
+      unmute_all () { mute_unmute 0; }
+      mute_all () { mute_unmute 1; }
+      mutefile="/run/user/$(id -u)/global-mute"
+      if [ -e "$mutefile" ]; then
+        unmute_all
+        mumctl unmute
+        rm "$mutefile"
+      else
+        mumctl mute
+        mute_all
+        touch "$mutefile"
+      fi
+    '';
+  };
 in
 lib.mkIf (config.booq.gui.enable && config.booq.gui.xmonad.enable) {
   booq.gui.xorg.enable = true;
@@ -43,15 +63,14 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.xmonad.enable) {
          clipboard = "${pkgs.clipmenu}/bin/clipmenu -b -i"
 
          -- PTT
-         mute_all_inputs = "${pa-mute-unmute "1"}";
-         unmute_all_inputs = "${pa-mute-unmute "0"}";
-         toggle_mute = "${pa-mute-unmute "toggle"}";
+         toggle_mute = "${toggle-mute}/bin/toggle-mute";
       '';
     };
   };
 
   home.packages = with pkgs; [
     screenshot
+    toggle-mute
   ];
 
 }
