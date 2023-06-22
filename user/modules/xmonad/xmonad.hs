@@ -181,6 +181,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- PTT
     , ((noModMask,          xK_Scroll_Lock ), spawn Tools.toggle_mute)
+
+    , ((modm,               xK_b     ), spawn Tools.rofi_bluetooth)
     ]
     ++
 

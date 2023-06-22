@@ -64,6 +64,8 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.xmonad.enable) {
 
          -- PTT
          toggle_mute = "${toggle-mute}/bin/toggle-mute";
+
+         rofi_bluetooth = "${pkgs.rofi-bluetooth}/bin/rofi-bluetooth -i";
       '';
     };
   };
