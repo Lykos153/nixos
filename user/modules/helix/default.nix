@@ -6,7 +6,7 @@
     # Language servers
     # https://docs.helix-editor.com/lang-support.html
     pkgs.nil # Nix
-    pkgs.taplo # toml
+    # pkgs.taplo # toml
     pkgs.yaml-language-server
     pkgs.python3Packages.python-lsp-server # Python
     pkgs.marksman # Markdown
