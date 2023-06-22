@@ -8,14 +8,15 @@ in
   ];
 
   systemd.user.services.mumd = {
-    Unit.PartOf = [ "sway-session.target" ];
-    Install.WantedBy = [ "sway-session.target" ];
+    Unit.PartOf = [ "default.target" ];
+    Unit.After = [ "pipewire.service" ];
+    Install.WantedBy = [ "default.target" ];
 
     Service = {
       ExecStart = ''
         ${mum}/bin/mumd
       '';
-      Restart = "on-failure";
+      Restart = "always";
     };
   };
 }
