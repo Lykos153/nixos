@@ -184,6 +184,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,          xK_y     ), spawn Tools.toggle_mute)
 
     , ((modm,               xK_b     ), spawn Tools.rofi_bluetooth)
+    , ((modm,               xK_x     ), spawn "mum-rofi") -- TODO: Get from Tools once I know how
     ]
     ++
 

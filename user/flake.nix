@@ -7,12 +7,12 @@
         # nixpkgs-master.url = "github:nixos/nixpkgs/master";
         home-manager.url = "github:nix-community/home-manager";
         home-manager.inputs.nixpkgs.follows = "nixpkgs";
-        nur.url = "github:nix-community/NUR";
         mynur.url = "github:Lykos153/nur-packages";
         #mynur.inputs.nixpkgs.follows = "nixpkgs";
         get-flake.url = "github:ursi/get-flake";
+        mum-rofi.url = "github:lykos153/mum-rofi";
     };
-    outputs = { self, nixpkgs, home-manager, get-flake, nur, mynur, ... }@inputs:
+    outputs = { self, nixpkgs, home-manager, get-flake, nur, mynur, mum-rofi, ... }@inputs:
     let
         overlays = [ nur.overlay mynur.overlay];
         systemFlake = get-flake ../system;
@@ -52,6 +52,12 @@
                                     username = username;
                                     stateVersion = "22.05";
                                 };
+                            }
+                            {
+                                # TODO: There needs to be a better way. How can I use this from any other file in the repo?
+                                home.packages = [
+                                    mum-rofi.outputs.defaultPackage.${system}
+                                ];
                             }
                         ] ++ userlist ++ hostlist;
                     };
