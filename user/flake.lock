@@ -60,11 +60,11 @@
         "nur": "nur"
       },
       "locked": {
-        "lastModified": 1687452436,
-        "narHash": "sha256-So9nzhkp/B+2Xl3b8bBCzqpGpIWfPKFxScr27ErxfSU=",
+        "lastModified": 1687536807,
+        "narHash": "sha256-Vbau9cQCacVB0pmLgFCvVp84rENXnf2F7E2NvXVS6Ic=",
         "owner": "lykos153",
         "repo": "mum-rofi",
-        "rev": "39b0161e867d459b5d01f9cba10505bb85e329dd",
+        "rev": "29f9721a292df909580bfd11a195628ed2373ab0",
         "type": "github"
       },
       "original": {
