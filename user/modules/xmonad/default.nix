@@ -22,7 +22,7 @@ let
     runtimeInputs = [ pkgs.pulseaudio pkgs.gawk ];
     text = ''
       mute_unmute () {
-        pactl list short sources | awk '/input.*RUNNING/ {system("pactl set-source-mute " $1 " '"$1"'")}'
+        pactl list short sources | awk '/input.*/ {system("pactl set-source-mute " $1 " '"$1"'")}'
       }
       unmute_all () { mute_unmute 0; }
       mute_all () { mute_unmute 1; }
