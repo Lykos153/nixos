@@ -1,8 +1,7 @@
 { config, pkgs, lib, ... }:
 let
   mainBar = builtins.readFile ./bar.ini;
-  pulseaudio-control = "${pkgs.callPackage ./pulseaudio-control.nix {} }/bin/pulseaudio-control";
-  #pulseaudio-control = "${pkgs.lykos153.polybar-pulseaudio-control}/bin/pulseaudio-control";
+  pulseaudio-control = "${pkgs.lykos153.polybar-pulseaudio-control}/bin/pulseaudio-control";
   pulseaudioModule = ''
     [module/pulseaudio-control-output]
       type = custom/script
