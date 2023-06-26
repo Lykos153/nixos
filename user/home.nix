@@ -27,6 +27,7 @@
     git-annex
     git-annex-remote-googledrive
     tig
+    gitui
     jq
     yq
     mr
