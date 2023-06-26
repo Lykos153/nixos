@@ -17,7 +17,5 @@
       # { file = "/etc/shadow"; parentDirectory = { group = "shadow"; mode = "u=rw,g=r,o="; }; }
     ];
   };
-  users.users.silvio.passwordFile = "/persist/passwords/silvio";
-  users.users.root.passwordFile = "/persist/passwords/root";
   users.mutableUsers = false;
 }
