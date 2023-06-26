@@ -33,7 +33,8 @@
                 extraArgs = [ "-f" ]; # Override existing partition
                 subvolumes = {
                   "/rootfs" = {
-                    mountpoint = "/";
+                    mountpoint = "/persist";
+                    mountOptions = [ "compress=zstd" ];
                   };
                   "/home" = {
                     mountOptions = [ "compress=zstd" ];
@@ -48,5 +49,14 @@
         ];
       };
     };
+    nodev."/" = {
+      fsType = "tmpfs";
+      mountOptions = [
+        "size=2G"
+        "defaults"
+        "mode=755"
+      ];
+    };
   };
+  fileSystems."/persist".neededForBoot = true;
 }

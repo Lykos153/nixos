@@ -7,5 +7,6 @@
     ./bootloader.nix
     ./services.nix
     ./virtualisation.nix
+    ./impermanence.nix
   ];
 }

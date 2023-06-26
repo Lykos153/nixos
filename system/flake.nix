@@ -3,7 +3,10 @@
   inputs.nixpkgs-master.url = "github:nixos/nixpkgs/master";
   inputs.disko.url = "github:nix-community/disko";
   inputs.disko.inputs.nixpkgs.follows = "nixpkgs";
-  outputs = { self, nixpkgs, nixpkgs-master, disko }:
+  inputs.impermanence.url = "github:nix-community/impermanence";
+  # inputs.impermanence.inputs.nixpkgs.follows = "nixpkgs";
+
+  outputs = { self, nixpkgs, nixpkgs-master, disko, impermanence }:
   let
     #machinedir = ./machines
     lib = nixpkgs.lib;
@@ -11,6 +14,7 @@
       system = "x86_64-linux";
       modules = [
           disko.nixosModules.disko
+          impermanence.nixosModules.impermanence
           {
            options.booq.audio = lib.mkOption {
             default = "pulseaudio";
