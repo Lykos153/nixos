@@ -39,6 +39,9 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  sops.defaultSopsFile = ./.secrets.yaml;
+  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+
   services.udisks2.enable = true;
 
   hardware.bluetooth.enable = true;
