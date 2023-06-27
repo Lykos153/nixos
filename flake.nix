@@ -22,6 +22,7 @@
           devShells.default = pkgs.mkShell {
             buildInputs = with pkgs; [
               sops
+              ssh-to-age
               stylish-haskell
             ];
           };
