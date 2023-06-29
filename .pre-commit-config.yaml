@@ -23,3 +23,16 @@ repos:
         entry: stylish-haskell -i
         language: system
         files: \.l?hs$
+  - repo: https://github.com/yuvipanda/pre-commit-hook-ensure-sops
+    rev: v1.0
+    hooks:
+      - id: sops-encryption
+        # Uncomment to exclude all markdown files from encryption
+        # exclude: *.\.md
+  - repo: local
+    hooks:
+      - id: sops-updatekeys
+        name: sops-updatekeys
+        language: system
+        entry: pre-commit-sops-updatekeys
+        files: '^.*(secrets|\.sops)\.ya?ml$'
