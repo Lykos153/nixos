@@ -19,6 +19,10 @@
       init = {
         defaultBranch = "main";
       };
+      rebase = {
+        autosquash = true;
+        autostash = true;
+      };
       merge.tool = "kdiff3";
     };
   };
