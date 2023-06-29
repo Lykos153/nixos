@@ -8,5 +8,6 @@
   imports = [
     ./mail.nix
     ./sway
+    ./sops.nix
   ];
 }

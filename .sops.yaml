@@ -6,6 +6,7 @@ keys:
   - &admin_silvio_pgp B8D2F3121A85E40612A7FD7082CEF915A63BA766
   - &admin_sa_pgp 8D4762947205541C62A49C88F4226CA3971C4E97
   - &device_silvio_pc age18uwq53hx4da5zhq27vpy8e62vxzm2hvdh96uqqyht4u98sl45egqjaeexe
+  - &home_silvio_pc_silvio age136kw62em7f2a7r034lqmf8qwsl2d9y2wzk4t209pswp4rduh29hqyjshns
 creation_rules:
   - path_regex: ^system/.*secrets\.ya?ml$
     key_groups:
@@ -14,10 +15,12 @@ creation_rules:
       - *admin_sa_pgp
       age:
       - *device_silvio_pc
-  - path_regex: ^user/users/silvio/.*secrets\.ya?ml$
+  - path_regex: ^user/users/silvio/.*secrets.*$
     key_groups:
     - pgp:
       - *admin_silvio_pgp
+      age:
+      - *home_silvio_pc_silvio
   - path_regex: ^user/users/sa/.*secrets\.ya?ml$
     key_groups:
     - pgp:
