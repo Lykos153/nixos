@@ -29,6 +29,12 @@
       dd      = "dd status=progress";
 
       g   = "git";
+      gst = "git status";
+      gd  = "git diff";
+      gsh = "git show";
+      gc  = "git commit";
+      grb = "git rebase";
+      gg  = "gitui";
       ga  = "git annex";
 
       hmb = "_hm_nix_build_switch build user";
@@ -62,6 +68,8 @@
       unalias lsd # where does that come from anyway?
 
       alias -s pdf="setsid xdg-open"
+
+      source ${pkgs.fzf-git-sh}/share/fzf-git-sh/fzf-git.sh
 
       nsh () {
         local nsopts
