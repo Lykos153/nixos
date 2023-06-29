@@ -9,5 +9,6 @@
     ./mail.nix
     ./sway
     ./sops.nix
+    ./mr.nix
   ];
 }
