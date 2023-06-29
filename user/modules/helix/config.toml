@@ -1,5 +1,8 @@
 theme = "onedark"
 
+[keys.normal]
+Z = { Q = ":quit!", Z = ":x" }
+
 [editor]
 #line-number = "relative"
 
