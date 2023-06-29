@@ -7,12 +7,22 @@
         # nixpkgs-master.url = "github:nixos/nixpkgs/master";
         home-manager.url = "github:nix-community/home-manager";
         home-manager.inputs.nixpkgs.follows = "nixpkgs";
+        sops-nix.url = "github:Mic92/sops-nix";
         mynur.url = "github:Lykos153/nur-packages";
         #mynur.inputs.nixpkgs.follows = "nixpkgs";
         get-flake.url = "github:ursi/get-flake";
         mum-rofi.url = "github:lykos153/mum-rofi";
     };
-    outputs = { self, nixpkgs, home-manager, get-flake, nur, mynur, mum-rofi, ... }@inputs:
+    outputs = {
+          self
+        , nixpkgs
+        , home-manager
+        , get-flake
+        , nur
+        , mynur
+        , mum-rofi
+        , sops-nix
+    }@inputs:
     let
         overlays = [ nur.overlay mynur.overlay];
         systemFlake = get-flake ../system;
@@ -38,6 +48,7 @@
                     "value" = inputs.home-manager.lib.homeManagerConfiguration {
                         inherit pkgs;
                         modules = [
+                            sops-nix.homeManagerModule
                             {
                                 options.booq.gui.enable = inputs.nixpkgs.lib.mkEnableOption "gui";
                                 options.booq.gui.sway.enable = inputs.nixpkgs.lib.mkEnableOption "sway";
