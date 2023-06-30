@@ -43,6 +43,7 @@
             buildInputs = with pkgs; [
               sops
               ssh-to-age
+              age
               pre-commit-sops-updatekeys
               stylish-haskell
             ];
