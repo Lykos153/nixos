@@ -27,6 +27,13 @@
         overlays = [ nur.overlay mynur.overlay];
         systemFlake = get-flake ../system;
         system = "x86_64-linux";
+        booq = {
+            options.booq.gui.enable = inputs.nixpkgs.lib.mkEnableOption "gui";
+            options.booq.gui.sway.enable = inputs.nixpkgs.lib.mkEnableOption "sway";
+            options.booq.gui.xorg.enable = inputs.nixpkgs.lib.mkEnableOption "xorg";
+            options.booq.gui.xmonad.enable = inputs.nixpkgs.lib.mkEnableOption "xmonad";
+            options.booq.gui.i3.enable = inputs.nixpkgs.lib.mkEnableOption "i3";
+        };
         mkConfig = hostname: username: config:
             let
                 userpath = (./users + "/${username}");
@@ -49,13 +56,7 @@
                         inherit pkgs;
                         modules = [
                             sops-nix.homeManagerModule
-                            {
-                                options.booq.gui.enable = inputs.nixpkgs.lib.mkEnableOption "gui";
-                                options.booq.gui.sway.enable = inputs.nixpkgs.lib.mkEnableOption "sway";
-                                options.booq.gui.xorg.enable = inputs.nixpkgs.lib.mkEnableOption "xorg";
-                                options.booq.gui.xmonad.enable = inputs.nixpkgs.lib.mkEnableOption "xmonad";
-                                options.booq.gui.i3.enable = inputs.nixpkgs.lib.mkEnableOption "i3";
-                            }
+                            booq
                             ./home.nix
                             {
                                 home = {
@@ -81,5 +82,6 @@
     in
     {
         homeConfigurations = inputs.nixpkgs.lib.mapAttrs' (mkConfig "silvio-pc") systemFlake.outputs.nixosConfigurations.silvio-pc.config.users.users;
+        inherit booq;
     };
 }
