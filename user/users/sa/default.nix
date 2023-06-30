@@ -24,5 +24,6 @@
     ./zoom.nix
     ./zsh.nix
     ./mum-rs.nix
+    ./sops.nix
   ];
 }
