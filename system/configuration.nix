@@ -30,9 +30,11 @@
     ];
   };
 
-  # to make <() work with sudo
   security.sudo.extraConfig = ''
+    # to make <() work with sudo
     Defaults closefrom_override
+    # impermanence results in sudo lectures after each reboot
+    Defaults lecture = never
   '';
 
   boot.supportedFilesystems = [ "ntfs" ];
