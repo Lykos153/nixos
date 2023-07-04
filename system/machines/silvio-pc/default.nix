@@ -1,6 +1,7 @@
 {config, lib, pkgs, modulesPath, ... }:
 {
   booq.audio = "pipewire";
+  boot.initrd.systemd.enable = true;
   imports = [
     ./hardware-configuration.nix
     ./old_btrfs.nix
