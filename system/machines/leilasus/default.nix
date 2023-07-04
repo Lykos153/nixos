@@ -6,4 +6,5 @@
     ./services.nix
     ./users.nix
   ];
+  booq.sops.enable = false;
 }
