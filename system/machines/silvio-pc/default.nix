@@ -9,5 +9,6 @@
     ./services.nix
     ./virtualisation.nix
     ./impermanence.nix
+    ./sops.nix
   ];
 }
