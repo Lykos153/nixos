@@ -41,8 +41,6 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  sops.defaultSopsFile = ./.secrets.yaml;
-
   services.udisks2.enable = true;
 
   hardware.bluetooth.enable = true;
