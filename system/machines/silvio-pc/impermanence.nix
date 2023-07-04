@@ -18,6 +18,6 @@
     ];
   };
   users.users.silvio.passwordFile = "/persist/passwords/silvio";
-  users.users.root.passwordFile = "/persist/passwords/root";
+  # users.users.root.passwordFile = "/persist/passwords/root";
   users.mutableUsers = false;
 }
