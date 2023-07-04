@@ -5,7 +5,6 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ];
     shell = pkgs.zsh;
-    passwordFile = config.sops.secrets."user-passwords/silvio".path;
   };
 
   users.users.sa = {
@@ -32,7 +31,6 @@
   };
 
   users.users.root.shell = pkgs.zsh;
-  users.users.root.passwordFile = config.sops.secrets."user-passwords/root".path;
 
   sops.secrets."user-passwords/silvio" = {
     name = "silvio";
