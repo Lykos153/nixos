@@ -45,6 +45,7 @@
               ssh-to-age
               age
               pre-commit-sops-updatekeys
+              pam_u2f
               stylish-haskell
             ];
           };
