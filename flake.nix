@@ -57,7 +57,7 @@
         description = "Flake to setup python virtualenv with direnv";
       };
 
-      direnv = direnv.defaultTemplate;
+      direnv = direnv.templates.default;
 
     };
   };
