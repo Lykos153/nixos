@@ -57,6 +57,14 @@
         "mode=755"
       ];
     };
+    nodev."/tmp" = {
+      fsType = "tmpfs";
+      mountOptions = [
+        "size=10G"
+        "defaults"
+        "mode=777"
+      ];
+    };
   };
   fileSystems."/persist".neededForBoot = true;
 }
