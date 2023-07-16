@@ -11,8 +11,9 @@ let
     [ 0.0        (invert x)  0.0 ]
     [ 0.0        0.0         1.0 ]
   ];
-  home-kvm = on: {
-    eDP-1 = {
+  home-kvm = {kvm ? true, laptop ? false}: {
+    # autorandr has to be invoced with --match-edid for this to work on both devices
+    eDP-1 = lib.mkIf laptop {
       enable = true;
       mode = "1920x1080";
       position = "720x1200";
@@ -20,7 +21,7 @@ let
       transform = scale_to_transform 1.6;
       rotate = "normal";
     };
-    DP-2-1 = lib.mkIf on {
+    DP-2-1 = lib.mkIf kvm {
       enable = true;
       mode = "1920x1200";
       position = "0x0";
@@ -28,7 +29,7 @@ let
       rotate = "normal";
     };
     DP-2-2 = {
-      enable = on;
+      enable = kvm;
       primary = true;
       mode = "1920x1080";
       position = "1920x0";
@@ -41,20 +42,33 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.xorg.enable) {
   programs.autorandr = {
     enable = true;
     profiles = {
-      home = {
+      ch-home = {
         fingerprint = {
           DP-2-1 = samsung_syncmaster;
           DP-2-2 = benq;
           eDP-1 = laptop;
         };
-        config = home-kvm true;
+        config = home-kvm {laptop = true; kvm = true;};
       };
-      home-no-kvm = {
+      ch-home-no-kvm = {
         fingerprint = {
           DP-2-2 = benq;
           eDP-1 = laptop;
         };
-        config = home-kvm false;
+        config = home-kvm {laptop = true; kvm = false;};
+      };
+      pc-home = {
+        fingerprint = {
+          DP-2-1 = samsung_syncmaster;
+          DP-2-2 = benq;
+        };
+        config = home-kvm {laptop = false; kvm = true;};
+      };
+      pc-home-no-kvm = {
+        fingerprint = {
+          DP-2-2 = benq;
+        };
+        config = home-kvm {laptop = false; kvm = false;};
       };
       mobile = {
         fingerprint = {
