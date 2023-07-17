@@ -24,7 +24,8 @@
               fail=false
               while [[ $# -gt 0 ]]; do
               if [ "$(basename "$1")" = ".sops.yaml" ]; then
-                result="$(find "$(dirname "$1")" -type f -name '*secrets.yaml' -exec sops updatekeys --yes {} \; 2>&1)"
+                # TODO: get regex from .sops.yaml, otherwise they drift apart
+                result="$(find "$(dirname "$1")" -type f -path '*secrets*' -exec sops updatekeys --yes {} \; 2>&1)"
               else
                 result="$(sops updatekeys --yes "$1" 2>&1)"
               fi
