@@ -46,6 +46,7 @@
     lykos153.shrinkpdf
     lykos153.git-rstash
     lykos153.cb
+    feh
   ];
 
 }
