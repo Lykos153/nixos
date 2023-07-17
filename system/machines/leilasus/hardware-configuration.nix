@@ -31,6 +31,7 @@
     device = "/dev/disk/by-uuid/70a2a513-2a33-4702-a106-2512ef58605f";
     fsType = "ext4";
   };
+  # TODO: bindfs mount https://github.com/NixOS/nixpkgs/issues/21748#issuecomment-368038094
 
   swapDevices = [ ];
 
