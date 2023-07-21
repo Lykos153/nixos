@@ -5,5 +5,6 @@
     ./hardware-configuration.nix
     ./bootloader.nix
     ./vpn.nix
+    ./virtualisation.nix
   ];
 }
