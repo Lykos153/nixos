@@ -60,7 +60,7 @@ in
   programs.zsh = {
     shellAliases = {
       # Just a bit shorter to type
-      tw = "timew";
+      tw = "toki";
 
       # Start of business. Adds a zero-length interval with start=end=now. This is the first command I type when I start working. Useful in conjunction with `twnow` and `twdone`. Alternative (and maybe a bit more cheerful) names: hi, moin, howdy, gmornin, you name it...
       sob = "timew track $(date +%FT%T -d@$(expr $(date +%s) - 1)) - $(date +%FT%T) sob";
@@ -82,5 +82,5 @@ in
   home.file.".timewarrior/extensions/hours".source = "${tw-hours}/bin/hours";
   home.file.".timewarrior/extensions/now".source = "${tw-now}/bin/tw-now";
   home.file.".timewarrior/extensions/done".source = "${tw-done}/bin/tw-done";
-  home.packages = [ tw-note ];
+  home.packages = [ tw-note pkgs.lykos153.toki ];
 }

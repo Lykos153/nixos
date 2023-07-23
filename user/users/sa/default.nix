@@ -12,7 +12,6 @@
     '';
   home.sessionVariables.MANAGED_K8S_SSH_USER = "silvioankermann";
   home.packages = with pkgs; [
-    timewarrior
     rocketchat-desktop
     konversation
     mumble
