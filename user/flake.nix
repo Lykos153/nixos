@@ -24,9 +24,18 @@
         , sops-nix
     }@inputs:
     let
-        overlays = [ nur.overlay mynur.overlay];
+        overlays = [
+            nur.overlay
+            mynur.overlay
+            (
+                # Add packages from flake inputs to pkgs
+                final: prev: {
+                    mum-rofi = mum-rofi.outputs.defaultPackage.${system};
+                }
+            )
+        ];
         systemFlake = get-flake ../system;
-        system = "x86_64-linux";
+        system = "x86_64-linux"; # TODO: make config independent of system
         booq = {
             options.booq.gui.enable = inputs.nixpkgs.lib.mkEnableOption "gui";
             options.booq.gui.sway.enable = inputs.nixpkgs.lib.mkEnableOption "sway";
@@ -64,12 +73,6 @@
                                     username = username;
                                     stateVersion = "22.05";
                                 };
-                            }
-                            {
-                                # TODO: There needs to be a better way. How can I use this from any other file in the repo?
-                                home.packages = [
-                                    mum-rofi.outputs.defaultPackage.${system}
-                                ];
                             }
                         ] ++ userlist ++ hostlist;
                     };

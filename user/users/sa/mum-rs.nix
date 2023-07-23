@@ -28,6 +28,7 @@ in
 {
   home.packages = with pkgs; [
     mum
+    mum-rofi
     mum-msglog
   ];
 
