@@ -8,4 +8,5 @@
     pkgs.k9s
     pkgs.kubernetes-helm
   ];
+  xdg.configFile."k9s/plugin.yml".source = ./k9s-plugin.yml;
 }
