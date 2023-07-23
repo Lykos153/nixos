@@ -12,6 +12,8 @@
         #mynur.inputs.nixpkgs.follows = "nixpkgs";
         get-flake.url = "github:ursi/get-flake";
         mum-rofi.url = "github:lykos153/mum-rofi";
+        krew2nix.url = "github:eigengrau/krew2nix";
+        krew2nix.inputs.nixpkgs.follows = "nixpkgs";
     };
     outputs = {
           self
@@ -22,6 +24,7 @@
         , mynur
         , mum-rofi
         , sops-nix
+        , ...
     }@inputs:
     let
         overlays = [
@@ -31,6 +34,7 @@
                 # Add packages from flake inputs to pkgs
                 final: prev: {
                     mum-rofi = mum-rofi.outputs.defaultPackage.${system};
+                    kubectl = inputs.krew2nix.outputs.packages.${system}.kubectl;
                 }
             )
         ];
