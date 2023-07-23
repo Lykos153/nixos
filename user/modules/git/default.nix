@@ -7,11 +7,15 @@
     aliases = {
       graph = "log --all --oneline --graph --decorate";
       squash-all = "!f(){ git reset $(git commit-tree HEAD^{tree} -m \"$${1:-A new start}\");};f";
+      rbi = "rebase -i";
+      fpush = "push --force-with-lease";
+      amend = "commit --amend --no-edit";
     };
     extraConfig = {
       push = {
         default = "simple";
         followtags  = true;
+        # useForceIfIncludes = true;
       };
       pull = {
         ff = "only";
