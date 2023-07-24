@@ -7,5 +7,6 @@
     ./vpn.nix
     ./virtualisation.nix
     ./sops.nix
+    ./disko.nix
   ];
 }
