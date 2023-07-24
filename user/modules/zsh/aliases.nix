@@ -8,6 +8,7 @@
     tree = "lsd --tree";
 
     n      = "$TERM&!";
+    r = "ranger";
 
     os  = "openstack";
     k   = "kubectl";
