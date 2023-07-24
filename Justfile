@@ -59,3 +59,10 @@ user-install: disco-mount user-copy user-clone (user-gen-sops (mount_path + user
 local-user-rotate-sops: (user-gen-sops user_age_file "true")
 
 install: nixos-install user-install
+
+passwd user:
+	#!/usr/bin/env bash
+	pw=$(mkpasswd)
+	pwfile="system/modules/users/secrets.yaml"
+	#yq -s '.[0] * .[1]' <(sops -d "$pwfile") <(cat <<< "{{user}}: $pw") | sops -e --input-type json /dev/stdin
+	sops --set '["{{user}}"] "'"$pw"'"' "$pwfile" #exposes the hashed password in the process table
