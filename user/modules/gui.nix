@@ -40,7 +40,7 @@ in {
 
     gtk = {
       enable = true;
-      theme = {
+      theme = lib.mkDefault {
         name = "Materia-dark";
         package = pkgs.materia-theme;
       };

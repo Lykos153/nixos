@@ -19,6 +19,7 @@
     sshuttle
   ];
   imports = [
+    ./style
     ./autostart.nix
     ./calendar.nix
     ./gui

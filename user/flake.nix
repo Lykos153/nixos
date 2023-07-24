@@ -14,6 +14,7 @@
     toki.url = "github:lykos153/toki";
     krew2nix.url = "github:lykos153/krew2nix";
     krew2nix.inputs.nixpkgs.follows = "nixpkgs";
+    stylix.url = "github:danth/stylix";
   };
   outputs = {
     self,
@@ -84,6 +85,7 @@
           modules =
             [
               sops-nix.homeManagerModule
+              inputs.stylix.homeManagerModules.stylix
               booq
               ./home.nix
               {
