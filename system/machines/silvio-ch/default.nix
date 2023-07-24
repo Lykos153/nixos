@@ -8,5 +8,6 @@
     ./virtualisation.nix
     ./sops.nix
     ./disko.nix
+    ./impermanence.nix
   ];
 }
