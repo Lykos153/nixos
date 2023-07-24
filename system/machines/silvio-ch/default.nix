@@ -6,5 +6,6 @@
     ./bootloader.nix
     ./vpn.nix
     ./virtualisation.nix
+    ./sops.nix
   ];
 }
