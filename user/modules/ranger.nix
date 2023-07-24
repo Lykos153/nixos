@@ -5,7 +5,7 @@
   ];
 
   xdg.configFile."ranger/rc.conf".text = ''
-    mouse_enabled false
+    set mouse_enabled false
     alias git shell gitui
   '';
 }
