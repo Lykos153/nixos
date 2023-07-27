@@ -40,6 +40,12 @@
                     mountpoint = "/home";
                     mountOptions = [ "compress=zstd" ];
                   };
+                  "/@var-tmp" = {
+                    mountpoint = "/var/tmp";
+                    mountOptions = [
+                      "mode=777"
+                    ];
+                  };
                   "/@nix" = {
                     mountpoint = "/nix";
                     mountOptions = [ "compress=zstd" "noatime" ];
