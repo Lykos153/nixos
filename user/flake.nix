@@ -77,6 +77,7 @@
                                     homeDirectory = config.home;
                                     username = username;
                                     stateVersion = "22.05";
+                                    sessionVariables.NIX_PATH = "${nixpkgs}";
                                 };
                             }
                         ] ++ userlist ++ hostlist;
