@@ -14,6 +14,7 @@
     rocketchat-desktop
     konversation
     mumble
+    git-crypt
   ];
   imports = [
     ./autostart.nix
@@ -24,5 +25,6 @@
     ./mum-rs.nix
     ./sops.nix
     ./yk8s
+    ./opsi-handbook.nix
   ];
 }
