@@ -66,3 +66,6 @@ passwd user:
 	pwfile="system/modules/users/secrets.yaml"
 	#yq -s '.[0] * .[1]' <(sops -d "$pwfile") <(cat <<< "{{user}}: $pw") | sops -e --input-type json /dev/stdin
 	sops --set '["{{user}}"] "'"$pw"'"' "$pwfile" #exposes the hashed password in the process table
+
+yubikey-add:
+	pamu2fcfg -o "pam://nixos-silvio" >> system/modules/yubikey/u2f_keys
