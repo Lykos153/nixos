@@ -44,6 +44,9 @@
     tldr
     lsd # new ls
 
+    poetry
+    just
+
     lykos153.shrinkpdf
     lykos153.git-rstash
     lykos153.cb
