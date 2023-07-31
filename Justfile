@@ -68,4 +68,5 @@ passwd user:
 	sops --set '["{{user}}"] "'"$pw"'"' "$pwfile" #exposes the hashed password in the process table
 
 yubikey-add:
-	pamu2fcfg -o "pam://nixos-silvio" >> system/modules/yubikey/u2f_keys
+	@echo "Please touch the device..."
+	cat <(pamu2fcfg -o "pam://nixos-silvio") <(printf '\n') >> system/modules/yubikey/u2f_keys
