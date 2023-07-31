@@ -10,7 +10,6 @@
   programs.ssh.extraConfig = ''
       User silvioankermann
     '';
-  home.sessionVariables.MANAGED_K8S_SSH_USER = "silvioankermann";
   home.packages = with pkgs; [
     rocketchat-desktop
     konversation
@@ -24,5 +23,6 @@
     ./zsh.nix
     ./mum-rs.nix
     ./sops.nix
+    ./yk8s
   ];
 }

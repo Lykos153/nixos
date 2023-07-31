@@ -1,0 +1,26 @@
+wg-up:
+	./managed-k8s/actions/wg-up.sh
+terraform:
+	./managed-k8s/actions/apply-terraform.sh
+stage2:
+	./managed-k8s/actions/apply-stage2.sh
+stage3:
+	./managed-k8s/actions/apply-stage3.sh
+stage4:
+	./managed-k8s/actions/apply-stage4.sh
+stage5:
+	./managed-k8s/actions/apply-stage5.sh
+apply-all:
+	./managed-k8s/actions/apply.sh
+test:
+	./managed-k8s/actions/test.sh
+update-inventory:
+	./managed-k8s/actions/update_inventory.py
+checkout-submodules:
+	git submodule update --init --recursive
+update-submodules:
+	git submodule update --init --recursive --remote
+vault-init:
+	./managed-k8s/tools/vault/init.sh
+vault-mkcluster-root clustername:
+	./managed-k8s/tools/vault/mkcluster-root.sh {{clustername}}
