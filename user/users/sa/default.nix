@@ -26,5 +26,6 @@
     ./sops.nix
     ./yk8s
     ./opsi-handbook.nix
+    ./opsi-prepare.nix
   ];
 }
