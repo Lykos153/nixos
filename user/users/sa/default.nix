@@ -27,5 +27,6 @@
     ./yk8s
     ./opsi-handbook.nix
     ./opsi-prepare.nix
+    ./mail.nix
   ];
 }
