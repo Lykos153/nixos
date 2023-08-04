@@ -15,6 +15,9 @@
     konversation
     mumble
     git-crypt
+    openstackclient
+    sops
+    age
   ];
   imports = [
     ./autostart.nix
