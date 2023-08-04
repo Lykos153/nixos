@@ -12,6 +12,7 @@
         #mynur.inputs.nixpkgs.follows = "nixpkgs";
         get-flake.url = "github:ursi/get-flake";
         mum-rofi.url = "github:lykos153/mum-rofi";
+        toki.url = "github:lykos153/toki";
         krew2nix.url = "github:eigengrau/krew2nix";
         krew2nix.inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -22,7 +23,6 @@
         , get-flake
         , nur
         , mynur
-        , mum-rofi
         , sops-nix
         , ...
     }@inputs:
@@ -33,7 +33,8 @@
             (
                 # Add packages from flake inputs to pkgs
                 final: prev: {
-                    mum-rofi = mum-rofi.outputs.defaultPackage.${system};
+                    mum-rofi = inputs.mum-rofi.outputs.defaultPackage.${system};
+                    toki = inputs.toki.outputs.defaultPackage.${system};
                     kubectl = inputs.krew2nix.outputs.packages.${system}.kubectl;
                 }
             )

@@ -49,11 +49,6 @@ let
     runtimeInputs = [ pkgs.coreutils pkgs.timewarrior ];
     text = builtins.readFile ./extensions/done;
   };
-  tw-note = pkgs.writeShellApplication {
-    name = "toki-note";
-    runtimeInputs = [ pkgs.timewarrior pkgs.gnused pkgs.jq ];
-    text = builtins.readFile ./utils/tw-note;
-  };
 in
 {
   #TODO: if zsh is used
@@ -82,5 +77,5 @@ in
   home.file.".timewarrior/extensions/hours".source = "${tw-hours}/bin/hours";
   home.file.".timewarrior/extensions/now".source = "${tw-now}/bin/tw-now";
   home.file.".timewarrior/extensions/done".source = "${tw-done}/bin/tw-done";
-  home.packages = [ tw-note pkgs.lykos153.toki ];
+  home.packages = [ pkgs.toki ];
 }
