@@ -50,7 +50,7 @@ let
     text = builtins.readFile ./extensions/done;
   };
   tw-note = pkgs.writeShellApplication {
-    name = "tw-note";
+    name = "toki-note";
     runtimeInputs = [ pkgs.timewarrior pkgs.gnused pkgs.jq ];
     text = builtins.readFile ./utils/tw-note;
   };
