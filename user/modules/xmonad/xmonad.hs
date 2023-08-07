@@ -100,6 +100,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
   [
     -- launch a terminal
     ((modm,                 xK_Return), spawn $ XMonad.terminal conf)
+    , ((modm,                 xK_t), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
     , ((modm,               xK_d     ), spawn Tools.dmenu)
@@ -162,7 +163,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_l     ), sendMessage Expand)
 
     -- Push window back into tiling
-    , ((modm,               xK_t     ), withFocused $ windows . W.sink)
+    , ((modm .|. shiftMask, xK_t     ), withFocused $ windows . W.sink)
 
     -- Increment the number of windows in the master area
     , ((modm              , xK_comma ), sendMessage (IncMasterN 1))
