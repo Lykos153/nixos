@@ -9,7 +9,7 @@
     host = "mail.cloudandheat.com";
   in
   {
-    "booq" = {
+    cah = {
       address = address;
       realName = "Silvio Ankermann";
       primary = true;
