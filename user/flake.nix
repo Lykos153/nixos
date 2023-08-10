@@ -77,8 +77,14 @@
                                     homeDirectory = config.home;
                                     username = username;
                                     stateVersion = "22.05";
-                                    sessionVariables.NIX_PATH = "${nixpkgs}";
                                 };
+                            }
+                            {
+                                home.sessionVariables.NIX_PATH = "nixpkgs=${nixpkgs}";
+                                # workaround because the above doesnt seem to work in xorg https://github.com/nix-community/home-manager/issues/1011#issuecomment-1365065753
+                                programs.zsh.initExtra = ''
+                                    export NIX_PATH="nixpkgs=${nixpkgs}"
+                                  '';
                             }
                         ] ++ userlist ++ hostlist;
                     };
