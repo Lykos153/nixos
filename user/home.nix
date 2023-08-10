@@ -28,6 +28,9 @@
     git-annex-remote-googledrive
     tig
     gitui
+    tea
+    glab
+    gh
     jq
     yq
     mr
