@@ -47,6 +47,14 @@
             options.booq.gui.xorg.enable = inputs.nixpkgs.lib.mkEnableOption "xorg";
             options.booq.gui.xmonad.enable = inputs.nixpkgs.lib.mkEnableOption "xmonad";
             options.booq.gui.i3.enable = inputs.nixpkgs.lib.mkEnableOption "i3";
+
+            # misusing an option here because I dont know how to pass this value into
+            # the modules
+            # TODO find a way how to do it properly
+            options.booq.nixpkgs-path = inputs.nixpkgs.lib.mkOption {
+                default = "${inputs.nixpkgs}";
+                type = inputs.nixpkgs.lib.types.str;
+            };
         };
         mkConfig = hostname: username: config:
             let
