@@ -40,7 +40,15 @@
         enable = true;
       };
 
-      neomutt.enable = true;
+      neomutt = {
+        enable = true;
+        extraMailboxes = [
+          "Drafts"
+          "Sent"
+          "Git"
+          "Support"
+        ];
+      };
     };
   };
 }
