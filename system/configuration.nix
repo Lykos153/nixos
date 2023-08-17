@@ -48,6 +48,7 @@
 
   environment.systemPackages = with pkgs; [
     vim
+    helix
     tmux
 
     wget
