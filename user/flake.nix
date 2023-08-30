@@ -13,7 +13,7 @@
         get-flake.url = "github:ursi/get-flake";
         mum-rofi.url = "github:lykos153/mum-rofi";
         toki.url = "github:lykos153/toki";
-        krew2nix.url = "github:eigengrau/krew2nix";
+        krew2nix.url = "github:lykos153/krew2nix";
         krew2nix.inputs.nixpkgs.follows = "nixpkgs";
     };
     outputs = {
