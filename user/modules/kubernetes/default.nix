@@ -6,6 +6,7 @@
       get-all
       example
       cnpg
+      rook-ceph
     ]))
     pkgs.kustomize
     pkgs.fluxcd
