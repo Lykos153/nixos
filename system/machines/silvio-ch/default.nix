@@ -9,5 +9,6 @@
     ./sops.nix
     ./disko.nix
     ./impermanence.nix
+    ./docker.nix
   ];
 }
