@@ -18,6 +18,7 @@
     openstackclient
     sops
     age
+    sshuttle
   ];
   imports = [
     ./autostart.nix
