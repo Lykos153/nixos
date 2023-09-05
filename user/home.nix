@@ -46,6 +46,8 @@
     moreutils
     tldr
     lsd # new ls
+    sd # new sed
+    profanity
 
     poetry
     just
