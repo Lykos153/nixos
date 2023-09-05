@@ -32,5 +32,6 @@
     ./opsi-handbook.nix
     ./opsi-prepare.nix
     ./mail.nix
+    ./tmate.nix
   ];
 }
