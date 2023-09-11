@@ -3,9 +3,9 @@
 {
     description = "Home manager flake";
     inputs = {
-        nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+        nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
         # nixpkgs-master.url = "github:nixos/nixpkgs/master";
-        home-manager.url = "github:nix-community/home-manager/release-23.05";
+        home-manager.url = "github:nix-community/home-manager";
         home-manager.inputs.nixpkgs.follows = "nixpkgs";
         sops-nix.url = "github:Mic92/sops-nix";
         mynur.url = "github:Lykos153/nur-packages";
