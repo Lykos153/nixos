@@ -36,3 +36,10 @@ repos:
         language: system
         entry: pre-commit-sops-updatekeys
         files: '^.*(secrets|\.sops)\.ya?ml$'
+  - repo: local
+    hooks:
+      - id: nix-fmt
+        name: nix-fmt
+        language: system
+        entry: pre-commit-nix-fmt
+        files: '\.nix$'

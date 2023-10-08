@@ -35,5 +35,7 @@
   in
   {
       nixosConfigurations = builtins.mapAttrs (name: _: mkHost name) (builtins.readDir ./machines);
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+
   };
 }

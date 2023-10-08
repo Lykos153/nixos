@@ -105,6 +105,8 @@
     in
     {
         homeConfigurations = inputs.nixpkgs.lib.mapAttrs' (mkConfig "silvio-pc") systemFlake.outputs.nixosConfigurations.silvio-pc.config.users.users;
+        formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+
         inherit booq;
     };
 }
