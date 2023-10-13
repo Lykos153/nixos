@@ -12,6 +12,27 @@
     cah = {
       address = address;
       realName = "Silvio Ankermann";
+      signature = {
+        text = ''
+          Silvio Ankermann
+          DevOps Engineer
+
+          Cloud&Heat Technologies GmbH
+          Königsbrücker Straße 96 | 01099 Dresden
+          +49 351 479 367 00
+          Silvio.Ankermann@cloudandheat.com | www.cloudandheat.com
+
+          Green, Open, Efficient.
+          Your Cloud Service und Cloud Technology Provider from Dresden.
+          https://www.cloudandheat.com/
+
+          Commercial Register: District Court Dresden
+          Register Number: HRB 30549
+          VAT ID No.: DE281093504
+          Managing Director: Nicolas Röhrs
+          Authorized signatory: Dr. Marius Feldmann
+        '';
+      };
       primary = true;
       imap.host = host;
       smtp.host = host;
