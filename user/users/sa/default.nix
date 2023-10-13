@@ -25,7 +25,7 @@
     ./calendar.nix
     ./gui
     ./zoom.nix
-    ./zsh.nix
+    ./pass.nix
     ./mum-rs.nix
     ./sops.nix
     ./yk8s
