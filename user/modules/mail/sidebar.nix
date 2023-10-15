@@ -1,21 +1,24 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   config = lib.mkIf config.booq.mail.enable {
     programs.neomutt = {
       binds = [
         {
-          map = [ "index" "pager" ];
+          map = ["index" "pager"];
           key = "\\CP";
           action = "sidebar-prev";
         }
         {
-          map = [ "index" "pager" ];
+          map = ["index" "pager"];
           key = "\\CN";
           action = "sidebar-next";
         }
         {
-          map = [ "index" "pager" ];
+          map = ["index" "pager"];
           key = "\\CO";
           action = "sidebar-open";
         }

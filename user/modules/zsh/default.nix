@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ./aliases.nix
     ./plugins.nix
@@ -53,5 +56,4 @@
     enable = true;
     enableZshIntegration = true;
   };
-
 }

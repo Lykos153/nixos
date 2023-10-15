@@ -1,5 +1,5 @@
 {
   users.users.leila = {
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = ["wheel" "networkmanager"];
   };
 }

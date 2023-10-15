@@ -1,32 +1,32 @@
 {
   programs.zsh.shellAliases = {
-    ip  = "ip --color=auto";
+    ip = "ip --color=auto";
     ls = "lsd";
-    l   = "lsd -l";
-    lh  = "lsd -lh";
-    la  = "lsd -la";
+    l = "lsd -l";
+    lh = "lsd -lh";
+    la = "lsd -la";
     tree = "lsd --tree";
 
-    n      = "$TERM&!";
+    n = "$TERM&!";
     r = "ranger";
 
-    os  = "openstack";
-    k   = "kubectl";
+    os = "openstack";
+    k = "kubectl";
 
     cal = "cal -3 --week --iso";
-    dirs    = "dirs -v";
-    rsynca  = "rsync -avPhL --append";
-    dd      = "dd status=progress";
+    dirs = "dirs -v";
+    rsynca = "rsync -avPhL --append";
+    dd = "dd status=progress";
 
-    g   = "git";
+    g = "git";
     gst = "git status";
-    gd  = "git diff";
+    gd = "git diff";
     gsh = "git show";
-    gc  = "git commit";
-    gca  = "git commit --amend --no-edit";
+    gc = "git commit";
+    gca = "git commit --amend --no-edit";
     grb = "git rebase";
-    gg  = "gitui";
-    ga  = "git annex";
+    gg = "gitui";
+    ga = "git annex";
 
     hmb = "_hm_nix_build_switch build user";
     hms = "_hm_nix_build_switch switch user";

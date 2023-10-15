@@ -1,9 +1,7 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   keyfile = "Yubico/u2f_keys";
-in
-{
-  services.udev.packages = [ pkgs.yubikey-personalization ];
+in {
+  services.udev.packages = [pkgs.yubikey-personalization];
   security.pam = {
     u2f = {
       enable = false; # true would enable for all PAM, including ssh, see https://bytemeta.vip/repo/NixOS/nixpkgs/issues/166076

@@ -1,11 +1,14 @@
-{config, pkgs, ...}:
 {
+  config,
+  pkgs,
+  ...
+}: {
   systemd.user.services.safeeyes = {
     Unit = {
-      PartOf = [ "sway-session.target" ];
+      PartOf = ["sway-session.target"];
     };
 
-    Install.WantedBy = [ "sway-session.target" ];
+    Install.WantedBy = ["sway-session.target"];
 
     Service = {
       ExecStart = ''

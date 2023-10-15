@@ -1,6 +1,8 @@
-{ config, lib, ... }:
-
 {
+  config,
+  lib,
+  ...
+}: {
   config = lib.mkIf config.booq.gui.enable {
     wayland.windowManager.sway.config = lib.mkIf config.booq.gui.sway.enable {
       terminal = "alacritty";

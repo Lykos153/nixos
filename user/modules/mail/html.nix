@@ -1,16 +1,19 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   config = lib.mkIf config.booq.mail.enable {
     programs.neomutt = {
       macros = [
         {
-          map = [ "index" "pager" ];
+          map = ["index" "pager"];
           key = "\\cb";
           action = "<pipe-message> ${pkgs.urlscan}/bin/urlscan<Enter>"; #call urlscan to extract URLs out of a message
         }
         {
-          map = [ "attach" "compose" ];
+          map = ["attach" "compose"];
           key = "\\cb";
           action = "<pipe-entry> ${pkgs.urlscan}/bin/urlscan<Enter>"; #call urlscan to extract URLs out of a message
         }

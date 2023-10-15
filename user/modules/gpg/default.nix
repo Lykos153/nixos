@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.gpg = {
     enable = true;
     settings = {
@@ -25,10 +24,12 @@
     maxCacheTtl = 86400;
     maxCacheTtlSsh = 86400;
     enableSshSupport = true;
-    extraConfig = ''
-      pinentry-program ${pkgs.pinentry-qt}/bin/pinentry
-    '' + ''
-      allow-loopback-pinentry
-    '';
+    extraConfig =
+      ''
+        pinentry-program ${pkgs.pinentry-qt}/bin/pinentry
+      ''
+      + ''
+        allow-loopback-pinentry
+      '';
   };
 }

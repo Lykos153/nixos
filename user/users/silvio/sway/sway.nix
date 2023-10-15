@@ -1,11 +1,15 @@
-{lib, config, pkgs, ...}:
-let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   cfg = config.wayland.windowManager.sway.config;
   lockcmd = "${pkgs.swaylock}/bin/swaylock -f -c000000";
   workspace_chat = "Chat";
 in
-lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
-  wayland.windowManager.sway.config = {
+  lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
+    wayland.windowManager.sway.config = {
       keybindings = {
         # Basics
         "${cfg.modifier}+Return" = "exec ${cfg.terminal}";
@@ -27,7 +31,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
         "${cfg.modifier}+Right" = "focus right";
 
         # using tab
-        "${cfg.modifier}+Tab"       = "focus right";
+        "${cfg.modifier}+Tab" = "focus right";
         "${cfg.modifier}+Shift+Tab" = "focus left";
 
         # using the scrollwheel
@@ -114,7 +118,6 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
         "${cfg.modifier}+Shift+space" = "floating toggle";
         "${cfg.modifier}+space" = "focus mode_toggle";
 
-
         # Resize mode
         "${cfg.modifier}+r" = "mode resize";
 
@@ -142,7 +145,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
         "Ctrl+Print" = "exec screenshot area";
 
         # Clipboard
-          "${cfg.modifier}+c" = "exec clipman pick --tool dmenu";
+        "${cfg.modifier}+c" = "exec clipman pick --tool dmenu";
 
         # Locking and DPMS
         "${cfg.modifier}+Escape" = "exec ${lockcmd}";
@@ -153,21 +156,24 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
 
       assigns = {
         "2" = [
-          { app_id="firefox"; }
-          { class="Firefox"; }
-          { class="firefox"; }
+          {app_id = "firefox";}
+          {class = "Firefox";}
+          {class = "firefox";}
         ];
         "3" = [
-          { app_id="thunderbird"; }
-          { class="Thunderbird"; }
-          { class="thunderbird"; }
+          {app_id = "thunderbird";}
+          {class = "Thunderbird";}
+          {class = "thunderbird";}
         ];
         ${workspace_chat} = [
-          { class="Element"; }
-          { class="SchildiChat"; }
-          { app_id="org.gajim.Gajim"; title="Gajim"; }
-          { app_id="telegramdesktop"; }
+          {class = "Element";}
+          {class = "SchildiChat";}
+          {
+            app_id = "org.gajim.Gajim";
+            title = "Gajim";
+          }
+          {app_id = "telegramdesktop";}
         ];
       };
-  };
-}
+    };
+  }

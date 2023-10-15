@@ -3,7 +3,7 @@
     disk.ata-samsung-850-evo = {
       device = "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_250GB_S21PNSAG425668F";
       type = "disk";
-      content =  {
+      content = {
         type = "table";
         format = "gpt";
         partitions = [
@@ -25,22 +25,22 @@
             content = {
               type = "luks";
               name = "crypted";
-              extraOpenArgs = [ "--allow-discards" ];
+              extraOpenArgs = ["--allow-discards"];
               # if you want to use the key for interactive login be sure there is no trailing newline
               # keyFile = "/dev/shm/secret.key";
               content = {
                 type = "btrfs";
-                extraArgs = [ "-f" ]; # Override existing partition
+                extraArgs = ["-f"]; # Override existing partition
                 subvolumes = {
                   "/rootfs" = {
                     mountpoint = "/persist";
-                    mountOptions = [ "compress=zstd" ];
+                    mountOptions = ["compress=zstd"];
                   };
                   "/home" = {
-                    mountOptions = [ "compress=zstd" ];
+                    mountOptions = ["compress=zstd"];
                   };
                   "/nix" = {
-                    mountOptions = [ "compress=zstd" "noatime" ];
+                    mountOptions = ["compress=zstd" "noatime"];
                   };
                 };
               };

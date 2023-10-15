@@ -1,5 +1,4 @@
-{pkgs, ...}:
-{
+{pkgs, ...}: {
   booq.gui.enable = true;
   booq.gui.sway.enable = true;
 

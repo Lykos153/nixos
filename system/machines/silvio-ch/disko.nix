@@ -3,7 +3,7 @@
     disk.nvme-samsung = {
       device = "/dev/disk/by-id/nvme-SAMSUNG_MZVLB512HAJQ-000L7_S3TNNE0JC78861";
       type = "disk";
-      content =  {
+      content = {
         type = "table";
         format = "gpt";
         partitions = [
@@ -25,20 +25,20 @@
             content = {
               type = "luks";
               name = "crypted";
-              extraOpenArgs = [ "--allow-discards" ];
+              extraOpenArgs = ["--allow-discards"];
               # if you want to use the key for interactive login be sure there is no trailing newline
               # keyFile = "/dev/shm/secret.key";
               content = {
                 type = "btrfs";
-                extraArgs = [ "-f" ]; # Override existing partition
+                extraArgs = ["-f"]; # Override existing partition
                 subvolumes = {
                   "/@" = {
                     mountpoint = "/persist";
-                    mountOptions = [ "compress=zstd" ];
+                    mountOptions = ["compress=zstd"];
                   };
                   "/@home" = {
                     mountpoint = "/home";
-                    mountOptions = [ "compress=zstd" ];
+                    mountOptions = ["compress=zstd"];
                   };
                   "/@var-tmp" = {
                     mountpoint = "/var/tmp";
@@ -48,7 +48,7 @@
                   };
                   "/@nix" = {
                     mountpoint = "/nix";
-                    mountOptions = [ "compress=zstd" "noatime" ];
+                    mountOptions = ["compress=zstd" "noatime"];
                   };
                 };
               };

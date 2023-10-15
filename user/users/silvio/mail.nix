@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   booq.mail.enable = true;
 
   accounts.email.accounts = {
@@ -24,8 +27,8 @@
       };
       imapnotify = {
         enable = true;
-        boxes = [ "Inbox" "Uni" "Admin" ];
-#FIXME        onNotify = "${pkgs.notmuch}/bin/notmuch new;";
+        boxes = ["Inbox" "Uni" "Admin"];
+        #FIXME        onNotify = "${pkgs.notmuch}/bin/notmuch new;";
         onNotify = "true";
         onNotifyPost = "${pkgs.libnotify}/bin/notify-send 'New mail'";
       };

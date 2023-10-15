@@ -1,13 +1,13 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   home.packages = [
-    (pkgs.kubectl.withKrewPlugins (plugins: with plugins; [
-      node-shell
-      get-all
-      example
-      cnpg
-      rook-ceph
-    ]))
+    (pkgs.kubectl.withKrewPlugins (plugins:
+      with plugins; [
+        node-shell
+        get-all
+        example
+        cnpg
+        rook-ceph
+      ]))
     pkgs.kustomize
     pkgs.fluxcd
     pkgs.k9s

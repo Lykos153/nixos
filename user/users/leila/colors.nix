@@ -59,21 +59,21 @@
     fg_0 = "335635"; #leilav
     fg_1 = "1B2E1C"; #leilar
 
-    black =    "080808";
-    red =      "F51024";
-    green =    "4E9A06";
-    yellow =   "C4A000";
-    blue =     "254775";
-    magenta =  "75507B";
-    cyan =     "06989A";
-    gray =     "A5A5A5";
+    black = "080808";
+    red = "F51024";
+    green = "4E9A06";
+    yellow = "C4A000";
+    blue = "254775";
+    magenta = "75507B";
+    cyan = "06989A";
+    gray = "A5A5A5";
     darkgray = "555753";
-    lred =     "FF4444";
-    lgreen =   "74FF00";
-    lyellow =  "FCE94F";
-    lblue =    "4A84D8";
+    lred = "FF4444";
+    lgreen = "74FF00";
+    lyellow = "FCE94F";
+    lblue = "4A84D8";
     lmagenta = "AD7FA8";
-    lcyan =    "34E2E2";
-    white =    "EEEEEC";
+    lcyan = "34E2E2";
+    white = "EEEEEC";
   };
 }

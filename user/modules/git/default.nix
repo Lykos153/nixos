@@ -1,6 +1,11 @@
-{ config, lib, nixosConfig, pkgs, ... }:
 {
-  imports = [ ./delta.nix ];
+  config,
+  lib,
+  nixosConfig,
+  pkgs,
+  ...
+}: {
+  imports = [./delta.nix];
 
   programs.git = {
     enable = true;
@@ -14,7 +19,7 @@
     extraConfig = {
       push = {
         default = "simple";
-        followtags  = true;
+        followtags = true;
         # useForceIfIncludes = true;
       };
       pull = {

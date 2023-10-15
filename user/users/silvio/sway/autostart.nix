@@ -1,11 +1,16 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
   systemd.user.services.schildichat-desktop = {
     Unit = {
-      PartOf = [ "sway-session.target" ];
+      PartOf = ["sway-session.target"];
     };
 
-    Install.WantedBy = [ "sway-session.target" ];
+    Install.WantedBy = ["sway-session.target"];
 
     Service = {
       ExecStart = ''

@@ -1,4 +1,3 @@
-{ pkgs, ... }:
-{
-  home.packages = with pkgs; [ vdirsyncer khal ];
+{pkgs, ...}: {
+  home.packages = with pkgs; [vdirsyncer khal];
 }

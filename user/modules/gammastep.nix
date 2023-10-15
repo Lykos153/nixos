@@ -1,10 +1,14 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  ...
+}:
 lib.mkIf config.booq.gui.enable {
   services.gammastep = {
     enable = true;
-#    inherit (nixosConfig.location) latitude longitude;
-#     ^why doesn't this work?
-#    provider = "geoclue2";
+    #    inherit (nixosConfig.location) latitude longitude;
+    #     ^why doesn't this work?
+    #    provider = "geoclue2";
 
     tray = true;
 

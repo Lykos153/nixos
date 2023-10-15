@@ -1,5 +1,10 @@
-{ config, lib, nixosConfig, pkgs, ... }:
 {
+  config,
+  lib,
+  nixosConfig,
+  pkgs,
+  ...
+}: {
   imports = map (n: "${./modules}/${n}") (builtins.attrNames (builtins.readDir ./modules));
 
   programs.home-manager.enable = true;
@@ -52,5 +57,4 @@
     lykos153.cb
     feh
   ];
-
 }

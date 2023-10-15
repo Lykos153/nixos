@@ -2,7 +2,7 @@
   virtualisation.podman.enable = false;
   virtualisation.docker.enable = true;
   users.users.sa = {
-    extraGroups = [ "docker" ];
+    extraGroups = ["docker"];
   };
   environment.persistence."/persist" = {
     hideMounts = true;

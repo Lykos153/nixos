@@ -1,17 +1,15 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   opsi-handbook = pkgs.writeShellApplication {
     name = "opsi-handbook";
-    runtimeInputs = [ pkgs.mdbook pkgs.mdbook-linkcheck ];
+    runtimeInputs = [pkgs.mdbook pkgs.mdbook-linkcheck];
     text = ''
       mdbook serve -p "''${OPSI_HANDBOOK_PORT:-8080}" "''$HOME/opsi-data/operations-handbook"
     '';
   };
-in
-{
+in {
   systemd.user.services.opsi-handbook = {
-    Unit.PartOf = [ "default.target" ];
-    Install.WantedBy = [ "default.target" ];
+    Unit.PartOf = ["default.target"];
+    Install.WantedBy = ["default.target"];
 
     Service = {
       Environment = [

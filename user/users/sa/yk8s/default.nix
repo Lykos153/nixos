@@ -1,8 +1,6 @@
-{ config, ... }:
-let
+{config, ...}: let
   justfilePath = "yaook-k8s/Justfile";
-in
-{
+in {
   xdg.configFile."yaook-k8s/env".source = ./env;
   xdg.configFile."yaook-k8s/envrc.local".source = ./envrc.local;
   xdg.configFile."${justfilePath}".source = ./Justfile;

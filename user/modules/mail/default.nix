@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
-
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 # TODO: move neomutt to subdir
 # TODO: for each of the programs: only enable if it is enabled by at least one account
 {

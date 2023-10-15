@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.zsh.enable = true;
   programs.zsh.interactiveShellInit = ''
     # Note that loading grml's zshrc here will override NixOS settings such as

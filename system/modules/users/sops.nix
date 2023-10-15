@@ -1,5 +1,8 @@
-{ lib, config, ... }:
-let
+{
+  lib,
+  config,
+  ...
+}: let
   genUserPasswd = user: {
     users.users.${user}.passwordFile = config.sops.secrets."user-passwords/${user}".path;
 
@@ -16,8 +19,8 @@ let
     "sa"
   ];
 in
-lib.mkIf config.booq.sops.enable (
-  builtins.foldl' lib.recursiveUpdate {} (
-    builtins.foldl' (acc: user: acc ++ [(genUserPasswd user)]) [] users
+  lib.mkIf config.booq.sops.enable (
+    builtins.foldl' lib.recursiveUpdate {} (
+      builtins.foldl' (acc: user: acc ++ [(genUserPasswd user)]) [] users
+    )
   )
-)

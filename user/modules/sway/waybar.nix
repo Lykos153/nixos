@@ -1,24 +1,29 @@
 # Originally from https://git.sbruder.de/simon/nixos-config/raw/commit/540f89bff111c2ff10f6d809f61806082616f981/users/simon/modules/sway/waybar.nix
-
-{ config, lib, nixosConfig, pkgs, ... }:
+{
+  config,
+  lib,
+  nixosConfig,
+  pkgs,
+  ...
+}:
 lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
-  home.packages = [ (pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; }) ];
+  home.packages = [(pkgs.nerdfonts.override {fonts = ["Iosevka"];})];
   # home-manager’s waybar module performs additional checks that are overly strict
   xdg.configFile."waybar/config".onChange = ''
-          ${pkgs.systemd}/bin/systemctl --user reload waybar
-        '';
+    ${pkgs.systemd}/bin/systemctl --user reload waybar
+  '';
   xdg.configFile."waybar/style.css".onChange = ''
-          ${pkgs.systemd}/bin/systemctl --user restart waybar
-        '';
+    ${pkgs.systemd}/bin/systemctl --user restart waybar
+  '';
 
   systemd.user.services.waybar = {
     Unit = {
       Description = "Highly customizable Wayland bar for Sway and Wlroots based compositors.";
       Documentation = "https://github.com/Alexays/Waybar/wiki/";
-      PartOf = [ "sway-session.target" ];
+      PartOf = ["sway-session.target"];
     };
 
-    Install.WantedBy = [ "sway-session.target" ];
+    Install.WantedBy = ["sway-session.target"];
 
     Service = {
       # ensure sway is already started, otherwise workspaces will not work
@@ -35,7 +40,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
   systemd.user.targets.tray = {
     Unit = {
       Description = "Home Manager System Tray";
-      Requires = [ "graphical-session-pre.target" ];
+      Requires = ["graphical-session-pre.target"];
     };
   };
 

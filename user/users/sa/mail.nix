@@ -1,14 +1,15 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   booq.mail.enable = true;
 
-  accounts.email.accounts =
-  let
+  accounts.email.accounts = let
     address = "silvio.ankermann@cloudandheat.com";
     host = "mail.cloudandheat.com";
-  in
-  {
+  in {
     cah = {
       address = address;
       realName = "Silvio Ankermann";
@@ -50,8 +51,8 @@
       };
       imapnotify = {
         enable = true;
-        boxes = [ "Inbox" "Git" "Support" ];
-#FIXME        onNotify = "${pkgs.notmuch}/bin/notmuch new;";
+        boxes = ["Inbox" "Git" "Support"];
+        #FIXME        onNotify = "${pkgs.notmuch}/bin/notmuch new;";
         onNotify = "true";
         onNotifyPost = "${pkgs.libnotify}/bin/notify-send 'New mail'";
       };

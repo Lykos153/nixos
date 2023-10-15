@@ -1,30 +1,35 @@
 # Originally from https://git.sbruder.de/simon/nixos-config/raw/commit/540f89bff111c2ff10f6d809f61806082616f981/users/simon/modules/sway/waybar.nix
-
-{ config, lib, nixosConfig, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  nixosConfig,
+  pkgs,
+  ...
+}: let
   # TODO: Deduplicate watch and toggle functions
-  watchUserUnitState = unit: started: stopped: pkgs.writeShellScript "watch-user-unit-${unit}-state" ''
-    ${pkgs.systemd}/bin/journalctl --user -u ${unit} -t systemd -o cat -f \
-        | ${pkgs.gnugrep}/bin/grep --line-buffered -Eo '^(Started|Stopped)' \
-        | ${pkgs.jq}/bin/jq --unbuffered -Rc 'if . == "Started" then ${builtins.toJSON started} else ${builtins.toJSON stopped} end'
-  '';
+  watchUserUnitState = unit: started: stopped:
+    pkgs.writeShellScript "watch-user-unit-${unit}-state" ''
+      ${pkgs.systemd}/bin/journalctl --user -u ${unit} -t systemd -o cat -f \
+          | ${pkgs.gnugrep}/bin/grep --line-buffered -Eo '^(Started|Stopped)' \
+          | ${pkgs.jq}/bin/jq --unbuffered -Rc 'if . == "Started" then ${builtins.toJSON started} else ${builtins.toJSON stopped} end'
+    '';
 
-  toggleUserUnitState = unit: pkgs.writeShellScript "toggle-user-unit-${unit}-state" ''
-    if ${pkgs.systemd}/bin/systemctl --user show ${unit} | ${pkgs.gnugrep}/bin/grep -q ActiveState=active; then
-        ${pkgs.systemd}/bin/systemctl --user stop ${unit}
-    else
-        ${pkgs.systemd}/bin/systemctl --user start ${unit}
-    fi
-  '';
+  toggleUserUnitState = unit:
+    pkgs.writeShellScript "toggle-user-unit-${unit}-state" ''
+      if ${pkgs.systemd}/bin/systemctl --user show ${unit} | ${pkgs.gnugrep}/bin/grep -q ActiveState=active; then
+          ${pkgs.systemd}/bin/systemctl --user stop ${unit}
+      else
+          ${pkgs.systemd}/bin/systemctl --user start ${unit}
+      fi
+    '';
   # nerd fonts are abusing arabic which breaks latin text
   # context: https://github.com/Alexays/Waybar/issues/628
   lrm = "&#8206;";
 
   # for fine-grained control over spacing
   thinsp = "&#8201;";
-in
-{
-  xdg.configFile."waybar/config".text = lib.generators.toJSON { } {
+in {
+  xdg.configFile."waybar/config".text = lib.generators.toJSON {} {
     layer = "top";
     position = "bottom";
     height = 24;
@@ -61,10 +66,11 @@ in
       spacing = 5;
     };
     "custom/redshift" = {
-      exec = watchUserUnitState
+      exec =
+        watchUserUnitState
         "gammastep"
-        { class = "active"; }
-        { class = "inactive"; };
+        {class = "active";}
+        {class = "inactive";};
       on-click = toggleUserUnitState "gammastep";
       return-type = "json";
       format = "";
@@ -79,7 +85,7 @@ in
     };
     backlight = {
       format = "{percent}% {icon}";
-      format-icons = [ " " " " " " " " " " " " " " ];
+      format-icons = [" " " " " " " " " " " " " "];
       on-scroll-up = "${pkgs.brightnessctl}/bin/brightnessctl -q set +5%";
       on-scroll-down = "${pkgs.brightnessctl}/bin/brightnessctl -n5 -q set 5%-";
     };
@@ -92,7 +98,7 @@ in
       format-source-muted = "{volume}% ${thinsp}";
       format-icons = {
         car = " ";
-        default = [ "奄" "奔" "墳" ];
+        default = ["奄" "奔" "墳"];
         hands-free = " ";
         headphone = " ";
         headset = " ";
@@ -126,7 +132,7 @@ in
       format-charging = "{capacity}% ";
       format-plugged = "{capacity}% ${lrm}ﮣ";
       format-alt = "{time} {icon}";
-      format-icons = [ "" "" "" "" "" "" "" "" "" "" "" ];
+      format-icons = ["" "" "" "" "" "" "" "" "" "" ""];
       states = {
         critical = 15;
         good = 95;

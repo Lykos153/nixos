@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{config, ...}: {
   programs.password-store.enable = true;
   programs.rofi.pass = {
     enable = true;
@@ -14,5 +13,4 @@
     enable = true;
     storePath = config.programs.password-store.settings.PASSWORD_STORE_DIR;
   };
-
 }

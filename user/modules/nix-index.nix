@@ -1,9 +1,12 @@
-{ pkgs, config, ... }:
 {
-  home.packages = [ pkgs.nix-index ];
+  pkgs,
+  config,
+  ...
+}: {
+  home.packages = [pkgs.nix-index];
 
   systemd.user.timers."nix-index" = {
-    Install.WantedBy = [ "timers.target" ];
+    Install.WantedBy = ["timers.target"];
     Timer = {
       OnCalendar = "weekly";
       Persistent = "true";
@@ -17,5 +20,4 @@
       Type = "simple";
     };
   };
-
 }

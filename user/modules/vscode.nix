@@ -1,5 +1,9 @@
-{ pkgs, lib, config, ... }:
 {
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   config = lib.mkIf config.booq.gui.enable {
     programs.vscode = {
       enable = true;
@@ -11,9 +15,9 @@
         "editor.fontFamily" = "'FuraCode Mono Nerd Font', 'monospace', monospace";
         "workbench.colorTheme" = "Default Dark+";
         "[python]" = {
-            "editor.defaultFormatter" = "ms-python.black-formatter"; # needs extension to be present
-            "editor.formatOnSave" = true;
-          };
+          "editor.defaultFormatter" = "ms-python.black-formatter"; # needs extension to be present
+          "editor.formatOnSave" = true;
+        };
       };
       keybindings = [
         {

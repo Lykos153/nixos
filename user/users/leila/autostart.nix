@@ -1,11 +1,10 @@
-{pkgs, ...}:
-{
+{pkgs, ...}: {
   systemd.user.services.telegram-desktop = {
     Unit = {
-      PartOf = [ "sway-session.target" ];
+      PartOf = ["sway-session.target"];
     };
 
-    Install.WantedBy = [ "sway-session.target" ];
+    Install.WantedBy = ["sway-session.target"];
 
     Service = {
       ExecStart = ''

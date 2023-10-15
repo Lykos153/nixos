@@ -1,5 +1,10 @@
-{config, lib, pkgs, modulesPath, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}: {
   booq.sops.enable = false;
 
   imports = [

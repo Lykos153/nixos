@@ -1,8 +1,12 @@
-{ config, lib, nixosConfig, pkgs, ... }:
-let
-  knownHostsCommon = ".ssh/known_hosts_common";
-in
 {
+  config,
+  lib,
+  nixosConfig,
+  pkgs,
+  ...
+}: let
+  knownHostsCommon = ".ssh/known_hosts_common";
+in {
   programs.ssh = {
     enable = true;
     compression = true;
@@ -10,7 +14,7 @@ in
     extraConfig = ''
       AddKeysToAgent yes
     '';
-    includes = [ "local.d/*" "config.d/*" ];
+    includes = ["local.d/*" "config.d/*"];
     userKnownHostsFile = "~/.ssh/known_hosts ~/${knownHostsCommon}";
   };
   home.packages = with pkgs; [

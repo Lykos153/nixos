@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   mainBar = builtins.readFile ./bar.ini;
   pulseaudio-control = "${pkgs.lykos153.polybar-pulseaudio-control}/bin/pulseaudio-control";
   pulseaudioModule = ''
@@ -37,18 +41,18 @@ let
       scroll-down = ${pulseaudio-control} --node-type input --volume-max 130 down
   '';
 in
-lib.mkIf (config.booq.gui.enable && config.booq.gui.xorg.enable) {
-  services.polybar = {
-    enable = true;
-    package = pkgs.polybar.override {
-      pulseSupport = true;
+  lib.mkIf (config.booq.gui.enable && config.booq.gui.xorg.enable) {
+    services.polybar = {
+      enable = true;
+      package = pkgs.polybar.override {
+        pulseSupport = true;
+      };
+      config = ./config.ini;
+      extraConfig = mainBar + pulseaudioModule;
+      script = ''
+        for m in $(polybar --list-monitors | ${pkgs.coreutils}/bin/cut -d":" -f1); do
+          MONITOR=$m polybar --reload main & disown
+        done
+      '';
     };
-    config = ./config.ini;
-    extraConfig = mainBar + pulseaudioModule;
-    script = ''
-      for m in $(polybar --list-monitors | ${pkgs.coreutils}/bin/cut -d":" -f1); do
-        MONITOR=$m polybar --reload main & disown
-      done
-    '';
-  };
-}
+  }

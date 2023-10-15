@@ -1,8 +1,13 @@
-{ config, lib, nixosConfig, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  nixosConfig,
+  pkgs,
+  ...
+}: let
   screenshot = pkgs.writeShellApplication {
     name = "screenshot";
-    runtimeInputs = [ pkgs.shotgun pkgs.slop pkgs.coreutils pkgs.xclip pkgs.libnotify ];
+    runtimeInputs = [pkgs.shotgun pkgs.slop pkgs.coreutils pkgs.xclip pkgs.libnotify];
     text = ''
       if [ "''${1-}" = "selection" ]; then
         area=$(slop -f '-i %i -g %g')
@@ -19,7 +24,7 @@ let
 
   toggle-mute = pkgs.writeShellApplication {
     name = "toggle-mute";
-    runtimeInputs = [ pkgs.pulseaudio pkgs.gawk ];
+    runtimeInputs = [pkgs.pulseaudio pkgs.gawk];
     text = ''
       mute_unmute () {
         pactl list short sources | awk '/input.*/ {system("pactl set-source-mute " $1 " '"$1"'")}'
@@ -39,40 +44,39 @@ let
     '';
   };
 in
-lib.mkIf (config.booq.gui.enable && config.booq.gui.xmonad.enable) {
-  booq.gui.xorg.enable = true;
-  xsession.windowManager.xmonad = {
-    enable = true;
-    enableContribAndExtras = true;
-    extraPackages = hp: [
+  lib.mkIf (config.booq.gui.enable && config.booq.gui.xmonad.enable) {
+    booq.gui.xorg.enable = true;
+    xsession.windowManager.xmonad = {
+      enable = true;
+      enableContribAndExtras = true;
+      extraPackages = hp: [
         hp.dbus
         hp.monad-logger
-    ];
-    config = ./xmonad.hs;
-    libFiles = {
-      "Tools.hs" = pkgs.writeText "Tools.hs" ''
-         module Tools where
-         dmenu = "${pkgs.rofi}/bin/rofi -show drun"
-         terminal = "${pkgs.alacritty}/bin/alacritty"
+      ];
+      config = ./xmonad.hs;
+      libFiles = {
+        "Tools.hs" = pkgs.writeText "Tools.hs" ''
+          module Tools where
+          dmenu = "${pkgs.rofi}/bin/rofi -show drun"
+          terminal = "${pkgs.alacritty}/bin/alacritty"
 
-         -- Screenshots
-         screenshot_full = "${screenshot}/bin/screenshot"
-         screenshot_selection = "${screenshot}/bin/screenshot selection"
+          -- Screenshots
+          screenshot_full = "${screenshot}/bin/screenshot"
+          screenshot_selection = "${screenshot}/bin/screenshot selection"
 
-         lock = "${pkgs.systemd}/bin/loginctl lock-session"
-         clipboard = "${pkgs.clipmenu}/bin/clipmenu -b -i"
+          lock = "${pkgs.systemd}/bin/loginctl lock-session"
+          clipboard = "${pkgs.clipmenu}/bin/clipmenu -b -i"
 
-         -- PTT
-         toggle_mute = "${toggle-mute}/bin/toggle-mute";
+          -- PTT
+          toggle_mute = "${toggle-mute}/bin/toggle-mute";
 
-         rofi_bluetooth = "${pkgs.rofi-bluetooth}/bin/rofi-bluetooth -i";
-      '';
+          rofi_bluetooth = "${pkgs.rofi-bluetooth}/bin/rofi-bluetooth -i";
+        '';
+      };
     };
-  };
 
-  home.packages = with pkgs; [
-    screenshot
-    toggle-mute
-  ];
-
-}
+    home.packages = with pkgs; [
+      screenshot
+      toggle-mute
+    ];
+  }

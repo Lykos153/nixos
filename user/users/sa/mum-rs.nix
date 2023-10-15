@@ -1,9 +1,8 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   mum = pkgs.lykos153.mum;
   mum-msglog = pkgs.writeShellApplication {
     name = "mum-msglog";
-    runtimeInputs = [ mum pkgs.coreutils pkgs.gnugrep ];
+    runtimeInputs = [mum pkgs.coreutils pkgs.gnugrep];
     text = ''
       echo "Starting"
       msglog="/run/user/$(id -u)/mum_messages.log"
@@ -24,8 +23,7 @@ let
       echo "Stopping"
     '';
   };
-in
-{
+in {
   home.packages = with pkgs; [
     mum
     mum-rofi
@@ -33,9 +31,9 @@ in
   ];
 
   systemd.user.services.mumd = {
-    Unit.PartOf = [ "default.target" ];
-    Unit.After = [ "pipewire.service" ];
-    Install.WantedBy = [ "default.target" ];
+    Unit.PartOf = ["default.target"];
+    Unit.After = ["pipewire.service"];
+    Install.WantedBy = ["default.target"];
 
     Service = {
       ExecStart = ''
@@ -46,9 +44,9 @@ in
   };
 
   systemd.user.services.mum-msglog = {
-    Unit.PartOf = [ "default.target" ];
-    Unit.Requires = [ "mumd.service" ];
-    Install.WantedBy = [ "default.target" ];
+    Unit.PartOf = ["default.target"];
+    Unit.Requires = ["mumd.service"];
+    Install.WantedBy = ["default.target"];
 
     Service = {
       ExecStart = ''

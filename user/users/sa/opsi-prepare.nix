@@ -1,9 +1,12 @@
-{ pkgs, config, lib, ... }:
-let
-  # format = pkgs.formats.toml;
-in
 {
-  home.activation.linkClusters = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
+  # format = pkgs.formats.toml;
+in {
+  home.activation.linkClusters = lib.hm.dag.entryAfter ["writeBoundary"] ''
     ln -sf opsi-data/managed-k8s/cluster "$HOME/clusters"
   '';
   # home.file."clusters".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/opsi-data/managed-k8s/cluste";

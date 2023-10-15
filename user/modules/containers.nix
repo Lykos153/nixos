@@ -1,6 +1,5 @@
-{pkgs, ... }:
-{
-    home.packages = with pkgs; [
-        x11docker
-    ];
+{pkgs, ...}: {
+  home.packages = with pkgs; [
+    x11docker
+  ];
 }

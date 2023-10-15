@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 lib.mkIf (config.booq.audio == "pipewire") {
   security.rtkit.enable = true;
   services.pipewire = {
