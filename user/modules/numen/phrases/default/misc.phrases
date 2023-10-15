@@ -1,0 +1,1 @@
+sleep: run @SCRIPTDIR@/switch-mode sleep

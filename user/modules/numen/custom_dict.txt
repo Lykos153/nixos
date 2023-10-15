@@ -1,0 +1,12 @@
+ansible
+kubernetes
+yaook
+CPU
+Prometheus
+Grafana
+API
+MR
+GPU
+errors
+readiness
+liveness

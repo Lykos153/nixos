@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+
+if [ -z "${ROFI_RETV+x}" ]; then
+    exec rofi -show numen-help -modes "numen-help:$0" -no-fixed-num-lines
+fi
+
+print_phrases() {
+    ls "$phrasedir" #| sed 's/.phrases$//g'
+}
+
+scriptdir="$(dirname "$0")"
+phrasedir="$scriptdir/../phrases/$(cat $NUMEN_STATE_DIR/mode)"
+
+sel="$*"
+echo -e "\0prompt\x1fNumen help"
+echo -e "\0new-selection\x1ftrue"
+echo -e "\0no-custom\x1ftrue"
+case "${ROFI_RETV}" in
+  0)
+    print_phrases
+  ;;
+  *)
+    case "$sel" in
+      "..")
+        print_phrases
+      ;;
+      *)
+      echo ..
+      sed 's/$/\x0nonselectable\x1ftrue/g' "$phrasedir/$sel"
+      ;;
+    esac
+    ;;
+esac

@@ -1,0 +1,82 @@
+space: press space
+yes: press Return
+tab: press Tab
+act: stick off \
+	press Escape
+
+# Enable a modifier for the next press
+# (The Super modifier is also known as the "Windows key")
+shy: mod shift
+troy: mod ctrl
+hype: mod alt
+super: mod super \
+	stick off
+# Clear modifiers
+cleanse: mod clear \
+	caps off \
+	stick off
+
+# Enable Caps Lock until the end of the sentence or you say "cleanse"
+shout: caps on
+<complete>: caps off
+
+# Start holding down each pressed key, and stop by saying "cleanse"
+squeeze: run notify-send STICKING & \
+	stick off \
+	stick on
+
+hack: press BackSpace
+mince: press BackSpace BackSpace
+toss: press Delete
+smite: press Delete Delete
+raze: press BackSpace BackSpace BackSpace BackSpace
+# Delete a word (depending on the program)
+swipe: press ctrl+BackSpace
+
+left: press Left
+right: press Right
+up: press Up
+down: press Down
+lunge: press Left Left
+rush: press Right Right
+leave: press Left Left Left Left
+charge: press Right Right Right Right
+
+# I use these to navigate words and to complete bits of shell autosuggestions
+stretch: press ctrl+Right
+wrench: press ctrl+Left
+
+# PageDown, PageUp, Home, End
+page: press Next
+reel: press Prior
+home: press Home
+end: press End
+
+# Paste the clipboard (depending on the program)
+gluten: stick off \
+	press XF86Paste
+
+# Repeat the previous press etc.
+more: repeat 1
+bunch: repeat 2
+handful: repeat 4
+fistful: repeat 8
+plateful: repeat 12
+
+frank one: press F1
+frank two: press F2
+frank three: press F3
+frank four: press F4
+frank five: press F5
+frank six: press F6
+frank sept: press F7
+frank eight: press F8
+frank nine: press F9
+frank one newt: press F10
+frank one one: press F11
+frank one two: press F12
+
+helix save: caps off \
+	press Escape colon w Return
+helix switch: caps off \
+	press Escape ctrl+w w

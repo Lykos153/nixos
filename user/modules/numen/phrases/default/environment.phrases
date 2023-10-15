@@ -1,0 +1,31 @@
+west: stick off \
+	press super+Tab
+east: stick off \
+	press super+shift+Tab
+north: stick off \
+	press super+Up
+south: stick off \
+	press super+Down
+
+# Cycle round the windows
+cycle: stick off \
+	press super+c
+recycle: stick off \
+	press super+C
+
+# Close window
+exterminate: stick off \
+	press super+q
+
+# Toggle fullscreen
+screen: stick off \
+	press super+f
+
+
+
+# These two are just for --gadget mode.
+
+# Switch to controlling the gadget
+@gadget shock gadget: handler uinput
+# Switch to controlling the host machine
+@gadget shock host: handler gadget
