@@ -9,9 +9,6 @@
     ./plugins.nix
     ./functions
   ];
-  home.packages = with pkgs; [
-    carapace
-  ];
   programs.zsh = {
     enable = true;
     autocd = true;
@@ -20,8 +17,6 @@
     enableCompletion = true;
 
     initExtra = ''
-      source <(carapace _carapace zsh)
-
       bindkey '^ ' autosuggest-accept
       AGKOZAK_CMD_EXEC_TIME=5
       AGKOZAK_COLORS_CMD_EXEC_TIME='yellow'
