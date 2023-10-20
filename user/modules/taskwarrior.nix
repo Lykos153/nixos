@@ -6,6 +6,9 @@
   programs.taskwarrior = {
     enable = true;
   };
+  home.packages = with pkgs; [
+    vit
+  ];
   programs.zsh = {
     shellAliases = {
       ta = "task";
