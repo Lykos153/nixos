@@ -4,7 +4,8 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     # nixpkgs-master.url = "github:nixos/nixpkgs/master";
-    home-manager.url = "github:nix-community/home-manager";
+    # home-manager.url = "github:nix-community/home-manager"; # TODO: << change back to original url
+    home-manager.url = "github:Lykos153/home-manager/cbatticon-add-batteryid";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.url = "github:Mic92/sops-nix";
     mynur.url = "github:Lykos153/nur-packages";
