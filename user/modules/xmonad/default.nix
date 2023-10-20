@@ -71,6 +71,7 @@ in
           toggle_mute = "${toggle-mute}/bin/toggle-mute";
 
           rofi_bluetooth = "${pkgs.rofi-bluetooth}/bin/rofi-bluetooth -i";
+          rofi_pass = "${pkgs.rofi-pass}/bin/rofi-pass";
         '';
       };
     };
