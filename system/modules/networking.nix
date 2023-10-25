@@ -8,6 +8,7 @@
   };
 
   networking.firewall.enable = true;
+  networking.nftables.enable = true;
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
