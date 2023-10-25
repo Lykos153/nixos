@@ -73,16 +73,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1697816193,
-        "narHash": "sha256-i3vhMB0CtfJ22337QBmW9qYcxFCZ49csCABbhRlA5Aw=",
-        "owner": "Lykos153",
+        "lastModified": 1698162493,
+        "narHash": "sha256-Zehw3cWiTXGGlDDjzTgIX1BhWG+049D/RcSMAiypAcM=",
+        "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "0032a1aa7a7d858b07f3e54a3f59ad626fd27cc4",
+        "rev": "14b54157201fd574b0fa1b3ce7394c9d3a87fbc1",
         "type": "github"
       },
       "original": {
-        "owner": "Lykos153",
-        "ref": "cbatticon-add-batteryid",
+        "owner": "nix-community",
         "repo": "home-manager",
         "type": "github"
       }
@@ -150,11 +149,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1697462712,
-        "narHash": "sha256-GdKMJSBNjt4SugfIkJVtSbuDOepu5KMReWJ0eGKxyrw=",
+        "lastModified": 1698059244,
+        "narHash": "sha256-OKcqZSU4z2Kogn+eJ80nFwYaQLRP/DDhVPwvSThW0lA=",
         "owner": "Lykos153",
         "repo": "nur-packages",
-        "rev": "ab8d219c1602df77d47c8ca5a98f5686bf71ae60",
+        "rev": "0578e703d9d90dcf8b312ba72d8549c9163d884d",
         "type": "github"
       },
       "original": {
