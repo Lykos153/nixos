@@ -24,6 +24,7 @@ in {
         targets = [
           "redmine"
           "gitlab-assigned"
+          "gitlab-author"
           "gitlab-review"
           "gitlab-review-assigned"
           "gitlab-ch"
@@ -49,6 +50,13 @@ in {
         gitlab
         // {
           only_if_assigned = "Lykos153";
+          project_template = "yaook.k8s.mrs";
+        };
+      gitlab-author =
+        gitlab
+        // {
+          include_issues = false;
+          merge_request_query = "projects/29738620/merge_requests?state=opened&author_username=Lykos153";
           project_template = "yaook.k8s.mrs";
         };
       gitlab-review =
