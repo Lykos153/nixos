@@ -7,7 +7,6 @@
     la = "lsd -la";
     tree = "lsd --tree";
 
-    n = "$TERM&!";
     r = "ranger";
 
     os = "openstack";
@@ -34,10 +33,7 @@
     testnix = "_hm_nix_build_switch test system";
     nix = "noglob nix";
     findnix = "nix search nixpkgs";
-    nownix = "nsh";
 
     helpme = "remote-debug";
-
-    manix = "nix run 'github:mlvzk/manix' --"; # too big to be installed by default. Rather only pull it when needed
   };
 }
