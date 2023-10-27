@@ -36,6 +36,18 @@
     };
   };
 
+  home.shellAliases = {
+    g = "git";
+    gst = "git status";
+    gd = "git diff";
+    gsh = "git show";
+    gc = "git commit";
+    gca = "git commit --amend --no-edit";
+    grb = "git rebase";
+    gg = "gitui";
+    ga = "git annex";
+  };
+
   home.packages = [
     pkgs.pre-commit
     pkgs.kdiff3

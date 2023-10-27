@@ -42,7 +42,7 @@
         # tumido.crd-snippets
       ];
     };
-    programs.zsh.shellAliases.code = "codium";
+    home.shellAliases.code = "codium";
 
     home.file.".config/electron-flags.conf" = lib.mkIf config.booq.gui.sway.enable {
       text = ''
