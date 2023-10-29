@@ -33,7 +33,6 @@
     ./waybar.nix
     ./sway.nix
     ./autostart.nix
-    ./zsh.nix
     ./default-apps.nix
   ];
 }
