@@ -9,14 +9,14 @@
     uid = 1000;
     isNormalUser = true;
     extraGroups = ["wheel" "networkmanager"];
-    shell = pkgs.zsh;
+    shell = pkgs.nushell;
   };
 
   users.users.sa = {
     uid = 1003;
     isNormalUser = true;
     extraGroups = ["wheel" "networkmanager"];
-    shell = pkgs.zsh;
+    shell = pkgs.nushell;
   };
 
   users.users.mine = {
