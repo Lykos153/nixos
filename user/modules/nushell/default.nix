@@ -10,6 +10,7 @@
     # envFile = ./env.nu;
     extraConfig = ''
       $env.config.show_banner = false
+      source ${./keybindings.nu}
     '';
   };
 }
