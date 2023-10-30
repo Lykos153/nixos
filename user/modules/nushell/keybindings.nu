@@ -18,4 +18,11 @@ $env.config.keybindings = [
       mode: [emacs, vi_normal, vi_insert] # Note: You can add the same keybinding to all modes by using a list
       event: { send: menuprevious }
     }
+    {
+      name: history_hint_complete
+      modifier: control
+      keycode: space
+      mode: [emacs, vi_normal, vi_insert]
+      event: { send: HistoryHintComplete }
+    }
 ]
