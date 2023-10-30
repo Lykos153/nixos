@@ -1,4 +1,21 @@
-{
+{config, ...}: {
+  home.shellAliases = {
+    hmb = "mynix build user";
+    hms = "mynix switch user";
+    renix = "mynix switch system";
+    testnix = "mynix test system";
+  };
+  programs.nushell = {
+    shellAliases = config.home.shellAliases;
+    extraConfig = ''
+      def mynix [ action:string , target:string] {
+        match $target {
+          "system" => (sudo nixos-rebuild $action --flake $"($env.HOME)/nixos/system#(hostname)")
+          "user" => (home-manager $action -b $"bak.(date now | date format "%s")" --flake $"($env.HOME)/nixos/user#(id -un)")
+        }
+      }
+    '';
+  };
   programs.zsh = {
     initExtra = ''
       nsh () {
@@ -36,7 +53,7 @@
         nix run $nropts "nixpkgs#$cmd" -- $@
       }
 
-      _hm_nix_build_switch() {
+      mynix() {
         case $2 in
           system)
             noglob sudo nixos-rebuild $1 --flake "$HOME/nixos/system#$(hostname)"
@@ -47,18 +64,6 @@
           *)
             echo "Usage: $0 build|switch system|user"
             return 1
-            ;;
-        esac
-      }
-
-      donix () {
-        case $1 in
-          system | user )
-            _hm_nix_build_switch switch $1
-            ;;
-
-          *)
-            donix user
             ;;
         esac
       }

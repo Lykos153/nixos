@@ -1,11 +1,5 @@
 {
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
   imports = [
-    ./nix.nix
     ./annex.nix
   ];
   programs.zsh = {
