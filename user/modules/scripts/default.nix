@@ -27,7 +27,8 @@
   };
 in {
   home.packages = [
-    rga-fzf
+    # TODO currently broken
+    # rga-fzf
     zsh_history_fix
     list-iommu-groups
   ];

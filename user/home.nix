@@ -36,7 +36,8 @@
     mr
     lykos153.garden
     ripgrep
-    ripgrep-all # search in docs, pdfs etc.
+    # TODO currently broken
+    # ripgrep-all # search in docs, pdfs etc.
     fd # simpler find
     ncdu
     python3Packages.ipython

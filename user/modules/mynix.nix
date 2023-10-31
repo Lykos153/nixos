@@ -11,7 +11,7 @@
       def mynix [ action:string , target:string] {
         match $target {
           "system" => (sudo nixos-rebuild $action --flake $"($env.HOME)/nixos/system#(hostname)")
-          "user" => (home-manager $action -b $"bak.(date now | date format "%s")" --flake $"($env.HOME)/nixos/user#(id -un)")
+          "user" => (home-manager $action -b $"bak.(date now | format date "%s")" --flake $"($env.HOME)/nixos/user#(id -un)")
         }
       }
     '';
