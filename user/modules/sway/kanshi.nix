@@ -65,11 +65,13 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
           mode = "1920x1080";
           position = "0,0";
           transform = "90";
+          status = "enable";
         }
         {
           criteria = "Fujitsu Siemens Computers GmbH B24-8 TS Pro YV9T711377";
           mode = "1920x1080";
           position = "1080,450";
+          status = "enable";
         }
       ];
       leilasus.outputs = [
@@ -78,11 +80,13 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
           mode = "1920x1080";
           position = "0,0";
           scale = 1.6;
+          status = "enable";
         }
         {
           criteria = "BNQ BenQ GL2450H HAF04109019";
           mode = "1920x1080";
           position = "1200,0";
+          status = "enable";
         }
       ];
       leilasus-onlybenq.outputs = [
@@ -90,6 +94,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
           criteria = "BNQ BenQ GL2450H HAF04109019";
           mode = "1920x1080";
           position = "1200,0";
+          status = "enable";
         }
       ];
       leilasus-onlytv.outputs = [
@@ -98,6 +103,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
           mode = "1920x1080";
           position = "0,0";
           scale = 1.6;
+          status = "enable";
         }
       ];
       ch-mobile.outputs = [
@@ -106,6 +112,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
           mode = "1920x1080";
           position = "0,0";
           scale = 1.2;
+          status = "enable";
         }
       ];
       ch.outputs = [
@@ -114,11 +121,13 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
           mode = "1920x1080";
           position = "4902,2660";
           scale = 1.5;
+          status = "enable";
         }
         {
           criteria = "Unknown HL274HPB 0x00000000";
           mode = "1920x1080";
           position = "6182,2110";
+          status = "enable";
         }
       ];
       ch-home.outputs = [
@@ -161,11 +170,13 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
           mode = "1920x1080";
           position = "0,740";
           scale = 1.5;
+          status = "enable";
         }
         {
           criteria = "Philips Consumer Electronics Company PHL 243V5 ZV01626032761";
           mode = "1920x1080";
           position = "1280,200";
+          status = "enable";
         }
       ];
       ch-papa.outputs = [
@@ -174,16 +185,19 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
           mode = "1920x1080";
           position = "5441,820";
           scale = 1.5;
+          status = "enable";
         }
         {
           criteria = "Ancor Communications Inc ASUS VS229 HCLMQS082378";
           mode = "1920x1080";
           position = "3521,660";
+          status = "enable";
         }
         {
           criteria = "Acer Technologies CB242Y 0x0000F384";
           mode = "1920x1080";
           position = "1601,460";
+          status = "enable";
         }
       ];
     };

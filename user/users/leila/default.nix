@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   booq.gui.enable = true;
-  booq.gui.sway.enable = true;
+  booq.gui.sway.enable = false;
+  booq.gui.xmonad.enable = false;
 
   programs.git.userEmail = "leila@booq.org";
   programs.git.userName = "Leila Höll";
@@ -15,6 +16,8 @@
     feh # image viewer
     darktable
     solaar # TODO udev rules https://search.nixos.org/packages?channel=unstable&show=solaar&from=0&size=50&sort=relevance&type=packages&query=solaar
+    clementine
+    qgis
 
     tdesktop # telegram
 
@@ -22,9 +25,9 @@
     zoom-us
     spotify
     steam
-    geogebra
     gitkraken
     playonlinux
+    morgen
   ];
 
   imports = [
@@ -32,7 +35,6 @@
     ./waybar.nix
     ./sway.nix
     ./autostart.nix
-    ./zsh.nix
     ./default-apps.nix
   ];
 }

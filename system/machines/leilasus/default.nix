@@ -10,6 +10,8 @@
     ./bootloader.nix
     ./services.nix
     ./users.nix
+    ./cinnamon.nix
+    ./gaming.nix
   ];
   booq.sops.enable = false;
 }
