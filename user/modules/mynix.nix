@@ -84,7 +84,7 @@
               echo "Nothing to do!"
               return 0
             fi
-            _hm_nix_build_switch switch $1 &&
+            mynix switch $1 &&
             git -C "$flake" commit -m "Upgrade $(basename "$flake")" flake.lock
             ;;
 
