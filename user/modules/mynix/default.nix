@@ -1,14 +1,14 @@
 {config, ...}: {
   home.shellAliases = {
-    hmb = "mynix build user";
-    hms = "mynix switch user";
-    renix = "mynix switch system";
-    testnix = "mynix test system";
+    hmb = "mynix user build";
+    hms = "mynix user switch";
+    renix = "mynix system switch";
+    testnix = "mynix system test";
   };
   programs.nushell = {
     shellAliases = config.home.shellAliases;
     extraConfig = ''
-      use ${./mynix-mod.nu}
+      use ${./mynix-mod.nu} *
     '';
   };
   programs.zsh = {
@@ -49,15 +49,15 @@
       }
 
       mynix() {
-        case $2 in
+        case $1 in
           system)
-            noglob sudo nixos-rebuild $1 --flake "$HOME/nixos/system#$(hostname)"
+            noglob sudo nixos-rebuild $2 --flake "$HOME/nixos/system#$(hostname)"
             ;;
           user)
-            noglob home-manager $1 -b "bak.$(date '+%s')" --flake "$HOME/nixos/user#$(id -un)"
+            noglob home-manager $2 -b "bak.$(date '+%s')" --flake "$HOME/nixos/user#$(id -un)"
             ;;
           *)
-            echo "Usage: $0 build|switch system|user"
+            echo "Usage: $0 system|user build|switch"
             return 1
             ;;
         esac
@@ -79,7 +79,7 @@
               echo "Nothing to do!"
               return 0
             fi
-            mynix switch $1 &&
+            mynix $1 switch &&
             git -C "$flake" commit -m "Upgrade $(basename "$flake")" flake.lock
             ;;
 

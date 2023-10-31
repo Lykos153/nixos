@@ -1,4 +1,16 @@
-export def mynix [ action:string , target:string] {
+def complete_mynix_action [context: string] {
+  print $context
+  {
+    system: [build switch test boot]
+    user: [build switch]
+  } | get -i ($context | split words).1
+}
+
+def complete_mynix_target [] {
+  [user system]
+}
+
+export def mynix [ target:string@complete_mynix_target, action:string@complete_mynix_action ] {
   match $target {
     "system" => (sudo nixos-rebuild $action --flake $"($env.HOME)/nixos/system#(hostname)")
     "user" => (home-manager $action -b $"bak.(date now | format date "%s")" --flake $"($env.HOME)/nixos/user#(id -un)")
@@ -33,6 +45,6 @@ export def upgrade [target: string@complete_upgrade] {
     print "Nothing to do"
     return
   }
-  mynix switch $target
+  mynix $target switch
   git -C $flake commit -m $"Upgrade ($target)" flake.lock
 }
