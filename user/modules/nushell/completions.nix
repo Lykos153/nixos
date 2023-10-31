@@ -27,6 +27,8 @@
           } | do $in $spans
       }
 
+      $env.config = ($env | default {} config).config
+      $env.config = ($env.config | default {} completions)
       $env.config.completions.external = {
         enable: true
         completer: $external_completer

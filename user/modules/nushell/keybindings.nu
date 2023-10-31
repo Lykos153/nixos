@@ -1,3 +1,4 @@
+$env.config = ($env | default {} config).config
 $env.config.keybindings = [
     {
       name: completion_menu

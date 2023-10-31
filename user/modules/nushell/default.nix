@@ -9,6 +9,7 @@
     # configFile = ./config.nu;
     # envFile = ./env.nu;
     extraConfig = ''
+      $env.config = ($env | default {} config).config
       $env.config.show_banner = false
       source ${./keybindings.nu}
     '';
