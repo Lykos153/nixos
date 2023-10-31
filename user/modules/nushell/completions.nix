@@ -23,7 +23,7 @@
           match $spans.0 {
               nu => $fish_completer
               git => $fish_completer
-              _ => $carapace_completer
+              _ => $fish_completer
           } | do $in $spans
       }
 
