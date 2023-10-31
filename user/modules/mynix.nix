@@ -14,6 +14,14 @@
           "user" => (home-manager $action -b $"bak.(date now | format date "%s")" --flake $"($env.HOME)/nixos/user#(id -un)")
         }
       }
+      def nr [ package: string, ...args: string ] {
+        # TODO: unfree, run from github: etc
+        nix run $"nixpkgs#($package)" $args
+      }
+      def nsh [...args: string] {
+        let args = ($args | each {|x| "nixpkgs#" + $x})
+        nix shell $args
+      }
     '';
   };
   programs.zsh = {
