@@ -5,7 +5,10 @@
   pkgs,
   ...
 }: {
-  imports = [./delta.nix];
+  imports = [
+    ./delta.nix
+    ./difftastic.nix
+  ];
 
   programs.git = {
     enable = true;
