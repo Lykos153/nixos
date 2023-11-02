@@ -36,6 +36,8 @@
     };
   };
 
+  programs.gitui.enable = true;
+
   home.shellAliases = {
     g = "git";
     gst = "git status";
@@ -48,8 +50,16 @@
     ga = "git annex";
   };
 
-  home.packages = [
-    pkgs.pre-commit
-    pkgs.kdiff3
+  home.packages = with pkgs; [
+    pre-commit
+    kdiff3
+    git-absorb
+    git-remote-gcrypt
+    git-annex
+    git-annex-remote-googledrive
+    tig
+    tea
+    glab
+    gh
   ];
 }

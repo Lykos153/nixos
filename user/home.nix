@@ -21,16 +21,6 @@
     vifm
     htop
     pwgen
-    git
-    git-absorb
-    git-remote-gcrypt
-    git-annex
-    git-annex-remote-googledrive
-    tig
-    gitui
-    tea
-    glab
-    gh
     jq
     yq
     mr
