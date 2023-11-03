@@ -67,6 +67,6 @@ passwd user:
 	#yq -s '.[0] * .[1]' <(sops -d "$pwfile") <(cat <<< "{{user}}: $pw") | sops -e --input-type json /dev/stdin
 	sops --set '["{{user}}"] "'"$pw"'"' "$pwfile" #exposes the hashed password in the process table
 
-yubikey-add:
+u2fkey-add:
 	@echo "Please touch the device..."
-	cat <(pamu2fcfg -o "pam://nixos-silvio") <(printf '\n') >> system/modules/yubikey/u2f_keys
+	cat <(pamu2fcfg -o "pam://nixos-silvio") <(printf '\n') >> system/modules/security/u2f_keys
