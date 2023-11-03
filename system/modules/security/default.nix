@@ -1,6 +1,9 @@
 {pkgs, ...}: let
   keyfile = "Yubico/u2f_keys";
 in {
+  services.pcscd.enable = true;
+  hardware.gpgSmartcards.enable = true;
+
   hardware.onlykey.enable = true;
   services.udev.packages = [pkgs.yubikey-personalization];
   security.pam = {

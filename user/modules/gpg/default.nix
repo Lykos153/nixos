@@ -4,6 +4,9 @@
     settings = {
       keyserver = "hkp://keys.gnupg.net";
     };
+    scdaemonSettings = {
+      disable-ccid = true;
+    };
     publicKeys = [
       {
         source = ./pubkeys/A63BA766.gpg;
