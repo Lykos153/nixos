@@ -24,7 +24,6 @@
     # unfree
     zoom-us
     spotify
-    steam
     gitkraken
     playonlinux
     morgen
