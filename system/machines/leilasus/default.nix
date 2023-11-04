@@ -12,6 +12,7 @@
     ./users.nix
     ./cinnamon.nix
     ./gaming.nix
+    ./amd.nix
   ];
   booq.sops.enable = false;
 }
