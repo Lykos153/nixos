@@ -6,7 +6,6 @@
   ...
 }: {
   booq.audio = "pipewire";
-  boot.initrd.systemd.enable = true;
   imports = [
     ./hardware-configuration.nix
     ./bootloader.nix

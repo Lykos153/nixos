@@ -43,7 +43,7 @@
   '';
 
   boot.supportedFilesystems = ["ntfs"];
-
+  boot.initrd.systemd.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   services.udisks2.enable = true;
