@@ -22,21 +22,26 @@
     fsType = "ext4";
   };
 
-  boot.initrd.luks.devices."leilasus".device = "/dev/disk/by-uuid/22a113fb-fd79-40bf-8d28-53abe042fcef";
+  boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/22a113fb-fd79-40bf-8d28-53abe042fcef";
   boot.initrd.luks.devices."arch-home".device = "/dev/disk/by-uuid/ae264b70-6cfc-49e3-9777-213e0c1b6169";
+  boot.initrd.luks.devices."swap".device = "/dev/disk/by-uuid/7dfd5430-906b-4826-a38a-0fcb0818c1ad";
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/EAD8-E590";
     fsType = "vfat";
   };
 
-  fileSystems."/oldhome" = {
+  fileSystems."/home" = {
     device = "/dev/disk/by-uuid/70a2a513-2a33-4702-a106-2512ef58605f";
     fsType = "ext4";
   };
   # TODO: bindfs mount https://github.com/NixOS/nixpkgs/issues/21748#issuecomment-368038094
 
-  swapDevices = [];
+  swapDevices = [
+    {
+      device = "/dev/disk/by-uuid/ab591789-33a9-485a-ad36-eaa03c9b9eec";
+    }
+  ];
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
