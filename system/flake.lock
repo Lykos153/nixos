@@ -37,16 +37,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1698553279,
-        "narHash": "sha256-T/9P8yBSLcqo/v+FTOBK+0rjzjPMctVymZydbvR/Fak=",
+        "lastModified": 1699169573,
+        "narHash": "sha256-cvUb1xZkvOp3W2SzylStrTirhVd9zCeo5utJl9nSIhw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "90e85bc7c1a6fc0760a94ace129d3a1c61c3d035",
+        "rev": "aeefe2054617cae501809b82b44a8e8f7be7cc4b",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixpkgs-unstable",
+        "ref": "nixos-23.05",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -83,12 +83,28 @@
         "type": "github"
       }
     },
+    "nvidia-vgpu": {
+      "locked": {
+        "lastModified": 1629956048,
+        "narHash": "sha256-mhKZWRn6swGwwfdb/bRrDB6GkA8V5sMhlOS60Jm/dM0=",
+        "owner": "danielfullmer",
+        "repo": "nixos-nvidia-vgpu",
+        "rev": "a4be77969dc2a8acbe3a4882ba5f0324cca138b6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "danielfullmer",
+        "repo": "nixos-nvidia-vgpu",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "disko": "disko",
         "impermanence": "impermanence",
         "nixpkgs": "nixpkgs",
         "nixpkgs-master": "nixpkgs-master",
+        "nvidia-vgpu": "nvidia-vgpu",
         "sops-nix": "sops-nix"
       }
     },
