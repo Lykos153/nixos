@@ -8,6 +8,8 @@
     "nvidia-.*"
   ];
 
+  nixpkgs.config.cudaSupport = true;
+
   # Enable OpenGL
   hardware.opengl = {
     enable = true;
@@ -55,5 +57,15 @@
   # boot.kernelModules = [ "nvidia-uvm" ];
   # boot.blacklistedKernelModules = [ "nouveau" ];
 
+  nix = {
+    settings = {
+      substituters = [
+        "https://cuda-maintainers.cachix.org"
+      ];
+      trusted-public-keys = [
+        "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+      ];
+    };
+  };
   # TODO: check out https://github.com/guibou/nixGL
 }
