@@ -5,9 +5,7 @@
   ...
 }: {
   nixpkgs.allowUnfreePackages = [
-    "nvidia-x11"
-    "nvidia-settings"
-    "nvidia-persistenced"
+    "nvidia-.*"
   ];
 
   # Enable OpenGL

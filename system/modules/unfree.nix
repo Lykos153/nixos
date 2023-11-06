@@ -1,18 +1,25 @@
 {
-  lib,
   config,
+  lib,
   ...
-}: {
-  # from https://github.com/NixOS/nixpkgs/issues/197325#issuecomment-1579420085
-  options = with lib; {
+}: let
+  inherit (lib) mkOption types;
+  cfg = config.nixpkgs.allowUnfreePackages;
+in {
+  options = {
     nixpkgs.allowUnfreePackages = mkOption {
-      type = with types; listOf str;
       default = [];
-      example = ["steam" "steam-original"];
+      type = types.listOf types.str;
+      description = "List of unfree packages allowed to be installed";
+      example = lib.literalExpression ''[ "slack" "discord" steam-.*" ]'';
     };
   };
 
   config = {
-    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.nixpkgs.allowUnfreePackages;
+    nixpkgs.config.allowUnfreePredicate = pkg: let
+      pkgName = lib.getName pkg;
+      matchPkgs = reg: ! builtins.isNull (builtins.match reg pkgName);
+    in
+      builtins.any matchPkgs cfg;
   };
 }

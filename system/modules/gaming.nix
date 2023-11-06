@@ -9,10 +9,7 @@
   };
   config = lib.mkIf config.booq.gaming.enable {
     nixpkgs.allowUnfreePackages = [
-      "steam"
-      "steam-run"
-      "steam-original"
-      "steam-runtime"
+      "steam(-.*)?"
     ];
 
     programs.steam = {
