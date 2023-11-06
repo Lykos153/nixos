@@ -4,7 +4,7 @@
   ...
 }: let
   genUserPasswd = user: {
-    users.users.${user}.passwordFile = config.sops.secrets."user-passwords/${user}".path;
+    users.users.${user}.hashedPasswordFile = config.sops.secrets."user-passwords/${user}".path;
 
     sops.secrets."user-passwords/${user}" = {
       name = "${user}";
