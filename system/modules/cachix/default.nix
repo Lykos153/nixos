@@ -2,6 +2,7 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: let
   folder = ./substituters;
@@ -11,4 +12,23 @@
 in {
   inherit imports;
   nix.settings.substituters = ["https://cache.nixos.org/"];
+
+  sops.secrets."cachix.dhall" = {
+    name = "cachix.dhall";
+    key = "cachix.dhall";
+    sopsFile = ./secrets.yaml;
+  };
+
+  systemd.services.cachix-watch-store = lib.mkIf config.booq.sops.enable {
+    description = "Cachix store watcher service";
+    wantedBy = ["multi-user.target"];
+    after = ["network.target"];
+    path = [config.nix.package];
+    environment.XDG_CACHE_HOME = "/var/cache/cachix-watch-store";
+    serviceConfig = {
+      Restart = "always";
+      CacheDirectory = "cachix-watch-store";
+      ExecStart = "${pkgs.cachix}/bin/cachix watch-store lykos153";
+    };
+  };
 }
