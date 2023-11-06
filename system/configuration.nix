@@ -4,6 +4,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
   imports = map (n: "${./modules}/${n}") (builtins.attrNames (builtins.readDir ./modules));
@@ -44,7 +45,7 @@
 
   boot.supportedFilesystems = ["ntfs"];
   boot.initrd.systemd.enable = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
   services.udisks2.enable = true;
 
