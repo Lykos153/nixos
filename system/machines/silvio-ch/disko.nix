@@ -21,7 +21,7 @@
           {
             name = "luks";
             start = "2099200";
-            end = "100%";
+            end = "945817599";
             content = {
               type = "luks";
               name = "crypted";
@@ -51,6 +51,19 @@
                     mountOptions = ["compress=zstd" "noatime"];
                   };
                 };
+              };
+            };
+          }
+          {
+            name = "luks";
+            start = "945817600";
+            end = "100%";
+            content = {
+              type = "luks";
+              name = "swap";
+              extraOpenArgs = ["--allow-discards"];
+              content = {
+                type = "swap";
               };
             };
           }
