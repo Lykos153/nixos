@@ -48,6 +48,7 @@ in {
       device = "/dev/mapper/${luksDev.swap}";
     }
   ];
+  boot.kernel.sysctl."vm.swappiness" = 0; # Use swap only for hibernate
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

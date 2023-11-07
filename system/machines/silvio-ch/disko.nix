@@ -88,4 +88,5 @@
     };
   };
   fileSystems."/persist".neededForBoot = true;
+  boot.kernel.sysctl."vm.swappiness" = 0; # Use swap only for hibernate (SSD)
 }
