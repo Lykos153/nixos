@@ -16,13 +16,14 @@ export def mynix [ target:string@complete_mynix_target, action:string@complete_m
     "user" => (home-manager $action -b $"bak.(date now | format date "%s")" --flake $"($env.HOME)/nixos/user#(id -un)")
   }
 }
-export def nr [ package: string, --unfree: bool, ...args: string ] {
-  # TODO: unfree, run from github: etc
-  nix run $"nixpkgs#($package)" $args
+export def nr [ package: string, --unfree, ...args: string ] {
+  let cmd = (if $unfree {["--impure"]} else []) ++ [$"nixpkgs#($package)"] ++ args
+  with-env { NIXPKGS_ALLOW_UNFREE: (if $unfree {"1"} else {"0"})} { nix run $cmd }
 }
-export def nsh [...args: string] {
-  let args = ($args | each {|x| "nixpkgs#" + $x})
-  nix shell $args
+
+export def nsh [...args: string, --unfree] {
+  let cmd = (if $unfree {["--impure"]} else []) ++ ($args | each {|x| "nixpkgs#" + $x})
+  with-env { NIXPKGS_ALLOW_UNFREE: (if $unfree {"1"} else {"0"})} { nix shell $cmd }
 }
 
 def upgrade-check [flake: string] {
