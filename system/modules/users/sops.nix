@@ -17,6 +17,7 @@
     "silvio"
     "root"
     "sa"
+    "mine"
   ];
 in
   lib.mkIf config.booq.sops.enable (
