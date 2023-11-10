@@ -8,5 +8,5 @@
 
   # Blacklist nvidia because it's annoying.
   # TODO: pcie passthrough using ie. https://github.com/CRTified/nur-packages
-  # boot.blacklistedKernelModules = ["nvidia" "nouveau"];
+  boot.blacklistedKernelModules = ["nvidia" "nouveau"];
 }
