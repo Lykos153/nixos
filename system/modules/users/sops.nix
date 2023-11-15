@@ -18,6 +18,7 @@
     "root"
     "sa"
     "mine"
+    "leila"
   ];
 in
   lib.mkIf config.booq.sops.enable (
