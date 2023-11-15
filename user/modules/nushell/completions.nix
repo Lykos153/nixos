@@ -23,6 +23,8 @@
           match $spans.0 {
               nu => $fish_completer
               git => $fish_completer
+              openstack => $carapace_completer
+              vault => $carapace_completer
               _ => $fish_completer
           } | do $in $spans
       }
