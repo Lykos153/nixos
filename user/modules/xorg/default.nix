@@ -26,6 +26,11 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.xorg.enable) {
           exec systemd-cat -t startx startx
       fi
     '';
+  programs.nushell.extraConfig = ''
+    if (tty) == "/dev/tty1" {
+        exec systemd-cat -t startx startx
+    }
+  '';
 
   services.betterlockscreen = {
     enable = true;
