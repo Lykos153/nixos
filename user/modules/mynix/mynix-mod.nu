@@ -15,6 +15,7 @@ export def mynix [ target:string@complete_mynix_target, action:string@complete_m
     "system" => (sudo nixos-rebuild $action --flake $"($env.HOME)/nixos/system#(hostname)")
     "user" => (home-manager $action -b $"bak.(date now | format date "%s")" --flake $"($env.HOME)/nixos/user#(id -un)")
   }
+}
 
 def nix_prefix_package [package: string] {
   if ($package | find --regex "#|:") == null {
