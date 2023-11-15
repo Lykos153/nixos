@@ -12,6 +12,7 @@
       $env.config = ($env | default {} config).config
       $env.config.show_banner = false
       source ${./keybindings.nu}
+      use ${./functions.nu} *
     '';
   };
 }
