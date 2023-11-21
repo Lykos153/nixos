@@ -89,6 +89,10 @@
         path = ./templates/pythonenv;
         description = "Flake to setup python virtualenv with direnv";
       };
+      go = {
+        path = ./templates/go;
+        description = "Flake to setup go environment with direnv";
+      };
 
       direnv = direnv.templates.default;
 
