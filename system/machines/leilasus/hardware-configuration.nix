@@ -33,8 +33,13 @@ in {
     fsType = "ext4";
   };
 
+  fileSystems."/steam" = {
+    device = "/dev/disk/by-uuid/f69e91b5-7f87-4b9f-b53d-eb3c4c4902e9";
+    fsType = "ext4";
+  };
+
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/EAD8-E590";
+    device = "/dev/disk/by-uuid/5A8B-57C3";
     fsType = "vfat";
   };
 
