@@ -21,6 +21,7 @@
     vifm
     htop
     pwgen
+    jc
     jq
     yq
     mr

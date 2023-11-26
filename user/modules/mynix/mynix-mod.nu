@@ -16,13 +16,20 @@ export def mynix [ target:string@complete_mynix_target, action:string@complete_m
     "user" => (home-manager $action -b $"bak.(date now | format date "%s")" --flake $"($env.HOME)/nixos/user#(id -un)")
   }
 }
+
+def nix_prefix_package [package: string] {
+  if ($package | find --regex "#|:") == null {
+    "nixpkgs#" + $package
+  } else {$package}
+}
+
 export def nr [ package: string, --unfree, ...args: string ] {
-  let cmd = (if $unfree {["--impure"]} else []) ++ [$"nixpkgs#($package)"] ++ args
+  let cmd = (if $unfree {["--impure"]} else []) ++ [(nix_prefix_package $package)] ++ args
   with-env { NIXPKGS_ALLOW_UNFREE: (if $unfree {"1"} else {"0"})} { nix run $cmd }
 }
 
 export def nsh [...args: string, --unfree] {
-  let cmd = (if $unfree {["--impure"]} else []) ++ ($args | each {|x| "nixpkgs#" + $x})
+  let cmd = (if $unfree {["--impure"]} else []) ++ ($args | each {|x| (nix_prefix_package $x)})
   with-env { NIXPKGS_ALLOW_UNFREE: (if $unfree {"1"} else {"0"})} { nix shell $cmd }
 }
 

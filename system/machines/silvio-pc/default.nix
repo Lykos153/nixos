@@ -15,7 +15,6 @@
     ./bootloader.nix
     ./services.nix
     ./virtualisation.nix
-    ./nvidia.nix
     ./impermanence.nix
     ./sops.nix
   ];

@@ -1,7 +1,18 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
+  programs.helix = {
+    enable = true;
+    settings =
+      (fromTOML (builtins.readFile ./config.toml))
+      // {
+        theme = lib.mkDefault "onedark";
+      };
+    defaultEditor = true;
+  };
   home.packages = [
-    pkgs.helix
-
     # Language servers
     # https://docs.helix-editor.com/lang-support.html
     pkgs.nil # Nix
@@ -17,12 +28,8 @@
     pkgs.jsonnet-language-server
     pkgs.rust-analyzer
   ];
-  xdg.configFile."helix/config.toml".source = ./config.toml;
-  home.sessionVariables = {
-    EDITOR = "hx";
-  };
-  # workaround because the above doesnt seem to work in xorg https://github.com/nix-community/home-manager/issues/1011#issuecomment-1365065753
-  programs.zsh.initExtra = ''
-    export EDITOR="hx"
-  '';
+  # # workaround because defaultEditor doesnt seem to work in xorg https://github.com/nix-community/home-manager/issues/1011#issuecomment-1365065753
+  # programs.zsh.initExtra = ''
+  #   export EDITOR="hx"
+  # '';
 }

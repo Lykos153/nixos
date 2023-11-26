@@ -26,6 +26,11 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.xorg.enable) {
           exec systemd-cat -t startx startx
       fi
     '';
+  programs.nushell.extraConfig = ''
+    if (tty) == "/dev/tty1" {
+        exec systemd-cat -t startx startx
+    }
+  '';
 
   services.betterlockscreen = {
     enable = true;
@@ -35,12 +40,11 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.xorg.enable) {
   programs.rofi = {
     enable = true;
     terminal = "${pkgs.alacritty}/bin/alacritty";
-    theme =
-      pkgs.fetchurl {
+    theme = lib.mkDefault (pkgs.fetchurl {
         url = "https://raw.githubusercontent.com/davatorium/rofi/next/themes/arthur.rasi";
         sha256 = "sha256-2wlR+UURxmk9KvSYm/PmwNKDPC/GV0HcQEH7xDW53k0=";
       }
-      + ""; #TODO: How to properly convert the set to a string or path?
+      + ""); #TODO: How to properly convert the set to a string or path?
   };
 
   services.dunst = {
@@ -58,7 +62,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.xorg.enable) {
         transparency = 10;
         padding = 16;
         horizontal_padding = 16;
-        font = "JetBrainsMono Nerd Font 10";
+        # font = "JetBrainsMono Nerd Font 10";
         line_height = 4;
         format = ''<b>%s</b>\n%b'';
       };
@@ -67,7 +71,7 @@ lib.mkIf (config.booq.gui.enable && config.booq.gui.xorg.enable) {
 
   services.picom = {
     enable = true;
-    activeOpacity = 1.0;
+    activeOpacity = 0.95;
     inactiveOpacity = 0.8;
     #backend = "glx"; # makes cursor flicker on thinkpad. maybe find proper driver?
     fade = true;

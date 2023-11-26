@@ -1,5 +1,3 @@
-theme = "onedark"
-
 [keys.normal]
 Z = { Q = ":quit!", Z = ":x" }
 
