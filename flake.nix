@@ -80,6 +80,7 @@
               pre-commit-nix-fmt
               pam_u2f
               stylish-haskell
+              git-branchless
             ];
           };
         }) // {
