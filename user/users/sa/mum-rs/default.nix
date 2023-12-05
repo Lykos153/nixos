@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   mum = pkgs.lykos153.mum;
   mum-msglog = pkgs.writeShellApplication {
     name = "mum-msglog";
@@ -32,7 +36,7 @@ in {
 
   systemd.user.services.mumd = {
     Unit.PartOf = ["default.target"];
-    Unit.After = ["pipewire.service"];
+    Unit.After = ["pipewire.service" "sops-nix.service"];
     Install.WantedBy = ["default.target"];
 
     Service = {
@@ -55,4 +59,10 @@ in {
       Restart = "always";
     };
   };
+
+  sops.secrets.mumdrc.sopsFile = ./secrets.yaml;
+  # xdg.configFile."mumdrc".source = config.lib.file.mkOutOfStoreSymlink "/";
+  home.activation.linkMumdrc = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    ln -sb "''${XDG_RUNTIME_DIR:-/run/user/''$(id -u)}/secrets/mumdrc" ''${XDG_CONFIG_HOME:-$HOME/.config}/mumdrc
+  '';
 }

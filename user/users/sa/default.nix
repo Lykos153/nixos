@@ -25,7 +25,7 @@
     ./gui
     ./zoom.nix
     ./pass.nix
-    ./mum-rs.nix
+    ./mum-rs
     ./sops.nix
     ./yk8s
     ./opsi-handbook.nix
