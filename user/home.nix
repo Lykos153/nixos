@@ -17,6 +17,7 @@
     };
   };
 
+  programs.zellij.enable = true;
   home.packages = with pkgs; [
     vifm
     htop
