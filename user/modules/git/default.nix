@@ -64,5 +64,6 @@
     tea
     glab
     gh
+    ghq
   ];
 }
