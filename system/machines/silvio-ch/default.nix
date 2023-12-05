@@ -6,6 +6,7 @@
   ...
 }: {
   booq.audio = "pipewire";
+  booq.impermanence.enable = true;
   imports = [
     ./hardware-configuration.nix
     ./bootloader.nix
@@ -13,7 +14,6 @@
     ./virtualisation.nix
     ./sops.nix
     ./disko.nix
-    ./impermanence.nix
     ./docker.nix
   ];
 }

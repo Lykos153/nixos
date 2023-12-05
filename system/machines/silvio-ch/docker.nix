@@ -8,10 +8,4 @@
     extraGroups = ["docker"];
   };
   security.sudo.wheelNeedsPassword = false; # docker access means root anyway
-  environment.persistence."/persist" = {
-    hideMounts = true;
-    directories = [
-      "/var/lib/docker"
-    ];
-  };
 }
