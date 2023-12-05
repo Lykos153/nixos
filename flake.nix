@@ -81,6 +81,7 @@
               pam_u2f
               stylish-haskell
               git-branchless
+              cachix
             ];
           };
         }) // {
