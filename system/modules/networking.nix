@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   networking.networkmanager.enable = true;
   networking.useDHCP = false;
 
@@ -8,7 +8,7 @@
   };
 
   networking.firewall.enable = true;
-  networking.nftables.enable = true;
+  networking.nftables.enable = lib.mkDefault true;
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

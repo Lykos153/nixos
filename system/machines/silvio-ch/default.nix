@@ -7,11 +7,14 @@
 }: {
   booq.audio = "pipewire";
   booq.impermanence.enable = true;
+  booq.virtualisation = {
+    enable = true;
+    libvirtUsers = ["silvio" "sa"];
+  };
   imports = [
     ./hardware-configuration.nix
     ./bootloader.nix
     ./vpn.nix
-    ./virtualisation.nix
     ./sops.nix
     ./disko.nix
     ./docker.nix

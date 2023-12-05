@@ -1,10 +1,8 @@
 {pkgs, ...}: {
-  users.users.silvio.extraGroups = ["libvirtd"];
-  environment.systemPackages = with pkgs; [virt-manager];
-
-  virtualisation.libvirtd.enable = true;
-
-  boot.binfmt.emulatedSystems = ["aarch64-linux"];
+  booq.virtualisation = {
+    enable = true;
+    libvirtUsers = ["silvio"];
+  };
 
   # Blacklist nvidia because it's annoying.
   # TODO: pcie passthrough using ie. https://github.com/CRTified/nur-packages
