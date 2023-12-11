@@ -15,6 +15,7 @@
     '';
   };
 in {
+  options.booq.gui.enable = lib.mkEnableOption "gui";
   config = lib.mkIf config.booq.gui.enable {
     programs = {
       firefox = {

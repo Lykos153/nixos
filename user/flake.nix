@@ -40,21 +40,6 @@
     ];
     systemFlake = get-flake ../system;
     system = "x86_64-linux"; # TODO: make config independent of system
-    booq = {
-      options.booq.gui.enable = inputs.nixpkgs.lib.mkEnableOption "gui";
-      options.booq.gui.sway.enable = inputs.nixpkgs.lib.mkEnableOption "sway";
-      options.booq.gui.xorg.enable = inputs.nixpkgs.lib.mkEnableOption "xorg";
-      options.booq.gui.xmonad.enable = inputs.nixpkgs.lib.mkEnableOption "xmonad";
-      options.booq.gui.i3.enable = inputs.nixpkgs.lib.mkEnableOption "i3";
-
-      # misusing an option here because I dont know how to pass this value into
-      # the modules
-      # TODO find a way how to do it properly
-      options.booq.nixpkgs-path = inputs.nixpkgs.lib.mkOption {
-        default = "${inputs.nixpkgs}";
-        type = inputs.nixpkgs.lib.types.str;
-      };
-    };
     mkConfig = hostname: username: config: let
       userpath = ./users + "/${username}";
       hostpath = userpath + "/${hostname}";
@@ -86,13 +71,18 @@
             [
               sops-nix.homeManagerModule
               inputs.stylix.homeManagerModules.stylix
-              booq
               ./home.nix
               {
                 home = {
                   homeDirectory = config.home;
                   username = username;
                   stateVersion = "22.05";
+                };
+                booq = {
+                  nix-index = {
+                    enable = true;
+                    nixpkgs-path = "${inputs.nixpkgs}";
+                  };
                 };
               }
               {
@@ -114,7 +104,5 @@
   in {
     homeConfigurations = inputs.nixpkgs.lib.mapAttrs' (mkConfig "silvio-pc") systemFlake.outputs.nixosConfigurations.silvio-pc.config.users.users;
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
-
-    inherit booq;
   };
 }
