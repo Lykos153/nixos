@@ -33,5 +33,6 @@
     ./mail.nix
     ./tmate.nix
     ./bugwarrior.nix
+    ./mutables
   ];
 }
