@@ -20,6 +20,9 @@
     isNormalUser = true;
     extraGroups = ["wheel" "networkmanager"];
     shell = pkgs.nushell;
+    openssh.authorizedKeys.keys = [
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDDwivCGoUCjXxxm5xAVl5TccMgT1mjh192v4cGX8Sf3hEfyebY0tN2qYTU2Mn9Km8JaZQbL79fK4M1UpqK/58KCFTe0wuhM9DZUuyNiVqX5z7cp87RcSHKr8GPMajikmlQvuTHlVvzmNfY5/ucrwduSo3sSynxoKzwZjG2TUV4eGar65sjVKiJe8ArQEurcKpr+uSEcgd6cyyN94Rkd+S+gTe4vld5rJXbqQmJ9ClzSzQdlKjvhrGRDWCJPzoXP67XTEVN0sUe9zQBFO6v7r29JVbEfLE8OmVNb51eg3BCXsbtyNcHlhDX3j8k39W5S/t3jjgrgT1V/eVzc84jiKh5IQMQOJmkDCvF24ANWXRDLt2TC3s3wlBQhII0Q5+Dv1ZQq5ZDcbZ14IeSEVApBiAFbRxH5WevOYTJ5fm+wfgDcDpwIWsnKvpggoSZKQXYOPgICh4MkoRCsuebAqBLGDhYEusGi4A6EW2LhyScDTvC1OT6ffUOQepCotjQg67u4Zk="
+    ];
   };
 
   users.users.mine = {
