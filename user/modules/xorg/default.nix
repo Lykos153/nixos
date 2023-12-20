@@ -88,5 +88,20 @@
 
     services.clipmenu.enable = true;
     services.caffeine.enable = true;
+
+    systemd.user.services.snixembed = {
+      Unit = {
+        PartOf = ["tray.target"];
+      };
+
+      Install.WantedBy = ["tray.target"];
+
+      Service = {
+        ExecStart = ''
+          ${pkgs.snixembed}/bin/snixembed
+        '';
+        Restart = "on-failure";
+      };
+    };
   };
 }
