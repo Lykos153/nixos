@@ -35,9 +35,20 @@
         '';
       };
       primary = true;
-      imap.host = host;
-      smtp.host = host;
+      imap = {
+        host = host;
+        tls.useStartTls = true;
+      };
+      smtp = {
+        host = host;
+        tls.useStartTls = true;
+      };
       userName = address;
+      gpg = {
+        key = "0xF4226CA3971C4E97";
+        signByDefault = true;
+        encryptByDefault = true;
+      };
       notmuch.enable = true;
 
       mbsync = {
@@ -47,6 +58,12 @@
         remove = "both";
         extraConfig.account = {
           authMechs = "PLAIN";
+        };
+      };
+      thunderbird = {
+        enable = true;
+        settings = id: {
+          "mail.identity.id_${id}.protectSubject" = false;
         };
       };
       imapnotify = {
@@ -70,6 +87,15 @@
           "Git"
           "Support"
         ];
+      };
+    };
+  };
+  programs.thunderbird = {
+    enable = true;
+    profiles = {
+      default = {
+        isDefault = true;
+        withExternalGnupg = true;
       };
     };
   };
