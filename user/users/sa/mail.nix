@@ -49,6 +49,7 @@
           authMechs = "PLAIN";
         };
       };
+      thunderbird.enable = true;
       imapnotify = {
         enable = true;
         boxes = ["Inbox" "Git" "Support"];
@@ -70,6 +71,14 @@
           "Git"
           "Support"
         ];
+      };
+    };
+  };
+  programs.thunderbird = {
+    enable = true;
+    profiles = {
+      default = {
+        isDefault = true;
       };
     };
   };
