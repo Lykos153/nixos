@@ -5,7 +5,7 @@
 }: {
   programs.taskwarrior = {
     enable = true;
-    colorTheme = "dark-red-256"; # TODO: connect with stylix
+    colorTheme = "${pkgs.taskwarrior}/share/doc/task/rc/dark-red-256"; # TODO: connect with stylix
   };
   home.packages = with pkgs; [
     vit
