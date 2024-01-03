@@ -1,10 +1,22 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   booq.gui.enable = true;
   booq.gui.sway.enable = false;
   booq.gui.xmonad.enable = true;
 
-  programs.git.userEmail = "silvio.ankermann@cloudandheat.com";
-  programs.git.userName = "Silvio Ankermann";
+  programs.git = let
+    m = config.accounts.email.accounts.cah;
+  in {
+    userEmail = m.address;
+    userName = m.realName;
+    signing = {
+      key = m.gpg.key;
+      signByDefault = true;
+    };
+  };
   programs.ssh.extraConfig = ''
     User silvioankermann
   '';
