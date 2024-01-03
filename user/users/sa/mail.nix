@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  booq.mail.enable = true;
+  booq.mail.enable = false;
 
   accounts.email.accounts = let
     address = "silvio.ankermann@cloudandheat.com";
@@ -49,45 +49,13 @@
         signByDefault = true;
         encryptByDefault = true;
       };
-      notmuch.enable = true;
-
-      mbsync = {
-        enable = true;
-        create = "both";
-        expunge = "both";
-        remove = "both";
-        extraConfig.account = {
-          authMechs = "PLAIN";
-        };
-      };
       thunderbird = {
         enable = true;
         settings = id: {
           "mail.identity.id_${id}.protectSubject" = false;
         };
       };
-      imapnotify = {
-        enable = true;
-        boxes = ["Inbox" "Git" "Support"];
-        #FIXME        onNotify = "${pkgs.notmuch}/bin/notmuch new;";
-        onNotify = "true";
-        onNotifyPost = "${pkgs.libnotify}/bin/notify-send 'New mail'";
-      };
       passwordCommand = "${pkgs.pass}/bin/pass ldap";
-
-      msmtp = {
-        enable = true;
-      };
-
-      neomutt = {
-        enable = true;
-        extraMailboxes = [
-          "Drafts"
-          "Sent"
-          "Git"
-          "Support"
-        ];
-      };
     };
   };
   programs.thunderbird = {
