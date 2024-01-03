@@ -1,17 +1,16 @@
-import           XMonad                              hiding ((|||))
-import           XMonad.Layout.CenteredIfSingle
+import           XMonad                          hiding ((|||))
+import           XMonad.Layout.CenterMainFluid
 import           XMonad.Layout.LayoutCombinators
 import           XMonad.Layout.PerScreen
-import           XMonad.Layout.ResizableThreeColumns
 
 import           XMonad.Hooks.EwmhDesktops
 import           XMonad.Hooks.ManageDocks
 
 import           XMonad.Util.Run
 
-import qualified Data.Map                            as M
+import qualified Data.Map                        as M
 import           System.Exit
-import qualified XMonad.StackSet                     as W
+import qualified XMonad.StackSet                 as W
 
 import qualified Tools
 
@@ -24,11 +23,11 @@ import           XMonad.Prompt
 import           XMonad.Prompt.ConfirmPrompt
 
 -- Imports for Polybar --
-import qualified Codec.Binary.UTF8.String            as UTF8
-import qualified DBus                                as D
-import qualified DBus.Client                         as D
+import qualified Codec.Binary.UTF8.String        as UTF8
+import qualified DBus                            as D
+import qualified DBus.Client                     as D
 import           XMonad.Hooks.DynamicLog
-import           XMonad.Hooks.FadeInactive           (fadeInactiveLogHook)
+import           XMonad.Hooks.FadeInactive       (fadeInactiveLogHook)
 
 main :: IO ()
 main = mkDbusClient >>= main'
@@ -40,7 +39,7 @@ main' dbus =
           , terminal = Tools.terminal
           , keys = myKeys
           , layoutHook = let
-              ultrawideLayout = (centeredIfSingle (1/2) 1.0 (ResizableThreeColMid 1 (3/100) (1/2) []) ||| Full)
+              ultrawideLayout = CenterMainFluid 1 (3/100) (50/100)
               regularLayout = (tall ||| Mirror tall ||| Full)
              in avoidStruts $ ifWider 1280 ultrawideLayout regularLayout
           , logHook            = myPolybarLogHook dbus
