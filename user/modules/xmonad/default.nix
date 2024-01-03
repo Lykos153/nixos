@@ -49,11 +49,23 @@ in {
     booq.gui.xorg.enable = true;
     xsession.windowManager.xmonad = {
       enable = true;
-      enableContribAndExtras = true;
-      extraPackages = hp: [
-        hp.dbus
-        hp.monad-logger
-      ];
+      enableContribAndExtras = false;
+      extraPackages = let
+        h = pkgs.haskellPackages.extend (self: super: {
+          xmonad-contrib = self.callCabal2nix "xmonad-contrib" (pkgs.fetchFromGitHub {
+            owner = "xmonad";
+            repo = "xmonad-contrib";
+            rev = "99b24f314b3ef86a3db6ac1cd786ac48a1db4147";
+            sha256 = "sha256-ph1c+ztipvGpN1HtxZU4Qqw5MNTxbIDaB++poxOU5rw=";
+          }) {};
+        });
+      in
+        hp: [
+          h.xmonad-contrib
+          hp.xmonad-extras
+          hp.dbus
+          hp.monad-logger
+        ];
       config = ./xmonad.hs;
       libFiles = {
         "Tools.hs" = pkgs.writeText "Tools.hs" ''
