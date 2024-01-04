@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   booq.virtualisation = {
     enable = true;
-    libvirtUsers = ["silvio"];
+    libvirtUsers = ["silvio" "sa"];
   };
 
   # Blacklist nvidia because it's annoying.
