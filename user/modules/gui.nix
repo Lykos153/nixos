@@ -21,6 +21,13 @@ in {
       firefox = {
         enable = true;
         package = pkgs.firefox-wayland;
+        profiles = {
+          default = {
+            settings = {
+              "browser.translations.neverTranslateLanguages" = "de";
+            };
+          };
+        };
       };
       chromium.enable = true;
     };
