@@ -11,6 +11,7 @@
       address = "silvio.ankermann@cloudandheat.com";
       realName = "Silvio Ankermann";
       signature = {
+        showSignature = "append";
         text = ''
           Silvio Ankermann
           DevOps Engineer
@@ -53,7 +54,6 @@
           "mail.identity.id_${id}.compose_html" = false;
           "mail.identity.id_${id}.attachPgpKey" = true;
           "mail.identity.id_${id}.reply_on_top" = 1;
-          "mail.identity.id_${id}.htmlSigText" = signature.text;
         };
       };
       passwordCommand = "${pkgs.pass}/bin/pass ldap";

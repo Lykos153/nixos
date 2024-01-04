@@ -235,15 +235,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1702937117,
-        "narHash": "sha256-4GjkL2D01bDg00UZN/SeGrnBZrDVOFeZTbQx6U702Vc=",
-        "owner": "nix-community",
+        "lastModified": 1704372221,
+        "narHash": "sha256-zYWFeo8HPyf31Pe8+QCRWUQNvYyUrUzXvH6JSrjTN4A=",
+        "owner": "lykos153",
         "repo": "home-manager",
-        "rev": "e8aaced73ebaf6bfa8e3c6ab0a19cb184bc4d798",
+        "rev": "f40dbe0a679f56e34ec38bd687e6df1d784bd4ac",
         "type": "github"
       },
       "original": {
-        "owner": "nix-community",
+        "owner": "lykos153",
+        "ref": "feature/thunderbird-sig",
         "repo": "home-manager",
         "type": "github"
       }
