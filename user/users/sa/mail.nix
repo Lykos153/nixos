@@ -6,12 +6,9 @@
 }: {
   booq.mail.enable = false;
 
-  accounts.email.accounts = let
-    address = "silvio.ankermann@cloudandheat.com";
-    host = "mail.cloudandheat.com";
-  in {
-    cah = {
-      address = address;
+  accounts.email.accounts = {
+    cah = rec {
+      address = "silvio.ankermann@cloudandheat.com";
       realName = "Silvio Ankermann";
       signature = {
         text = ''
@@ -36,11 +33,11 @@
       };
       primary = true;
       imap = {
-        host = host;
+        host = "mail.cloudandheat.com";
         tls.useStartTls = true;
       };
       smtp = {
-        host = host;
+        host = imap.host;
         tls.useStartTls = true;
       };
       userName = address;
@@ -53,6 +50,10 @@
         enable = true;
         settings = id: {
           "mail.identity.id_${id}.protectSubject" = false;
+          "mail.identity.id_${id}.compose_html" = false;
+          "mail.identity.id_${id}.attachPgpKey" = true;
+          "mail.identity.id_${id}.reply_on_top" = 1;
+          "mail.identity.id_${id}.htmlSigText" = signature.text;
         };
       };
       passwordCommand = "${pkgs.pass}/bin/pass ldap";
@@ -64,7 +65,14 @@
       default = {
         isDefault = true;
         withExternalGnupg = true;
+        extraConfig = ''
+          user_pref("mail.html_compose", false);
+        '';
       };
+    };
+    settings = {
+      "general.useragent.override" = "";
+      "privacy.donottrackheader.enabled" = true;
     };
   };
 }
