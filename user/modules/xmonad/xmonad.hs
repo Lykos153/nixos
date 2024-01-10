@@ -39,9 +39,9 @@ main' dbus =
           , terminal = Tools.terminal
           , keys = myKeys
           , layoutHook = let
-              ultrawideLayout = CenterMainFluid 1 (3/100) (50/100)
+              ultrawideLayout = (CenterMainFluid 1 (3/100) (50/100)) ||| Full
               regularLayout = (tall ||| Mirror tall ||| Full)
-             in avoidStruts $ ifWider 1280 ultrawideLayout regularLayout
+             in avoidStruts $ ifWider 3840 ultrawideLayout regularLayout -- TODO: depend on ratio instead of on width
           , logHook            = myPolybarLogHook dbus
         }
 
