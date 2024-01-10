@@ -10,6 +10,18 @@
       // {
         theme = lib.mkDefault "onedark";
       };
+    languages = {
+      language-server.ltex.command = pkgs.ltex-ls;
+      language = [
+        {
+          name = "markdown";
+          language-servers = [{name = "ltex";}];
+          file-types = ["md" "txt"];
+          scope = "text.markdown";
+          roots = [];
+        }
+      ];
+    };
     defaultEditor = true;
   };
   home.packages = [
