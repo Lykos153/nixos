@@ -54,7 +54,11 @@
         type = inputs.nixpkgs.lib.types.str;
       };
     };
-    mkConfig = hostname: username: config: let
+    mkConfig = user: nixosConfigs: let
+      splitUser = builtins.split "@" user;
+      hostname = builtins.elemAt splitUser 3;
+      username = builtins.elemAt splitUser 0;
+      config = nixosConfigs.${hostname}.config.users.users.${username};
       userpath = ./users + "/${username}";
       hostpath = userpath + "/${hostname}";
       userlist =
@@ -106,11 +110,14 @@
         };
       }
     );
-    # mkHost = hostname: config:
-    # (
-    # )
+    mkUserlist = nixosConfigs: let
+      a = acc: hostname: hostConfig: let
+        users = nixpkgs.lib.attrsets.filterAttrs (n: v: v.isNormalUser) hostConfig.config.users.users;
+      in nixpkgs.lib.mapAttrs' (user: userConfig: {name = "${user}@${hostname}"; value = userConfig}) users;
+    in acc // (nixpkgs.lib.attrsets.foldlAttrs a {} nixosConfigs);
+    userlist = mkUserlist systemFlake.outputs.nixosConfigurations;
   in {
-    homeConfigurations = inputs.nixpkgs.lib.mapAttrs' (mkConfig "silvio-pc") systemFlake.outputs.nixosConfigurations.silvio-pc.config.users.users;
+    homeConfigurations = inputs.nixpkgs.lib.mapAttrs' (mkConfig "silvio-pc" systemFlake.outputs.nixosConfigurations);
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
 
     inherit booq;
