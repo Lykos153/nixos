@@ -18,5 +18,6 @@
     ./services.nix
     ./virtualisation.nix
     ./sops.nix
+    ./vpn.nix
   ];
 }
