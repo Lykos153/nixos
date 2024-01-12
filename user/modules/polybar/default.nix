@@ -43,7 +43,7 @@
 in
   lib.mkIf (config.booq.gui.enable && config.booq.gui.xorg.enable) {
     services.polybar = {
-      enable = true;
+      enable = false;
       package = pkgs.polybar.override {
         pulseSupport = true;
       };
