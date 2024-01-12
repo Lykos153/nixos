@@ -1,16 +1,17 @@
-import           XMonad                          hiding ((|||))
+import           XMonad                             hiding ((|||))
 import           XMonad.Layout.CenterMainFluid
 import           XMonad.Layout.LayoutCombinators
 import           XMonad.Layout.PerScreen
 
+import           System.Taffybar.Support.PagerHints (pagerHints)
 import           XMonad.Hooks.EwmhDesktops
 import           XMonad.Hooks.ManageDocks
 
 import           XMonad.Util.Run
 
-import qualified Data.Map                        as M
+import qualified Data.Map                           as M
 import           System.Exit
-import qualified XMonad.StackSet                 as W
+import qualified XMonad.StackSet                    as W
 
 import qualified Tools
 
@@ -22,19 +23,8 @@ import           XMonad.Util.EZConfig
 import           XMonad.Prompt
 import           XMonad.Prompt.ConfirmPrompt
 
--- Imports for Polybar --
-import qualified Codec.Binary.UTF8.String        as UTF8
-import qualified DBus                            as D
-import qualified DBus.Client                     as D
-import           XMonad.Hooks.DynamicLog
-import           XMonad.Hooks.FadeInactive       (fadeInactiveLogHook)
-
-main :: IO ()
-main = mkDbusClient >>= main'
-
-main' :: D.Client -> IO ()
-main' dbus =
-        xmonad $ ewmhFullscreen . ewmh . docks $ def {
+main = do
+        xmonad $ ewmhFullscreen . ewmh . docks . pagerHints $ def {
           modMask = mod4Mask -- Use Super instead of Alt
           , terminal = Tools.terminal
           , keys = myKeys
@@ -42,64 +32,9 @@ main' dbus =
               ultrawideLayout = (CenterMainFluid 1 (3/100) (50/100)) ||| Full
               regularLayout = (tall ||| Mirror tall ||| Full)
              in avoidStruts $ ifWider 3839 ultrawideLayout regularLayout -- TODO: depend on ratio instead of on width
-          , logHook            = myPolybarLogHook dbus
         }
 
 tall = Tall 1 (3/100) (1/2)
-
-
-------------------------------------------------------------------------
--- Polybar settings (needs DBus client).
---
-mkDbusClient :: IO D.Client
-mkDbusClient = do
-  dbus <- D.connectSession
-  D.requestName dbus (D.busName_ "org.xmonad.log") opts
-  return dbus
- where
-  opts = [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
-
--- Emit a DBus signal on log updates
-dbusOutput :: D.Client -> String -> IO ()
-dbusOutput dbus str =
-  let opath  = D.objectPath_ "/org/xmonad/Log"
-      iname  = D.interfaceName_ "org.xmonad.Log"
-      mname  = D.memberName_ "Update"
-      signal = D.signal opath iname mname
-      body   = [D.toVariant $ UTF8.decodeString str]
-  in  D.emit dbus $ signal { D.signalBody = body }
-
-polybarHook :: D.Client -> PP
-polybarHook dbus =
-  let wrapper c s | s /= "NSP" = wrap ("%{F" <> c <> "} ") " %{F-}" s
-                  | otherwise  = mempty
-      blue   = "#2E9AFE"
-      gray   = "#7F7F7F"
-      orange = "#ea4300"
-      purple = "#9058c7"
-      red    = "#722222"
-  in  def { ppOutput          = dbusOutput dbus
-          , ppCurrent         = wrapper blue
-          , ppVisible         = wrapper gray
-          , ppUrgent          = wrapper orange
-          , ppHidden          = wrapper gray
-          , ppHiddenNoWindows = wrapper red
-          , ppTitle           = wrapper purple . shorten 90
-          }
-
-myPolybarLogHook dbus = myLogHook <+> dynamicLogWithPP (polybarHook dbus)
-
-------------------------------------------------------------------------
--- Status bars and logging
-
--- Perform an arbitrary action on each internal state change or X event.
--- See the 'XMonad.Hooks.DynamicLog' extension for examples.
---
-myLogHook = fadeInactiveLogHook 0.9
-
-------------------------------------------------------------------------
--- Key bindings. Add, modify or remove key bindings here.
---
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
   [

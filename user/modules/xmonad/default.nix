@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  nixosConfig,
   pkgs,
   ...
 }: let
@@ -65,6 +64,7 @@ in {
           hp.xmonad-extras
           hp.dbus
           hp.monad-logger
+          hp.taffybar
         ];
       config = ./xmonad.hs;
       libFiles = {
@@ -93,5 +93,8 @@ in {
       screenshot
       toggle-mute
     ];
+    services.taffybar.enable = true;
+    services.xembed-sni-proxy.enable = true;
+    xsession.preferStatusNotifierItems = true;
   };
 }
