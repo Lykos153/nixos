@@ -17,6 +17,12 @@
     krew2nix.url = "github:lykos153/krew2nix";
     krew2nix.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:danth/stylix";
+    talon-nix.url = "github:nix-community/talon-nix";
+    talon-nix.inputs.nixpkgs.follows = "nixpkgs";
+    talon-community.url = "github:talonhub/community";
+    talon-community.flake = false;
+    cursorless-talon.url = "github:cursorless-dev/cursorless-talon";
+    cursorless-talon.flake = false;
   };
 
   outputs = {
@@ -45,12 +51,15 @@
           genOverlays = system: [
             nur.overlay
             inputs.mynur.overlay
+            inputs.talon-nix.overlays.default
             (
               # Add packages from flake inputs to pkgs
               final: prev: {
                 mum-rofi = inputs.mum-rofi.outputs.defaultPackage.${system};
                 toki = inputs.toki.outputs.defaultPackage.${system};
                 kubectl = inputs.krew2nix.outputs.packages.${system}.kubectl;
+          repos.talon-community = inputs.talon-community;
+          repos.cursorless-talon = inputs.cursorless-talon;
               }
             )
           ];
