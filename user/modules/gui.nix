@@ -60,6 +60,7 @@ in {
     services = {
       udiskie.enable = true;
       blueman-applet.enable = true;
+      pasystray.enable = true;
     };
 
     home.sessionVariables = lib.mkIf config.booq.gui.sway.enable {
