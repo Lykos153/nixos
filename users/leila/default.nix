@@ -13,7 +13,7 @@
 
     android-file-transfer
 
-    gnome.gedit
+    gedit
     gnome.file-roller
     feh # image viewer
     darktable
