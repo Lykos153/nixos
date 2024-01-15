@@ -19,7 +19,11 @@
     darktable
     solaar # TODO udev rules https://search.nixos.org/packages?channel=unstable&show=solaar&from=0&size=50&sort=relevance&type=packages&query=solaar
     clementine
-    qgis-ltr
+    (qgis-ltr.override {
+      extraPythonPackages = ps: [
+        ps.pandas
+      ];
+    })
 
     tdesktop # telegram
 
