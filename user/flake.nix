@@ -2,10 +2,9 @@
 {
   description = "Home manager flake";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     # nixpkgs-master.url = "github:nixos/nixpkgs/master";
-    # home-manager.url = "github:nix-community/home-manager";
-    home-manager.url = "github:lykos153/home-manager/feature/thunderbird-sig";
+    home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.url = "github:Mic92/sops-nix";
     mynur.url = "github:Lykos153/nur-packages";
