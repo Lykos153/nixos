@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   networking.networkmanager.enable = true;
   networking.useDHCP = false;
 
@@ -8,7 +12,7 @@
   };
 
   networking.firewall.enable = true;
-  networking.nftables.enable = lib.mkDefault true;
+  networking.nftables.enable = config.booq.lib.mkMyDefault true;
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

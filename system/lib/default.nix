@@ -4,5 +4,6 @@
     type = lib.types.anything;
   };
   config.booq.lib = {
+    mkMyDefault = lib.mkOverride 500;
   };
 }
