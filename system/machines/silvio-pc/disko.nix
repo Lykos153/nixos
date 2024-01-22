@@ -51,6 +51,53 @@
         ];
       };
     };
+    disk.nvme-adata = {
+      device = "/dev/disk/by-id/nvme-ADATA_SX8200PNP_2J3820020714";
+      type = "disk";
+      content = {
+        type = "table";
+        format = "gpt";
+        partitions = [
+          {
+            name = "ESP";
+            start = "1MiB";
+            end = "550MiB";
+            bootable = true;
+            content = {
+              type = "filesystem";
+              format = "vfat";
+            };
+          }
+          {
+            name = "luks";
+            start = "550MiB";
+            end = "500GiB";
+            content = {
+              type = "luks";
+              name = "crypted2";
+              extraOpenArgs = ["--allow-discards"];
+              content = {
+                type = "btrfs";
+              };
+            };
+          }
+          {
+            name = "luks";
+            start = "500GiB";
+            end = "600GiB";
+            content = {
+              type = "luks";
+              name = "windows";
+              extraOpenArgs = ["--allow-discards"];
+              content = {
+                type = "lvm_pv";
+                vg = "windows";
+              };
+            };
+          }
+        ];
+      };
+    };
     nodev."/" = {
       fsType = "tmpfs";
       mountOptions = [
