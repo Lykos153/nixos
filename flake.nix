@@ -19,7 +19,7 @@
     stylix.url = "github:danth/stylix";
     talon-nix.url = "github:nix-community/talon-nix";
     talon-nix.inputs.nixpkgs.follows = "nixpkgs";
-    talon-community.url = "github:talonhub/community";
+    talon-community.url = "github:Lykos153/talon-community";
     talon-community.flake = false;
     cursorless-talon.url = "github:cursorless-dev/cursorless-talon";
     cursorless-talon.flake = false;

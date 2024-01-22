@@ -754,16 +754,16 @@
     "talon-community": {
       "flake": false,
       "locked": {
-        "lastModified": 1706704853,
-        "narHash": "sha256-yUQgVfKH2TXlFeSZffjyA9y1ZsFib04b20sIOCbpRJk=",
-        "owner": "talonhub",
-        "repo": "community",
-        "rev": "03a911e67840d2934070d487fd2db415270d5f28",
+        "lastModified": 1705953540,
+        "narHash": "sha256-JTnZ4mEvLAJzruK3Id95nN8e8p+zMDTmP3HXictrYWo=",
+        "owner": "Lykos153",
+        "repo": "talon-community",
+        "rev": "14d5a410c4f7d898e193bac71d0ad8a203201e9f",
         "type": "github"
       },
       "original": {
-        "owner": "talonhub",
-        "repo": "community",
+        "owner": "Lykos153",
+        "repo": "talon-community",
         "type": "github"
       }
     },
