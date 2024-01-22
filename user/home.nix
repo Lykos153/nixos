@@ -7,6 +7,8 @@
 }: {
   imports = map (n: "${./modules}/${n}") (builtins.attrNames (builtins.readDir ./modules));
 
+  home.keyboard.layout = "de";
+
   programs.home-manager.enable = true;
   programs.direnv = {
     enable = true;
