@@ -12,7 +12,6 @@
   zramSwap.enable = true;
   imports = [
     ./hardware-configuration.nix
-    ./old_btrfs.nix
     ./hdd.nix
     ./disko.nix
     ./bootloader.nix
