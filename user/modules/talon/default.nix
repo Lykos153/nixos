@@ -8,6 +8,10 @@
       "talon"
     ];
 
+  home.packages = [
+    pkgs.talon
+  ];
+
   systemd.user.services.talon = {
     Unit = {
       PartOf = ["graphical-session.target"];
