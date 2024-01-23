@@ -1,13 +1,13 @@
-export def-env cdt [template: string="cdt"] {
+export def --env cdt [template: string="cdt"] {
   let suffix = ".XXXXX"
   if ($template | str contains "/") {
     mkdir $"/tmp/(dirname $template)"
   }
-  let tmpdir = (mktemp -d --tmpdir=/tmp ($template + $suffix))
+  let tmpdir = (mktemp -d --tmpdir ($template + $suffix))
   cd $tmpdir
 }
 
-export def-env tclone [repo: string] {
+export def --env tclone [repo: string] {
   # Derive directory from the repository name
   # Try using "humanish" part of source repo if user didn't specify one
   let dir = (

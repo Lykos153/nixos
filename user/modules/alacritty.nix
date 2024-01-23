@@ -11,7 +11,7 @@
     programs.alacritty = {
       enable = true;
       settings = {
-        key_bindings = [
+        keyboard.bindings = [
           {
             mods = "Control|Shift";
             key = "Return";
