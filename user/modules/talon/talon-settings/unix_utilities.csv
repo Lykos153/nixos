@@ -60,3 +60,13 @@ wc -l,word count lines
 wc,word count
 who
 whoami,who am I
+systemctl,system control
+systemctl restart,system control restart
+systemctl status,system control status
+systemctl start,system control start
+systemctl stop,system control stop
+systemctl --user,system user control
+systemctl --user restart,system control user restart
+systemctl --user status,system control user status
+systemctl --user start,system control user start
+systemctl --user stop,system control user stop
