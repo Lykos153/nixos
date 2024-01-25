@@ -17,6 +17,8 @@
         "[python]" = {
           "editor.defaultFormatter" = "ms-python.black-formatter"; # needs extension to be present
           "editor.formatOnSave" = true;
+
+          "redhat.telemetry.enabled" = false;
         };
       };
       keybindings = [
