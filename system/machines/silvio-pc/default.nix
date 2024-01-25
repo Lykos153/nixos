@@ -20,5 +20,6 @@
     ./virtualisation.nix
     ./sops.nix
     ./vpn.nix
+    ./bcachefs.nix
   ];
 }
