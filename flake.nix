@@ -23,6 +23,8 @@
     talon-community.flake = false;
     cursorless-talon.url = "github:cursorless-dev/cursorless-talon";
     cursorless-talon.flake = false;
+    rango.url = "github:david-tejada/rango-talon";
+    rango.flake = false;
   };
 
   outputs = {
@@ -60,6 +62,7 @@
                 kubectl = inputs.krew2nix.outputs.packages.${system}.kubectl;
           repos.talon-community = inputs.talon-community;
           repos.cursorless-talon = inputs.cursorless-talon;
+          repos.rango = inputs.rango;
               }
             )
           ];
