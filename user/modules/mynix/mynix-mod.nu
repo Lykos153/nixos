@@ -25,12 +25,12 @@ def nix_prefix_package [package: string] {
 
 export def nr [ package: string, --unfree, ...args: string ] {
   let cmd = (if $unfree {["--impure"]} else []) ++ [(nix_prefix_package $package)] ++ args
-  with-env { NIXPKGS_ALLOW_UNFREE: (if $unfree {"1"} else {"0"})} { nix run $cmd }
+  with-env { NIXPKGS_ALLOW_UNFREE: (if $unfree {"1"} else {"0"})} { nix run ...$cmd }
 }
 
 export def nsh [...args: string, --unfree] {
   let cmd = (if $unfree {["--impure"]} else []) ++ ($args | each {|x| (nix_prefix_package $x)})
-  with-env { NIXPKGS_ALLOW_UNFREE: (if $unfree {"1"} else {"0"})} { nix shell $cmd }
+  with-env { NIXPKGS_ALLOW_UNFREE: (if $unfree {"1"} else {"0"})} { nix shell ...$cmd }
 }
 
 def upgrade-check [flake: string] {
