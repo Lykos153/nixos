@@ -7,14 +7,14 @@
 # TODO: move neomutt to subdir
 # TODO: for each of the programs: only enable if it is enabled by at least one account
 {
-  options.booq.mail.enable = lib.mkEnableOption "mail";
+  options.booq.cliMail.enable = lib.mkEnableOption "mail";
 
   imports = [
     ./sidebar.nix
     ./html.nix
   ];
 
-  config = lib.mkIf config.booq.mail.enable {
+  config = lib.mkIf config.booq.cliMail.enable {
     programs.mbsync.enable = true;
     services.imapnotify.enable = true;
     programs.msmtp.enable = true;

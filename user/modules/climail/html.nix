@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  config = lib.mkIf config.booq.mail.enable {
+  config = lib.mkIf config.booq.cliMail.enable {
     programs.neomutt = {
       macros = [
         {
