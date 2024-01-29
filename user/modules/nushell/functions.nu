@@ -24,3 +24,7 @@ export def --env tclone [repo: string] {
 
   git clone $repo .
 }
+
+export def rwhich [application:string, ...rest: string] {
+  which $application ...$rest | update path {|row| (realpath $row.path) }
+}
