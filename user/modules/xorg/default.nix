@@ -72,8 +72,8 @@
 
     services.picom = {
       enable = true;
-      activeOpacity = 0.95;
-      inactiveOpacity = 0.8;
+      activeOpacity = 1;
+      inactiveOpacity = 1;
       #backend = "glx"; # makes cursor flicker on thinkpad. maybe find proper driver?
       fade = true;
       fadeDelta = 5;
