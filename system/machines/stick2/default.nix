@@ -8,5 +8,6 @@
   imports = [
     ./hardware-configuration.nix
     ./bootloader.nix
+    ./sops.nix
   ];
 }
