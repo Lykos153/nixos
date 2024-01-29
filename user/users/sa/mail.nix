@@ -1,10 +1,9 @@
 {
-  config,
-  lib,
   pkgs,
+  config,
   ...
 }: {
-  booq.mail.enable = false;
+  booq.thunderbird.enable = true;
 
   accounts.email.accounts = {
     cah = rec {
@@ -49,30 +48,10 @@
       };
       thunderbird = {
         enable = true;
-        settings = id: {
-          "mail.identity.id_${id}.protectSubject" = false;
-          "mail.identity.id_${id}.compose_html" = false;
-          "mail.identity.id_${id}.attachPgpKey" = true;
-          "mail.identity.id_${id}.reply_on_top" = 1;
-        };
+        settings = config.booq.thunderbird.commonSettings;
       };
       passwordCommand = "${pkgs.pass}/bin/pass ldap";
     };
   };
-  programs.thunderbird = {
-    enable = true;
-    profiles = {
-      default = {
-        isDefault = true;
-        withExternalGnupg = true;
-        extraConfig = ''
-          user_pref("mail.html_compose", false);
-        '';
-      };
-    };
-    settings = {
-      "general.useragent.override" = "";
-      "privacy.donottrackheader.enabled" = true;
-    };
-  };
+  programs.thunderbird.profiles.default.withExternalGnupg = true;
 }
