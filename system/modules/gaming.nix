@@ -8,7 +8,7 @@
     type = lib.types.bool;
   };
   config = lib.mkIf config.booq.gaming.enable {
-    nixpkgs.allowUnfreePackages = [
+    booq.lib.allowUnfreePackages = [
       "steam(-.*)?"
     ];
 

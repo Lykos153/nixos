@@ -4,10 +4,10 @@
   ...
 }: let
   inherit (lib) mkOption types;
-  cfg = config.nixpkgs.allowUnfreePackages;
+  cfg = config.booq.lib.allowUnfreePackages;
 in {
   options = {
-    nixpkgs.allowUnfreePackages = mkOption {
+    booq.lib.allowUnfreePackages = mkOption {
       default = [];
       type = types.listOf types.str;
       description = "List of unfree packages allowed to be installed";
