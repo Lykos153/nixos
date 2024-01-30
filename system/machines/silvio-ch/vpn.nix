@@ -1,5 +1,5 @@
-{
+{config, ...}: {
   services.openvpn.servers = {
-    ch = {config = ''config /persist/root/secrets/openvpn_ch.conf '';};
+    ch = {config = ''config ${config.booq.impermanence.persistRoot}/root/secrets/openvpn_ch.conf '';};
   };
 }

@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   disko.devices = {
     disk.ata-samsung-850-evo = {
       device = "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_250GB_S21PNSAG425668F";
@@ -33,7 +33,7 @@
                 extraArgs = ["-f"]; # Override existing partition
                 subvolumes = {
                   "/rootfs" = {
-                    mountpoint = "/persist";
+                    mountpoint = "${config.booq.impermanence.persistRoot}";
                     mountOptions = ["compress=zstd"];
                   };
                   "/home" = {
@@ -115,5 +115,5 @@
       ];
     };
   };
-  fileSystems."/persist".neededForBoot = true;
+  fileSystems."${config.booq.impermanence.persistRoot}".neededForBoot = true;
 }

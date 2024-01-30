@@ -9,9 +9,13 @@ in {
     default = false;
     type = lib.types.bool;
   };
+  options.booq.impermanence.persistRoot = lib.mkOption {
+    default = "/persist";
+    type = lib.types.str;
+  };
   config = lib.mkIf cfg.enable {
     # some more paths maybe: https://www.reddit.com/r/NixOS/comments/ymq9s2/comment/iv6cl56/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
-    environment.persistence."/persist" = {
+    environment.persistence."${config.booq.impermanence.persistRoot}" = {
       hideMounts = true;
       directories =
         [

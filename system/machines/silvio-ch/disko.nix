@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   disko.devices = {
     disk.nvme-samsung = {
       device = "/dev/disk/by-id/nvme-SAMSUNG_MZVLB512HAJQ-000L7_S3TNNE0JC78861";
@@ -33,7 +33,7 @@
                 extraArgs = ["-f"]; # Override existing partition
                 subvolumes = {
                   "/@" = {
-                    mountpoint = "/persist";
+                    mountpoint = "${config.booq.impermanence.persistRoot}";
                     mountOptions = ["compress=zstd"];
                   };
                   "/@home" = {
@@ -87,6 +87,6 @@
       ];
     };
   };
-  fileSystems."/persist".neededForBoot = true;
+  fileSystems."${config.booq.impermanence.persistRoot}".neededForBoot = true;
   boot.kernel.sysctl."vm.swappiness" = 0; # Use swap only for hibernate (SSD)
 }
