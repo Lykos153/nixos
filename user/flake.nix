@@ -20,15 +20,12 @@
     self,
     nixpkgs,
     home-manager,
-    get-flake,
     nur,
-    mynur,
-    sops-nix,
     ...
   } @ inputs: let
     overlays = [
       nur.overlay
-      mynur.overlay
+      inputs.mynur.overlay
       (
         # Add packages from flake inputs to pkgs
         final: prev: {
@@ -38,71 +35,18 @@
         }
       )
     ];
-    systemFlake = get-flake ../system;
+    systemFlake = inputs.get-flake ../system;
     system = "x86_64-linux"; # TODO: make config independent of system
-    mkConfig = hostname: username: config: let
-      userpath = ./users + "/${username}";
-      hostpath = userpath + "/${hostname}";
-      userlist =
-        if builtins.pathExists userpath
-        then [userpath]
-        else [];
-      hostlist =
-        if builtins.pathExists hostpath
-        then [hostpath]
-        else [];
-      nixpkgsConfigPath = userpath + "/nixpkgs-config.nix";
-      pkgs = import nixpkgs {
-        inherit system;
-        config =
-          if builtins.pathExists nixpkgsConfigPath
-          then import nixpkgsConfigPath
-          else {};
-        overlays = overlays;
-      };
-    in (
-      # inputs.nixpkgs.lib.nameValuePair
-      #     (name + "silvio-pc")
-      {
-        "name" = username;
-        "value" = inputs.home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules =
-            [
-              sops-nix.homeManagerModule
-              inputs.stylix.homeManagerModules.stylix
-              ./home.nix
-              {
-                home = {
-                  homeDirectory = config.home;
-                  username = username;
-                  stateVersion = "22.05";
-                };
-                booq = {
-                  nix-index = {
-                    enable = true;
-                    nixpkgs-path = "${inputs.nixpkgs}";
-                  };
-                };
-              }
-              {
-                home.sessionVariables.NIX_PATH = "nixpkgs=${nixpkgs}";
-                # workaround because the above doesnt seem to work in xorg https://github.com/nix-community/home-manager/issues/1011#issuecomment-1365065753
-                programs.zsh.initExtra = ''
-                  export NIX_PATH="nixpkgs=${nixpkgs}"
-                '';
-              }
-            ]
-            ++ userlist
-            ++ hostlist;
-        };
-      }
-    );
-    # mkHost = hostname: config:
-    # (
-    # )
+    lib = (import ./lib.nix) {inherit nixpkgs home-manager;};
+    modules = [
+      inputs.sops-nix.homeManagerModule
+      inputs.stylix.homeManagerModules.stylix
+    ];
   in {
-    homeConfigurations = inputs.nixpkgs.lib.mapAttrs' (mkConfig "silvio-pc") systemFlake.outputs.nixosConfigurations.silvio-pc.config.users.users;
+    homeConfigurations = lib.mkConfigs {
+      inherit modules overlays system ;
+      nixosConfigurations = systemFlake.outputs.nixosConfigurations;
+    };
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
   };
 }
