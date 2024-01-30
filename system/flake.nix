@@ -24,12 +24,6 @@
           disko.nixosModules.disko
           impermanence.nixosModules.impermanence
           sops-nix.nixosModules.sops
-          {
-            options.booq.audio = lib.mkOption {
-              default = "pulseaudio";
-              type = lib.types.str;
-            };
-          }
           ./configuration.nix
           (./machines + "/${name}")
           {
