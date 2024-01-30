@@ -23,7 +23,7 @@
     nur,
     ...
   } @ inputs: let
-    overlays = [
+    genOverlays = system: [
       nur.overlay
       inputs.mynur.overlay
       (
@@ -36,7 +36,6 @@
       )
     ];
     systemFlake = inputs.get-flake ../system;
-    system = "x86_64-linux"; # TODO: make config independent of system
     lib = (import ./lib.nix) {inherit nixpkgs home-manager;};
     modules = [
       inputs.sops-nix.homeManagerModule
@@ -44,7 +43,7 @@
     ];
   in {
     homeConfigurations = lib.mkConfigs {
-      inherit modules overlays system ;
+      inherit modules genOverlays;
       nixosConfigurations = systemFlake.outputs.nixosConfigurations;
     };
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;

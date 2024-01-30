@@ -1,11 +1,18 @@
-{home-manager,nixpkgs}: rec {
+{
+  home-manager,
+  nixpkgs,
+}: rec {
   mkConfig = {
-    overlays,
-    system,
+    genOverlays,
     extraModules,
-  }: hostname: username: config: let
+    hostConfig,
+    userConfig,
+  }: let
+    username = userConfig.name;
+    hostname = hostConfig.config.system.name;
     userpath = ./users + "/${username}";
     hostpath = userpath + "/${hostname}";
+
     userlist =
       if builtins.pathExists userpath
       then [userpath]
@@ -15,24 +22,23 @@
       then [hostpath]
       else [];
     nixpkgsConfigPath = userpath + "/nixpkgs-config.nix";
-    pkgs = import nixpkgs {
-      inherit system;
+    pkgs = import nixpkgs rec {
+      system = hostConfig.pkgs.stdenv.hostPlatform.system;
       config =
         if builtins.pathExists nixpkgsConfigPath
         then import nixpkgsConfigPath
         else {};
-      overlays = overlays;
+      overlays = genOverlays system;
     };
-  in {
-    "name" = username;
-    "value" = home-manager.lib.homeManagerConfiguration {
+  in
+    home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       modules =
         [
           ./home.nix
           {
             home = {
-              homeDirectory = config.home;
+              homeDirectory = userConfig.home;
               username = username;
               stateVersion = "22.05";
             };
@@ -55,16 +61,23 @@
         ++ userlist
         ++ hostlist;
     };
-  };
   mkConfigs = {
     nixosConfigurations,
     modules,
-    overlays,
-    system,
-  }:
-    nixpkgs.lib.mapAttrs' (mkConfig {
-      inherit overlays home-manager system;
-      extraModules = modules;
-    } "silvio-pc")
-    nixosConfigurations.silvio-pc.config.users.users;
+    genOverlays,
+  }: let
+    f = acc: hostname: hostConfig: let
+      users = nixpkgs.lib.attrsets.filterAttrs (_: v: v.isNormalUser) hostConfig.config.users.users;
+    in
+      acc
+      // nixpkgs.lib.mapAttrs' (user: userConfig: {
+        name = "${user}@${hostname}";
+        value = mkConfig {
+          inherit hostConfig userConfig genOverlays;
+          extraModules = modules;
+        };
+      })
+      users;
+  in
+    nixpkgs.lib.attrsets.foldlAttrs f {} nixosConfigurations;
 }

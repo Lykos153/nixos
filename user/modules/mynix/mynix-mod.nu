@@ -13,7 +13,7 @@ def complete_mynix_target [] {
 export def mynix [ target:string@complete_mynix_target, action:string@complete_mynix_action ] {
   match $target {
     "system" => (sudo nixos-rebuild $action --flake $"($env.HOME)/nixos/system#(hostname)")
-    "user" => (home-manager $action -b $"bak.(date now | format date "%s")" --flake $"($env.HOME)/nixos/user#(id -un)")
+    "user" => (home-manager $action -b $"bak.(date now | format date "%s")" --flake $"($env.HOME)/nixos/user#(id -un)@(hostname)")
   }
 }
 
