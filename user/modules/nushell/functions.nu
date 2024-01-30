@@ -26,5 +26,5 @@ export def --env tclone [repo: string] {
 }
 
 export def rwhich [application:string, ...rest: string] {
-  which $application ...$rest | update path {|row| (realpath $row.path) } | upsert expansion {|row| help aliases | where name == $row.command | get expansion | to text}
+  which $application ...$rest | update path {|row| if $row.path == "" {""} else {(realpath $row.path)} } | upsert expansion {|row| help aliases | where name == $row.command | get expansion | to text}
 }
