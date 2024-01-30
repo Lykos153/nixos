@@ -16,25 +16,17 @@
     sops-nix,
   }: let
     #machinedir = ./machines
-    lib = nixpkgs.lib;
-    mkHost = name:
-      lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          disko.nixosModules.disko
-          impermanence.nixosModules.impermanence
-          sops-nix.nixosModules.sops
-          ./configuration.nix
-          (./machines + "/${name}")
-          {
-            networking.hostName = name;
-            nix.registry.nixpkgs.flake = nixpkgs; # Pin flakes so search, shell etc. are faster. From https://ianthehenry.com/posts/how-to-learn-nix/more-flakes/
-            nix.registry.nixpkgs-master.flake = nixpkgs-master;
-          }
-        ];
-      };
+    lib = (import ./lib.nix) {inherit nixpkgs;};
+    modules = [
+      disko.nixosModules.disko
+      impermanence.nixosModules.impermanence
+      sops-nix.nixosModules.sops
+    ];
   in {
-    nixosConfigurations = builtins.mapAttrs (name: _: mkHost name) (builtins.readDir ./machines);
+    nixosConfigurations = lib.mkHosts {
+      inherit modules;
+      machinedir = ./machines;
+    };
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
   };
 }
