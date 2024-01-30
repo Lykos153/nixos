@@ -41,7 +41,13 @@ in {
       nomacs
       okular-x11
       xfce.thunar
-      vlc
+      (vlc.override {
+        libbluray = libbluray.override {
+          withAACS = true;
+          withBDplus = true;
+          withJava = true;
+        };
+      })
       system-config-printer
     ];
 

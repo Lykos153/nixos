@@ -50,6 +50,7 @@
   boot.supportedFilesystems = ["ntfs"];
   boot.initrd.systemd.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelModules = ["sg"];
 
   services.udisks2.enable = true;
 
