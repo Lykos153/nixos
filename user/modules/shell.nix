@@ -15,5 +15,8 @@
     dd = "dd status=progress";
 
     findnix = "nix search nixpkgs";
+
+    suspend = "systemctl -i suspend";
+    hibernate = "systemctl -i hibernate";
   };
 }
