@@ -7,13 +7,14 @@ def complete_mynix_action [context: string] {
 }
 
 def complete_mynix_target [] {
-  [user system]
+  [user system upgrade]
 }
 
-export def mynix [ target:string@complete_mynix_target, action:string@complete_mynix_action ] {
+export def mynix [ target:string@complete_mynix_target, action?:string@complete_mynix_action ] {
   match $target {
-    "system" => (sudo nixos-rebuild $action --flake $"($env.HOME)/nixos/system#(hostname)")
-    "user" => (home-manager $action -b $"bak.(date now | format date "%s")" --flake $"($env.HOME)/nixos/user#(id -un)@(hostname)")
+    "system" => (sudo nixos-rebuild $action --flake $"($env.HOME)/nixos#(hostname)")
+    "user" => (home-manager $action -b $"bak.(date now | format date "%s")" --flake $"($env.HOME)/nixos#(id -un)@(hostname)")
+    "upgrade" => upgrade
   }
 }
 
@@ -37,12 +38,8 @@ def upgrade-check [flake: string] {
   (git -C $flake status --short . | lines | filter {|x| not ( $x | str contains "flake.lock") } | length) == 0
 }
 
-def complete_upgrade [] {
-  ["user" "system"]
-}
-
-export def upgrade [target: string@complete_upgrade] {
-  let flake = $env.HOME + "/nixos/" + $target
+def upgrade [] {
+  let flake = $env.HOME + "/nixos/"
   if not (upgrade-check $flake) {
     print $"($flake) is dirty"
     return
@@ -53,6 +50,5 @@ export def upgrade [target: string@complete_upgrade] {
     print "Nothing to do"
     return
   }
-  mynix $target switch
-  git -C $flake commit -m $"Upgrade ($target)" flake.lock
+  mynix system build; mynix user build; git -C $flake commit -m $"Upgrade" flake.lock
 }

@@ -51,50 +51,30 @@
       mynix() {
         case $1 in
           system)
-            noglob sudo nixos-rebuild $2 --flake "$HOME/nixos/system#$(hostname)"
+            noglob sudo nixos-rebuild $2 --flake "$HOME/nixos#$(hostname)"
             ;;
           user)
-            noglob home-manager $2 -b "bak.$(date '+%s')" --flake "$HOME/nixos/user#$(id -un)"
+            noglob home-manager $2 -b "bak.$(date '+%s')" --flake "$HOME/nixos#$(id -un)"
             ;;
-          *)
-            echo "Usage: $0 system|user build|switch"
-            return 1
-            ;;
-        esac
-      }
-
-      upgrade () {
-        case $1 in
-          _check)
-            flake=$2
+          upgrade)
+            flake="$HOME/nixos"
             git -C $flake status --short . | grep -v flake.lock && echo "$flake is dirty" && return 1
-            return 0
-            ;;
-
-          system | user)
-            flake="$HOME/nixos/$1"
-            upgrade _check "$flake" || return 1
             nix flake update "$flake" &&
             if git -C "$flake" diff --quiet flake.lock; then
               echo "Nothing to do!"
               return 0
             fi
-            mynix $1 switch &&
+            mynix system build &&
+            mynix user build &&
             git -C "$flake" commit -m "Upgrade $(basename "$flake")" flake.lock
-            ;;
-
-          all)
-            upgrade system &&
-            upgrade user
-            ;;
-
+          }
           *)
-            echo "$0 system"
-            echo "$0 user"
-            echo "$0 all"
+            echo "Usage: $0 system|user|upgrade build|switch"
+            return 1
             ;;
         esac
       }
+
 
       nixtemplate () {
         noglob nix flake new -t github:Lykos153/nixos#$1 .
