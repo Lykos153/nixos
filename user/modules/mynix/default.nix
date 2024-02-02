@@ -67,7 +67,7 @@
             mynix system build &&
             mynix user build &&
             git -C "$flake" commit -m "Upgrade $(basename "$flake")" flake.lock
-          }
+            ;;
           *)
             echo "Usage: $0 system|user|upgrade build|switch"
             return 1
