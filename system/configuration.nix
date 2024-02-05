@@ -8,7 +8,10 @@
   ...
 }: {
   imports =
-    map (n: "${./modules}/${n}") (builtins.attrNames (builtins.readDir ./modules));
+    (map (n: "${./modules}/${n}") (builtins.attrNames (builtins.readDir ./modules)))
+    ++ [
+      ../lib/common-modules
+    ];
 
   nix = {
     package = pkgs.nixVersions.stable;

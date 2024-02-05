@@ -5,7 +5,11 @@
   pkgs,
   ...
 }: {
-  imports = map (n: "${./modules}/${n}") (builtins.attrNames (builtins.readDir ./modules));
+  imports =
+    (map (n: "${./modules}/${n}") (builtins.attrNames (builtins.readDir ./modules)))
+    ++ [
+      ../lib/common-modules
+    ];
 
   home.keyboard.layout = "de";
 
