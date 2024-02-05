@@ -24,3 +24,5 @@ vault-init:
 	./managed-k8s/tools/vault/init.sh
 vault-mkcluster-root clustername:
 	./managed-k8s/tools/vault/mkcluster-root.sh {{clustername}}
+envrc-local:
+	ln -s ~/.config/yaook-k8s/envrc.local .envrc.local
