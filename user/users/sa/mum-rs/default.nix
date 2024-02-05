@@ -30,7 +30,7 @@
 in {
   home.packages = with pkgs; [
     mum
-    mum-rofi
+    rofi-mum
     mum-msglog
   ];
 

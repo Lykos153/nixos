@@ -126,7 +126,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     , ((modm,               xK_b     ), spawn Tools.rofi_bluetooth)
     , ((modm,               xK_p     ), spawn Tools.rofi_pass)
-    , ((modm,               xK_x     ), spawn "mum-rofi") -- TODO: Get from Tools once I know how
+    , ((modm,               xK_x     ), spawn Tools.rofi_mum)
     , ((modm,               xK_v     ), spawn (Tools.rofi_pulse_select ++ " sink"))
     , ((modm .|. shiftMask, xK_v     ), spawn (Tools.rofi_pulse_select ++ " source"))
     ]

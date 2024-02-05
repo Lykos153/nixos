@@ -420,7 +420,7 @@
         "type": "github"
       }
     },
-    "mum-rofi": {
+    "rofi-mum": {
       "inputs": {
         "flake-utils": "flake-utils_3",
         "nixpkgs": "nixpkgs_2",
@@ -430,13 +430,13 @@
         "lastModified": 1698955879,
         "narHash": "sha256-CH9YIUPAt+h/9fWLX31+LQmTDRJpkfV7s86iXlKQzSY=",
         "owner": "lykos153",
-        "repo": "mum-rofi",
+        "repo": "rofi-mum",
         "rev": "03afb6d06df079c2eb93cf2f571e330a0b2db043",
         "type": "github"
       },
       "original": {
         "owner": "lykos153",
-        "repo": "mum-rofi",
+        "repo": "rofi-mum",
         "type": "github"
       }
     },
@@ -645,7 +645,7 @@
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "krew2nix": "krew2nix",
-        "mum-rofi": "mum-rofi",
+        "rofi-mum": "rofi-mum",
         "mynur": "mynur",
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-master": "nixpkgs-master",

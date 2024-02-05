@@ -12,7 +12,7 @@
     home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     mynur.url = "github:Lykos153/nur-packages";
-    mum-rofi.url = "github:lykos153/mum-rofi";
+    rofi-mum.url = "github:lykos153/rofi-mum";
     toki.url = "github:lykos153/toki";
     krew2nix.url = "github:lykos153/krew2nix";
     krew2nix.inputs.nixpkgs.follows = "nixpkgs";
@@ -58,7 +58,7 @@
             (
               # Add packages from flake inputs to pkgs
               final: prev: {
-                mum-rofi = inputs.mum-rofi.outputs.defaultPackage.${system};
+                rofi-mum = inputs.rofi-mum.outputs.defaultPackage.${system};
                 toki = inputs.toki.outputs.defaultPackage.${system};
                 kubectl = inputs.krew2nix.outputs.packages.${system}.kubectl;
                 repos.talon-community = inputs.talon-community;
