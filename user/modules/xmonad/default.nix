@@ -85,6 +85,7 @@ in {
 
           rofi_bluetooth = "${pkgs.rofi-bluetooth}/bin/rofi-bluetooth -i";
           rofi_pass = "${pkgs.rofi-pass}/bin/rofi-pass";
+          rofi_pulse_select = "${pkgs.rofi-pulse-select}/bin/rofi-pulse-select";
         '';
       };
     };
