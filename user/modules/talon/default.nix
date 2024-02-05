@@ -3,10 +3,9 @@
   lib,
   ...
 }: {
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "talon"
-    ];
+  booq.lib.allowUnfreePackages = [
+    "talon"
+  ];
 
   home.packages = [
     pkgs.talon

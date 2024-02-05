@@ -3,10 +3,9 @@
   lib,
   ...
 }: {
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "zoom"
-    ];
+  booq.lib.allowUnfreePackages = [
+    "zoom"
+  ];
   home.packages = with pkgs; [
     zoom-us
   ];
