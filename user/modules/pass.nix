@@ -10,7 +10,7 @@
     '';
   };
   services.pass-secret-service = {
-    enable = true;
+    enable = false;
     storePath = config.programs.password-store.settings.PASSWORD_STORE_DIR;
   };
 }

@@ -18,6 +18,7 @@
     enable = true;
     nix-direnv.enable = true;
   };
+  services.gnome-keyring.enable = true;
 
   programs.bat = {
     enable = true;
