@@ -41,5 +41,5 @@ repos:
       - id: nix-fmt
         name: nix-fmt
         language: system
-        entry: pre-commit-nix-fmt
+        entry: nix fmt
         files: '\.nix$'

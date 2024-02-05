@@ -61,9 +61,9 @@
                 mum-rofi = inputs.mum-rofi.outputs.defaultPackage.${system};
                 toki = inputs.toki.outputs.defaultPackage.${system};
                 kubectl = inputs.krew2nix.outputs.packages.${system}.kubectl;
-          repos.talon-community = inputs.talon-community;
-          repos.cursorless-talon = inputs.cursorless-talon;
-          repos.rango = inputs.rango;
+                repos.talon-community = inputs.talon-community;
+                repos.cursorless-talon = inputs.cursorless-talon;
+                repos.rango = inputs.rango;
               }
             )
           ];
@@ -91,7 +91,6 @@
     (system: let
       pkgs = nixpkgs.legacyPackages.${system};
       pre-commit-sops-updatekeys = pkgs.callPackage ./pkgs/pre-commit-sops-updatekeys.nix {};
-      pre-commit-nix-fmt = pkgs.callPackage ./pkgs/pre-commit-nix-fmt.nix {};
     in {
       formatter = pkgs.alejandra;
       devShells.default = pkgs.mkShell {
@@ -101,7 +100,6 @@
           ssh-to-age
           age
           pre-commit-sops-updatekeys
-          pre-commit-nix-fmt
           pam_u2f
           stylish-haskell
           git-branchless
