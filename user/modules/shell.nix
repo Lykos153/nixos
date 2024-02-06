@@ -1,4 +1,5 @@
 {
+  programs.atuin.enable = true;
   home.shellAliases = {
     ip = "ip --color=auto";
     l = "lsd -l";
