@@ -54,10 +54,10 @@
             nur.overlay
             inputs.mynur.overlay
             inputs.talon-nix.overlays.default
+            inputs.rofi-mum.overlays.default
             (
               # Add packages from flake inputs to pkgs
               final: prev: {
-                rofi-mum = inputs.rofi-mum.outputs.defaultPackage.${system};
                 toki = inputs.toki.outputs.defaultPackage.${system};
                 kubectl = inputs.krew2nix.outputs.packages.${system}.kubectl;
                 repos.talon-community = inputs.talon-community;
