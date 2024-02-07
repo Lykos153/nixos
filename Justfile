@@ -70,3 +70,6 @@ passwd user:
 u2fkey-add:
 	@echo "Please touch the device..."
 	cat <(pamu2fcfg -o "pam://nixos-silvio") <(printf '\n') >> system/modules/security/u2f_keys
+
+repair-store:
+	sudo nix-store --repair --verify --check-contents
