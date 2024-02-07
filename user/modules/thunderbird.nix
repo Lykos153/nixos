@@ -35,5 +35,8 @@
         "privacy.donottrackheader.enabled" = true;
       };
     };
+    xdg.mimeApps.associations.added = {
+      "x-scheme-handler/mailto" = "thunderbird.desktop";
+    };
   };
 }
