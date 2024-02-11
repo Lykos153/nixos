@@ -38,12 +38,17 @@
     rec {
       nixosConfigurations = let
         lib = (import ./system/lib.nix) {inherit nixpkgs;};
+        nur-no-pkgs = import nur {
+          nurpkgs = import nixpkgs {system = "x86_64-linux";};
+        };
       in
         lib.mkHosts {
           modules = [
             inputs.disko.nixosModules.disko
             inputs.impermanence.nixosModules.impermanence
             inputs.sops-nix.nixosModules.sops
+            nur-no-pkgs.repos.crtified.modules.vfio
+            nur-no-pkgs.repos.crtified.modules.libvirt
           ];
           machinedir = ./system/machines;
         };
