@@ -26,6 +26,7 @@
     rango.url = "github:david-tejada/rango-talon";
     rango.flake = false;
     xmonad-contrib.url = "github:xmonad/xmonad-contrib/v0.18.0";
+    vfio.url = "github:Lykos153/crtified-nur-packages";
   };
 
   outputs = {
@@ -38,12 +39,17 @@
     rec {
       nixosConfigurations = let
         lib = (import ./system/lib.nix) {inherit nixpkgs;};
+        nur-no-pkgs = import nur {
+          nurpkgs = import nixpkgs {system = "x86_64-linux";};
+        };
       in
         lib.mkHosts {
           modules = [
             inputs.disko.nixosModules.disko
             inputs.impermanence.nixosModules.impermanence
             inputs.sops-nix.nixosModules.sops
+            inputs.vfio.nixosModules.vfio
+            nur-no-pkgs.repos.crtified.modules.libvirt
           ];
           machinedir = ./system/machines;
         };
