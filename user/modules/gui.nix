@@ -36,6 +36,7 @@ in {
       gajim
       thunderbird
       element-desktop
+      fractal
       pavucontrol
       libreoffice
       nomacs
