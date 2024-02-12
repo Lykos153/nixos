@@ -19,5 +19,7 @@
 
     suspend = "systemctl -i suspend";
     hibernate = "systemctl -i hibernate";
+
+    sido = "sudo -i";
   };
 }
