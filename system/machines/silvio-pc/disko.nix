@@ -106,14 +106,8 @@
         "mode=755"
       ];
     };
-    nodev."/tmp" = {
-      fsType = "tmpfs";
-      mountOptions = [
-        "size=10G"
-        "defaults"
-        "mode=777"
-      ];
-    };
   };
   fileSystems."${config.booq.impermanence.persistRoot}".neededForBoot = true;
+  boot.tmp.useTmpfs = true;
+  boot.tmp.tmpfsSize = "95%";
 }
