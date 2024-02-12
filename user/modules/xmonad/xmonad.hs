@@ -31,7 +31,8 @@ main = do
           , layoutHook = let
               ultrawideLayout = (CenterMainFluid 1 (3/100) (50/100)) ||| Full
               regularLayout = (tall ||| Mirror tall ||| Full)
-             in avoidStruts $ ifWider 3839 ultrawideLayout regularLayout -- TODO: depend on ratio instead of on width
+              rotatedLayout = Mirror tall ||| Full
+             in avoidStruts $ ifWider 1080 (ifWider 3839 ultrawideLayout regularLayout) rotatedLayout -- TODO: depend on ratio instead of on width
         }
 
 tall = Tall 1 (3/100) (1/2)
