@@ -88,6 +88,7 @@ in {
           rofi_pulse_select = "${pkgs.rofi-pulse-select}/bin/rofi-pulse-select";
           rofi_mum = "${pkgs.rofi-mum}/bin/rofi-mum";
         '';
+        "PerScreenRatio.hs" = ./PerScreenRatio.hs;
       };
     };
 

@@ -13,6 +13,7 @@ import qualified Data.Map                           as M
 import           System.Exit
 import qualified XMonad.StackSet                    as W
 
+import           PerScreenRatio
 import qualified Tools
 
 import           XMonad.Actions.PhysicalScreens
@@ -32,7 +33,7 @@ main = do
               ultrawideLayout = (CenterMainFluid 1 (3/100) (50/100)) ||| Full
               regularLayout = (tall ||| Mirror tall ||| Full)
               rotatedLayout = Mirror tall ||| Full
-             in avoidStruts $ ifWider 1080 (ifWider 3839 ultrawideLayout regularLayout) rotatedLayout -- TODO: depend on ratio instead of on width
+             in avoidStruts $ ifRatioGreater (10/16) (ifRatioGreater (16/10) ultrawideLayout regularLayout) rotatedLayout
         }
 
 tall = Tall 1 (3/100) (1/2)
