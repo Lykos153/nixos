@@ -25,6 +25,7 @@
     cursorless-talon.flake = false;
     rango.url = "github:david-tejada/rango-talon";
     rango.flake = false;
+    xmonad-contrib.url = "github:xmonad/xmonad-contrib/v0.18.0";
   };
 
   outputs = {
@@ -50,22 +51,26 @@
         lib = (import ./user/lib.nix) {inherit nixpkgs home-manager;};
       in
         lib.mkConfigs {
-          genOverlays = system: [
-            nur.overlay
-            inputs.mynur.overlay
-            inputs.talon-nix.overlays.default
-            inputs.rofi-mum.overlays.default
-            (
-              # Add packages from flake inputs to pkgs
-              final: prev: {
-                toki = inputs.toki.outputs.defaultPackage.${system};
-                kubectl = inputs.krew2nix.outputs.packages.${system}.kubectl;
-                repos.talon-community = inputs.talon-community;
-                repos.cursorless-talon = inputs.cursorless-talon;
-                repos.rango = inputs.rango;
-              }
-            )
-          ];
+          genOverlays = system:
+            [
+              nur.overlay
+              inputs.mynur.overlay
+              inputs.talon-nix.overlays.default
+              inputs.rofi-mum.overlays.default
+              (
+                # Add packages from flake inputs to pkgs
+                final: prev: {
+                  toki = inputs.toki.outputs.defaultPackage.${system};
+                  kubectl = inputs.krew2nix.outputs.packages.${system}.kubectl;
+                  repos = {
+                    talon-community = inputs.talon-community;
+                    cursorless-talon = inputs.cursorless-talon;
+                    rango = inputs.rango;
+                  };
+                }
+              )
+            ]
+            ++ inputs.xmonad-contrib.overlays;
           modules = [
             inputs.sops-nix.homeManagerModule
             inputs.stylix.homeManagerModules.stylix
