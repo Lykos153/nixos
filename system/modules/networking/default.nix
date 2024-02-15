@@ -5,6 +5,7 @@
 }: {
   networking.useNetworkd = true;
   networking.useDHCP = false;
+  networking.networkmanager.enable = false;
 
   services.resolved = {
     enable = true;
@@ -34,8 +35,10 @@
     dhcpConfig.RouteMetric = 1025;
   };
 
-  sops.secrets."wpa_supplicant.conf" = {
-    path = "/etc/wpa_supplicant.conf";
-    sopsFile = ./secrets.yaml;
+  sops.secrets = lib.mkIf config.booq.sops.enable {
+    "wpa_supplicant.conf" = {
+      path = "/etc/wpa_supplicant.conf";
+      sopsFile = ./secrets.yaml;
+    };
   };
 }
