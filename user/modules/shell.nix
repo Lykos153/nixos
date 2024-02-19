@@ -1,5 +1,11 @@
 {
   programs.atuin.enable = true;
+  programs.zoxide = {
+    enable = true;
+    options = [
+      "--cmd=cd"
+    ];
+  };
   home.shellAliases = {
     ip = "ip --color=auto";
     l = "lsd -l";
