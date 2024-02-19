@@ -30,7 +30,7 @@ main = do
           , terminal = Tools.terminal
           , keys = myKeys
           , layoutHook = let
-              ultrawideLayout = (CenterMainFluid 1 (3/100) (50/100)) ||| Full
+              ultrawideLayout = (CenterMainFluid 1 (3/100) (50/100)) ||| Full ||| tall
               regularLayout = (tall ||| Mirror tall ||| Full)
               rotatedLayout = Mirror tall ||| Full
              in avoidStruts $ ifRatioGreater (10/16) (ifRatioGreater (16/10) ultrawideLayout regularLayout) rotatedLayout
