@@ -46,6 +46,12 @@
     };
     home.shellAliases.code = "codium";
 
+    xdg.mimeApps.associations.added = {
+      "text/x-tex" = "codium.desktop";
+      "x-scheme-handler/vscodium" = "codium.desktop";
+      "x-scheme-handler/vscode" = "codium.desktop";
+    };
+
     home.file.".config/electron-flags.conf" = lib.mkIf config.booq.gui.sway.enable {
       text = ''
         --enable-features=WaylandWindowDecorations
