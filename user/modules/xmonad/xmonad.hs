@@ -17,6 +17,7 @@ import           PerScreenRatio
 import qualified Tools
 
 import           XMonad.Actions.PhysicalScreens
+import           XMonad.Actions.UpdatePointer
 
 import           XMonad.Util.EZConfig
 
@@ -34,6 +35,7 @@ main = do
               regularLayout = (tall ||| Mirror tall ||| Full)
               rotatedLayout = Mirror tall ||| Full
              in avoidStruts $ ifRatioGreater (10/16) (ifRatioGreater (16/10) ultrawideLayout regularLayout) rotatedLayout
+          , logHook = updatePointer (0.5, 0.5) (0, 0)
         }
 
 tall = Tall 1 (3/100) (1/2)
