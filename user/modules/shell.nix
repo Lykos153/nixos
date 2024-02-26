@@ -6,6 +6,7 @@
       "--cmd=cd"
     ];
   };
+  programs.starship.enable = true;
   home.shellAliases = {
     ip = "ip --color=auto";
     l = "lsd -l";
