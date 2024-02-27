@@ -6,7 +6,12 @@
       "--cmd=cd"
     ];
   };
-  programs.starship.enable = true;
+  programs.starship = {
+    enable = true;
+    settings = {
+      git_commit.tag_disabled = false;
+    };
+  };
   home.shellAliases = {
     ip = "ip --color=auto";
     l = "lsd -l";
