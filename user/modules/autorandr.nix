@@ -32,13 +32,13 @@ in
           config = {
             samsung_curved = {
               enable = true;
+              primary = true;
               mode = "3840x1080";
               position = "0x361";
               rate = "59.97";
             };
             benq = {
               enable = true;
-              primary = true;
               mode = "1920x1080";
               position = "3840x0";
               rotate = "left";
