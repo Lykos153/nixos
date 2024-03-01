@@ -28,3 +28,13 @@ export def --env tclone [repo: string] {
 export def rwhich [application:string, ...rest: string] {
   which $application ...$rest | update path {|row| if $row.path == "" {""} else {(realpath $row.path)} } | upsert expansion {|row| help aliases | where name == $row.command | get expansion | to text} | upsert source {|row| if $row.type == "custom" {(view source ($row.command))} else {""}}
 }
+
+export def "from env" []: string -> record {
+  lines
+    | split column '#'
+    | get column1
+    | filter {($in | str length) > 0}
+    | parse "{key}={value}"
+    | update value {str trim -c '"'}
+    | transpose -r -d
+}
