@@ -10,6 +10,6 @@
     ./mail.nix
     ./sway
     ./sops.nix
-    ./garden
+    ./mutables
   ];
 }

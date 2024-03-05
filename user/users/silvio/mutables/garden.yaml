@@ -1,0 +1,22 @@
+---
+garden:
+  root: "${GARDEN_CONFIG_DIR}"
+trees:
+  nixos:
+    remotes:
+      leila: "https://github.com/maralyla/nixos"
+    url: "git@github.com:lykos153/nixos"
+
+  ".local/share/password-store":
+    url: "git@codeberg.org:lykos153/password-store.git"
+  clusters:
+    url: "git@codeberg.org:lykos153/clusters.git"
+  projects:
+    url: "git@codeberg.org:lykos153/projects.git"
+  ghq/github.com/talonhub/community:
+    remotes:
+      pokey: "https://github.com/pokey/pokey_talon.git"
+      upstream: "ssh://git@github.com/talonhub/community.git"
+    url: "git@github.com:Lykos153/talon-community.git"
+groups: {}
+gardens: {}
