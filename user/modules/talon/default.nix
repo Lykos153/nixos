@@ -35,7 +35,6 @@ in {
     };
 
     home.file.".talon/user/cursorless-talon".source = pkgs.repos.cursorless-talon;
-    home.file.".talon/user/rango".source = pkgs.repos.rango;
     home.file.".talon/user/talon-community".source = pkgs.repos.talon-community;
   };
 }

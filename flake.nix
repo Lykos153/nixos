@@ -23,8 +23,6 @@
     talon-community.flake = false;
     cursorless-talon.url = "github:cursorless-dev/cursorless-talon";
     cursorless-talon.flake = false;
-    rango.url = "github:david-tejada/rango-talon";
-    rango.flake = false;
     xmonad-contrib.url = "github:xmonad/xmonad-contrib/v0.18.0";
   };
 
@@ -65,7 +63,6 @@
                   repos = {
                     talon-community = inputs.talon-community;
                     cursorless-talon = inputs.cursorless-talon;
-                    rango = inputs.rango;
                   };
                 }
               )

@@ -778,22 +778,6 @@
         "type": "github"
       }
     },
-    "rango": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1702482320,
-        "narHash": "sha256-s2c0SUYsfBfVWWiXioQe1uvx6V19Zzq2euoDti68zAk=",
-        "owner": "david-tejada",
-        "repo": "rango-talon",
-        "rev": "786d90597fbd9046f160ee896e79f9f5fdaf522e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "david-tejada",
-        "repo": "rango-talon",
-        "type": "github"
-      }
-    },
     "rofi-mum": {
       "inputs": {
         "flake-parts": "flake-parts_2",
@@ -827,7 +811,6 @@
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-master": "nixpkgs-master",
         "nur": "nur",
-        "rango": "rango",
         "rofi-mum": "rofi-mum",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
