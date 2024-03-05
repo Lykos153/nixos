@@ -19,6 +19,7 @@ import qualified Tools
 import           XMonad.Actions.PhysicalScreens
 import           XMonad.Actions.UpdatePointer
 
+import           Graphics.X11.ExtraTypes.XF86
 import           XMonad.Util.EZConfig
 
 
@@ -133,6 +134,15 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_x     ), spawn Tools.rofi_mum)
     , ((modm,               xK_v     ), spawn (Tools.rofi_pulse_select ++ " sink"))
     , ((modm .|. shiftMask, xK_v     ), spawn (Tools.rofi_pulse_select ++ " source"))
+
+    , ((noModMask                 , xF86XK_AudioMute), spawn (Tools.pactl ++ " set-sink-mute @DEFAULT_SINK@ toggle"))
+    , ((noModMask                 , xF86XK_AudioLowerVolume), spawn (Tools.pactl ++ " set-sink-volume @DEFAULT_SINK@ -5%"))
+    , ((noModMask                 , xF86XK_AudioRaiseVolume), spawn (Tools.pactl ++ " set-sink-volume @DEFAULT_SINK@ +5%"))
+
+    -- For Microsoft Sculpt Keyboard
+    , ((modm                 , xK_F2), spawn (Tools.pactl ++ " set-sink-mute @DEFAULT_SINK@ toggle"))
+    , ((modm                 , xK_F3), spawn (Tools.pactl ++ " set-sink-volume @DEFAULT_SINK@ -5%"))
+    , ((modm                 , xK_F4), spawn (Tools.pactl ++ " set-sink-volume @DEFAULT_SINK@ +5%"))
     ]
     ++
 
