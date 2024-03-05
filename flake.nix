@@ -106,6 +106,8 @@
           git-branchless
           cachix
           inputs.disko.packages.${system}.disko
+          haskell-language-server
+          ghc
         ];
       };
     });
