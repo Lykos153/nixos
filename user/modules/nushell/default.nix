@@ -9,6 +9,8 @@
       config.home.shellAliases
       // {
         o = "open";
+        l = "ls -l";
+        la = "ls -a";
       };
     # configFile = ./config.nu;
     envFile.text = "";

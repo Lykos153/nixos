@@ -38,3 +38,7 @@ export def "from env" []: string -> record {
     | update value {str trim -c '"'}
     | transpose -r -d
 }
+
+export def ll [pattern?: string] {
+  ls (if $pattern != null {$pattern} else {"."}) | update size {|row| $row.size | into int} |  update modified {|row| $row.modified | format date "%Y-%m-%d %H:%M:%S"}
+}
