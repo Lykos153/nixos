@@ -18,5 +18,10 @@ trees:
     url: "git@gitlab.cloudandheat.com:silvio.ankermann/rook.git"
   devcluster:
     url: "git@gitlab.cloudandheat.com:silvio.ankermann/testcluster.git"
+  ghq/github.com/talonhub/community:
+    remotes:
+      pokey: "https://github.com/pokey/pokey_talon.git"
+      upstream: "ssh://git@github.com/talonhub/community.git"
+    url: "git@github.com:Lykos153/talon-community.git"
 groups: {}
 gardens: {}

@@ -35,6 +35,8 @@ in {
     };
 
     home.file.".talon/user/cursorless-talon".source = pkgs.repos.cursorless-talon;
-    home.file.".talon/user/talon-community".source = pkgs.repos.talon-community;
+    # home.file.".talon/user/talon-community".source = pkgs.repos.talon-community;
+    # TODO: define general method for dynamic config files. or move back to ^ once my config stabilizes
+    home.file.".talon/user/talon-community".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/ghq/github.com/talonhub/community";
   };
 }
