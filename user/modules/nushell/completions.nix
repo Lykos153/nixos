@@ -4,7 +4,7 @@
   programs.nushell = {
     extraConfig = ''
       let carapace_completer = {|spans|
-          carapace $spans.0 nushell $spans | from json
+          carapace $spans.0 nushell ...$spans | from json
       }
       let fish_completer = {|spans|
           ${pkgs.fish}/bin/fish --command $'complete "--do-complete=($spans | str join " ")"'
