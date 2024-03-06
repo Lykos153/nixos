@@ -24,6 +24,7 @@
     cursorless-talon.url = "github:cursorless-dev/cursorless-talon";
     cursorless-talon.flake = false;
     xmonad-contrib.url = "github:xmonad/xmonad-contrib/v0.18.0";
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
   outputs = {
@@ -55,6 +56,7 @@
               inputs.mynur.overlay
               inputs.talon-nix.overlays.default
               inputs.rofi-mum.overlays.default
+              inputs.nix-vscode-extensions.overlays.default
               (
                 # Add packages from flake inputs to pkgs
                 final: prev: {

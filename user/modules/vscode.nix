@@ -27,21 +27,23 @@
           command = "go.test.cursor";
         }
       ];
-      extensions = with pkgs.vscode-extensions; [
-        yzhang.markdown-all-in-one
-        jnoortheen.nix-ide
-        ms-python.python
-        hashicorp.terraform
-        ms-azuretools.vscode-docker
-        james-yu.latex-workshop
-        ms-ceintl.vscode-language-pack-de
-        redhat.vscode-yaml
-        # TODO: Request or package these extensions:
-        # ms-python.black-formatter
-        # zardoy.fix-all-json
-        # hirse.vscode-ungit
-        # ipedrazas.kubernetes-snippets
-        # tumido.crd-snippets
+      extensions = with pkgs; [
+        vscode-extensions.yzhang.markdown-all-in-one
+        vscode-extensions.jnoortheen.nix-ide
+        vscode-extensions.ms-python.python
+        vscode-extensions.hashicorp.terraform
+        vscode-extensions.ms-azuretools.vscode-docker
+        vscode-extensions.james-yu.latex-workshop
+        vscode-extensions.ms-ceintl.vscode-language-pack-de
+        vscode-extensions.redhat.vscode-yaml
+        open-vsx.pokey.cursorless
+        open-vsx.codeium.codeium
+        open-vsx.ms-python.black-formatter
+        open-vsx.zardoy.fix-all-json
+        open-vsx.hirse.vscode-ungit
+        open-vsx.ipedrazas.kubernetes-snippets
+        open-vsx.tumido.crd-snippets
+        vscode-marketplace.ast-grep.ast-grep-vscode
       ];
     };
     home.shellAliases.code = "codium";
