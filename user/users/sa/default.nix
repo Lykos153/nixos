@@ -47,5 +47,6 @@
     ./tmate.nix
     ./bugwarrior.nix
     ./mutables
+    ./nushell.nix
   ];
 }
