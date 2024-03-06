@@ -7,10 +7,14 @@
     ];
   };
   programs.starship = {
-    enable = true;
+    enable = false;
     settings = {
       git_commit.tag_disabled = false;
     };
+  };
+  programs.oh-my-posh = {
+    enable = true;
+    useTheme = "blue-owl";
   };
   home.shellAliases = {
     ip = "ip --color=auto";
