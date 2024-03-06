@@ -86,6 +86,7 @@ in {
       xfce.thunar
       vlc
       system-config-printer
+      wireshark
     ];
 
     gtk = {

@@ -76,6 +76,7 @@
     pciutils
     usbutils
     lshw
+    tcpdump
 
     killall
   ];
