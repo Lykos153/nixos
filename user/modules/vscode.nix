@@ -36,7 +36,6 @@
         vscode-extensions.james-yu.latex-workshop
         vscode-extensions.ms-ceintl.vscode-language-pack-de
         vscode-extensions.redhat.vscode-yaml
-        open-vsx.pokey.cursorless
         open-vsx.codeium.codeium
         open-vsx.ms-python.black-formatter
         open-vsx.zardoy.fix-all-json

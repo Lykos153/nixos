@@ -33,7 +33,11 @@ in {
         Restart = "on-failure";
       };
     };
-
+    programs.vscode.extensions = with pkgs; [
+      open-vsx.pokey.cursorless
+      open-vsx.pokey.parse-tree
+      open-vsx.pokey.command-server
+    ];
     home.file.".talon/user/cursorless-talon".source = pkgs.repos.cursorless-talon;
     # home.file.".talon/user/talon-community".source = pkgs.repos.talon-community;
     # TODO: define general method for dynamic config files. or move back to ^ once my config stabilizes
