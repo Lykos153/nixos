@@ -46,6 +46,10 @@
     };
     home.shellAliases.code = "codium";
 
+    home.packages = [
+      pkgs.ast-grep
+    ];
+
     xdg.mimeApps.associations.added = {
       "text/x-tex" = "codium.desktop";
       "x-scheme-handler/vscodium" = "codium.desktop";
