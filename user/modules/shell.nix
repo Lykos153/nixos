@@ -19,8 +19,6 @@
   home.shellAliases = {
     ip = "ip --color=auto";
 
-    r = "ranger";
-
     os = "openstack";
     k = "kubectl";
 

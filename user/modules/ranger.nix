@@ -8,4 +8,8 @@
     alias git shell gitui
     map gg shell gitui
   '';
+
+  home.shellAliases = {
+    r = "ranger";
+  };
 }
