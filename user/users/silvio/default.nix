@@ -11,5 +11,6 @@
     ./sway
     ./sops.nix
     ./mutables
+    ./nushell.nix
   ];
 }
