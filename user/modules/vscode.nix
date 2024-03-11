@@ -19,6 +19,14 @@
           "editor.formatOnSave" = true;
         };
         "redhat.telemetry.enabled" = false;
+        "cursorless.colors.dark" = {
+          "default" = "#AAA7BB";
+          "blue" = "#0870FF";
+          "green" = "#36CC3F";
+          "red" = "#992222";
+          "pink" = "#FE7F9C";
+          "yellow" = "#E5C02C";
+        };
       };
       keybindings = [
         {
