@@ -51,6 +51,7 @@
     lsd # new ls
     sd # new sed
     profanity
+    pulsemixer
 
     poetry
     just
