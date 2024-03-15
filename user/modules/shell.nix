@@ -1,5 +1,12 @@
 {
-  programs.atuin.enable = true;
+  programs.atuin = {
+    enable = true;
+    settings = {
+      history_filter = [
+        "hvs\.[0-9a-f]+" # hashicorp vault tokens
+      ];
+    };
+  };
   programs.zoxide = {
     enable = true;
     options = [
