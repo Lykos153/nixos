@@ -71,6 +71,7 @@
     efibootmgr
     gptfdisk
     parted #for partprobe
+    e2fsprogs # for resize2fs
     btrfs-progs
     bindfs
     pciutils
