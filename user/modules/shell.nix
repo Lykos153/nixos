@@ -2,6 +2,7 @@
   programs.atuin = {
     enable = true;
     settings = {
+      workspaces = true;
       history_filter = [
         "hvs\.[0-9a-f]+" # hashicorp vault tokens
       ];
