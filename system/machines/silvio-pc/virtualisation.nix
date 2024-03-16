@@ -4,7 +4,8 @@
     libvirtUsers = ["silvio" "sa"];
   };
 
-  boot.kernelParams = ["intel_iommu=on"];
+  boot.kernelParams = ["intel_iommu=on" "vfio-pci.ids=10de:1380,10de:0fbc"];
+  boot.kernelModules = ["vfio-pci"];
 
   # Blacklist nvidia because it's annoying.
   # TODO: pcie passthrough using ie. https://github.com/CRTified/nur-packages
