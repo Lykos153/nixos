@@ -13,6 +13,7 @@
       arandr
       autorandr
       xclip
+      inputplug
     ];
     home.file.".xinitrc".source = ./xinitrc;
 
