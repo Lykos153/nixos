@@ -27,5 +27,6 @@
     ./virtualisation.nix
     ./sops.nix
     ./vpn.nix
+    ./docker.nix
   ];
 }
