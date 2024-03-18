@@ -55,7 +55,16 @@ in {
         hp.taffybar
       ];
       config = ./xmonad.hs;
-      libFiles = {
+      libFiles = let
+        rofi-pulse-select = pkgs.rofi-pulse-select.overrideAttrs (old: {
+          src = pkgs.fetchFromGitLab {
+            owner = "Lykos153";
+            repo = "rofi-pulse-select";
+            rev = "feature/case-insensitivity";
+            hash = "sha256-K2PorxnPJLXZ3QOH++bIyoY4tmwiTxjaZEofjwExlzM=";
+          };
+        });
+      in {
         "Tools.hs" = pkgs.writeText "Tools.hs" ''
           module Tools where
           dmenu = "${pkgs.rofi}/bin/rofi -show drun"
@@ -73,7 +82,7 @@ in {
 
           rofi_bluetooth = "${pkgs.rofi-bluetooth}/bin/rofi-bluetooth -i";
           rofi_pass = "${pkgs.rofi-pass}/bin/rofi-pass";
-          rofi_pulse_select = "${pkgs.rofi-pulse-select}/bin/rofi-pulse-select";
+          rofi_pulse_select = "${rofi-pulse-select}/bin/rofi-pulse-select";
           rofi_mum = "${pkgs.rofi-mum}/bin/rofi-mum";
           pactl = "${pkgs.pulseaudio}/bin/pactl";
         '';
