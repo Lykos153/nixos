@@ -23,6 +23,7 @@
       push = {
         default = "simple";
         followtags = true;
+        autoSetupRemote = true;
         # useForceIfIncludes = true;
       };
       pull = {
