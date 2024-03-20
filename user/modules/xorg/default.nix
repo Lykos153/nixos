@@ -68,6 +68,29 @@
           line_height = 4;
           format = ''<b>%s</b>\n%b'';
         };
+        urgency_low = {
+          frame_color = "#49ada7";
+          foreground = "#49ada7";
+          background = "#191311";
+          #background = "#2B313C";
+          timeout = 10;
+        };
+
+        urgency_normal = {
+          frame_color = "#6ab445";
+          foreground = "#ffffff";
+          background = "#191311";
+          #background = "#2B313C";
+          timeout = 15;
+        };
+
+        urgency_critical = {
+          frame_color = "#a35134";
+          foreground = "#ffffff";
+          background = "#191311";
+          #background = "#2B313C";
+          timeout = 0;
+        };
       };
     };
 
