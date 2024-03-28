@@ -3,6 +3,7 @@
 
   i18n.defaultLocale = "de_DE.UTF-8";
   console = {
+    earlySetup = true; # workaround for https://github.com/NixOS/nixpkgs/issues/257904
     font = "Lat2-Terminus16";
     keyMap = "de";
   };
