@@ -46,6 +46,20 @@ in
             };
           };
         };
+        home-a-only-samsung = {
+          fingerprint = {
+            samsung_curved = samsung_curved;
+          };
+          config = {
+            samsung_curved = {
+              enable = true;
+              primary = true;
+              mode = "3840x1080";
+              position = "0x0";
+              rate = "59.97";
+            };
+          };
+        };
         mobile = {
           fingerprint = {
             eDP-1 = laptop;
