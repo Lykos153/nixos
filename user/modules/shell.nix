@@ -1,8 +1,11 @@
 {
   programs.atuin = {
     enable = true;
+    flags = ["--disable-up-arrow"];
     settings = {
       workspaces = true;
+      # search_mode_shell_up_key_binding = "prefix";
+      # filter_mode_shell_up_key_binding = "session";
       history_filter = [
         "hvs\.[0-9a-f]+" # hashicorp vault tokens
       ];
