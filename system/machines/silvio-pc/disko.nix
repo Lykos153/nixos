@@ -4,24 +4,20 @@
       device = "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_250GB_S21PNSAG425668F";
       type = "disk";
       content = {
-        type = "table";
-        format = "gpt";
-        partitions = [
-          {
-            name = "ESP";
-            start = "1MiB";
-            end = "550MiB";
-            bootable = true;
+        type = "gpt";
+        partitions = {
+          ESP = {
+            # label = "ESP";
+            type = "EF00";
+            size = "550MiB";
             content = {
               type = "filesystem";
               format = "vfat";
               mountpoint = "/boot";
             };
-          }
-          {
-            name = "luks";
-            start = "550MiB";
-            end = "100%";
+          };
+          luks = {
+            size = "100%";
             content = {
               type = "luks";
               name = "crypted";
@@ -47,31 +43,25 @@
                 };
               };
             };
-          }
-        ];
+          };
+        };
       };
     };
     disk.nvme-adata = {
       device = "/dev/disk/by-id/nvme-ADATA_SX8200PNP_2J3820020714";
       type = "disk";
       content = {
-        type = "table";
-        format = "gpt";
-        partitions = [
-          {
-            name = "ESP";
-            start = "1MiB";
-            end = "550MiB";
-            bootable = true;
+        type = "gpt";
+        partitions = {
+          ESP = {
+            size = "550MiB";
             content = {
               type = "filesystem";
               format = "vfat";
             };
-          }
-          {
-            name = "luks";
-            start = "550MiB";
-            end = "500GiB";
+          };
+          crypted2 = {
+            size = "500GiB";
             content = {
               type = "luks";
               name = "crypted2";
@@ -80,11 +70,9 @@
                 type = "btrfs";
               };
             };
-          }
-          {
-            name = "luks";
-            start = "500GiB";
-            end = "600GiB";
+          };
+          windows = {
+            size = "100GiB";
             content = {
               type = "luks";
               name = "windows";
@@ -94,8 +82,8 @@
                 vg = "windows";
               };
             };
-          }
-        ];
+          };
+        };
       };
     };
     nodev."/" = {
