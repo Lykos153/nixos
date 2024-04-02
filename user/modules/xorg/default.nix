@@ -13,9 +13,29 @@
       arandr
       autorandr
       xclip
-      inputplug
     ];
-    home.file.".xinitrc".source = ./xinitrc;
+    home.file.".xinitrc".text = ''
+      if test -z "$DBUS_SESSION_BUS_ADDRESS"; then
+        eval $(dbus-launch --exit-with-session --sh-syntax)
+      fi
+      systemctl --user import-environment DISPLAY XAUTHORITY
+
+      if command -v dbus-update-activation-environment >/dev/null 2>&1; then
+              dbus-update-activation-environment DISPLAY XAUTHORITY
+      fi
+      ${pkgs.autorandr}/bin/autorandr --change --match-edid # TODO: use a service or similar
+      # automatically set us layout for YubiKey on startup
+      re='.*(YubiKey).*id=([0-9]+).*slave.*keyboard'
+      xinput list | while read line; do [[ "$line" =~ $re ]] && setxkbmap -device "''${BASH_REMATCH[2]}" us; done
+
+      # automatically set us layout for YubiKey when plugged in
+      re='XIDeviceEnabled ([0-9]+) XISlaveKeyboard .*(YubiKey).*'
+      ${pkgs.inputplug}/bin/inputplug -d -c echo | while read event
+      do [[ "$event" =~ $re ]] && sleep 1 && setxkbmap -device "''${BASH_REMATCH[1]}" us
+      done &
+
+      exec "$HOME/.xsession"
+    '';
 
     # Start on tty1
     programs.zsh.initExtra =
