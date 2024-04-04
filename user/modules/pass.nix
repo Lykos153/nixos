@@ -1,5 +1,12 @@
-{config, ...}: {
-  programs.password-store.enable = true;
+{
+  config,
+  pkgs,
+  ...
+}: {
+  programs.password-store = {
+    enable = true;
+    package = pkgs.pass.withExtensions (exts: [exts.pass-otp]);
+  };
   programs.rofi.pass = {
     enable = true;
     stores = [
