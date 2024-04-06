@@ -1,7 +1,7 @@
 {config, ...}: {
   disko.devices = {
-    disk.ata-samsung-850-evo = {
-      device = "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_250GB_S21PNSAG425668F";
+    disk.nvme-adata = {
+      device = "/dev/disk/by-id/nvme-ADATA_SX8200PNP_2J3820020714";
       type = "disk";
       content = {
         type = "gpt";
@@ -16,13 +16,12 @@
               mountpoint = "/boot";
             };
           };
-          luks = {
-            size = "100%";
+          crypted = {
+            size = "500GiB";
             content = {
               type = "luks";
               name = "crypted";
               extraOpenArgs = ["--allow-discards"];
-              # if you want to use the key for interactive login be sure there is no trailing newline
               # keyFile = "/dev/shm/secret.key";
               content = {
                 type = "btrfs";
@@ -41,33 +40,6 @@
                     mountOptions = ["compress=zstd" "noatime"];
                   };
                 };
-              };
-            };
-          };
-        };
-      };
-    };
-    disk.nvme-adata = {
-      device = "/dev/disk/by-id/nvme-ADATA_SX8200PNP_2J3820020714";
-      type = "disk";
-      content = {
-        type = "gpt";
-        partitions = {
-          ESP = {
-            size = "550MiB";
-            content = {
-              type = "filesystem";
-              format = "vfat";
-            };
-          };
-          crypted2 = {
-            size = "500GiB";
-            content = {
-              type = "luks";
-              name = "crypted2";
-              extraOpenArgs = ["--allow-discards"];
-              content = {
-                type = "btrfs";
               };
             };
           };
