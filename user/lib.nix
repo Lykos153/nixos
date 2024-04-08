@@ -5,7 +5,6 @@
   mkModules = {
     username,
     hostname,
-    genOverlays ? (_: []),
     extraModules ? {},
   }: let
     userpath = ./users + "/${username}";
@@ -45,10 +44,10 @@
     ++ hostlist);
 
   mkConfig = {
-    genOverlays,
-    extraModules,
     hostConfig,
     userConfig,
+    overlays ? [],
+    extraModules ? [],
   }: let
     username = userConfig.name;
     hostname = hostConfig.config.system.name;
@@ -56,10 +55,10 @@
     home-manager.lib.homeManagerConfiguration {
       pkgs = import nixpkgs rec {
         system = hostConfig.pkgs.stdenv.hostPlatform.system;
-        overlays = genOverlays system;
+        inherit overlays;
       };
       modules = mkModules {
-        inherit genOverlays username hostname;
+        inherit username hostname;
         extraModules =
           extraModules
           ++ [
@@ -75,8 +74,8 @@
 
   mkConfigs = {
     nixosConfigurations,
-    modules,
-    genOverlays,
+    modules ? [],
+    overlays ? [],
   }: let
     f = acc: hostname: hostConfig: let
       users = nixpkgs.lib.attrsets.filterAttrs (_: v: v.isNormalUser) hostConfig.config.users.users;
@@ -85,7 +84,7 @@
       // nixpkgs.lib.mapAttrs' (user: userConfig: {
         name = "${user}@${hostname}";
         value = mkConfig {
-          inherit hostConfig userConfig genOverlays;
+          inherit hostConfig userConfig overlays;
           extraModules = modules;
         };
       })

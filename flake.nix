@@ -50,7 +50,7 @@
         lib = (import ./user/lib.nix) {inherit nixpkgs home-manager;};
       in
         lib.mkConfigs {
-          genOverlays = system:
+          overlays =
             [
               nur.overlay
               inputs.mynur.overlay
@@ -60,8 +60,8 @@
               (
                 # Add packages from flake inputs to pkgs
                 final: prev: {
-                  toki = inputs.toki.outputs.defaultPackage.${system};
-                  kubectl = inputs.krew2nix.outputs.packages.${system}.kubectl;
+                  toki = inputs.toki.outputs.defaultPackage.${prev.system};
+                  kubectl = inputs.krew2nix.outputs.packages.${prev.system}.kubectl;
                   repos = {
                     talon-community = inputs.talon-community;
                     cursorless-talon = inputs.cursorless-talon;
