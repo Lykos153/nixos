@@ -27,8 +27,7 @@ in
       profiles = {
         home-a = {
           fingerprint = {
-            samsung_curved = samsung_curved;
-            benq = benq;
+            inherit samsung_curved benq;
           };
           config = {
             samsung_curved = {
@@ -49,7 +48,7 @@ in
         };
         home-a-only-samsung = {
           fingerprint = {
-            samsung_curved = samsung_curved;
+            inherit samsung_curved;
           };
           config = {
             samsung_curved = {
@@ -110,10 +109,10 @@ in
         };
         mobile = {
           fingerprint = {
-            eDP-1 = laptop;
+            inherit laptop;
           };
           config = {
-            eDP-1 = {
+            laptop = {
               enable = true;
               mode = "1920x1080";
               position = "0x0";
@@ -123,17 +122,16 @@ in
         };
         cah00 = {
           fingerprint = {
-            DP-2-1 = work00;
-            eDP-1 = laptop;
+            inherit work00 laptop;
           };
           config = {
-            eDP-1 = {
+            laptop = {
               enable = true;
               mode = "1920x1080";
               position = "0x0";
               rate = "60.01";
             };
-            DP-2-1 = {
+            work00 = {
               enable = true;
               primary = true;
               mode = "1920x1080";
@@ -144,17 +142,16 @@ in
         };
         cah01 = {
           fingerprint = {
-            DP-2-2 = work01;
-            eDP-1 = laptop;
+            inherit work01 laptop;
           };
           config = {
-            eDP-1 = {
+            laptop = {
               enable = true;
               mode = "1920x1080";
               position = "2560x595";
               rate = "60.01";
             };
-            DP-2-2 = {
+            work01 = {
               enable = true;
               primary = true;
               mode = "2560x1440";
@@ -165,17 +162,16 @@ in
         };
         cah11 = {
           fingerprint = {
-            DP-1-2 = work11;
-            eDP-1 = laptop;
+            inherit work11 laptop;
           };
           config = {
-            eDP-1 = {
+            laptop = {
               enable = true;
               mode = "1920x1080";
               position = "2560x689";
               rate = "60.01";
             };
-            DP-1-2 = {
+            work11 = {
               enable = true;
               primary = true;
               mode = "2560x1440";
