@@ -21,13 +21,8 @@
       if builtins.pathExists hostpath
       then [hostpath]
       else [];
-    nixpkgsConfigPath = userpath + "/nixpkgs-config.nix";
     pkgs = import nixpkgs rec {
       system = hostConfig.pkgs.stdenv.hostPlatform.system;
-      config =
-        if builtins.pathExists nixpkgsConfigPath
-        then import nixpkgsConfigPath
-        else {};
       overlays = genOverlays system;
     };
   in
