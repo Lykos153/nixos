@@ -25,6 +25,8 @@
     cursorless-talon.flake = false;
     xmonad-contrib.url = "github:xmonad/xmonad-contrib/v0.18.0";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+
+    lancache.url = "github:boffbowsh/nix-lancache";
   };
 
   outputs = {
@@ -43,6 +45,9 @@
             inputs.disko.nixosModules.disko
             inputs.impermanence.nixosModules.impermanence
             inputs.sops-nix.nixosModules.sops
+
+            inputs.lancache.nixosModules.dns
+            inputs.lancache.nixosModules.cache
           ];
           machinedir = ./system/machines;
         };

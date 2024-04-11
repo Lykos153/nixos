@@ -28,5 +28,6 @@
     ./sops.nix
     ./vpn.nix
     ./docker.nix
+    ./lancache.nix
   ];
 }
