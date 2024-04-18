@@ -26,7 +26,7 @@
     })
 
     tdesktop # telegram
-
+    signal-desktop #signal
     # unfree
     zoom-us
     spotify
