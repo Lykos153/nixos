@@ -34,6 +34,7 @@
     pwgen
     jc
     jq
+    jless
     yq
     mr
     lykos153.garden
