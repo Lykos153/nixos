@@ -42,3 +42,7 @@ export def "from env" []: string -> record {
 export def ll [pattern?: string] {
   ls (if $pattern != null {$pattern} else {"."}) | update size {|row| $row.size | into int} |  update modified {|row| $row.modified | format date "%Y-%m-%d %H:%M:%S"}
 }
+
+export def slurp [...args: string] {
+  $args | reduce --fold [] {|arg,acc| $acc ++ (glob $arg | each {|file| open $file}) }
+}
