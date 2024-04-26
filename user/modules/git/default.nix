@@ -40,7 +40,7 @@
     };
   };
 
-  programs.gitui.enable = true;
+  programs.lazygit.enable = true;
 
   home.shellAliases = {
     g = "git";
@@ -50,7 +50,7 @@
     gc = "git commit";
     gca = "git commit --amend --no-edit";
     grb = "git rebase";
-    gg = "gitui";
+    gg = "lazygit";
     ga = "git annex";
   };
 
