@@ -27,11 +27,11 @@
       fi
       ${pkgs.autorandr}/bin/autorandr --change --match-edid # TODO: use a service or similar
       # automatically set us layout for YubiKey on startup
-      re='.*(YubiKey).*id=([0-9]+).*slave.*keyboard'
+      re='.*(YubiKey|ZMK).*id=([0-9]+).*slave.*keyboard'
       xinput list | while read line; do [[ "$line" =~ $re ]] && setxkbmap -device "''${BASH_REMATCH[2]}" us; done
 
-      # automatically set us layout for YubiKey when plugged in
-      re='XIDeviceEnabled ([0-9]+) XISlaveKeyboard .*(YubiKey).*'
+      # automatically set us layout for YubiKey and ZMK when plugged in
+      re='XIDeviceEnabled ([0-9]+) XISlaveKeyboard .*(YubiKey|ZMK).*'
       ${pkgs.inputplug}/bin/inputplug -d -c echo | while read event
       do [[ "$event" =~ $re ]] && sleep 1 && setxkbmap -device "''${BASH_REMATCH[1]}" us
       done &
