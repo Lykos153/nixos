@@ -40,7 +40,12 @@
     };
   };
 
-  programs.lazygit.enable = true;
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      git.overrideGpg = true;
+    };
+  };
 
   home.shellAliases = {
     g = "git";
