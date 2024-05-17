@@ -15,16 +15,16 @@
   environment.pathsToLink = ["/libexec"]; # links /libexec from derivations to /run/current-system/sw
   services.xserver.displayManager.startx.enable = true;
 
-  services.xserver = {
+  services.libinput = {
     enable = true;
 
-    libinput = {
-      enable = true;
-
-      touchpad = {
-        naturalScrolling = true;
-      };
+    touchpad = {
+      naturalScrolling = true;
     };
+  };
+
+  services.xserver = {
+    enable = true;
 
     # FIX for X Error of failed request: BadMatch (invalid parameter attributes)
     # when changing the layout via arandr/xrandr

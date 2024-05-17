@@ -1,9 +1,4 @@
 {
-  lib,
-  pkgs,
-  config,
-  ...
-}: {
   programs.atuin = {
     enable = true;
     flags = ["--disable-up-arrow"];
@@ -15,24 +10,6 @@
         "hvs\.[0-9a-f]+" # hashicorp vault tokens
       ];
     };
-  };
-  # fix https://github.com/atuinsh/atuin/pull/1913
-  # can be removed when this fails
-  programs.atuin.enableNushellIntegration = assert pkgs.atuin.version == "18.1.0"; false;
-  programs.nushell = let
-    cfg = config.programs.atuin;
-    flagsStr = lib.escapeShellArgs cfg.flags;
-  in {
-    extraEnv = ''
-      let atuin_cache = "${config.xdg.cacheHome}/atuin"
-      if not ($atuin_cache | path exists) {
-        mkdir $atuin_cache
-      }
-      ${cfg.package}/bin/atuin init nu ${flagsStr} | save --force ${config.xdg.cacheHome}/atuin/init.nu
-    '';
-    extraConfig = ''
-      source ${config.xdg.cacheHome}/atuin/init.nu
-    '';
   };
   programs.zoxide = {
     enable = true;
