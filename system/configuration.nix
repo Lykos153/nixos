@@ -7,11 +7,8 @@
   lib,
   ...
 }: {
-  imports =
-    (map (n: "${./modules}/${n}") (builtins.attrNames (builtins.readDir ./modules)))
-    ++ [
-      ../lib/common-modules
-    ];
+  imports = [./users];
+  booq.networking.sopsFile = ./secrets.yaml;
 
   nix = {
     package = pkgs.nixVersions.stable;

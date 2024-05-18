@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [./sops.nix];
+  booq.securityKeys.keyfile = ./u2f_keys;
 
   users.users.silvio = {
     uid = 1000;

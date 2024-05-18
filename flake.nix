@@ -53,20 +53,25 @@
         }
       )
     ];
+    homeManagerModules.booq = import ./modules/homeManager;
     userModules = [
+      homeManagerModules.booq
       inputs.sops-nix.homeManagerModule
       inputs.stylix.homeManagerModules.stylix
     ];
   in
     rec {
+      nixosModules.booq = import ./modules/nixos;
       nixosConfigurations = syslib.mkHosts {
         modules = [
+          nixosModules.booq
           inputs.disko.nixosModules.disko
           inputs.impermanence.nixosModules.impermanence
           inputs.sops-nix.nixosModules.sops
         ];
         machinedir = ./system/machines;
       };
+      inherit homeManagerModules;
       homeConfigurations = userlib.mkConfigs {
         overlays = userOverlays;
         modules = userModules;

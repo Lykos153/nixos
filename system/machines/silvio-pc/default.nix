@@ -5,6 +5,9 @@
   modulesPath,
   ...
 }: {
+  booq.networking.enable = true;
+  booq.securityKeys.enable = true;
+
   # booq.audio = "pipewire";
   booq.gaming.enable = true;
   booq.impermanence.enable = true;

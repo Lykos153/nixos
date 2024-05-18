@@ -8,6 +8,6 @@
     type = lib.types.bool;
   };
   config = lib.mkIf config.booq.sops.enable {
-    sops.defaultSopsFile = ./.secrets.yaml;
+    sops.defaultSopsFile = ./secrets.yaml;
   };
 }
