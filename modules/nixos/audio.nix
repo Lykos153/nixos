@@ -1,15 +1,19 @@
 {
-  config,
   lib,
-  pkgs,
+  config,
   ...
-}: {
-  options.booq.audio = lib.mkOption {
-    default = "pulseaudio";
-    type = lib.types.str;
+}: let
+  cfg = config.booq.audio;
+in {
+  options.booq.audio = {
+    enable = lib.mkEnableOption "audio";
+    backend = lib.mkOption {
+      default = "pulseaudio";
+      type = lib.types.str;
+    };
   };
   config =
-    lib.mkIf (config.booq.audio == "pipewire") {
+    lib.mkIf (cfg.enable && cfg.backend == "pipewire") {
       security.rtkit.enable = true;
       services.pipewire = {
         enable = true;
@@ -35,7 +39,7 @@
       };
       xdg.portal.wlr.enable = true;
     }
-    // lib.mkIf (config.booq.audio == "pulseaudio") {
+    // lib.mkIf (cfg.enable && cfg.backend == "pulseaudio") {
       sound.enable = true;
       hardware.pulseaudio.enable = true;
     };
