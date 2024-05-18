@@ -89,8 +89,9 @@
     // inputs.flake-utils.lib.eachDefaultSystem
     (system: let
       pkgs = nixpkgs.legacyPackages.${system};
-      pre-commit-sops-updatekeys = pkgs.callPackage ./pkgs/pre-commit-sops-updatekeys.nix {};
+      pre-commit-sops-updatekeys = pkgs.callPackage ./pkgs/pre-commit-sops-updatekeys {};
     in {
+      packages = {inherit pre-commit-sops-updatekeys;};
       formatter = pkgs.alejandra;
       devShells.default = pkgs.mkShell {
         buildInputs = with pkgs; [
