@@ -1,16 +1,32 @@
 {
-  services.udev.extraRules = ''
-    KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
-  '';
-  users.users.silvio = {
-    extraGroups = [
-      "input"
-    ];
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.booq.dotool;
+in {
+  options.booq.dotool = {
+    enable = lib.mkEnableOption "dotool";
+    users = lib.mkOption {
+      default = [];
+      type = lib.types.listOf lib.types.str;
+    };
   };
-  #TODO: dont repeat
-  users.users.sa = {
-    extraGroups = [
-      "input"
-    ];
-  };
+  config = let
+    mkUserConfig = user: {
+      ${user}.extraGroups = [
+        "input"
+      ];
+    };
+  in
+    lib.mkIf cfg.enable {
+      services.udev.extraRules = ''
+        KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
+      '';
+      users.users = (
+        lib.mkMerge (
+          builtins.foldl' (acc: user: acc ++ [(mkUserConfig user)]) [] cfg.users
+        )
+      );
+    };
 }

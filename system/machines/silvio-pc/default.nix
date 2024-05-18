@@ -6,6 +6,10 @@
   ...
 }: {
   booq.networking.enable = true;
+  booq.dotool = {
+    enable = true;
+    users = ["silvio" "sa"];
+  };
   booq.securityKeys.enable = true;
 
   # booq.audio = "pipewire";
