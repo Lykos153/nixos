@@ -33,8 +33,6 @@
     nur,
     ...
   } @ inputs: let
-    syslib = (import ./system/lib.nix) {inherit nixpkgs;};
-    userlib = (import ./user/lib.nix) {inherit nixpkgs home-manager;};
     userOverlays = [
       nur.overlay
       inputs.mynur.overlay
@@ -58,24 +56,30 @@
       homeManagerModules.booq
       inputs.sops-nix.homeManagerModule
       inputs.stylix.homeManagerModules.stylix
+      ./user/home.nix
     ];
   in
     rec {
+      lib = import ./lib;
       nixosModules.booq = import ./modules/nixos;
-      nixosConfigurations = syslib.mkHosts {
+      nixosConfigurations = lib.nixos.mkHosts {
+        inherit (inputs) nixpkgs;
         modules = [
           nixosModules.booq
           inputs.disko.nixosModules.disko
           inputs.impermanence.nixosModules.impermanence
           inputs.sops-nix.nixosModules.sops
+          ./system/configuration.nix
         ];
         machinedir = ./system/machines;
       };
       inherit homeManagerModules;
-      homeConfigurations = userlib.mkConfigs {
+      homeConfigurations = lib.homeManager.mkConfigs {
+        inherit nixosConfigurations;
+        inherit (inputs) nixpkgs home-manager;
         overlays = userOverlays;
         modules = userModules;
-        nixosConfigurations = nixosConfigurations;
+        userdir = ./user/users;
       };
       templates = {
         # TODO: Check what https://github.com/jonringer/nix-template does

@@ -1,37 +1,30 @@
-{
-  home-manager,
-  nixpkgs,
-}: rec {
+rec {
   mkModules = {
+    nixpkgs,
     username,
     hostname,
-    extraModules ? {},
+    userdir,
+    modules ? [],
   }: let
-    userpath = ./users + "/${username}";
+    userpath = "${userdir}/${username}";
     hostpath = userpath + "/${hostname}";
 
-    userlist =
+    usermodules =
       if builtins.pathExists userpath
       then [userpath]
       else [];
-    hostlist =
+    hostmodules =
       if builtins.pathExists hostpath
       then [hostpath]
       else [];
   in ([
-      ./home.nix
       {
-        home = {
-          stateVersion = "22.05";
-        };
         booq = {
           nix-index = {
             enable = true;
             nixpkgs-path = "${nixpkgs}";
           };
         };
-      }
-      {
         home.sessionVariables.NIX_PATH = "nixpkgs=${nixpkgs}";
         # workaround because the above doesnt seem to work in xorg https://github.com/nix-community/home-manager/issues/1011#issuecomment-1365065753
         programs.zsh.initExtra = ''
@@ -39,15 +32,18 @@
         '';
       }
     ]
-    ++ extraModules
-    ++ userlist
-    ++ hostlist);
+    ++ modules
+    ++ usermodules
+    ++ hostmodules);
 
   mkConfig = {
+    nixpkgs,
+    home-manager,
     hostConfig,
     userConfig,
+    userdir,
     overlays ? [],
-    extraModules ? [],
+    modules ? [],
   }: let
     username = userConfig.name;
     hostname = hostConfig.config.system.name;
@@ -58,9 +54,9 @@
         inherit overlays;
       };
       modules = mkModules {
-        inherit username hostname;
-        extraModules =
-          extraModules
+        inherit nixpkgs username hostname userdir;
+        modules =
+          modules
           ++ [
             {
               home = {
@@ -73,7 +69,10 @@
     };
 
   mkConfigs = {
+    nixpkgs,
+    home-manager,
     nixosConfigurations,
+    userdir,
     modules ? [],
     overlays ? [],
   }: let
@@ -84,8 +83,7 @@
       // nixpkgs.lib.mapAttrs' (user: userConfig: {
         name = "${user}@${hostname}";
         value = mkConfig {
-          inherit hostConfig userConfig overlays;
-          extraModules = modules;
+          inherit nixpkgs home-manager hostConfig userConfig userdir modules overlays;
         };
       })
       users;

@@ -1,5 +1,6 @@
-{nixpkgs}: rec {
+rec {
   mkHost = {
+    nixpkgs,
     hostname,
     modules,
     machinedir,
@@ -8,7 +9,6 @@
       modules =
         modules
         ++ [
-          ./configuration.nix
           (machinedir + "/${hostname}")
           {
             networking.hostName = hostname;
@@ -18,12 +18,13 @@
         ];
     };
   mkHosts = {
+    nixpkgs,
     machinedir,
     modules,
   }:
     builtins.mapAttrs (name: _:
       mkHost {
         hostname = name;
-        inherit machinedir modules;
+        inherit nixpkgs machinedir modules;
       }) (builtins.readDir machinedir);
 }

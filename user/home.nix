@@ -56,4 +56,8 @@
     lykos153.cb
     feh
   ];
+
+  home = {
+    stateVersion = "22.05";
+  };
 }
