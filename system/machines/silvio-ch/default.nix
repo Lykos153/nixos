@@ -5,7 +5,7 @@
   modulesPath,
   ...
 }: {
-  booq.audio = "pipewire";
+  # booq.audio = "pipewire";
   booq.virtualisation = {
     enable = true;
     libvirtUsers = ["silvio" "sa"];
