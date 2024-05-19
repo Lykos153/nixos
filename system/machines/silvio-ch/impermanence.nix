@@ -12,12 +12,44 @@
     neededForBoot = true;
   };
   programs.fuse.userAllowOther = true;
-  environment.persistence."${config.booq.impermanence.persistRoot}".directories = builtins.map (user: {
-    directory = "/home/${user}";
-    inherit user;
-    group = "users";
-    mode = "u=rwx,g=,o=";
-  }) ["sa"];
+  environment.persistence."${config.booq.impermanence.persistRoot}" = {
+    directories = builtins.map (user: {
+      directory = "/home/${user}";
+      inherit user;
+      group = "users";
+      mode = "u=rwx,g=,o=";
+    }) ["mine"];
+
+    users.sa = {
+      directories = [
+        ".cache"
+        "nixos"
+        ".timewarrior"
+        ".talon"
+        ".local/share/password-store"
+        "opsi-prepare"
+        "opsi-data"
+        "ghq/github.com/rook"
+        "devcluster"
+        "ghq/github.com/talonhub/community"
+        {
+          directory = ".gnupg";
+          mode = "0700";
+        }
+        # { directory = ".ssh"; mode = "0700"; }
+        # { directory = ".nixops"; mode = "0700"; }
+        # { directory = ".local/share/keyrings"; mode = "0700"; }
+        ".local/share/direnv"
+        ".local/share/atuin"
+        ".thunderbird"
+        ".mozilla"
+        ".config/Rocket.Chat"
+      ];
+      files = [
+        ".ssh/known_hosts"
+      ];
+    };
+  };
   boot.initrd.systemd.services.rollback = {
     description = "Rollback bcachefs home subvolume to a pristine state";
     wantedBy = [
