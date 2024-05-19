@@ -5,6 +5,7 @@
   pkgs,
   ...
 }: {
+  booq.full.enable = true;
   home.keyboard.layout = "de";
 
   programs.home-manager.enable = true;
