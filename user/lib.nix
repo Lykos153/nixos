@@ -2,14 +2,11 @@
   home-manager,
   nixpkgs,
 }: rec {
-  mkConfig = {
-    genOverlays,
-    extraModules,
-    hostConfig,
-    userConfig,
+  mkModules = {
+    username,
+    hostname,
+    extraModules ? {},
   }: let
-    username = userConfig.name;
-    hostname = hostConfig.config.system.name;
     userpath = ./users + "/${username}";
     hostpath = userpath + "/${hostname}";
 
@@ -21,50 +18,64 @@
       if builtins.pathExists hostpath
       then [hostpath]
       else [];
-    nixpkgsConfigPath = userpath + "/nixpkgs-config.nix";
-    pkgs = import nixpkgs rec {
-      system = hostConfig.pkgs.stdenv.hostPlatform.system;
-      config =
-        if builtins.pathExists nixpkgsConfigPath
-        then import nixpkgsConfigPath
-        else {};
-      overlays = genOverlays system;
-    };
+  in ([
+      ./home.nix
+      {
+        home = {
+          stateVersion = "22.05";
+        };
+        booq = {
+          nix-index = {
+            enable = true;
+            nixpkgs-path = "${nixpkgs}";
+          };
+        };
+      }
+      {
+        home.sessionVariables.NIX_PATH = "nixpkgs=${nixpkgs}";
+        # workaround because the above doesnt seem to work in xorg https://github.com/nix-community/home-manager/issues/1011#issuecomment-1365065753
+        programs.zsh.initExtra = ''
+          export NIX_PATH="nixpkgs=${nixpkgs}"
+        '';
+      }
+    ]
+    ++ extraModules
+    ++ userlist
+    ++ hostlist);
+
+  mkConfig = {
+    hostConfig,
+    userConfig,
+    overlays ? [],
+    extraModules ? [],
+  }: let
+    username = userConfig.name;
+    hostname = hostConfig.config.system.name;
   in
     home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules =
-        [
-          ./home.nix
-          {
-            home = {
-              homeDirectory = userConfig.home;
-              username = username;
-              stateVersion = "22.05";
-            };
-            booq = {
-              nix-index = {
-                enable = true;
-                nixpkgs-path = "${nixpkgs}";
+      pkgs = import nixpkgs rec {
+        system = hostConfig.pkgs.stdenv.hostPlatform.system;
+        inherit overlays;
+      };
+      modules = mkModules {
+        inherit username hostname;
+        extraModules =
+          extraModules
+          ++ [
+            {
+              home = {
+                homeDirectory = userConfig.home;
+                username = username;
               };
-            };
-          }
-          {
-            home.sessionVariables.NIX_PATH = "nixpkgs=${nixpkgs}";
-            # workaround because the above doesnt seem to work in xorg https://github.com/nix-community/home-manager/issues/1011#issuecomment-1365065753
-            programs.zsh.initExtra = ''
-              export NIX_PATH="nixpkgs=${nixpkgs}"
-            '';
-          }
-        ]
-        ++ extraModules
-        ++ userlist
-        ++ hostlist;
+            }
+          ];
+      };
     };
+
   mkConfigs = {
     nixosConfigurations,
-    modules,
-    genOverlays,
+    modules ? [],
+    overlays ? [],
   }: let
     f = acc: hostname: hostConfig: let
       users = nixpkgs.lib.attrsets.filterAttrs (_: v: v.isNormalUser) hostConfig.config.users.users;
@@ -73,7 +84,7 @@
       // nixpkgs.lib.mapAttrs' (user: userConfig: {
         name = "${user}@${hostname}";
         value = mkConfig {
-          inherit hostConfig userConfig genOverlays;
+          inherit hostConfig userConfig overlays;
           extraModules = modules;
         };
       })

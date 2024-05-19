@@ -5,8 +5,7 @@
   modulesPath,
   ...
 }: {
-  booq.audio = "pipewire";
-  booq.impermanence.enable = true;
+  # booq.audio = "pipewire";
   booq.virtualisation = {
     enable = true;
     libvirtUsers = ["silvio" "sa"];
@@ -18,5 +17,6 @@
     ./sops.nix
     ./disko.nix
     ./docker.nix
+    ./impermanence.nix
   ];
 }

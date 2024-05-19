@@ -34,6 +34,7 @@
     # dhcpConfig.UseDNS = false;
     dhcpConfig.RouteMetric = 1025;
   };
+  systemd.network.wait-online.anyInterface = true;
 
   sops.secrets = lib.mkIf config.booq.sops.enable {
     "wpa_supplicant.conf" = {

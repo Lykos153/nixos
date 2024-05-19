@@ -6,6 +6,8 @@
   programs.git.userEmail = "leila@booq.org";
   programs.git.userName = "Leila Höll";
 
+  nixpkgs.allowUnfree = true;
+
   home.packages = with pkgs; [
     xboxdrv
 

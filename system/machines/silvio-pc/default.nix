@@ -17,7 +17,6 @@
     freeSwapThreshold = 5;
     enableNotifications = true;
   };
-  boot.supportedFilesystems = ["bcachefs"];
   imports = [
     ./hardware-configuration.nix
     ./hdd.nix
