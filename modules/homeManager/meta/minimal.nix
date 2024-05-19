@@ -10,7 +10,7 @@ in {
       Enable the minimal set of modules needed in most cases.
     '';
   };
-  config.booq =
-    lib.mkIf cfg.enable {
-    };
+  config.booq = lib.mkIf cfg.enable {
+    git.enable = true;
+  };
 }
