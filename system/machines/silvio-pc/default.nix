@@ -5,17 +5,15 @@
   modulesPath,
   ...
 }: {
-  booq.networking.enable = true;
-  booq.dotool = {
-    enable = true;
-    users = ["silvio" "sa"];
+  booq = {
+    full.enable = true;
+    dotool.users = ["silvio" "sa"];
+    securityKeys.enable = true;
+    gaming.enable = true;
+    impermanence.enable = true;
+    # audio.backend = "pipewire";
   };
-  booq.securityKeys.enable = true;
 
-  booq.audio.enable = true;
-  # booq.audio.backend = "pipewire";
-  booq.gaming.enable = true;
-  booq.impermanence.enable = true;
   # TODO: luks+yubikey+secureboot https://www.reddit.com/r/NixOS/comments/xrgszw/comment/iqf1gps/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
   zramSwap.enable = true;
   # TODO evaluate https://github.com/vrmiguel/bustd instead

@@ -22,7 +22,7 @@
   ];
 in
   lib.mkIf config.booq.sops.enable (
-    builtins.foldl' lib.recursiveUpdate {} (
+    lib.mkMerge (
       builtins.foldl' (acc: user: acc ++ [(genUserPasswd user)]) [] users
     )
   )

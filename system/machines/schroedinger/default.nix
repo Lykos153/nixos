@@ -5,6 +5,7 @@
   modulesPath,
   ...
 }: {
+  booq.full.enable = true;
   booq.sops.enable = false;
 
   imports = [

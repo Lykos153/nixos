@@ -77,7 +77,11 @@
     tcpdump
 
     killall
+
+    footswitch
   ];
+
+  services.udev.packages = [pkgs.footswitch];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

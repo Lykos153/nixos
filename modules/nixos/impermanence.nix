@@ -5,10 +5,7 @@
 }: let
   cfg = config.booq.impermanence;
 in {
-  options.booq.impermanence.enable = lib.mkOption {
-    default = false;
-    type = lib.types.bool;
-  };
+  options.booq.impermanence.enable = lib.mkEnableOption "impermanence";
   options.booq.impermanence.persistRoot = lib.mkOption {
     default = "/persist";
     type = lib.types.str;

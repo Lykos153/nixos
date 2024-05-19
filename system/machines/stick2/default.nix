@@ -10,4 +10,5 @@
     ./bootloader.nix
     ./sops.nix
   ];
+  booq.full.enable = true;
 }

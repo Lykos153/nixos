@@ -13,6 +13,7 @@
     ./cinnamon.nix
     ./amd.nix
   ];
+  booq.full.enable = true;
   booq.sops.enable = false;
   booq.gaming.enable = true;
 }
