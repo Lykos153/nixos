@@ -33,49 +33,48 @@
     home-manager,
     nur,
     ...
-  } @ inputs:
+  } @ inputs: let
+    syslib = (import ./system/lib.nix) {inherit nixpkgs;};
+    userlib = (import ./user/lib.nix) {inherit nixpkgs home-manager;};
+    userOverlays =
+      [
+        nur.overlay
+        inputs.mynur.overlay
+        inputs.talon-nix.overlays.default
+        inputs.rofi-mum.overlays.default
+        inputs.nix-vscode-extensions.overlays.default
+        (
+          # Add packages from flake inputs to pkgs
+          final: prev: {
+            toki = inputs.toki.outputs.defaultPackage.${prev.system};
+            kubectl = inputs.krew2nix.outputs.packages.${prev.system}.kubectl;
+            repos = {
+              talon-community = inputs.talon-community;
+              cursorless-talon = inputs.cursorless-talon;
+            };
+          }
+        )
+      ]
+      ++ inputs.xmonad-contrib.overlays;
+    userModules = [
+      inputs.sops-nix.homeManagerModule
+      inputs.stylix.homeManagerModules.stylix
+    ];
+  in
     rec {
-      nixosConfigurations = let
-        lib = (import ./system/lib.nix) {inherit nixpkgs;};
-      in
-        lib.mkHosts {
-          modules = [
-            inputs.disko.nixosModules.disko
-            inputs.impermanence.nixosModules.impermanence
-            inputs.sops-nix.nixosModules.sops
-          ];
-          machinedir = ./system/machines;
-        };
-      homeConfigurations = let
-        lib = (import ./user/lib.nix) {inherit nixpkgs home-manager;};
-      in
-        lib.mkConfigs {
-          overlays =
-            [
-              nur.overlay
-              inputs.mynur.overlay
-              inputs.talon-nix.overlays.default
-              inputs.rofi-mum.overlays.default
-              inputs.nix-vscode-extensions.overlays.default
-              (
-                # Add packages from flake inputs to pkgs
-                final: prev: {
-                  toki = inputs.toki.outputs.defaultPackage.${prev.system};
-                  kubectl = inputs.krew2nix.outputs.packages.${prev.system}.kubectl;
-                  repos = {
-                    talon-community = inputs.talon-community;
-                    cursorless-talon = inputs.cursorless-talon;
-                  };
-                }
-              )
-            ]
-            ++ inputs.xmonad-contrib.overlays;
-          modules = [
-            inputs.sops-nix.homeManagerModule
-            inputs.stylix.homeManagerModules.stylix
-          ];
-          nixosConfigurations = nixosConfigurations;
-        };
+      nixosConfigurations = syslib.mkHosts {
+        modules = [
+          inputs.disko.nixosModules.disko
+          inputs.impermanence.nixosModules.impermanence
+          inputs.sops-nix.nixosModules.sops
+        ];
+        machinedir = ./system/machines;
+      };
+      homeConfigurations = userlib.mkConfigs {
+        overlays = userOverlays;
+        modules = userModules;
+        nixosConfigurations = nixosConfigurations;
+      };
       templates = {
         # TODO: Check what https://github.com/jonringer/nix-template does
         pythonenv = {
