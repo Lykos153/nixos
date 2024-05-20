@@ -1,24 +1,34 @@
-{config, ...}: {
+{
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.booq.nushell;
+in {
   imports = [
     ./completions.nix
   ];
-
-  programs.nushell = {
-    enable = true;
-    shellAliases =
-      config.home.shellAliases
-      // {
-        o = "open";
-        l = "ls -l";
-        la = "ls -a";
-      };
-    # configFile = ./config.nu;
-    envFile.text = "";
-    extraConfig = ''
-      $env.config = ($env | default {} config).config
-      $env.config.show_banner = false
-      source ${./keybindings.nu}
-      use ${./functions.nu} *
-    '';
+  options.booq.nushell = {
+    enable = lib.mkEnableOption "nushell";
+  };
+  config = lib.mkIf cfg.enable {
+    programs.nushell = {
+      enable = true;
+      shellAliases =
+        config.home.shellAliases
+        // {
+          o = "open";
+          l = "ls -l";
+          la = "ls -a";
+        };
+      # configFile = ./config.nu;
+      envFile.text = "";
+      extraConfig = ''
+        $env.config = ($env | default {} config).config
+        $env.config.show_banner = false
+        source ${./keybindings.nu}
+        use ${./functions.nu} *
+      '';
+    };
   };
 }

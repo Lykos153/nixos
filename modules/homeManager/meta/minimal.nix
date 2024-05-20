@@ -15,5 +15,6 @@ in {
     gpg.enable = true;
     helix.enable = true;
     mynix.enable = true;
+    nushell.enable = true;
   };
 }
