@@ -9,6 +9,7 @@ in {
     enable = lib.mkEnableOption "firefox";
   };
   config = lib.mkIf cfg.enable {
+    booq.gui.defaultApps.browser = "firefox.desktop";
     programs.firefox = {
       enable = true;
       profiles = {
