@@ -87,6 +87,8 @@ in {
       vlc
       system-config-printer
       wireshark
+      lykos153.cb
+      feh
     ];
 
     gtk = {
