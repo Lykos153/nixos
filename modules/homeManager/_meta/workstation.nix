@@ -21,5 +21,7 @@ in {
     ssh.enable = true;
     taskwarrior.enable = true;
     zellij.enable = true;
+
+    firefox.enable = true;
   };
 }
