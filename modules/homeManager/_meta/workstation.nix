@@ -17,5 +17,6 @@ in {
     comma.enable = true;
     fonts.enable = true;
     pass.enable = true;
+    ranger.enable = true;
   };
 }
