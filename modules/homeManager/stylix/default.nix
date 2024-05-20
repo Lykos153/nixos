@@ -1,8 +1,11 @@
 {
   pkgs,
   lib,
+  config,
   ...
-}: {
-  stylix.image = lib.mkDefault ./black.png;
-  stylix.autoEnable = lib.mkDefault false;
-}
+}:
+with builtins;
+  lib.mkIf (elem "stylix" (attrNames config)) {
+    stylix.image = config.booq.lib.mkMyDefault ./black.png;
+    stylix.autoEnable = config.booq.lib.mkMyDefault false;
+  }
