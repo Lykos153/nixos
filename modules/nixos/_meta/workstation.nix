@@ -15,5 +15,6 @@ in {
     audio.enable = true;
     gui.enable = true;
     printing.enable = true;
+    keyd.enable = true;
   };
 }
