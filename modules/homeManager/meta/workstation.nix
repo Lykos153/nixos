@@ -13,5 +13,6 @@ in {
   config.booq = lib.mkIf cfg.enable {
     minimal.enable = true;
     helix.enableLanguageServers = true;
+    timewarrior.enable = true;
   };
 }
