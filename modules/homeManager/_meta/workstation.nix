@@ -18,5 +18,6 @@ in {
     fonts.enable = true;
     pass.enable = true;
     ranger.enable = true;
+    ssh.enable = true;
   };
 }
