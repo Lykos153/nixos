@@ -16,5 +16,6 @@ in {
     timewarrior.enable = true;
     comma.enable = true;
     fonts.enable = true;
+    pass.enable = true;
   };
 }
