@@ -15,6 +15,7 @@ in {
     ./functions
   ];
   config = lib.mkIf cfg.enable {
+    booq.shell.enable = true;
     programs.zsh = {
       enable = true;
       autocd = true;

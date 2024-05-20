@@ -12,6 +12,7 @@ in {
     enable = lib.mkEnableOption "nushell";
   };
   config = lib.mkIf cfg.enable {
+    booq.shell.enable = true;
     programs.nushell = {
       enable = true;
       shellAliases =
