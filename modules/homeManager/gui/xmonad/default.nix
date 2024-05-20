@@ -44,7 +44,7 @@
   };
 in {
   options.booq.gui.xmonad.enable = lib.mkEnableOption "xmonad";
-  config = lib.mkIf (config.booq.gui.enable && config.booq.gui.xmonad.enable) {
+  config = lib.mkIf config.booq.gui.xmonad.enable {
     booq.gui.xorg.enable = true;
     xsession.windowManager.xmonad = {
       enable = true;

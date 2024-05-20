@@ -3,7 +3,7 @@
   lib,
   ...
 }:
-lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
+lib.mkIf config.booq.gui.sway.enable {
   services.kanshi = {
     enable = true;
     profiles = {

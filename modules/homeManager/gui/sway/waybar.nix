@@ -6,7 +6,7 @@
   pkgs,
   ...
 }:
-lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
+lib.mkIf config.booq.gui.sway.enable {
   home.packages = [(pkgs.nerdfonts.override {fonts = ["Iosevka"];})];
   # home-manager’s waybar module performs additional checks that are overly strict
   xdg.configFile."waybar/config".onChange = ''

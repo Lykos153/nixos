@@ -6,7 +6,8 @@
   ...
 }: {
   options.booq.gui.xorg.enable = lib.mkEnableOption "xorg";
-  config = lib.mkIf (config.booq.gui.enable && config.booq.gui.xorg.enable) {
+  config = lib.mkIf config.booq.gui.xorg.enable {
+    booq.gui.enable = true;
     xsession.enable = true;
 
     home.packages = with pkgs; [

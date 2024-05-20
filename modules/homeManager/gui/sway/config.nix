@@ -10,7 +10,7 @@
   lockcmd = "${pkgs.swaylock}/bin/swaylock -f -c000000";
   workspace_chat = "Chat";
 in
-  lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
+  lib.mkIf config.booq.gui.sway.enable {
     wayland.windowManager.sway = {
       enable = true;
       wrapperFeatures.gtk = true;

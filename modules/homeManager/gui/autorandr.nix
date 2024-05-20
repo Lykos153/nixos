@@ -21,7 +21,7 @@
     [0.0 0.0 1.0]
   ];
 in
-  lib.mkIf (config.booq.gui.enable && config.booq.gui.xorg.enable) {
+  lib.mkIf config.booq.gui.xorg.enable {
     programs.autorandr = {
       enable = true;
       profiles = {
