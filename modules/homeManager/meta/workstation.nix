@@ -14,5 +14,6 @@ in {
     minimal.enable = true;
     helix.enableLanguageServers = true;
     timewarrior.enable = true;
+    comma.enable = true;
   };
 }
