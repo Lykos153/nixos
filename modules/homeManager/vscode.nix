@@ -10,6 +10,7 @@
       package = pkgs.vscodium;
       userSettings = {
         "[nix]"."editor.tabSize" = 2;
+        "alejandra.program" = "${pkgs.alejandra}/bin/alejandra";
         "files.insertFinalNewline" = true;
         "editor.acceptSuggestionOnEnter" = "off";
         "editor.fontFamily" = "'FuraCode Mono Nerd Font', 'monospace', monospace";
@@ -43,6 +44,7 @@
         vscode-extensions.james-yu.latex-workshop
         vscode-extensions.ms-ceintl.vscode-language-pack-de
         vscode-extensions.redhat.vscode-yaml
+        vscode-extensions.kamadorueda.alejandra
         open-vsx.codeium.codeium
         open-vsx.ms-python.black-formatter
         open-vsx.zardoy.fix-all-json
