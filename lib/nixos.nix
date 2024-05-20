@@ -1,13 +1,22 @@
-rec {
+let
+  commonName = "_common";
+in rec {
   mkHost = {
     nixpkgs,
     hostname,
     modules,
     machinedir,
-  }:
+  }: let
+    commonpath = machinedir + "/${commonName}";
+    commonmodules =
+      if builtins.pathExists commonpath
+      then [commonpath]
+      else [];
+  in
     nixpkgs.lib.nixosSystem {
       modules =
         modules
+        ++ commonmodules
         ++ [
           (machinedir + "/${hostname}")
           {
@@ -26,5 +35,5 @@ rec {
       mkHost {
         hostname = name;
         inherit nixpkgs machinedir modules;
-      }) (builtins.readDir machinedir);
+      }) (nixpkgs.lib.filterAttrs (name: type: name != commonName && type == "directory") (builtins.readDir machinedir));
 }

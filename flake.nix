@@ -56,7 +56,6 @@
       homeManagerModules.booq
       inputs.sops-nix.homeManagerModule
       inputs.stylix.homeManagerModules.stylix
-      ./user/home.nix
     ];
   in
     rec {
@@ -69,9 +68,8 @@
           inputs.disko.nixosModules.disko
           inputs.impermanence.nixosModules.impermanence
           inputs.sops-nix.nixosModules.sops
-          ./system/configuration.nix
         ];
-        machinedir = ./system/machines;
+        machinedir = ./machines;
       };
       inherit homeManagerModules;
       homeConfigurations = lib.homeManager.mkConfigs {
@@ -79,7 +77,7 @@
         inherit (inputs) nixpkgs home-manager;
         overlays = userOverlays;
         modules = userModules;
-        userdir = ./user/users;
+        userdir = ./users;
       };
       templates = {
         # TODO: Check what https://github.com/jonringer/nix-template does

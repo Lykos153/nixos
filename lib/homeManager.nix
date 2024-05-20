@@ -1,4 +1,6 @@
-rec {
+let
+  commonName = "_common";
+in rec {
   mkModules = {
     nixpkgs,
     username,
@@ -7,7 +9,7 @@ rec {
     modules ? [],
   }: let
     userpath = "${userdir}/${username}";
-    hostpath = userpath + "/${hostname}";
+    hostpath = "${userpath}/${hostname}";
 
     usermodules =
       if builtins.pathExists userpath
@@ -16,6 +18,11 @@ rec {
     hostmodules =
       if builtins.pathExists hostpath
       then [hostpath]
+      else [];
+    commonpath = "${userdir}/${commonName}";
+    commonmodules =
+      if builtins.pathExists commonpath
+      then [commonpath]
       else [];
   in ([
       {
@@ -34,7 +41,8 @@ rec {
     ]
     ++ modules
     ++ usermodules
-    ++ hostmodules);
+    ++ hostmodules
+    ++ commonmodules);
 
   mkConfig = {
     nixpkgs,
