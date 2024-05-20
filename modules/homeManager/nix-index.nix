@@ -7,7 +7,7 @@
   options.booq.nix-index.enable = lib.mkEnableOption "nix-index";
   options.booq.nix-index.nixpkgs-path = lib.mkOption {
     default = null;
-    type = lib.types.str;
+    type = lib.types.path;
   };
   config = lib.mkIf config.booq.nix-index.enable {
     home.packages = [pkgs.nix-index];
