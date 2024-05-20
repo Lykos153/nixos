@@ -13,5 +13,6 @@ in {
   config.booq = lib.mkIf cfg.enable {
     workstation.enable = true;
     k8sAdmin.enable = true;
+    podman.enable = true;
   };
 }
