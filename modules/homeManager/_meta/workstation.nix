@@ -20,5 +20,6 @@ in {
     ranger.enable = true;
     ssh.enable = true;
     taskwarrior.enable = true;
+    zellij.enable = true;
   };
 }
