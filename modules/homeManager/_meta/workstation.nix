@@ -23,5 +23,6 @@ in {
     zellij.enable = true;
 
     firefox.enable = true;
+    thunderbird.enable = true;
   };
 }
