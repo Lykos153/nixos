@@ -6,10 +6,7 @@
 }: let
   cfg = config.booq.talon;
 in {
-  options.booq.talon.enable = lib.mkOption {
-    default = false;
-    type = lib.types.bool;
-  };
+  options.booq.talon.enable = lib.mkEnableOption "talon";
   config = lib.mkIf cfg.enable {
     booq.lib.allowUnfreePackages = [
       "talon"

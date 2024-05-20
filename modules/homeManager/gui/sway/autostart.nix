@@ -5,7 +5,7 @@
   pkgs,
   ...
 }:
-lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
+lib.mkIf config.booq.gui.sway.enable {
   # TODO: a more specific solution to the problem that apps from services
   #       won't see eg. xdg-open. Idea: function that creates systemd user
   #       unit and includes necessary PATHs

@@ -41,7 +41,7 @@
       scroll-down = ${pulseaudio-control} --node-type input --volume-max 130 down
   '';
 in
-  lib.mkIf (config.booq.gui.enable && config.booq.gui.xorg.enable) {
+  lib.mkIf config.booq.gui.xorg.enable {
     services.polybar = {
       enable = false;
       package = pkgs.polybar.override {

@@ -4,7 +4,7 @@
   ...
 }:
 #TODO: If pipewire
-lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
+lib.mkIf config.booq.gui.sway.enable {
   # screen recording/sharing with pipewire
   # portal is installed in system configuration
   xdg.configFile."xdg-desktop-portal-wlr/config".text = lib.generators.toINI {} {
