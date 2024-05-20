@@ -3,41 +3,12 @@
   lib,
   pkgs,
   ...
-}: let
-  okular-x11 = pkgs.symlinkJoin {
-    name = "okular";
-    paths = [pkgs.okular];
-    buildInputs = [pkgs.makeWrapper];
-    # force okular to use xwayland, because of https://github.com/swaywm/sway/issues/4973
-    postBuild = ''
-      wrapProgram $out/bin/okular \
-        --set QT_QPA_PLATFORM xcb
-    '';
-  };
-in {
+}: {
   options.booq.gui.enable = lib.mkEnableOption "gui";
   config = lib.mkIf config.booq.gui.enable {
     programs = {
       chromium.enable = true;
     };
-
-    home.packages = with pkgs; [
-      termite
-      gajim
-      thunderbird
-      element-desktop
-      fractal
-      pavucontrol
-      libreoffice
-      nomacs
-      okular-x11
-      xfce.thunar
-      vlc
-      system-config-printer
-      wireshark
-      lykos153.cb
-      feh
-    ];
 
     gtk = {
       enable = true;
