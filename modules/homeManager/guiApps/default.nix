@@ -36,5 +36,9 @@ with builtins; {
         lykos153.cb
         feh
       ];
+      xdg.mimeApps.defaultApplications = {
+        "application/pdf" = "okularApplication_pdf.desktop";
+        "inode/directory" = "thunar.desktop";
+      };
     };
 }
