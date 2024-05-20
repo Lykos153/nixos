@@ -3,16 +3,15 @@
   config,
   ...
 }: let
-  cfg = config.booq.full;
+  cfg = config.booq.devops;
 in {
-  options.booq.full = {
+  options.booq.devops = {
     enable = lib.mkEnableOption ''
-      Enable all modules.
+      Enable all modules necessary on devopss.
     '';
   };
   config.booq = lib.mkIf cfg.enable {
-    minimal.enable = true;
     workstation.enable = true;
-    devops.enable = true;
+    k8sAdmin.enable = true;
   };
 }
