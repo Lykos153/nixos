@@ -51,32 +51,30 @@
         }
       )
     ];
-    homeManagerModules.booq = import ./modules/homeManager;
-    userModules = [
-      homeManagerModules.booq
-      inputs.sops-nix.homeManagerModule
-      inputs.stylix.homeManagerModules.stylix
-    ];
   in
     rec {
       lib = import ./lib;
-      nixosModules.booq = import ./modules/nixos;
+      nixosModules = {
+        booq = import ./modules/nixos;
+        inherit (inputs.disko.nixosModules) disko;
+        inherit (inputs.impermanence.nixosModules) impermanence;
+        inherit (inputs.sops-nix.nixosModules) sops;
+      };
       nixosConfigurations = lib.nixos.mkHosts {
         inherit (inputs) nixpkgs;
-        modules = [
-          nixosModules.booq
-          inputs.disko.nixosModules.disko
-          inputs.impermanence.nixosModules.impermanence
-          inputs.sops-nix.nixosModules.sops
-        ];
+        modules = builtins.attrValues nixosModules;
         machinedir = ./machines;
       };
-      inherit homeManagerModules;
+      homeManagerModules = {
+        booq = import ./modules/homeManager;
+        sops-nix = inputs.sops-nix.homeManagerModule;
+        inherit (inputs.stylix.homeManagerModules) stylix;
+      };
       homeConfigurations = lib.homeManager.mkConfigs {
         inherit nixosConfigurations;
         inherit (inputs) nixpkgs home-manager;
         overlays = userOverlays;
-        modules = userModules;
+        modules = builtins.attrValues homeManagerModules;
         userdir = ./users;
       };
       templates = {
