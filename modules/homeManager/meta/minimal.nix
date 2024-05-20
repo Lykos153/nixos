@@ -13,5 +13,6 @@ in {
   config.booq = lib.mkIf cfg.enable {
     git.enable = true;
     gpg.enable = true;
+    helix.enable = true;
   };
 }
