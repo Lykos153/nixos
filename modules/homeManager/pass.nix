@@ -20,4 +20,13 @@
     enable = false;
     storePath = config.programs.password-store.settings.PASSWORD_STORE_DIR;
   };
+
+  programs.zsh.initExtra = ''
+    pass_pop() {
+      local codepath="$1"
+      pass show "$codepath" | head -n1 | cb
+      pass show "$codepath" | tail -n+2 | pass insert -fm "$codepath" > /dev/null
+      echo "$(pass show "$codepath" | wc -l) entries left"
+    }
+  '';
 }

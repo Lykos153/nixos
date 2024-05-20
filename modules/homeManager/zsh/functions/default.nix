@@ -1,9 +1,16 @@
 {
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.booq.zsh;
+in {
   imports = [
     ./annex.nix
   ];
-  programs.zsh = {
-    initExtra = ''
+  config = lib.mkIf cfg.enable {
+    programs.zsh = {
+      initExtra = ''
         rbtohex() {
           # Convert a raw binary string to a hexadecimal string
           ( od -An -vtx1 | tr -d ' \n' )
@@ -63,13 +70,7 @@
         }
 
         rg2code() { rg $@ -l | xargs codium; }
-
-      pass_pop() {
-        local codepath="$1"
-        pass show "$codepath" | head -n1 | cb
-        pass show "$codepath" | tail -n+2 | pass insert -fm "$codepath" > /dev/null
-        echo "$(pass show "$codepath" | wc -l) entries left"
-      }
-    '';
+      '';
+    };
   };
 }

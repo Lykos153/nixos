@@ -16,5 +16,6 @@ in {
     helix.enable = true;
     mynix.enable = true;
     nushell.enable = true;
+    zsh.enable = true;
   };
 }
