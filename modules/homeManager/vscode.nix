@@ -45,6 +45,7 @@
         vscode-extensions.ms-ceintl.vscode-language-pack-de
         vscode-extensions.redhat.vscode-yaml
         vscode-extensions.kamadorueda.alejandra
+        vscode-extensions.bungcip.better-toml
         open-vsx.codeium.codeium
         open-vsx.ms-python.black-formatter
         open-vsx.zardoy.fix-all-json
