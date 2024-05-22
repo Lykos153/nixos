@@ -26,7 +26,8 @@
       if command -v dbus-update-activation-environment >/dev/null 2>&1; then
               dbus-update-activation-environment DISPLAY XAUTHORITY
       fi
-      ${pkgs.autorandr}/bin/autorandr --change --match-edid # TODO: use a service or similar
+      ${pkgs.autorandr}/bin/autorandr --change --match-edid # TODO: use a service or similar (eg srandr)
+
       # automatically set us layout for YubiKey on startup
       re='.*(YubiKey|ZMK).*id=([0-9]+).*slave.*keyboard'
       xinput list | while read line; do [[ "$line" =~ $re ]] && setxkbmap -device "''${BASH_REMATCH[2]}" us; done
