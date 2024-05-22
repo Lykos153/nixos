@@ -5,6 +5,8 @@
   ...
 }: let
   cfg = config.booq.pass;
+
+  defaultStore = config.programs.password-store.settings.PASSWORD_STORE_DIR;
 in {
   options.booq.pass = {
     enable = lib.mkEnableOption "pass";
@@ -17,7 +19,7 @@ in {
     programs.rofi.pass = {
       enable = true;
       stores = [
-        config.programs.password-store.settings.PASSWORD_STORE_DIR
+        defaultStore
       ];
       extraConfig = ''
         help_color="#4872FF"
@@ -25,7 +27,7 @@ in {
     };
     services.pass-secret-service = {
       enable = false;
-      storePath = config.programs.password-store.settings.PASSWORD_STORE_DIR;
+      storePath = defaultStore;
     };
 
     programs.zsh.initExtra = ''
