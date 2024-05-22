@@ -5,9 +5,13 @@
   ...
 }: {
   config = lib.mkIf config.booq.gui.enable {
+    booq.lib.allowUnfreePackages = [
+      "vscode"
+    ];
     programs.vscode = {
       enable = true;
-      package = pkgs.vscodium;
+      # package = pkgs.vscodium;
+      # home.shellAliases.code = "codium";
       userSettings = {
         "[nix]"."editor.tabSize" = 2;
         "alejandra.program" = "${pkgs.alejandra}/bin/alejandra";
@@ -55,7 +59,6 @@
         vscode-marketplace.ast-grep.ast-grep-vscode
       ];
     };
-    home.shellAliases.code = "codium";
 
     home.packages = [
       pkgs.ast-grep
@@ -64,7 +67,7 @@
     xdg.mimeApps.associations.added = {
       "text/x-tex" = "codium.desktop";
       "x-scheme-handler/vscodium" = "codium.desktop";
-      "x-scheme-handler/vscode" = "codium.desktop";
+      "x-scheme-handler/vscode" = "code.desktop";
     };
 
     home.file.".config/electron-flags.conf" = lib.mkIf config.booq.gui.sway.enable {
