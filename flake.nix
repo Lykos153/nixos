@@ -33,8 +33,6 @@
     nur,
     ...
   } @ inputs: let
-    syslib = (import ./system/lib.nix) {inherit nixpkgs;};
-    userlib = (import ./user/lib.nix) {inherit nixpkgs home-manager;};
     userOverlays = [
       nur.overlay
       inputs.mynur.overlay
@@ -53,24 +51,31 @@
         }
       )
     ];
-    userModules = [
-      inputs.sops-nix.homeManagerModule
-      inputs.stylix.homeManagerModules.stylix
-    ];
   in
     rec {
-      nixosConfigurations = syslib.mkHosts {
-        modules = [
-          inputs.disko.nixosModules.disko
-          inputs.impermanence.nixosModules.impermanence
-          inputs.sops-nix.nixosModules.sops
-        ];
-        machinedir = ./system/machines;
+      lib = import ./lib;
+      nixosModules = {
+        booq = import ./modules/nixos;
+        inherit (inputs.disko.nixosModules) disko;
+        inherit (inputs.impermanence.nixosModules) impermanence;
+        inherit (inputs.sops-nix.nixosModules) sops;
       };
-      homeConfigurations = userlib.mkConfigs {
+      nixosConfigurations = lib.nixos.mkHosts {
+        inherit (inputs) nixpkgs;
+        modules = builtins.attrValues nixosModules;
+        machinedir = ./machines;
+      };
+      homeManagerModules = {
+        booq = import ./modules/homeManager;
+        sops-nix = inputs.sops-nix.homeManagerModule;
+        inherit (inputs.stylix.homeManagerModules) stylix;
+      };
+      homeConfigurations = lib.homeManager.mkConfigs {
+        inherit nixosConfigurations;
+        inherit (inputs) nixpkgs home-manager;
         overlays = userOverlays;
-        modules = userModules;
-        nixosConfigurations = nixosConfigurations;
+        modules = builtins.attrValues homeManagerModules;
+        userdir = ./users;
       };
       templates = {
         # TODO: Check what https://github.com/jonringer/nix-template does
@@ -89,8 +94,9 @@
     // inputs.flake-utils.lib.eachDefaultSystem
     (system: let
       pkgs = nixpkgs.legacyPackages.${system};
-      pre-commit-sops-updatekeys = pkgs.callPackage ./pkgs/pre-commit-sops-updatekeys.nix {};
+      pre-commit-sops-updatekeys = pkgs.callPackage ./pkgs/pre-commit-sops-updatekeys {};
     in {
+      packages = {inherit pre-commit-sops-updatekeys;};
       formatter = pkgs.alejandra;
       devShells.default = pkgs.mkShell {
         buildInputs = with pkgs; [
