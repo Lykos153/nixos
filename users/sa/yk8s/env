@@ -10,3 +10,6 @@ export TF_HTTP_PASSWORD=$(pass gitlab_cah/terraform_state)
 export MANAGED_K8S_SSH_USER="$username"
 export VAULT_IN_DOCKER_USE_ROOTLESS=true
 export CLIFF_FIT_WIDTH=1 # openstack --fit-width
+
+# Workaround for https://github.com/python-poetry/poetry/issues/1917
+export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
