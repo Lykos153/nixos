@@ -27,8 +27,14 @@ in {
       files =
         [
           "/etc/machine-id"
-          "/root/.zsh_history"
-          # { file = "/etc/shadow"; parentDirectory = { group = "shadow"; mode = "u=rw,g=r,o="; }; }
+          {
+            file = "/root/.zsh_history";
+            parentDirectory = {
+              user = "root";
+              group = "root";
+              mode = "u=rwx,g=rx,o=";
+            };
+          }
         ]
         ++ lib.optionals config.services.openssh.enable [
           "/etc/ssh/ssh_host_ed25519_key"
