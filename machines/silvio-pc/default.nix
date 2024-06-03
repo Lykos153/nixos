@@ -11,6 +11,7 @@
     securityKeys.enable = true;
     gaming.enable = true;
     impermanence.enable = true;
+    shared-repo.enable = true;
     # audio.backend = "pipewire";
   };
 
