@@ -10,6 +10,6 @@ in {
     enable = lib.mkEnableOption "shared-repo";
   };
   config = lib.mkIf cfg.enable {
-    programs.git.extraConfig.safe.directory = ["/etc/nixos"];
+    programs.git.extraConfig.safe.directory = ["/etc/nixos" "/etc/nixos/.git"];
   };
 }
