@@ -3,7 +3,12 @@
   lib,
   config,
   ...
-}: {
+}: let
+  cfg = config.booq.vscode;
+in {
+  options = {
+    booq.vscode.useBlack = lib.mkEnableOption "Use Black formatter for Python";
+  };
   config = lib.mkIf config.booq.gui.enable {
     programs.vscode = {
       enable = true;
@@ -15,10 +20,13 @@
         "editor.acceptSuggestionOnEnter" = "off";
         "editor.fontFamily" = "'FuraCode Mono Nerd Font', 'monospace', monospace";
         "workbench.colorTheme" = "Default Dark+";
-        "[python]" = {
-          "editor.defaultFormatter" = "ms-python.black-formatter"; # needs extension to be present
-          "editor.formatOnSave" = true;
-        };
+        "[python]" =
+          {
+            "editor.formatOnSave" = true;
+          }
+          // lib.attrsets.optionalAttrs cfg.useBlack {
+            "editor.defaultFormatter" = "ms-python.black-formatter"; # needs extension to be present
+          };
         "redhat.telemetry.enabled" = false;
         "cursorless.colors.dark" = {
           "default" = "#AAA7BB";
@@ -35,25 +43,27 @@
           command = "go.test.cursor";
         }
       ];
-      extensions = with pkgs; [
-        vscode-extensions.yzhang.markdown-all-in-one
-        vscode-extensions.jnoortheen.nix-ide
-        vscode-extensions.ms-python.python
-        vscode-extensions.hashicorp.terraform
-        vscode-extensions.ms-azuretools.vscode-docker
-        vscode-extensions.james-yu.latex-workshop
-        vscode-extensions.ms-ceintl.vscode-language-pack-de
-        vscode-extensions.redhat.vscode-yaml
-        vscode-extensions.kamadorueda.alejandra
-        vscode-extensions.bungcip.better-toml
-        open-vsx.codeium.codeium
-        open-vsx.ms-python.black-formatter
-        open-vsx.zardoy.fix-all-json
-        open-vsx.hirse.vscode-ungit
-        open-vsx.ipedrazas.kubernetes-snippets
-        open-vsx.tumido.crd-snippets
-        vscode-marketplace.ast-grep.ast-grep-vscode
-      ];
+      extensions = with pkgs;
+        [
+          vscode-extensions.yzhang.markdown-all-in-one
+          vscode-extensions.jnoortheen.nix-ide
+          vscode-extensions.ms-python.python
+          vscode-extensions.hashicorp.terraform
+          vscode-extensions.ms-azuretools.vscode-docker
+          vscode-extensions.james-yu.latex-workshop
+          vscode-extensions.ms-ceintl.vscode-language-pack-de
+          vscode-extensions.redhat.vscode-yaml
+          vscode-extensions.kamadorueda.alejandra
+          vscode-extensions.bungcip.better-toml
+          open-vsx.codeium.codeium
+          open-vsx.zardoy.fix-all-json
+          open-vsx.hirse.vscode-ungit
+          open-vsx.ipedrazas.kubernetes-snippets
+          open-vsx.tumido.crd-snippets
+          vscode-marketplace.ast-grep.ast-grep-vscode
+        ]
+        ++ lib.lists.optional cfg.useBlack
+        open-vsx.ms-python.black-formatter;
     };
     home.shellAliases.code = "codium";
 
