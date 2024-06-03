@@ -24,6 +24,15 @@
     cursorless-talon.url = "github:cursorless-dev/cursorless-talon";
     cursorless-talon.flake = false;
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    lix = {
+      url = "git+https://git.lix.systems/lix-project/lix?ref=refs/tags/2.90-beta.1";
+      flake = false;
+    };
+    lix-module = {
+      url = "git+https://git.lix.systems/lix-project/nixos-module";
+      inputs.lix.follows = "lix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -59,6 +68,7 @@
         inherit (inputs.disko.nixosModules) disko;
         inherit (inputs.impermanence.nixosModules) impermanence;
         inherit (inputs.sops-nix.nixosModules) sops;
+        lix-module = inputs.lix-module.nixosModules.default;
       };
       nixosConfigurations = lib.nixos.mkHosts {
         inherit (inputs) nixpkgs;
