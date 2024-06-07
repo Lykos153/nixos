@@ -10,10 +10,10 @@ def complete_mynix_target [] {
   [user system upgrade]
 }
 
-export def mynix [ target:string@complete_mynix_target, action?:string@complete_mynix_action ] {
+export def mynix [ target:string@complete_mynix_target, action?:string@complete_mynix_action, --flake: string = "/etc/nixos" ] {
   match $target {
-    "system" => (sudo nixos-rebuild $action --flake $"($env.HOME)/nixos#(hostname)")
-    "user" => (home-manager $action -b $"bak.(date now | format date "%s")" --flake $"($env.HOME)/nixos#(id -un)@(hostname)")
+    "system" => (sudo nixos-rebuild $action --flake $"($flake)#(hostname)")
+    "user" => (home-manager $action -b $"bak.(date now | format date "%s")" --flake $"($flake)#(id -un)@(hostname)")
     "upgrade" => upgrade
   }
 }
