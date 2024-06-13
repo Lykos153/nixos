@@ -31,7 +31,6 @@ in {
       in
         builtins.map mkPubkey cfg.myPubKeys;
     };
-
     services.gpg-agent = {
       enable = true;
 
@@ -40,13 +39,10 @@ in {
       maxCacheTtl = 86400;
       maxCacheTtlSsh = 86400;
       enableSshSupport = true;
-      extraConfig =
-        ''
-          pinentry-program ${pkgs.pinentry-qt}/bin/pinentry
-        ''
-        + ''
-          allow-loopback-pinentry
-        '';
+      pinentryPackage = pkgs.pinentry-qt;
+      extraConfig = ''
+        allow-loopback-pinentry
+      '';
     };
   };
 }
