@@ -29,9 +29,8 @@
         ".local/share/password-store"
         "opsi-prepare"
         "opsi-data"
-        "ghq/github.com/rook"
+        "ghq"
         "devcluster"
-        "ghq/github.com/talonhub/community"
         {
           directory = ".gnupg";
           mode = "0700";
