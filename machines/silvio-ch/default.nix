@@ -6,6 +6,7 @@
   ...
 }: {
   booq.full.enable = true;
+  booq.securityKeys.enable = true;
   # booq.audio = "pipewire";
   booq.impermanence.enable = true;
   booq.shared-repo.enable = true;
