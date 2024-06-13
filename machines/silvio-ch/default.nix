@@ -8,6 +8,7 @@
   booq.full.enable = true;
   # booq.audio = "pipewire";
   booq.impermanence.enable = true;
+  booq.shared-repo.enable = true;
   booq.virtualisation = {
     enable = true;
     libvirtUsers = ["silvio" "sa"];
