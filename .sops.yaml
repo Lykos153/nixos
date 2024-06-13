@@ -11,7 +11,7 @@ keys:
   - &home_silvio_pc_silvio age136kw62em7f2a7r034lqmf8qwsl2d9y2wzk4t209pswp4rduh29hqyjshns
   - &home_silvio_pc_sa age1a8rdwqk9mx0hmuzcq6hujdzx3pa8z9e5xhch9wr9afjpvsk4fuuqglwtw2
   - &home_silvio_ch_silvio age13h28h5hg5d62chz6mn0etdq62knt7ctycf2mwr7pmc6638kxud5sa45var
-  - &home_silvio_ch_sa age19hyfxadt2e5h9acu79rzl0xl2na7x48qyh4d506l2fdtjr7pwvrsxh7dlq
+  - &home_silvio_ch_sa age1g29658lp77c2p4y4achgysry2hdsg5vhhzxzeclxp4qczxy3culqj2c422
 creation_rules:
   - path_regex: ^machines/.*secrets\.ya?ml$
     key_groups:
