@@ -41,28 +41,27 @@
     home-manager,
     nur,
     ...
-  } @ inputs: let
-    userOverlays = [
-      nur.overlay
-      inputs.mynur.overlay
-      inputs.talon-nix.overlays.default
-      inputs.rofi-mum.overlays.default
-      inputs.nix-vscode-extensions.overlays.default
-      (
-        # Add packages from flake inputs to pkgs
-        final: prev: {
-          toki = inputs.toki.outputs.defaultPackage.${prev.system};
-          kubectl = inputs.krew2nix.outputs.packages.${prev.system}.kubectl;
-          repos = {
-            talon-community = inputs.talon-community;
-            cursorless-talon = inputs.cursorless-talon;
-          };
-        }
-      )
-    ];
-  in
+  } @ inputs:
     rec {
       lib = import ./lib;
+      overlays = {
+        nur = nur.overlay;
+        mynur = inputs.mynur.overlay;
+        talon-nix = inputs.talon-nix.overlays.default;
+        rofi-mum = inputs.rofi-mum.overlays.default;
+        nix-vscode-extensions = inputs.nix-vscode-extensions.overlays.default;
+        other = (
+          # Add packages from flake inputs to pkgs
+          final: prev: {
+            toki = inputs.toki.outputs.defaultPackage.${prev.system};
+            kubectl = inputs.krew2nix.outputs.packages.${prev.system}.kubectl;
+            repos = {
+              talon-community = inputs.talon-community;
+              cursorless-talon = inputs.cursorless-talon;
+            };
+          }
+        );
+      };
       nixosModules = {
         booq = import ./modules/nixos;
         inherit (inputs.disko.nixosModules) disko;
@@ -79,11 +78,13 @@
         booq = import ./modules/homeManager;
         sops-nix = inputs.sops-nix.homeManagerModule;
         inherit (inputs.stylix.homeManagerModules) stylix;
+        overlays = {
+          nixpkgs.overlays = builtins.attrValues overlays;
+        };
       };
       homeConfigurations = lib.homeManager.mkConfigs {
         inherit nixosConfigurations;
         inherit (inputs) nixpkgs home-manager;
-        overlays = userOverlays;
         modules = builtins.attrValues homeManagerModules;
         userdir = ./users;
       };
