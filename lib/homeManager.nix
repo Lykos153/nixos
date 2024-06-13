@@ -57,7 +57,7 @@ in rec {
     hostname = hostConfig.config.system.name;
   in
     home-manager.lib.homeManagerConfiguration {
-      pkgs = import nixpkgs rec {
+      pkgs = import nixpkgs {
         system = hostConfig.pkgs.stdenv.hostPlatform.system;
         inherit overlays;
       };
