@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: let
   mum = pkgs.lykos153.mum;
@@ -61,8 +62,5 @@ in {
   };
 
   sops.secrets.mumdrc.sopsFile = ./secrets.yaml;
-  # xdg.configFile."mumdrc".source = config.lib.file.mkOutOfStoreSymlink "/";
-  home.activation.linkMumdrc = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    ln -sb "''${XDG_RUNTIME_DIR:-/run/user/''$(id -u)}/secrets/mumdrc" ''${XDG_CONFIG_HOME:-$HOME/.config}/mumdrc
-  '';
+  xdg.configFile."mumdrc".source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/sops-nix/secrets/mumdrc";
 }
