@@ -67,12 +67,15 @@
         inherit (inputs.disko.nixosModules) disko;
         inherit (inputs.impermanence.nixosModules) impermanence;
         inherit (inputs.sops-nix.nixosModules) sops;
+        inherit (inputs.home-manager.nixosModules) home-manager;
         lix-module = inputs.lix-module.nixosModules.default;
       };
       nixosConfigurations = lib.nixos.mkHosts {
         inherit (inputs) nixpkgs;
-        modules = builtins.attrValues nixosModules;
+        nixosModules = builtins.attrValues nixosModules;
         machinedir = ./machines;
+        userdir = ./users;
+        homeManagerModules = builtins.attrValues homeManagerModules;
       };
       homeManagerModules = {
         booq = import ./modules/homeManager;
