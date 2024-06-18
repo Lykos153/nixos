@@ -14,10 +14,10 @@
     enable = true;
     libvirtUsers = ["silvio" "sa"];
   };
+  booq.local.openvpn-ch.enable = true;
   imports = [
     ./hardware-configuration.nix
     ./bootloader.nix
-    ./vpn.nix
     ./sops.nix
     ./disko.nix
     ./docker.nix

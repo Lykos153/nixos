@@ -7,7 +7,10 @@
   lib,
   ...
 }: {
-  imports = [./users];
+  imports = [
+    ./users
+    ./vpn
+  ];
   booq.networking.sopsFile = ./secrets.yaml;
 
   nix = {
