@@ -56,6 +56,8 @@ in {
           vscode-extensions.kamadorueda.alejandra
           vscode-extensions.bungcip.better-toml
           vscode-extensions.thenuprojectcontributors.vscode-nushell-lang
+          vscode-extensions.golang.go
+          vscode-extensions.timonwong.shellcheck
           open-vsx.codeium.codeium
           open-vsx.zardoy.fix-all-json
           open-vsx.hirse.vscode-ungit
