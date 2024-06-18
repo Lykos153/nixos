@@ -3,6 +3,7 @@
     enable = true;
     libvirtUsers = ["silvio" "sa"];
   };
+  virtualisation.spiceUSBRedirection.enable = true;
 
   boot.kernelParams = ["intel_iommu=on" "vfio-pci.ids=10de:1380,10de:0fbc"];
   boot.kernelModules = ["vfio-pci"];
