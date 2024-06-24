@@ -69,7 +69,6 @@ in {
       git-absorb
       git-remote-gcrypt
       git-annex
-      git-annex-remote-googledrive
       tig
       tea
       glab
