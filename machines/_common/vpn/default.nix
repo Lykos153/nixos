@@ -24,7 +24,6 @@ in {
       ch = {
         config = ''
           client
-          cipher AES-256-CBC
           dev tap
           proto tcp
           nobind
@@ -32,12 +31,9 @@ in {
           script-security 2
           persist-key
           persist-tun
-          #link-mtu 1492
           auth SHA512
           remote-cert-tls server
           comp-lzo
-
-          mssfix 1280
 
           config ${config.sops.secrets."openvpn-ch/ch.conf".path}
           ca ${config.sops.secrets."openvpn-ch/ca.crt".path}
