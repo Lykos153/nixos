@@ -34,5 +34,6 @@
     ./virtualisation.nix
     ./sops.nix
     ./docker.nix
+    ./bcachefs.nix
   ];
 }

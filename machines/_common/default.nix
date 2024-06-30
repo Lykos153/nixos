@@ -48,7 +48,8 @@
   '';
 
   boot.supportedFilesystems = ["ntfs" "bcachefs"];
-  boot.initrd.systemd.enable = true;
+  boot.initrd.systemd.enable = config.booq.lib.mkMyDefault true;
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   services.udisks2.enable = true;
@@ -78,6 +79,7 @@
     usbutils
     lshw
     tcpdump
+    keyutils # for encrypted bcachefs
 
     killall
 
