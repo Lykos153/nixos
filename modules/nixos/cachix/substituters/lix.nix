@@ -1,5 +1,5 @@
 {
-  nix.settings.extra-substituters = [
+  nix.settings.substituters = [
     "https://cache.lix.systems"
   ];
 
