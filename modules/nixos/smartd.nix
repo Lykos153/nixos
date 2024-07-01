@@ -13,6 +13,7 @@ in {
       enable = true;
       notifications.test = true;
       notifications.mail.enable = false;
+      notifications.systembus-notify.enable = true;
     };
   };
 }
