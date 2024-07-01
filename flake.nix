@@ -1,5 +1,7 @@
 {
   inputs = {
+    # nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    # nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     disko.url = "github:nix-community/disko";
@@ -9,6 +11,8 @@
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     flake-parts.url = "github:hercules-ci/flake-parts";
     direnv.url = "github:nix-community/nix-direnv";
+    # home-manager.url = "github:nix-community/home-manager/release-23.11";
+    # home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     mynur.url = "github:Lykos153/nur-packages";
