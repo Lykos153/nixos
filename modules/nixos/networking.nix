@@ -35,13 +35,16 @@ in {
       networkConfig.DHCP = "yes";
       networkConfig.DNSSEC = "no"; # seems to be broken here
       # dhcpConfig.UseDNS = false;
+      dhcpV4Config.RouteMetric = 1024;
+      dhcpV6Config.RouteMetric = 1024;
     };
     systemd.network.networks."20-wlan" = {
       matchConfig.Name = "wl*";
       networkConfig.DHCP = "yes";
       networkConfig.DNSSEC = "no"; # seems to be broken here
       # dhcpConfig.UseDNS = false;
-      dhcpConfig.RouteMetric = 1025;
+      dhcpV4Config.RouteMetric = 1025;
+      dhcpV6Config.RouteMetric = 1025;
     };
     systemd.network.wait-online.anyInterface = true;
 
