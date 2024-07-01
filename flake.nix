@@ -33,6 +33,11 @@
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0-rc1.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -105,11 +110,32 @@
       perSystem = {
         config,
         pkgs,
+        system,
         ...
       }: let
         pre-commit-sops-updatekeys = pkgs.callPackage ./pkgs/pre-commit-sops-updatekeys {};
       in {
-        packages = {inherit pre-commit-sops-updatekeys;};
+        packages = {
+          inherit pre-commit-sops-updatekeys;
+          install-image = inputs.nixos-generators.nixosGenerate {
+            inherit system;
+            specialArgs = {
+              inherit pkgs;
+            };
+            modules =
+              builtins.attrValues self.nixosModules
+              ++ [
+                ({...}: {nix.registry.nixpkgs.flake = inputs.nixpkgs;})
+                {
+                  # TODO: make this an actual module
+                  services.openssh.enable = true;
+                  booq.users.enable = true;
+                  security.sudo.wheelNeedsPassword = false;
+                }
+              ];
+            format = "install-iso";
+          };
+        };
         formatter = pkgs.alejandra;
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
