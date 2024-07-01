@@ -7,7 +7,7 @@
     impermanence.url = "github:nix-community/impermanence";
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-    flake-utils.url = "github:numtide/flake-utils";
+    flake-parts.url = "github:hercules-ci/flake-parts";
     direnv.url = "github:nix-community/nix-direnv";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -31,95 +31,98 @@
     };
   };
 
-  outputs = {
+  outputs = inputs @ {
+    flake-parts,
     self,
-    nixpkgs,
-    home-manager,
-    nur,
     ...
-  } @ inputs:
-    rec {
-      lib = import ./lib;
-      overlays = {
-        nur = nur.overlay;
-        mynur = inputs.mynur.overlay;
-        talon-nix = inputs.talon-nix.overlays.default;
-        rofi-mum = inputs.rofi-mum.overlays.default;
-        nix-vscode-extensions = inputs.nix-vscode-extensions.overlays.default;
-        other = (
-          # Add packages from flake inputs to pkgs
-          final: prev: {
-            toki = inputs.toki.outputs.defaultPackage.${prev.system};
-            kubectl = inputs.krew2nix.outputs.packages.${prev.system}.kubectl;
-            repos = {
-              talon-community = inputs.talon-community;
-              cursorless-talon = inputs.cursorless-talon;
-            };
-          }
-        );
-      };
-      nixosModules = {
-        booq = import ./modules/nixos;
-        inherit (inputs.disko.nixosModules) disko;
-        inherit (inputs.impermanence.nixosModules) impermanence;
-        inherit (inputs.sops-nix.nixosModules) sops;
-        lix-module = inputs.lix-module.nixosModules.default;
-      };
-      nixosConfigurations = lib.nixos.mkHosts {
-        inherit (inputs) nixpkgs;
-        modules = builtins.attrValues nixosModules;
-        machinedir = ./machines;
-      };
-      homeManagerModules = {
-        booq = import ./modules/homeManager;
-        sops-nix = inputs.sops-nix.homeManagerModule;
-        inherit (inputs.stylix.homeManagerModules) stylix;
+  }:
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      flake = {
+        lib = import ./lib;
         overlays = {
-          nixpkgs.overlays = builtins.attrValues overlays;
+          nur = inputs.nur.overlay;
+          mynur = inputs.mynur.overlay;
+          talon-nix = inputs.talon-nix.overlays.default;
+          rofi-mum = inputs.rofi-mum.overlays.default;
+          nix-vscode-extensions = inputs.nix-vscode-extensions.overlays.default;
+          other = (
+            # Add packages from flake inputs to pkgs
+            final: prev: {
+              toki = inputs.toki.outputs.defaultPackage.${prev.system};
+              kubectl = inputs.krew2nix.outputs.packages.${prev.system}.kubectl;
+              repos = {
+                talon-community = inputs.talon-community;
+                cursorless-talon = inputs.cursorless-talon;
+              };
+            }
+          );
         };
-      };
-      homeConfigurations = lib.homeManager.mkConfigs {
-        inherit nixosConfigurations;
-        inherit (inputs) nixpkgs home-manager;
-        modules = builtins.attrValues homeManagerModules;
-        userdir = ./users;
-      };
-      templates = {
-        # TODO: Check what https://github.com/jonringer/nix-template does
-        pythonenv = {
-          path = ./templates/pythonenv;
-          description = "Flake to setup python virtualenv with direnv";
+        nixosModules = {
+          booq = import ./modules/nixos;
+          inherit (inputs.disko.nixosModules) disko;
+          inherit (inputs.impermanence.nixosModules) impermanence;
+          inherit (inputs.sops-nix.nixosModules) sops;
+          lix-module = inputs.lix-module.nixosModules.default;
         };
-        go = {
-          path = ./templates/go;
-          description = "Flake to setup go environment with direnv";
+        nixosConfigurations = self.lib.nixos.mkHosts {
+          inherit (inputs) nixpkgs;
+          modules = builtins.attrValues self.nixosModules;
+          machinedir = ./machines;
         };
+        homeManagerModules = {
+          booq = import ./modules/homeManager;
+          sops-nix = inputs.sops-nix.homeManagerModule;
+          inherit (inputs.stylix.homeManagerModules) stylix;
+          overlays = {
+            nixpkgs.overlays = builtins.attrValues self.overlays;
+          };
+        };
+        homeConfigurations = self.lib.homeManager.mkConfigs {
+          inherit (self) nixosConfigurations;
+          inherit (inputs) nixpkgs home-manager;
+          modules = builtins.attrValues self.homeManagerModules;
+          userdir = ./users;
+        };
+        templates = {
+          # TODO: Check what https://github.com/jonringer/nix-template does
+          pythonenv = {
+            path = ./templates/pythonenv;
+            description = "Flake to setup python virtualenv with direnv";
+          };
+          go = {
+            path = ./templates/go;
+            description = "Flake to setup go environment with direnv";
+          };
 
-        direnv = inputs.direnv.templates.default;
+          direnv = inputs.direnv.templates.default;
+        };
       };
-    }
-    // inputs.flake-utils.lib.eachDefaultSystem
-    (system: let
-      pkgs = nixpkgs.legacyPackages.${system};
-      pre-commit-sops-updatekeys = pkgs.callPackage ./pkgs/pre-commit-sops-updatekeys {};
-    in {
-      packages = {inherit pre-commit-sops-updatekeys;};
-      formatter = pkgs.alejandra;
-      devShells.default = pkgs.mkShell {
-        buildInputs = with pkgs; [
-          just
-          sops
-          ssh-to-age
-          age
-          pre-commit-sops-updatekeys
-          pam_u2f
-          stylish-haskell
-          git-branchless
-          cachix
-          inputs.disko.packages.${system}.disko
-          haskell-language-server
-          ghc
-        ];
+      systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin"];
+      perSystem = {
+        config,
+        pkgs,
+        ...
+      }: let
+        pre-commit-sops-updatekeys = pkgs.callPackage ./pkgs/pre-commit-sops-updatekeys {};
+      in {
+        packages = {inherit pre-commit-sops-updatekeys;};
+        formatter = pkgs.alejandra;
+        devShells.default = pkgs.mkShell {
+          buildInputs = with pkgs; [
+            just
+            sops
+            ssh-to-age
+            age
+            pre-commit-sops-updatekeys
+            pam_u2f
+            stylish-haskell
+            git-branchless
+            cachix
+            inputs.disko.packages.${system}.disko
+            haskell-language-server
+            ghc
+          ];
+        };
       };
-    });
+    };
 }
