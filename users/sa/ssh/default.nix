@@ -3,13 +3,11 @@
   lib,
   config,
   ...
-}: let
-  l1_known_hosts = ".ssh/l1.known_hosts";
-in {
-  sops.secrets.l1.sopsFile = ./secrets.yaml;
-  home.file.".ssh/config.d/l1".source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/sops-nix/secrets/l1";
-
-  sops.secrets."l1.known_hosts".sopsFile = ./secrets.yaml;
-  booq.ssh.extraKnownHostsFiles = ["~/${l1_known_hosts}"];
-  home.file."${l1_known_hosts}".source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/sops-nix/secrets/l1.known_hosts";
-}
+}: (builtins.foldl' (acc: v:
+    lib.attrsets.recursiveUpdate acc {
+      sops.secrets.${v}.sopsFile = ./secrets.yaml;
+      sops.secrets."${v}.known_hosts".sopsFile = ./secrets.yaml;
+      home.file.".ssh/config.d/${v}".source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/sops-nix/secrets/${v}";
+      home.file.".ssh/${v}.known_hosts".source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/sops-nix/secrets/${v}.known_hosts";
+      booq.ssh.extraKnownHostsFiles = [".ssh/${v}.known_hosts"];
+    }) {} ["l1" "ch"])
