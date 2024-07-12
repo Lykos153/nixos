@@ -41,6 +41,7 @@
   };
 
   outputs = inputs @ {
+    nur,
     flake-parts,
     self,
     ...

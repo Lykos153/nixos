@@ -776,6 +776,20 @@
     },
     "nur": {
       "locked": {
+        "lastModified": 1720457284,
+        "narHash": "sha256-qBBRcqT0IfrKRz1+kPkHtptazrdyNx68AlJQwGhp2rY=",
+        "owner": "nix-community",
+        "repo": "NUR",
+        "rev": "e833883bd0f137e536ef87c04b7b36dd2d1c9fe7",
+        "type": "github"
+      },
+      "original": {
+        "id": "nur",
+        "type": "indirect"
+      }
+    },
+    "nur_2": {
+      "locked": {
         "lastModified": 1707306252,
         "narHash": "sha256-uyOzOyFCnAiawlv1F4uy7Kk3m8zJGwVY6UCYBQTHp7w=",
         "owner": "nix-community",
@@ -793,7 +807,7 @@
       "inputs": {
         "flake-parts": "flake-parts_3",
         "nixpkgs": "nixpkgs_5",
-        "nur": "nur"
+        "nur": "nur_2"
       },
       "locked": {
         "lastModified": 1707315046,
@@ -824,6 +838,7 @@
         "nixos-generators": "nixos-generators",
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-master": "nixpkgs-master",
+        "nur": "nur",
         "rofi-mum": "rofi-mum",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
