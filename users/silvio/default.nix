@@ -13,5 +13,6 @@
     ./sops.nix
     ./mutables
     ./nushell.nix
+    ./codeberg-cli
   ];
 }
