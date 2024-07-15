@@ -36,3 +36,13 @@ creation_rules:
       age:
       - *home_silvio_ch_sa
       - *home_silvio_pc_sa
+  - path_regex: ^users/_common/.*secrets.*$
+    key_groups:
+    - pgp:
+      - *admin_silvio_pgp
+      - *admin_sa_pgp
+      age:
+      - *home_silvio_pc_silvio
+      - *home_silvio_ch_silvio
+      - *home_silvio_ch_sa
+      - *home_silvio_pc_sa

@@ -5,6 +5,10 @@
   pkgs,
   ...
 }: {
+  imports = [
+    ./glab
+  ];
+
   booq.full.enable = true;
   booq.gpg.myPubKeys = [
     ./gpg/8D4762947205541C62A49C88F4226CA3971C4E97.gpg
@@ -26,6 +30,8 @@
       tabs = "4";
     };
   };
+
+  programs.gh.enable = true;
 
   programs.zellij.enable = true;
   home.packages = with pkgs; [
