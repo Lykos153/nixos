@@ -33,7 +33,7 @@ in rec {
           {
             home-manager.useGlobalPkgs = false;
             home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = ".bak";
+            home-manager.backupFileExtension = "bak";
             home-manager.sharedModules = homeManagerModules;
             home-manager.users = builtins.mapAttrs (
               username: _: {
