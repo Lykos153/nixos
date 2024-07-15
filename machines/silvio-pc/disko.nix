@@ -48,17 +48,9 @@
                 type = "btrfs";
                 extraArgs = ["-f"]; # Override existing partition
                 subvolumes = {
-                  "/rootfs" = {
-                    mountpoint = "${config.booq.impermanence.persistRoot}";
+                  "/" = {
+                    mountpoint = "/btrfs";
                     mountOptions = ["compress=zstd"];
-                  };
-                  "/home" = {
-                    mountpoint = "/home";
-                    mountOptions = ["compress=zstd"];
-                  };
-                  "/nix" = {
-                    mountpoint = "/nix";
-                    mountOptions = ["compress=zstd" "noatime"];
                   };
                 };
               };
@@ -87,7 +79,24 @@
         "mode=755"
       ];
     };
+
+    nodev."${config.booq.impermanence.persistRoot}" = {
+      fsType = "auto";
+      device = "/btrfs/rootfs";
+      mountOptions = ["bind"];
+    };
+    nodev."/home" = {
+      fsType = "auto";
+      device = "/btrfs/home";
+      mountOptions = ["bind"];
+    };
+    nodev."/nix" = {
+      fsType = "auto";
+      device = "/btrfs/nix";
+      mountOptions = ["bind" "noatime"];
+    };
   };
+  fileSystems."/btrfs".neededForBoot = true;
   fileSystems."${config.booq.impermanence.persistRoot}".neededForBoot = true;
   boot.tmp.useTmpfs = true;
   boot.tmp.tmpfsSize = "95%";
