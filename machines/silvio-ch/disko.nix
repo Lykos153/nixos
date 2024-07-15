@@ -37,15 +37,9 @@
         "mode=755"
       ];
     };
-    nodev."/tmp" = {
-      fsType = "tmpfs";
-      mountOptions = [
-        "size=95%"
-        "defaults"
-        "mode=777"
-      ];
-    };
   };
+  boot.tmp.useTmpfs = true;
+  boot.tmp.tmpfsSize = "95%";
   # fileSystems."/nix".neededForBoot = true;
   boot.kernel.sysctl."vm.swappiness" = 0; # Use swap only for hibernate (SSD)
 }
