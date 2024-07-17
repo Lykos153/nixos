@@ -37,25 +37,6 @@
               mountpoint = "/boot";
             };
           };
-          crypted = {
-            size = "500GiB";
-            content = {
-              type = "luks";
-              name = "crypted";
-              extraOpenArgs = ["--allow-discards"];
-              # keyFile = "/dev/shm/secret.key";
-              content = {
-                type = "btrfs";
-                extraArgs = ["-f"]; # Override existing partition
-                subvolumes = {
-                  "/" = {
-                    mountpoint = "/btrfs";
-                    mountOptions = ["compress=zstd"];
-                  };
-                };
-              };
-            };
-          };
           # windows = {
           #   size = "100GiB";
           #   content = {
@@ -80,24 +61,18 @@
       ];
     };
 
-    nodev."${config.booq.impermanence.persistRoot}" = {
-      fsType = "auto";
-      device = "/btrfs/rootfs";
-      mountOptions = ["bind"];
-    };
     nodev."/home" = {
       fsType = "auto";
-      device = "/btrfs/home";
+      device = "/bcachefs/home";
       mountOptions = ["bind"];
     };
     nodev."/nix" = {
       fsType = "auto";
-      device = "/btrfs/nix";
+      device = "/bcachefs/nix";
       mountOptions = ["bind" "noatime"];
     };
   };
-  fileSystems."/btrfs".neededForBoot = true;
-  fileSystems."${config.booq.impermanence.persistRoot}".neededForBoot = true;
+  # fileSystems."/btrfs".neededForBoot = true;
   boot.tmp.useTmpfs = true;
   boot.tmp.tmpfsSize = "95%";
 }

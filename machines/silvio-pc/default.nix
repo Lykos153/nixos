@@ -11,6 +11,7 @@
     securityKeys.enable = true;
     gaming.enable = true;
     impermanence.enable = true;
+    impermanence.persistRoot = "/nix/persist";
     shared-repo.enable = true;
     # audio.backend = "pipewire";
     local.openvpn-ch.enable = true;
