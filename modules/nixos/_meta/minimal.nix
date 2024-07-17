@@ -15,6 +15,7 @@ in {
     networking.enable = true;
     nix-defaults.enable = true;
     smartd.enable = true;
+    tools.enable = true;
     zsh.enable = true;
   };
 }

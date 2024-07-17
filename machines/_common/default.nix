@@ -30,37 +30,6 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    vim
-    helix
-    tmux
-
-    wget
-    curl
-    git
-    dnsutils
-
-    htop
-
-    efibootmgr
-    gptfdisk
-    parted #for partprobe
-    e2fsprogs # for resize2fs
-    btrfs-progs
-    bindfs
-    pciutils
-    usbutils
-    lshw
-    tcpdump
-    keyutils # for encrypted bcachefs
-
-    killall
-
-    footswitch
-  ];
-
-  services.udev.packages = [pkgs.footswitch];
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

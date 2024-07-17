@@ -35,5 +35,6 @@
     ./sops.nix
     ./docker.nix
     ./bcachefs.nix
+    ./footswitch.nix
   ];
 }
