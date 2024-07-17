@@ -13,6 +13,7 @@ in {
   config.booq = lib.mkIf cfg.enable {
     locale.enable = true;
     networking.enable = true;
+    nix-defaults.enable = true;
     smartd.enable = true;
     zsh.enable = true;
   };

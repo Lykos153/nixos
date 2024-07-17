@@ -13,33 +13,6 @@
   ];
   booq.networking.sopsFile = ./secrets.yaml;
 
-  nix = {
-    package = pkgs.nixVersions.stable;
-    settings.auto-optimise-store = true;
-
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 30d";
-    };
-
-    extraOptions = ''
-      experimental-features = nix-command flakes
-      min-free = ${toString (1024 * 1024 * 1024)}
-      max-free = ${toString (5 * 1024 * 1024 * 1024)}
-    '';
-
-    daemonCPUSchedPolicy = "idle";
-    daemonIOSchedClass = "idle";
-
-    settings.substituters = [
-      "https://lykos153.cachix.org"
-    ];
-    settings.trusted-public-keys = [
-      "lykos153.cachix.org-1:BLGtaZpIKqZOTOboODw4qGfSasflvle3RFIgUQI2bwQ="
-    ];
-  };
-
   security.sudo.extraConfig = ''
     # to make <() work with sudo
     Defaults closefrom_override
