@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   config,
   ...
 }: let
@@ -9,6 +10,9 @@ in {
     enable = lib.mkEnableOption "smartd";
   };
   config = lib.mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      smartmontools
+    ];
     services.smartd = {
       enable = true;
       notifications.test = true;
