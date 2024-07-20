@@ -130,12 +130,7 @@
               builtins.attrValues self.nixosModules
               ++ [
                 ({...}: {nix.registry.nixpkgs.flake = inputs.nixpkgs;})
-                {
-                  # TODO: make this an actual module
-                  services.openssh.enable = true;
-                  booq.users.enable = true;
-                  security.sudo.wheelNeedsPassword = false;
-                }
+                {booq.install-image.enable = true;}
               ];
             format = "install-iso";
           };
