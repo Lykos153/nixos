@@ -59,6 +59,7 @@
     sd # new sed
     profanity
     pulsemixer
+    termdown
 
     poetry
     just
