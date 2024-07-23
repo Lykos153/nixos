@@ -33,6 +33,7 @@ in {
       lshw
       tcpdump
       keyutils # for encrypted bcachefs
+      cryptsetup
 
       killall
     ];
