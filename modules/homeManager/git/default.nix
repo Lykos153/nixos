@@ -69,6 +69,7 @@ in {
       git-absorb
       git-remote-gcrypt
       git-annex
+      yt-dlp # for git-annex addurl
       tig
       tea
       glab
