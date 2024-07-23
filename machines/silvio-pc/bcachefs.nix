@@ -7,4 +7,5 @@
     options = ["compression=zstd"];
     neededForBoot = true;
   };
+  specialisation.fsck.configuration.fileSystems."/bcachefs".options = ["fsck" "fix_errors"];
 }
