@@ -28,6 +28,11 @@
   services.udisks2.enable = true;
 
   hardware.bluetooth.enable = true;
+  hardware.bluetooth.settings = {
+    General = {
+      Enable = "Source,Sink,Media,Socket"; # Enabling A2DP Sink https://nixos.wiki/wiki/Bluetooth
+    };
+  };
   services.blueman.enable = true;
 
   # This value determines the NixOS release from which the default
