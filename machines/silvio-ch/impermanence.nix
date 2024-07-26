@@ -23,7 +23,6 @@
     users.sa = {
       directories = [
         ".cache"
-        "nixos"
         ".timewarrior"
         ".talon"
         ".local/share/password-store"
@@ -44,6 +43,30 @@
         ".thunderbird"
         ".mozilla"
         ".config/Rocket.Chat"
+      ];
+      files = [
+        ".ssh/known_hosts"
+      ];
+    };
+
+    users.silvio = {
+      directories = [
+        ".cache"
+        ".talon"
+        ".local/share/password-store"
+        "ghq"
+        {
+          directory = ".gnupg";
+          mode = "0700";
+        }
+        {
+          directory = ".config/age";
+          mode = "0700";
+        }
+        ".local/share/direnv"
+        ".local/share/atuin"
+        ".thunderbird"
+        ".mozilla"
       ];
       files = [
         ".ssh/known_hosts"
