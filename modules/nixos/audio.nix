@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   config,
   ...
 }: let
@@ -40,7 +41,9 @@ in {
       xdg.portal.wlr.enable = true;
     }
     // lib.mkIf (cfg.enable && cfg.backend == "pulseaudio") {
-      sound.enable = true;
-      hardware.pulseaudio.enable = true;
+      hardware.pulseaudio = {
+        enable = true;
+        package = pkgs.pulseaudioFull;
+      };
     };
 }
