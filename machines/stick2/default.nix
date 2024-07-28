@@ -10,5 +10,6 @@
     ./bootloader.nix
     ./sops.nix
   ];
-  booq.full.enable = true;
+  booq.workstation.enable = true;
+  booq.securityKeys.enable = true;
 }
