@@ -41,8 +41,10 @@ def generate-config [machine_name: string] {
 }
 
 def wait-enter [] {
-	let user_input = (input listen)
-	if (not (($user_input.type == "key") and ($user_input.key_type == "other")  and ($user_input.code == "enter"))) { wait-enter }
+	mut user_input = (input listen)
+	while (not (($user_input.type == "key") and ($user_input.key_type == "other")  and ($user_input.code == "enter"))) {
+		$user_input = (input listen)
+	}
 }
 
 export def install-nixos [machine_name: string=""] {
