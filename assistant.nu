@@ -25,12 +25,12 @@ def prepare [machine_name: string] {
 
 def disco-create [machine_name: string] {
 	print $"Creating partitions according to ./machines/($machine_name)/disko.nix"
-	sudo disko -- $"./machines/($machine_name)/disko.nix" -m create
+	sudo nix run github:nix-community/disko -- $"./machines/($machine_name)/disko.nix" -m create
 }
 
 export def disco-mount [machine_name: string] {
 	print $"Mounting new partitions at ($mount_path)"
-	sudo disko -- $"./machines/($machine_name)/disko.nix" -m mount
+	sudo nix run github:nix-community/disko -- $"./machines/($machine_name)/disko.nix" -m mount
 }
 
 def generate-config [machine_name: string] {
@@ -47,26 +47,35 @@ def wait-enter [] {
 	}
 }
 
-export def install-nixos [machine_name: string=""] {
+export def install-steps [machine_name: string=""] {
 	let machine_name = if ($machine_name != "") {$machine_name} else {
 		print "Enter machine name"
 		input
 	}
 	prepare $machine_name
-	print $"Now adapt the files in ./machines/($machine_name)"
+	let machine_dir = $"./machines/($machine_name)"
+	print $"Now adapt the files in ($machine_dir)"
 	print "Then continue with ENTER"
 	wait-enter
-	print $"Will now FORMAT all disks according to ./machines/($machine_name)/disko.nix"
+	print $"Adding ($machine_dir) to git"
+	git add $machine_dir
+	print $"Will now FORMAT all disks according to ($machine_dir)/disko.nix"
 	print "!!ALL DATA ON THOSE DISKS WILL BE LOST!!"
 	print "OK? Answer with yes in capital letters."
 	let u = input
 	if ($u != "YES") { print Aborting.; return}
 	disco-create $machine_name
 	generate-config $machine_name
-	print $"Please remove all duplicate disk mounts from ./machines/($machine_name)/configuration.nix"
+	print $"Adding ($machine_dir) to git"
+	git add $machine_dir
+	print $"Please remove all duplicate disk mounts from ($machine_dir)/configuration.nix"
 	print "Continue with ENTER"
 	wait-enter
-	sudo nixos-install --flake $".#($machine_name)"
+	install-nixos $machine_name
+}
+
+export def install-nixos [machine_name: string] {
+	sudo nixos-install --flake $".#($machine_name)" --no-root-password
 }
 
 def system-gen-sops [] {
