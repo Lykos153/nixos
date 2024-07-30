@@ -8,6 +8,12 @@
 
   boot.initrd.services.lvm.enable = true; 
   services.lvm.boot.thin.enable = true; # when using thin provisioning or caching
+  environment.etc."lvm/lvm.conf".text = ''
+    activation {
+      thin_pool_autoextend_threshold=80
+      thin_pool_autoextend_percent=20
+    }
+  '';
 
   disko.devices = {
     disk.ata-ssd-root = {
