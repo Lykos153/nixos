@@ -6,7 +6,7 @@
     "dm-cache-default" # when using volumes set up with lvmcache
   ];
 
-  boot.initrd.systemd.enable = false; # doesn't boot with systemd
+  boot.initrd.services.lvm.enable = true; 
   services.lvm.boot.thin.enable = true; # when using thin provisioning or caching
 
   disko.devices = {
