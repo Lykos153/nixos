@@ -66,6 +66,16 @@
               mountpoint = "/home";
             };
           };
+          gaming = {
+            size = "100G";
+            lvm_type = "thinlv";
+            pool = "thinpool";
+            content = {
+              type = "filesystem";
+              format = "ext4";
+              mountpoint = "/opt/gaming";
+            };
+          };
         };
       };
     };
