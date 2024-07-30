@@ -29,12 +29,12 @@ in
             xkb_layout = "de";
             xkb_numlock = "enable";
           };
-          "1118:1957:Microsoft_Microsoft___Nano_Transceiver_v2.1" = {
-            xkb_layout = "de_menu_to_super"; # depends on keymaps.nix
-          };
-          "1:1:AT_Translated_Set_2_keyboard" = {
-            xkb_layout = "de_print_to_super";
-          };
+          # "1118:1957:Microsoft_Microsoft___Nano_Transceiver_v2.1" = {
+          #   xkb_layout = "de_menu_to_super"; # depends on keymaps.nix
+          # };
+          # "1:1:AT_Translated_Set_2_keyboard" = {
+          #   xkb_layout = "de_print_to_super";
+          # };
           "type:touchpad" = {
             tap = "enable";
             natural_scroll = "enable";
