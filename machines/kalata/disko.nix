@@ -29,7 +29,7 @@
               type = "filesystem";
               format = "vfat";
               mountpoint = "/boot";
-              mountOptions = ["umask=700"];
+              # mountOptions = ["umask=007"]; # TODO: find out why this breaks nixos-rebuild
             };
           };
           primary = {
