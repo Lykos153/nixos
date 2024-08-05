@@ -14,10 +14,10 @@
     shared-repo.enable = true;
   };
 
-    booq.networking.enable = lib.mkForce false;
-    booq.users.enable = true;
+  booq.networking.enable = lib.mkForce false;
+  booq.users.enable = true;
 
-    services.openssh.enable = true;
+  services.openssh.enable = true;
 
   imports = [
     ./hardware-configuration.nix

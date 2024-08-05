@@ -6,7 +6,7 @@
     "dm-cache-default" # when using volumes set up with lvmcache
   ];
 
-  boot.initrd.services.lvm.enable = true; 
+  boot.initrd.services.lvm.enable = true;
   services.lvm.boot.thin.enable = true; # when using thin provisioning or caching
   environment.etc."lvm/lvm.conf".text = ''
     activation {
@@ -42,7 +42,7 @@
         };
       };
     };
-    
+
     lvm_vg = {
       mainpool = {
         type = "lvm_vg";
