@@ -19,6 +19,8 @@
 
   services.openssh.enable = true;
 
+  programs.hyprland.enable = true;
+
   imports = [
     ./hardware-configuration.nix
     ./disko.nix
