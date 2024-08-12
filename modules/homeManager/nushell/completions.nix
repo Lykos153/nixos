@@ -35,6 +35,7 @@ in {
                 vault => $carapace_completer
                 cryptsetup => $carapace_completer
                 nix => $carapace_completer
+                pass => $carapace_completer
                 _ => $fish_completer
             } | do $in $spans
         }
