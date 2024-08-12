@@ -33,11 +33,11 @@
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    annextimelog.url = "gitlab:nobodyinperson/annextimelog";
   };
 
   outputs = inputs @ {
@@ -60,6 +60,7 @@
             final: prev: {
               toki = inputs.toki.outputs.defaultPackage.${prev.system};
               kubectl = inputs.krew2nix.outputs.packages.${prev.system}.kubectl;
+              annextimelog = inputs.annextimelog.outputs.packages.${prev.system}.annextimelog;
               repos = {
                 talon-community = inputs.talon-community;
                 cursorless-talon = inputs.cursorless-talon;

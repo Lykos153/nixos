@@ -49,5 +49,6 @@
     ./bugwarrior.nix
     ./mutables
     ./nushell.nix
+    ./annextimelog
   ];
 }

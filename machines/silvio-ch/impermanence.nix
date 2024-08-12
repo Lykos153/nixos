@@ -40,6 +40,7 @@
         }
         ".local/share/direnv"
         ".local/share/atuin"
+        ".local/share/annextimelog"
         ".thunderbird"
         ".mozilla"
         ".config/Rocket.Chat"
