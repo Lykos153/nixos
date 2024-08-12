@@ -15,7 +15,7 @@ in {
     };
   };
   programs.nushell.extraConfig = let
-    passWrappers = builtins.writeFile "pass-wrappers.nu" ''
+    passWrappers = builtins.toFile "pass-wrappers.nu" ''
       export def --wrapped opass [...args] {
         PASSWORD_STORE_DIR=${opassDir} pass ...$args
       }
