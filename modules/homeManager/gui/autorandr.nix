@@ -80,6 +80,33 @@ in
             };
           };
         };
+        ch-home-a-benq = {
+          fingerprint = {
+            inherit samsung_curved laptop benq;
+          };
+          config = {
+            samsung_curved = {
+              enable = true;
+              primary = true;
+              mode = "3840x1080";
+              position = "0x0";
+              rate = "59.97";
+            };
+            laptop = {
+              enable = true;
+              mode = "1920x1080";
+              position = "960x1080";
+              rate = "60.00";
+            };
+            benq = {
+              enable = true;
+              mode = "1920x1080";
+              position = "3840x0";
+              rotate = "left";
+              rate = "60.00";
+            };
+          };
+        };
         home-w = {
           fingerprint = {
             inherit laptop samsung_syncmaster benq_w;
