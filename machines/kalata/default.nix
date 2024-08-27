@@ -23,7 +23,6 @@
 
   imports = [
     ./hardware-configuration.nix
-    ./disko.nix
     ./sops.nix
     ./bootloader.nix
   ];

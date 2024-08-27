@@ -12,10 +12,45 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["ehci_pci" "ahci" "isci" "usb_storage" "usbhid" "sd_mod"];
+  boot.initrd.availableKernelModules = ["ehci_pci" "ahci" "isci" "nvme" "usbhid" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = ["dm-snapshot"];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
+
+  boot.supportedFilesystems = ["ntfs" "bcachefs"];
+  boot.initrd.systemd.enable = false;
+
+  boot.tmp.useTmpfs = true;
+  boot.tmp.tmpfsSize = "50G";
+
+  fileSystems."/" = {
+    device = "none";
+    fsType = "tmpfs";
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/52D0-ADBE";
+    fsType = "vfat";
+    options = ["fmask=0022" "dmask=0022"];
+  };
+
+  fileSystems."/bcachefs" = {
+    device = "UUID=4b321075-5391-437a-ac5c-c33fab82c9e3";
+    fsType = "bcachefs";
+    neededForBoot = true;
+  };
+
+  fileSystems."/nix" = {
+    device = "/bcachefs/nix";
+    fsType = "none";
+    options = ["bind"];
+  };
+
+  fileSystems."/home" = {
+    device = "/bcachefs/home";
+    fsType = "none";
+    options = ["bind"];
+  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
