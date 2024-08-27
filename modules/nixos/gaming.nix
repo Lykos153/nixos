@@ -18,4 +18,7 @@
       dedicatedServer.openFirewall = true;
     };
   };
+  # TODO service to set this on shared gaming directory
+  # sudo setfacl -m default:other:rwX -R /opt/steam
+  # sudo setfacl -m other:rwX -R /opt/steam
 }
