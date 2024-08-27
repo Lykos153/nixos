@@ -2,7 +2,7 @@
 
 const mount_path = "/mnt"
 const user_home = "/home/" + user_name
-const user_age_file = user_home + "/.config/age/home.key"
+const user_age_file = $user_home + "/.config/age/home.key"
 
 def machine_name [] {
 }
