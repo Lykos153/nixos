@@ -134,6 +134,22 @@
         "type": "github"
       }
     },
+    "bcachefs": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1724718795,
+        "narHash": "sha256-YIo0/Jy92Bxx+hEqlNY5wd3u1wLJDdBszPRi/iGPPhw=",
+        "owner": "koverstreet",
+        "repo": "bcachefs",
+        "rev": "b0e4d11e0214048872065fd82680e88ed1d9f379",
+        "type": "github"
+      },
+      "original": {
+        "owner": "koverstreet",
+        "repo": "bcachefs",
+        "type": "github"
+      }
+    },
     "cursorless-talon": {
       "flake": false,
       "locked": {
@@ -966,6 +982,7 @@
     "root": {
       "inputs": {
         "annextimelog": "annextimelog",
+        "bcachefs": "bcachefs",
         "cursorless-talon": "cursorless-talon",
         "direnv": "direnv",
         "disko": "disko",

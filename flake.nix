@@ -38,6 +38,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     annextimelog.url = "gitlab:nobodyinperson/annextimelog";
+    bcachefs = {
+      url = "github:koverstreet/bcachefs";
+      flake = false;
+    };
   };
 
   outputs = inputs @ {
@@ -55,6 +59,11 @@
           talon-nix = inputs.talon-nix.overlays.default;
           rofi-mum = inputs.rofi-mum.overlays.default;
           nix-vscode-extensions = inputs.nix-vscode-extensions.overlays.default;
+          linuxes = (
+            final: prev: {
+              inherit (self.packages.${prev.system}) linux_bcachefs linux_6_11_rc5;
+            }
+          );
           other = (
             # Add packages from flake inputs to pkgs
             final: prev: {
@@ -75,6 +84,9 @@
           inherit (inputs.sops-nix.nixosModules) sops;
           inherit (inputs.home-manager.nixosModules) home-manager;
           lix-module = inputs.lix-module.nixosModules.default;
+          overlays = {
+            nixpkgs.overlays = [self.overlays.linuxes];
+          };
         };
         nixosConfigurations = self.lib.nixos.mkHosts {
           inherit (inputs) nixpkgs;
@@ -116,12 +128,13 @@
         config,
         pkgs,
         system,
+        self',
         ...
-      }: let
-        pre-commit-sops-updatekeys = pkgs.callPackage ./pkgs/pre-commit-sops-updatekeys {};
-      in {
-        packages = {
-          inherit pre-commit-sops-updatekeys;
+      }: {
+        packages = rec {
+          pre-commit-sops-updatekeys = pkgs.callPackage ./pkgs/pre-commit-sops-updatekeys {};
+          linux_bcachefs = pkgs.callPackage ./pkgs/linux_bcachefs_master.nix {src = inputs.bcachefs;};
+          linux_6_11_rc5 = pkgs.callPackage ./pkgs/linux_6_11_rc5.nix {};
           install-image = inputs.nixos-generators.nixosGenerate {
             inherit system;
             specialArgs = {
@@ -143,7 +156,7 @@
             sops
             ssh-to-age
             age
-            pre-commit-sops-updatekeys
+            self'.packages.pre-commit-sops-updatekeys
             pam_u2f
             stylish-haskell
             git-branchless
