@@ -16,6 +16,7 @@ in {
         default = {
           settings = {
             "browser.translations.neverTranslateLanguages" = "de";
+            "browser.tabs.unloadOnLowMemory" = true;
           };
           search = {
             force = true;
