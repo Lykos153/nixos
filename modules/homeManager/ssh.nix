@@ -21,6 +21,8 @@ in {
       forwardAgent = false;
       extraConfig = ''
         AddKeysToAgent yes
+        ServerAliveInterval 30
+        ServerAliveCountMax 3
       '';
       includes = ["local.d/*" "config.d/*"];
       userKnownHostsFile = lib.strings.concatStringsSep " " (["~/.ssh/known_hosts" "~/${knownHostsCommon}"] ++ cfg.extraKnownHostsFiles);
