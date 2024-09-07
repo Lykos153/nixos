@@ -1,4 +1,7 @@
 {pkgs, ...}: {
+  imports = [
+    ./annex.nix
+  ];
   home.packages = with pkgs; [
     freecad
   ];
