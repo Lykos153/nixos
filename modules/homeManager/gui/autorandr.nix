@@ -49,6 +49,21 @@ in
             };
           };
         };
+        home-a-only-benq = {
+          fingerprint = {
+            inherit benq;
+          };
+          config = {
+            benq = {
+              enable = true;
+              primary = true;
+              mode = "1920x1080";
+              position = "0x0";
+              rotate = "left";
+              rate = "60.00";
+            };
+          };
+        };
         home-a-only-samsung = {
           fingerprint = {
             inherit samsung_curved;
