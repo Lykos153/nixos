@@ -26,6 +26,7 @@
   imports = [
     ./hardware-configuration.nix
     ./bootloader.nix
+    ./ddns
     ./sops.nix
     ./disko.nix
     ./docker.nix

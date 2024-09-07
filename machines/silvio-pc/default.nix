@@ -33,6 +33,7 @@
     ./hardware-configuration.nix
     ./hdd.nix
     ./disko.nix
+    ./ddns
     ./bootloader.nix
     ./services.nix
     ./virtualisation.nix

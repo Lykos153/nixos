@@ -24,6 +24,7 @@
   imports = [
     ./hardware-configuration.nix
     ./sops.nix
+    ./ddns
     ./bootloader.nix
   ];
 }
