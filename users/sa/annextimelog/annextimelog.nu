@@ -25,6 +25,10 @@ export def "atl now" [project: string@_cmpl_project, ...args: string@_cmpl_tag ]
     atl track $"start=(_end_of_last)" $"project=($project)" ...$args
 }
 
+export def "atl done" [project: string@_cmpl_project, ...args: string@_cmpl_tag ] {
+    atl track $"start=(_end_of_last)" $"project=($project)" end=now ...$args
+}
+
 def get_start_of_day [] {
     date to-record | $"($in.year)-($in.month)-($in.day)" | into datetime
 }
