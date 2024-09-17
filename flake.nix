@@ -47,6 +47,10 @@
       url = "github:koverstreet/bcachefs";
       flake = false;
     };
+    yk8s-nu = {
+      url = "gitlab:lykos153/yk8s-nu";
+      flake = false;
+    };
   };
 
   outputs = inputs @ {
@@ -78,6 +82,7 @@
               repos = {
                 talon-community = inputs.talon-community;
                 cursorless-talon = inputs.cursorless-talon;
+                yk8s-nu = inputs.yk8s-nu;
               };
             }
           );

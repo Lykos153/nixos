@@ -928,7 +928,8 @@
         "stylix": "stylix",
         "talon-community": "talon-community",
         "talon-nix": "talon-nix",
-        "toki": "toki"
+        "toki": "toki",
+        "yk8s-nu": "yk8s-nu"
       }
     },
     "sops-nix": {
@@ -1187,6 +1188,22 @@
         "owner": "numtide",
         "repo": "treefmt-nix",
         "type": "github"
+      }
+    },
+    "yk8s-nu": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1719530886,
+        "narHash": "sha256-S6NqVaglI7Ja5eyutRLwEzZmd2y55ewe2AmfMY9q+bA=",
+        "owner": "lykos153",
+        "repo": "yk8s-nu",
+        "rev": "fff7418fa4f64261774a077adb820113a352d6a1",
+        "type": "gitlab"
+      },
+      "original": {
+        "owner": "lykos153",
+        "repo": "yk8s-nu",
+        "type": "gitlab"
       }
     }
   },
