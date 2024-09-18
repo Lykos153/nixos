@@ -1,4 +1,0 @@
-if ! ip l | grep "${wg_conf_name}:"; then
-  $PWD/managed-k8s/actions/wg-up.sh
-fi
-git crypt unlock

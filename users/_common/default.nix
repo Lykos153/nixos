@@ -6,10 +6,6 @@
   ...
 }: {
   booq.full.enable = true;
-  booq.gpg.myPubKeys = [
-    ./gpg/8D4762947205541C62A49C88F4226CA3971C4E97.gpg
-    ./gpg/A63BA766.gpg
-  ];
 
   home.keyboard.layout = "de";
 
@@ -37,10 +33,7 @@
     jless
     yq
     mr
-    lykos153.garden
     ripgrep
-    # TODO currently broken
-    # ripgrep-all # search in docs, pdfs etc.
     fd # simpler find
     ncdu
     python3Packages.ipython
@@ -51,17 +44,6 @@
     tldr
     lsd # new ls
     sd # new sed
-    profanity
     pulsemixer
-
-    poetry
-    just
-
-    lykos153.shrinkpdf
-    lykos153.git-rstash
   ];
-
-  home = {
-    stateVersion = "22.05";
-  };
 }

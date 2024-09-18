@@ -41,5 +41,6 @@
     ./sway.nix
     ./autostart.nix
     ./default-apps.nix
+    ./state-version.nix
   ];
 }

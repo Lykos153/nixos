@@ -12,5 +12,6 @@
     ./hardware-configuration.nix
     ./bootloader.nix
     ./users.nix
+    ./state-version.nix
   ];
 }

@@ -3,9 +3,8 @@
   lib,
   ...
 }: {
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
     extraPackages32 = with pkgs.pkgsi686Linux; [libva];
-    setLdLibraryPath = true;
   };
 }
