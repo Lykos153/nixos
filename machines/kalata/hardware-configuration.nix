@@ -52,6 +52,18 @@
     options = ["bind"];
   };
 
+  fileSystems."/opt/steam" = {
+    device = "/bcachefs/steam";
+    fsType = "none";
+    options = ["bind"];
+  };
+
+  fileSystems."/opt/gaming" = {
+    device = "/bcachefs/gaming";
+    fsType = "none";
+    options = ["bind"];
+  };
+
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
