@@ -32,5 +32,6 @@ in {
 
     daemonCPUSchedPolicy = "idle";
     daemonIOSchedClass = "idle";
+    daemonIONiceLevel = 7;
   };
 }
