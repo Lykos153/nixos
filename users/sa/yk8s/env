@@ -13,5 +13,7 @@ export CLIFF_FIT_WIDTH=1 # openstack --fit-width
 
 export YAOOK_DEVSHELL="withInteractive"
 
+export ANSIBLE_ANY_ERRORS_FATAL=true
+
 # Workaround for https://github.com/python-poetry/poetry/issues/1917
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
