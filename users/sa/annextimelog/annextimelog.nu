@@ -29,6 +29,15 @@ export def "atl done" [project: string@_cmpl_project, ...args: string@_cmpl_tag 
     atl track $"start=(_end_of_last)" $"project=($project)" end=now ...$args
 }
 
+export def "atl cancel" [] {
+    atl rm .open
+}
+
+export def "atl sum" [...query: string] {
+    let query = if ($query == []) {["today"]} else {$query}
+    get_records ...$query | get fields.duration | math sum | format duration hr
+}
+
 def get_start_of_day [] {
     date to-record | $"($in.year)-($in.month)-($in.day)" | into datetime
 }
