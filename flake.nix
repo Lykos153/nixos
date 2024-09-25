@@ -80,9 +80,12 @@
               kubectl = inputs.krew2nix.outputs.packages.${prev.system}.kubectl;
               annextimelog = inputs.annextimelog.outputs.packages.${prev.system}.annextimelog;
               repos = {
-                talon-community = inputs.talon-community;
-                cursorless-talon = inputs.cursorless-talon;
-                yk8s-nu = inputs.yk8s-nu;
+                inherit
+                  (inputs)
+                  talon-community
+                  cursorless-talon
+                  yk8s-nu
+                  ;
               };
             }
           );
