@@ -1,3 +1,5 @@
+# hier ist eigentlich alles drin
+
 {pkgs, ...}: {
   booq.full.enable = true;
 
@@ -26,6 +28,23 @@
       tabs = "4";
     };
   };
+
+# gibt eine website https://mynixos.com da gibst du ein was du installieren willst
+# oder was du einstellen willst und dann kannst du das hier setzen
+
+
+# diese liste hier enthält einfach pakete die erkennst du an dem package vorne darn
+# und dann kommen die da unten rein
+# manche haben extra settings so wie die da oben.
+
+# das ist das paket. das kannst du einfach da unten rein schreiben
+# und das ist die home-manager option dazu. die kannst du stattdessen benutzen wenn du direkt einstellungen festlegen willst
+
+# aber es reicht auch wenn du nur das paket installierst meistens. das aktualiesrt sich bei einem betriebsystem update mit.
+
+# das letzte konnte aber nicht bauen wegen qgis
+
+# machts nicht wenns dirty is
 
   home.packages = with pkgs; [
     vifm
