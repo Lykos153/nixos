@@ -46,3 +46,7 @@ export def ll [pattern?: string] {
 export def slurp [...args: string] {
   $args | reduce --fold [] {|arg,acc| $acc ++ (glob $arg | each {|file| open $file}) }
 }
+
+def "table-to-record" [primary: string] {
+  reduce --fold {} {|it, acc| $acc | insert ($it | get $primary) ($it | reject $primary)}
+}
