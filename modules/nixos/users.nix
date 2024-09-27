@@ -36,7 +36,7 @@ in {
     users.users.mine = {
       uid = 1001;
       isNormalUser = true;
-      shell = pkgs.zsh;
+      shell = pkgs.nushell;
       packages = with pkgs; [
       ];
     };
