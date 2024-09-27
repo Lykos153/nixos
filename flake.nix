@@ -172,7 +172,6 @@
             self'.packages.pre-commit-sops-updatekeys
             pam_u2f
             stylish-haskell
-            git-branchless
             cachix
             inputs.disko.packages.${system}.disko
             haskell-language-server
