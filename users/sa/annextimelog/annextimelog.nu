@@ -1,3 +1,7 @@
+def _get_contracts [] {
+    atl git cat-file blob main:contracts.yaml | from yaml
+}
+
 def _cmpl_project [] {
     atl git cat-file blob main:projects | lines
 }
@@ -36,6 +40,12 @@ export def "atl cancel" [] {
 export def "atl sum" [...query: string] {
     let query = if ($query == []) {["today"]} else {$query}
     get_records ...$query | get fields.duration | math sum | format duration hr
+}
+
+export def "atl away" [day: string, --until: string ...$tags] {
+    if ($until != null) {print "Until not implemented yet"; return}
+    let hours_per_day = (_get_contracts | sort-by start --reverse | first | get hours-per-week) / 5
+    atl track $"($day)T10:00" - $"($day)T(10 + $hours_per_day):00" abwesenheit ...$tags
 }
 
 def get_start_of_day [] {
