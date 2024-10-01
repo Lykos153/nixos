@@ -13,7 +13,7 @@ in {
       enable = true;
       flags = ["--disable-up-arrow"];
       settings = {
-        workspaces = true;
+        workspaces = false;
         # search_mode_shell_up_key_binding = "prefix";
         # filter_mode_shell_up_key_binding = "session";
         history_filter = [
