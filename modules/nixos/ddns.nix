@@ -41,12 +41,9 @@ in {
       systemd.services.${cfg.serviceName}.serviceConfig.LoadCredential = "${cfg.secretName}:${config.sops.secrets.${cfg.secretName}.path}";
     }
     // (
-      if (options ? "sops" && config.booq.sops.enable)
-      then {
-        sops.secrets.${cfg.secretName}.sopsFile = cfg.sopsFile;
-      }
-      else {
-        warnings = ["ddns is enabled but sops is not."];
+      lib.optionalAttrs (options ? "sops")
+      {
+        sops.secrets = lib.optionalAttrs config.booq.sops.enable {${cfg.secretName}.sopsFile = cfg.sopsFile;};
       }
     )
   );
