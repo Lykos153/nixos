@@ -1,5 +1,6 @@
 {
   lib,
+  options,
   config,
   ...
 }: let
@@ -27,16 +28,26 @@ in {
       type = lib.types.commas;
     };
   };
-  config = lib.mkIf cfg.enable {
-    sops.secrets.${cfg.secretName}.sopsFile = cfg.sopsFile;
-    services.${cfg.serviceName} = {
-      enable = true;
-      environment = {
-        CONFIG_FILEPATH = "/run/credentials/${cfg.serviceName}.service/${cfg.secretName}";
-        RESOLVER_ADDRESS = cfg.resolverAddress;
-        PUBLICIP_FETCHERS = cfg.publicIpFetchers;
+  config = lib.mkIf cfg.enable (
+    {
+      services.${cfg.serviceName} = {
+        enable = true;
+        environment = {
+          CONFIG_FILEPATH = "/run/credentials/${cfg.serviceName}.service/${cfg.secretName}";
+          RESOLVER_ADDRESS = cfg.resolverAddress;
+          PUBLICIP_FETCHERS = cfg.publicIpFetchers;
+        };
       };
-    };
-    systemd.services.${cfg.serviceName}.serviceConfig.LoadCredential = "${cfg.secretName}:${config.sops.secrets.${cfg.secretName}.path}";
-  };
+      systemd.services.${cfg.serviceName}.serviceConfig.LoadCredential = "${cfg.secretName}:${config.sops.secrets.${cfg.secretName}.path}";
+    }
+    // (
+      if (options ? "sops" && config.booq.sops.enable)
+      then {
+        sops.secrets.${cfg.secretName}.sopsFile = cfg.sopsFile;
+      }
+      else {
+        warnings = ["ddns is enabled but sops is not."];
+      }
+    )
+  );
 }
