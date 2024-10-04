@@ -44,7 +44,9 @@
 
 # das letzte konnte aber nicht bauen wegen qgis
 
-# machts nicht wenns dirty is
+# `mynix upgrade` machts nicht wenns dirty is
+
+# `gg` das ist ne tui für git. 
 
   home.packages = with pkgs; [
     vifm
