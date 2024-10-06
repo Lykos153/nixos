@@ -44,6 +44,7 @@
         ".thunderbird"
         ".mozilla"
         ".config/Rocket.Chat"
+        ".config/VSCodium/"
       ];
       files = [
         ".ssh/known_hosts"
@@ -68,6 +69,8 @@
         ".local/share/atuin"
         ".thunderbird"
         ".mozilla"
+        ".config/VSCodium/"
+        "annex"
       ];
       files = [
         ".ssh/known_hosts"
