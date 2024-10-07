@@ -29,6 +29,7 @@
       settings = {
         "general.useragent.override" = "";
         "privacy.donottrackheader.enabled" = true;
+        "mail.strictly_mime" = true; # To avoid utf-8 mojibake with gpupg encrypted mails
       };
     };
     xdg.mimeApps.associations.added = {
