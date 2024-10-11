@@ -50,3 +50,8 @@ export def slurp [...args: string] {
 export def "table-to-record" [primary: string] {
   reduce --fold {} {|it, acc| $acc | insert ($it | get $primary) ($it | reject $primary)}
 }
+
+# Recursively search and replace in files
+def rsd [search: string, replace: string] {
+  rg -l $search | xargs sd $search $replace
+}
