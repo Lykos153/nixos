@@ -41,6 +41,7 @@ in {
           autostash = true;
         };
         merge.tool = "kdiff3";
+        rerere.enabled = true;
       };
     };
 
