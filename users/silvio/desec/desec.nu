@@ -3,7 +3,7 @@ export def "desec api" [
     path: string,
     payload: record = {},
     --headers: list<string> = []
-    ] {
+    ]: nothing -> any {
     let url = $"https://desec.io/api/v1/($path)"
     let headers = $headers ++ [Authorization $"Token ($env.DESEC_TOKEN)"]
     match $verb {
@@ -17,7 +17,7 @@ export def "desec api" [
 
 ## DOMAINS
 
-export def "desec domain list" [] {
+export def "desec domain list" []: nothing -> table {
     desec api get "domains/"
 }
 
@@ -25,37 +25,37 @@ def _cmpl_domain [] {
     desec domain list | get name
 }
 
-export def "desec domain info" [domain: string@_cmpl_domain] {
+export def "desec domain info" [domain: string@_cmpl_domain]: nothing -> record {
     desec api get $"domains/($domain)/"
 }
 
-export def "desec domain zonefile" [domain: string@_cmpl_domain] {
+export def "desec domain zonefile" [domain: string@_cmpl_domain]: nothing -> string {
     desec api get $"domains/($domain)/zonefile/"
 }
 
-export def "desec domain find" [dns_name: string] {
+export def "desec domain find" [dns_name: string]: nothing -> record {
     desec api get $"domains/?owns_qname=($dns_name)"
 }
 
-export def "desec domain create" [new_domain: string] {
+export def "desec domain create" [new_domain: string]: nothing -> record {
     desec api post "domains/" {"name": $new_domain}
 }
 
-export def "desec domain delete" [domain: string@_cmpl_domain] {
+export def "desec domain delete" [domain: string@_cmpl_domain]: nothing -> nothing {
     desec api delete $"domains/($domain)/"
 }
 
 ## TOKENS
 
-export def "desec token list" [] {
+export def "desec token list" []: nothing -> table {
     desec api get "auth/tokens/"
 }
 
-export def "desec token info" [token: string] {
+export def "desec token info" [token: string@_cmpl_token]: nothing -> record {
     desec api get $"auth/tokens/($token)/"
 }
 
-export def "desec token delete" [token: string] {
+export def "desec token delete" [token: string@_cmpl_token]: nothing -> nothing {
     desec api delete $"auth/tokens/($token)/"
 }
 
@@ -76,7 +76,7 @@ export def "desec token create" [
     --manage-tokens,
     --max-age: duration,
     --max-unused-period: duration,
-    ] {
+    ]: nothing -> record {
     desec api post "auth/tokens/" ({
         perm_manage_tokens: $manage_tokens,
         max_age: ($max_age | duration-to-seconds),
@@ -98,7 +98,7 @@ export def "desec token update" [
     --manage-tokens,
     --max-age: duration,
     --max-unused-period: duration,
-    ] {
+    ]: nothing -> record {
     desec api patch $"auth/tokens/$(id)" ({
         perm_manage_tokens: $manage_tokens,
         max_age: ($max_age | duration-to-seconds),
@@ -109,7 +109,9 @@ export def "desec token update" [
     )
 }
 
-export def "desec token policy list" [token: string@_cmpl_token] {
+export def "desec token policy list" [
+    token: string@_cmpl_token
+    ]: nothing -> table {
     desec api get $"auth/tokens/($token)/policies/rrsets/"
 }
 
@@ -130,7 +132,7 @@ export def "desec token policy create" [
     --subname: string,
     --type: string@_cmpl_record_type,
     --perm_write,
-    ] {
+    ]: nothing -> record {
     desec api post $"auth/tokens/($token)/policies/rrsets/" {
         perm_write: $perm_write,
         domain: $domain
@@ -152,7 +154,10 @@ export def "desec token policy info" [token: string@_cmpl_token, policy: string@
     desec api get $"auth/tokens/($token)/policies/rrsets/($policy)/"
 }
 
-export def "desec token policy delete" [token: string@_cmpl_token, policy: string@_cmpl_policy] {
+export def "desec token policy delete" [
+    token: string@_cmpl_token,
+    policy: string@_cmpl_policy
+    ]: nothing -> nothing {
     desec api delete $"auth/tokens/($token)/policies/rrsets/($policy)/"
 }
 
@@ -167,7 +172,7 @@ export def "desec token policy update" [
     --subname: string,
     --type: string@_cmpl_record_type,
     --perm_write: string@_cmpl_perm_write,
-    ] {
+    ]: nothing -> record {
     desec api patch $"auth/tokens/($token)/policies/rrsets/($policy)/" ({}
         | upsert-if-not-null perm_write (
             match $perm_write {
@@ -186,6 +191,6 @@ export def "desec token policy update" [
 
 ## misc
 
-export def "desec logout" [] {
+export def "desec logout" []: nothing -> nothing {
    desec api post "auth/logout/"
 }
