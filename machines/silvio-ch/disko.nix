@@ -16,16 +16,6 @@
               mountpoint = "/boot";
             };
           };
-          rootfs = {
-            label = "rootfs";
-            size = "200000";
-            content = {
-              type = "filesystem";
-              format = "bcachefs";
-              mountpoint = "/nix";
-              # extraOpenArgs = ["-osubvol=nix"];
-            };
-          };
         };
       };
     };
