@@ -4,6 +4,7 @@
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
+    nur.url = "github:nix-community/NUR";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     impermanence.url = "github:nix-community/impermanence";
@@ -50,6 +51,15 @@
     yk8s-nu = {
       url = "gitlab:lykos153/yk8s-nu";
       flake = false;
+    };
+    minix = {
+      url = "git+https://codeberg.org/WhereIsMyChronoJail/nixos-config.git";
+      inputs = {
+        booq.follows = "/";
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+        nur.follows = "nur";
+      };
     };
   };
 
@@ -103,7 +113,26 @@
         };
         nixosConfigurations = self.lib.nixos.mkHosts {
           inherit (inputs) nixpkgs;
-          nixosModules = builtins.attrValues self.nixosModules;
+          nixosModules =
+            (builtins.attrValues self.nixosModules)
+            ++ [
+              ({
+                config,
+                lib,
+                ...
+              }:
+                lib.mkIf (config.networking.hostName == "kalata") {
+                  home-manager.users.mine = {
+                    imports = [inputs.minix.homeManagerModules.mine];
+                    config = {
+                      home = {
+                        homeDirectory = config.users.users.mine.home;
+                        username = "mine";
+                      };
+                    };
+                  };
+                })
+            ];
           machinedir = ./machines;
           userdir = ./users;
           homeManagerModules = builtins.attrValues self.homeManagerModules;
