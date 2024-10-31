@@ -66,10 +66,6 @@ def get_start_of_day [] {
     date to-record | $"($in.year)-($in.month)-($in.day)" | into datetime
 }
 
-def sum_duration [] {
-    reduce --fold 0sec {|i,acc| $acc + $i.duration}
-}
-
 def render_time [] {
     let rec = $in
     let hour = if ("hour" in $in) {$rec.hour} else {"00"}
@@ -89,8 +85,8 @@ def get_records [...query] {
     )
 }
 
-export def "atl hours" [--json] {
-    let records = get_records "month" | get fields
+export def "atl hours" [query: string="month", --json] {
+    let records = get_records $query | get fields
     let projects = $records | group-by project
 
     let result = ($projects | transpose project records | each {
@@ -99,12 +95,12 @@ export def "atl hours" [--json] {
             days: (
                 $project.records | group-by day | transpose day records | each {|day|
                     {
-                        day: ($day.day | format date "%Y-%m-%d"),
-                        duration: ($day.records | sum_duration | format duration hr ),
+                        day: ($day.day | if ($json) {$in} else {format date "%Y-%m-%d"}),
+                        duration: ($day.records.duration | math sum | if ($json) {$in} else {format duration hr} ),
                     }
                 }
             ),
-            sum: ($project.records | sum_duration | format duration hr),
+            sum: ($project.records.duration | math sum | if ($json) {$in} else {format duration hr}),
         }
     })
     if $json {$result | to json} else { $result }
