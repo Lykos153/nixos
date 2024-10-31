@@ -42,10 +42,24 @@ export def "atl sum" [...query: string] {
     get_records ...$query | get fields.duration | math sum | format duration hr
 }
 
-export def "atl away" [day: string, --until: string ...$tags] {
-    if ($until != null) {print "Until not implemented yet"; return}
+export def "atl away" [day: datetime, reason: string, --until: datetime ...$tags] {
     let hours_per_day = (_get_contracts | sort-by start --reverse | first | get hours-per-week) / 5
-    atl track $"($day)T10:00" - $"($day)T(10 + $hours_per_day):00" abwesenheit ...$tags
+    let track_away_day = {|day| atl track $"($day)T10:00" - $"($day)T(10 + $hours_per_day):00" project=abwesenheit $reason ...$tags}
+    if ($until != null) {
+        generate {|day|
+            {
+                out: $day,
+                next: ($day + 1day),
+            }
+        } $day
+        | filter {not (($in | format date %a) in ["Sun" "Sat" "Sa" "So"]) } # how to ensure english here?
+        | take until {$in > $until}
+        | each {$in | format date %Y-%m-%d}
+        | each {do $track_away_day $in}
+    } else {
+        do $track_away_day $day
+    }
+
 }
 
 def get_start_of_day [] {
