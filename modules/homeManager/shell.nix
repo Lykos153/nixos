@@ -9,6 +9,7 @@ in {
     enable = lib.mkEnableOption "shell";
   };
   config = lib.mkIf cfg.enable {
+    programs.bash.enable = true;
     programs.atuin = {
       enable = true;
       flags = ["--disable-up-arrow"];
