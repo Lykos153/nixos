@@ -107,6 +107,7 @@
           machinedir = ./machines;
           userdir = ./users;
           homeManagerModules = builtins.attrValues self.homeManagerModules;
+          flakeInputs = inputs;
         };
         homeManagerModules = {
           booq = import ./modules/homeManager;

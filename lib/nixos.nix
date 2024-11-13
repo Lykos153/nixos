@@ -12,6 +12,7 @@ in rec {
     homeManagerModules,
     machinedir,
     userdir,
+    flakeInputs ? [],
   }: let
     commonpath = machinedir + "/${commonName}";
     commonmodules =
@@ -27,8 +28,8 @@ in rec {
           (machinedir + "/${hostname}")
           {
             networking.hostName = hostname;
-            nix.registry.nixpkgs.flake = nixpkgs; # Pin flakes so search, shell etc. are faster. From https://ianthehenry.com/posts/how-to-learn-nix/more-flakes/
-            # nix.registry.nixpkgs-master.flake = nixpkgs-master;
+            # Pin flakes so search, shell etc. are faster. From https://ianthehenry.com/posts/how-to-learn-nix/more-flakes/
+            nix.registry = nixpkgs.lib.mapAttrs (_: flake: {inherit flake;}) (nixpkgs.lib.filterAttrs (_: v: (v._type or null) == "flake") flakeInputs);
           }
           {
             home-manager.useGlobalPkgs = false;
@@ -51,10 +52,11 @@ in rec {
     userdir,
     nixosModules,
     homeManagerModules,
+    flakeInputs ? [],
   }:
     builtins.mapAttrs (name: _:
       mkHost {
         hostname = name;
-        inherit nixpkgs machinedir userdir nixosModules homeManagerModules;
+        inherit nixpkgs machinedir userdir nixosModules homeManagerModules flakeInputs;
       }) (dirWithoutCommon nixpkgs machinedir);
 }
