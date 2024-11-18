@@ -9,6 +9,7 @@ in {
   imports = [
     ./delta.nix
     ./difftastic.nix
+    ./mergiraf.nix
   ];
   options.booq.git = {
     enable = lib.mkEnableOption "git";
