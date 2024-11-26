@@ -9,6 +9,6 @@ linux_testing.override {
   argsOverride = rec {
     inherit src;
     version = "6.12-custom-bcachefs";
-    modDirVersion = "6.12.0";
+    modDirVersion = "6.12.0-rc6";
   };
 }
