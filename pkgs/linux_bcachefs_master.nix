@@ -1,4 +1,5 @@
 {
+  lib,
   fetchurl,
   buildLinux,
   src,
@@ -12,7 +13,9 @@ buildLinux (args
     inherit src;
 
     kernelPatches = [];
-
+    structuredExtraConfig = with lib.kernel; {
+      BCACHEFS_FS = yes;
+    };
     extraConfig = ''
     '';
 
