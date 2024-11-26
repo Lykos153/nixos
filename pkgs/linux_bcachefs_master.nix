@@ -1,24 +1,14 @@
 {
   lib,
   fetchurl,
-  buildLinux,
+  linux_testing,
   src,
   ...
 } @ args:
-buildLinux (args
-  // rec {
-    version = "bcachefs-master";
-    modDirVersion = version;
-
+linux_testing.override {
+  argsOverride = rec {
     inherit src;
-
-    kernelPatches = [];
-    structuredExtraConfig = with lib.kernel; {
-      BCACHEFS_FS = yes;
-    };
-    extraConfig = ''
-    '';
-
-    extraMeta.branch = "master";
-  }
-  // (args.argsOverride or {}))
+    version = "6.12-custom-bcachefs";
+    modDirVersion = "6.12.0";
+  };
+}
