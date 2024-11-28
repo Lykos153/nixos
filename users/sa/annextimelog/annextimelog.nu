@@ -3,7 +3,19 @@ def _get_contracts [] {
 }
 
 def _cmpl_project [] {
-    atl git cat-file blob main:projects | lines
+    (atl git cat-file blob main:projects.yaml
+        | from yaml
+        | transpose name details
+        | reduce --fold [] {|project,pAcc|
+            $pAcc ++ $project.name ++ (
+                if (($project.details != null) and ("tasks" in ($project.details))) {
+                    $project.details.tasks
+                        | reduce --fold [] {|task,tAcc|
+                            $tAcc ++ $"($project.name).($task)"
+                        }
+                } else {[]})
+        }
+    )
 }
 
 def _end_of_last [] {
