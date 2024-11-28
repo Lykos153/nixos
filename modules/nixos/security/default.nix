@@ -20,6 +20,12 @@ in {
       hardware.gpgSmartcards.enable = true;
 
       hardware.onlykey.enable = true;
+      environment.systemPackages = [
+        pkgs.onlykey
+        pkgs.onlykey-cli
+        pkgs.onlykey-agent
+      ];
+      services.upower.enable = true; # <- onlykey errors... but doesnt work anyway
       services.udev.packages = [pkgs.yubikey-personalization];
       security.pam = {
         u2f = {
