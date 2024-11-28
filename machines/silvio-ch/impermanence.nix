@@ -45,6 +45,7 @@
         ".mozilla"
         ".config/Rocket.Chat"
         ".config/VSCodium/"
+        ".local/share/profanity"
       ];
       files = [
         ".ssh/known_hosts"
