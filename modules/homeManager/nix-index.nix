@@ -18,6 +18,7 @@
         OnCalendar = "weekly";
         Persistent = "true";
         Unit = "nix-index.service";
+        RandomizedDelaySec = "3600";
       };
     };
 
