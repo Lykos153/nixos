@@ -79,6 +79,7 @@
               toki = inputs.toki.outputs.defaultPackage.${prev.system};
               kubectl = inputs.krew2nix.outputs.packages.${prev.system}.kubectl;
               annextimelog = inputs.annextimelog.outputs.packages.${prev.system}.annextimelog;
+              mergiraf = inputs.nixpkgs-master.outputs.legacyPackages.${prev.system}.mergiraf;
               repos = {
                 inherit
                   (inputs)
