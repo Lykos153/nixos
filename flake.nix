@@ -51,6 +51,7 @@
       url = "gitlab:lykos153/yk8s-nu";
       flake = false;
     };
+    desec-nu.url = "git+https://codeberg.org/lykos153/desec-nu.git";
   };
 
   outputs = inputs @ {
@@ -114,6 +115,7 @@
           booq = import ./modules/homeManager;
           sops-nix = inputs.sops-nix.homeManagerModule;
           inherit (inputs.stylix.homeManagerModules) stylix;
+          desec-nu = inputs.desec-nu.homeManagerModules.default;
           overlays = {
             nixpkgs.overlays = builtins.attrValues self.overlays;
           };

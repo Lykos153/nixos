@@ -118,6 +118,21 @@
         "type": "github"
       }
     },
+    "desec-nu": {
+      "locked": {
+        "lastModified": 1733073964,
+        "narHash": "sha256-58WDpykIFtBhr0Un6qv46z1Iae1G+4UWXBtAL3SV2xY=",
+        "ref": "refs/heads/main",
+        "rev": "53394a6143e0026c0aa846ebb36f03c445fe1ec5",
+        "revCount": 6,
+        "type": "git",
+        "url": "https://codeberg.org/lykos153/desec-nu.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://codeberg.org/lykos153/desec-nu.git"
+      }
+    },
     "direnv": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -862,6 +877,7 @@
         "annextimelog": "annextimelog",
         "bcachefs": "bcachefs",
         "cursorless-talon": "cursorless-talon",
+        "desec-nu": "desec-nu",
         "direnv": "direnv",
         "disko": "disko",
         "flake-parts": "flake-parts_2",
