@@ -7,7 +7,7 @@
   ...
 }:
 lib.mkIf config.booq.gui.sway.enable {
-  home.packages = [(pkgs.nerdfonts.override {fonts = ["Iosevka"];})];
+  home.packages = [pkgs.nerd-fonts-iosevka];
   # home-manager’s waybar module performs additional checks that are overly strict
   xdg.configFile."waybar/config".onChange = ''
     ${pkgs.systemd}/bin/systemctl --user reload waybar

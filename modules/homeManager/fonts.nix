@@ -13,7 +13,8 @@ in {
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
       roboto
-      (pkgs.nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})
+      pkgs.nerd-fonts.fira-code
+      pkgs.nerd-fonts.droid-sans-mono
       #google-fonts # google font collection (free)
       #lmodern # Latin Modern for non-latex applications
       #source-han-sans
