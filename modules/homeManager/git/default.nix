@@ -71,12 +71,21 @@ in {
       git-absorb
       git-remote-gcrypt
       git-annex
-      yt-dlp # for git-annex addurl
       tig
       tea
       glab
       gh
       ghq
     ];
+
+    programs.yt-dlp = {
+      # for git-annex addurl
+      enable = true;
+      settings = {
+        cookies-from-browser = "firefox";
+        restrict-filenames = true;
+        user-agent = "\"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\"";
+      };
+    };
   };
 }
