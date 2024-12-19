@@ -14,7 +14,10 @@
     enable = true;
     libvirtUsers = ["silvio" "sa"];
   };
-  booq.local.openvpn-ch.enable = true;
+  booq.local.openvpn-ch = {
+    enable = true;
+    routes = "per-ip";
+  };
   zramSwap.enable = false;
   # TODO evaluate https://github.com/vrmiguel/bustd instead
   services.earlyoom = {
