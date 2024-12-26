@@ -22,8 +22,6 @@
     rofi-mum.inputs.nixpkgs.follows = "nixpkgs";
     toki.url = "github:lykos153/toki";
     toki.inputs.nixpkgs.follows = "nixpkgs";
-    krew2nix.url = "github:lykos153/krew2nix";
-    krew2nix.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:danth/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
     talon-nix.url = "github:nix-community/talon-nix";
@@ -78,7 +76,6 @@
             # Add packages from flake inputs to pkgs
             final: prev: {
               toki = inputs.toki.outputs.defaultPackage.${prev.system};
-              kubectl = inputs.krew2nix.outputs.packages.${prev.system}.kubectl;
               annextimelog = inputs.annextimelog.outputs.packages.${prev.system}.annextimelog;
               mergiraf = inputs.nixpkgs-master.outputs.legacyPackages.${prev.system}.mergiraf;
               repos = {

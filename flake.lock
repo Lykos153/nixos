@@ -301,21 +301,6 @@
       }
     },
     "flake-utils_3": {
-      "locked": {
-        "lastModified": 1659877975,
-        "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "flake-utils_4": {
       "inputs": {
         "systems": "systems_4"
       },
@@ -333,7 +318,7 @@
         "type": "github"
       }
     },
-    "flake-utils_5": {
+    "flake-utils_4": {
       "inputs": {
         "systems": "systems_5"
       },
@@ -351,7 +336,7 @@
         "type": "github"
       }
     },
-    "flake-utils_6": {
+    "flake-utils_5": {
       "inputs": {
         "systems": [
           "stylix",
@@ -372,7 +357,7 @@
         "type": "github"
       }
     },
-    "flake-utils_7": {
+    "flake-utils_6": {
       "inputs": {
         "systems": "systems_7"
       },
@@ -494,44 +479,6 @@
         "type": "github"
       }
     },
-    "krew2nix": {
-      "inputs": {
-        "flake-utils": "flake-utils_3",
-        "krewIndex": "krewIndex",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1692722382,
-        "narHash": "sha256-aHkN6LeC541IPphkHLD6vQPsoA5ZQ68wBaZDOPh3lcQ=",
-        "owner": "lykos153",
-        "repo": "krew2nix",
-        "rev": "a8d6b76137715dd979e525e09855f34fde74865a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "lykos153",
-        "repo": "krew2nix",
-        "type": "github"
-      }
-    },
-    "krewIndex": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1692713934,
-        "narHash": "sha256-zkv5FDcHNqDRFM1EOm4GW47FeqJTadBxMxo9/vMPnGI=",
-        "owner": "kubernetes-sigs",
-        "repo": "krew-index",
-        "rev": "a80f112920a05d606bcd4f4132311645e9e2f1de",
-        "type": "github"
-      },
-      "original": {
-        "owner": "kubernetes-sigs",
-        "repo": "krew-index",
-        "type": "github"
-      }
-    },
     "lix": {
       "flake": false,
       "locked": {
@@ -548,7 +495,7 @@
     },
     "lix-module": {
       "inputs": {
-        "flake-utils": "flake-utils_4",
+        "flake-utils": "flake-utils_3",
         "flakey-profile": "flakey-profile",
         "lix": "lix",
         "nixpkgs": [
@@ -633,7 +580,7 @@
     "nix-vscode-extensions": {
       "inputs": {
         "flake-compat": "flake-compat",
-        "flake-utils": "flake-utils_5",
+        "flake-utils": "flake-utils_4",
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
@@ -883,7 +830,6 @@
         "flake-parts": "flake-parts_2",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
-        "krew2nix": "krew2nix",
         "lix-module": "lix-module",
         "mynur": "mynur",
         "nix-vscode-extensions": "nix-vscode-extensions",
@@ -928,7 +874,7 @@
         "base16-helix": "base16-helix",
         "base16-vim": "base16-vim",
         "flake-compat": "flake-compat_2",
-        "flake-utils": "flake-utils_6",
+        "flake-utils": "flake-utils_5",
         "gnome-shell": "gnome-shell",
         "home-manager": "home-manager_2",
         "nixpkgs": [
@@ -1146,7 +1092,7 @@
     },
     "toki": {
       "inputs": {
-        "flake-utils": "flake-utils_7",
+        "flake-utils": "flake-utils_6",
         "nixpkgs": [
           "nixpkgs"
         ]

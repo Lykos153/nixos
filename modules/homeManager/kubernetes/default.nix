@@ -11,14 +11,7 @@ in {
   };
   config = lib.mkIf cfg.enable {
     home.packages = [
-      (pkgs.kubectl.withKrewPlugins (plugins:
-        with plugins; [
-          node-shell
-          get-all
-          example
-          cnpg
-          rook-ceph
-        ]))
+      pkgs.kubectl
       pkgs.kustomize
       pkgs.fluxcd
       pkgs.k9s
