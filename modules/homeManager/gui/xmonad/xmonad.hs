@@ -1,6 +1,7 @@
 import           XMonad                             hiding ((|||))
 import           XMonad.Layout.CenterMainFluid
 import           XMonad.Layout.LayoutCombinators
+import           XMonad.Layout.NoBorders
 import           XMonad.Layout.PerScreen
 
 import           System.Taffybar.Support.PagerHints (pagerHints)
@@ -32,9 +33,9 @@ main = do
           , terminal = Tools.terminal
           , keys = myKeys
           , layoutHook = let
-              ultrawideLayout = (CenterMainFluid 1 (3/100) (50/100)) ||| Full ||| tall
-              regularLayout = (tall ||| Mirror tall ||| Full)
-              rotatedLayout = Mirror tall ||| Full
+              ultrawideLayout = (CenterMainFluid 1 (3/100) (50/100)) ||| (noBorders Full) ||| tall
+              regularLayout = (tall ||| Mirror tall ||| (noBorders Full))
+              rotatedLayout = Mirror tall ||| (noBorders Full)
              in avoidStruts $ ifRatioGreater (10/16) (ifRatioGreater (16/10) ultrawideLayout regularLayout) rotatedLayout
           , logHook = updatePointer (0.5, 0.5) (0, 0)
         }
