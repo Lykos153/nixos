@@ -14,4 +14,10 @@
     fsType = "btrfs";
     options = ["subvol=/media" "x-systemd.automount"];
   };
+
+  fileSystems."/home/silvio/.local/share/Steam" = {
+    device = "/dev/disk/by-partlabel/disk-nvme-eui-steam";
+    fsType = "ext4";
+    # options = ["casefold"];
+  };
 }
