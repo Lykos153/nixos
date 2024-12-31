@@ -92,7 +92,7 @@
           inherit (inputs.impermanence.nixosModules) impermanence;
           inherit (inputs.sops-nix.nixosModules) sops;
           inherit (inputs.home-manager.nixosModules) home-manager;
-          lix-module = inputs.lix-module.nixosModules.default;
+          # lix-module = inputs.lix-module.nixosModules.default;
           overlays = {
             nixpkgs.overlays = [self.overlays.linuxes];
           };
