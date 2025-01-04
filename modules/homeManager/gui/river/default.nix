@@ -82,6 +82,8 @@ in {
       extraConfig = ''
         riverctl spawn ${pkgs.wideriver}/bin/wideriver
         riverctl output-layout wideriver
+        riverctl keyboard-layout de # alternatively XKB_* variables
+        # TODO: how to set layouts per-input? https://codeberg.org/river/river/issues/400
 
         riverctl map-pointer normal Super BTN_LEFT move-view
         riverctl map-pointer normal Super BTN_RIGHT resize-view
