@@ -17,6 +17,7 @@ in {
           "normal"
           "passthrough"
         ];
+        focus-follows-cursor = "always";
         map = let
           menu = pkgs.writeScript "menu" "${pkgs.j4-dmenu-desktop}/bin/j4-dmenu-desktop --usage-log=$HOME/.cache/j4-dmenu-desktop.log --dmenu=\"${pkgs.dmenu-wayland}/bin/dmenu-wl -i -nb '#002b36' -nf '#839496' -sb '#859900' -sf '#073642'\"";
         in {
