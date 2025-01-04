@@ -17,10 +17,13 @@ in {
           "normal"
           "passthrough"
         ];
-        map = {
+        map = let
+          menu = pkgs.writeScript "menu" "${pkgs.j4-dmenu-desktop}/bin/j4-dmenu-desktop --usage-log=$HOME/.cache/j4-dmenu-desktop.log --dmenu=\"${pkgs.dmenu-wayland}/bin/dmenu-wl -i -nb '#002b36' -nf '#839496' -sb '#859900' -sf '#073642'\"";
+        in {
           normal =
             {
               "Super Return" = "spawn ${pkgs.foot}/bin/foot";
+              "Super D" = "spawn ${menu}";
               "Super+Shift Q" = "close";
               "Super+Shift E" = "exit";
               "Super J" = "focus-view next";
