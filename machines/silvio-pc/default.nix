@@ -15,6 +15,7 @@
     shared-repo.enable = true;
     # audio.backend = "pipewire";
     local.openvpn-ch.enable = true;
+    ccache.enable = true;
   };
 
   hardware.logitech.wireless.enable = true;
