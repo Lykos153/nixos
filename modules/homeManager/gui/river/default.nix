@@ -51,10 +51,6 @@ in {
               "Super+Alt+Shift J" = "resize vertical 100";
               "Super+Alt+Shift K" = "resize vertical -100";
               "Super+Alt+Shift L" = "resize horizontal 100";
-              # pointer normal Super BTN_LEFT move-view
-              # pointer normal Super BTN_RIGHT resize-view
-              # pointer normal Super BTN_MIDDLE toggle-float
-
               # riverctl map normal Super 0 set-focused-tags $all_tags
               # riverctl map normal Super+Shift 0 set-view-tags $all_tags
 
@@ -85,6 +81,10 @@ in {
       extraConfig = ''
         riverctl spawn ${pkgs.wideriver}/bin/wideriver
         riverctl output-layout wideriver
+
+        riverctl map-pointer normal Super BTN_LEFT move-view
+        riverctl map-pointer normal Super BTN_RIGHT resize-view
+        riverctl map-pointer normal Super BTN_MIDDLE toggle-float
       '';
     };
   };
