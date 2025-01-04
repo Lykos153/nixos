@@ -17,6 +17,7 @@ in {
       directories =
         [
           "/var/log"
+          "/var/tmp"
           "/var/lib/nixos"
           "/var/lib/systemd/coredump"
         ]
