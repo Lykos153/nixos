@@ -40,7 +40,6 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    annextimelog.url = "gitlab:nobodyinperson/annextimelog";
     bcachefs = {
       url = "github:koverstreet/bcachefs";
       flake = false;
@@ -76,7 +75,6 @@
             # Add packages from flake inputs to pkgs
             final: prev: {
               toki = inputs.toki.outputs.defaultPackage.${prev.system};
-              annextimelog = inputs.annextimelog.outputs.packages.${prev.system}.annextimelog;
               mergiraf = inputs.nixpkgs-master.outputs.legacyPackages.${prev.system}.mergiraf;
               repos = {
                 inherit
