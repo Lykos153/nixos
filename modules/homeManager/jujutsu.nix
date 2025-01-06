@@ -20,7 +20,7 @@ in {
     };
 
     home.packages = with pkgs; [
-      lazyjj
+      # lazyjj # broken
     ];
   };
 }

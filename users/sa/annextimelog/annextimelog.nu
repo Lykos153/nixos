@@ -2,16 +2,16 @@ def _get_contracts [] {
     atl git cat-file blob main:contracts.yaml | from yaml
 }
 
-def _cmpl_project [] {
+def _cmpl_project []: nothing -> list<string> {
     (atl git cat-file blob main:projects.yaml
         | from yaml
         | transpose name details
         | reduce --fold [] {|project,pAcc|
-            $pAcc ++ $project.name ++ (
+            $pAcc ++ [$project.name] ++ (
                 if (($project.details != null) and ("tasks" in ($project.details))) {
                     $project.details.tasks
                         | reduce --fold [] {|task,tAcc|
-                            $tAcc ++ $"($project.name).($task)"
+                            $tAcc ++ [$"($project.name).($task)"]
                         }
                 } else {[]})
         }
@@ -74,8 +74,8 @@ export def "atl away" [day: datetime, reason: string, --until: datetime ...$tags
 
 }
 
-def get_start_of_day [] {
-    date to-record | $"($in.year)-($in.month)-($in.day)" | into datetime
+def get_start_of_day []: datetime -> datetime {
+    into record | $"($in.year)-($in.month)-($in.day)" | into datetime
 }
 
 def render_time [] {
@@ -120,10 +120,10 @@ export def "atl hours" [query: string="month", --json] {
 
 def _cmpl_id [line: string] {
   get_records | reverse | reduce --fold [] {
-    |it,acc| $acc ++ {
+    |it,acc| $acc ++ [{
         value: $it.id,
         description: $"($it.fields.start | format date '%F %T') \(($it.fields.duration | format duration hr)\) ($it.fields.project)"
-    }
+    }]
   }
 }
 
