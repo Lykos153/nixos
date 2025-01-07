@@ -11,6 +11,7 @@ in {
   };
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
+      nvd
       home-manager
     ];
     home.shellAliases = {

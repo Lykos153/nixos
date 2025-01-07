@@ -51,5 +51,7 @@ def upgrade [flake: string] {
   }
 
   mynix system build --flake $flake
+  nvd diff /run/current-system result
+  rm result
   git -C $flake commit -m $"Upgrade" flake.lock
 }
