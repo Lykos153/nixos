@@ -55,3 +55,12 @@ export def "table-to-record" [primary: string] {
 def rsd [search: string, replace: string] {
   rg -l $search | xargs sd $search $replace
 }
+
+# Replace a symlink with a writable copy
+export def editify [filename: string] {
+  let t = ^mktemp -u -p ($filename | path dirname)
+  cp $filename $t
+  rm $filename
+  mv $t $filename
+  chmod +w $filename
+}
