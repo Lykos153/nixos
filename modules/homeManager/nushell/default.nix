@@ -27,6 +27,7 @@ in {
       extraConfig = ''
         $env.config = ($env | default {} config).config
         $env.config.show_banner = false
+        $env.config.ls.clickable_links = false
         source ${./keybindings.nu}
         use ${./functions.nu} *
       '';
