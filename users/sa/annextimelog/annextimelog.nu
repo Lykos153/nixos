@@ -1,4 +1,4 @@
-def _get_contracts [] {
+def _get_contracts []: nothing -> table<string: int> {
     atl git cat-file blob main:contracts.yaml | from yaml
 }
 
@@ -18,43 +18,43 @@ def _cmpl_project []: nothing -> list<string> {
     )
 }
 
-def _end_of_last [] {
-    (atl ls -O json | complete | get stdout | from json --objects | get fields.end | sort | last | last)
+def _end_of_last []: nothing -> string {
+    (atl ls since 24h ago -O json | complete | get stdout | from json --objects | get fields.end | sort | last | last)
 }
 
-def _cmpl_at [] {
+def _cmpl_at []: nothing -> list<string> {
     [
         now
         (_end_of_last)
     ]
 }
 
-def _cmpl_tag [] {
+def _cmpl_tag []: nothing -> list<string> {
     atl git annex metadata -j | from json --objects | get fields | filter {|r| "tag" in ($r | columns)} | get tag | reduce {|r,acc| $acc ++ $r } | uniq -c | sort-by -r count | get value
 }
 
-export def "atl start" [--at: string@_cmpl_at="now", project: string@_cmpl_project, ...args: string@_cmpl_tag ] {
+export def "atl start" [--at: string@_cmpl_at="now", project: string@_cmpl_project, ...args: string@_cmpl_tag ]: nothing -> string {
     atl stop $at; atl track $"start=($at)" $"project=($project)" ...$args
 }
 
-export def "atl now" [project: string@_cmpl_project, ...args: string@_cmpl_tag ] {
+export def "atl now" [project: string@_cmpl_project, ...args: string@_cmpl_tag ]: nothing -> string {
     atl track $"start=(_end_of_last)" $"project=($project)" ...$args
 }
 
-export def "atl done" [project: string@_cmpl_project, ...args: string@_cmpl_tag ] {
+export def "atl done" [project: string@_cmpl_project, ...args: string@_cmpl_tag ]: nothing -> string {
     atl track $"start=(_end_of_last)" $"project=($project)" end=now ...$args
 }
 
-export def "atl cancel" [] {
+export def "atl cancel" []: nothing -> string {
     atl rm .open
 }
 
-export def "atl sum" [...query: string] {
+export def "atl sum" [...query: string]: nothing -> string {
     let query = if ($query == []) {["today"]} else {$query}
     get_records ...$query | get fields.duration | math sum | format duration hr
 }
 
-export def "atl away" [day: datetime, reason: string, --until: datetime ...$tags] {
+export def "atl away" [day: datetime, reason: string, --until: datetime ...$tags]: nothing -> string {
     let hours_per_day = (_get_contracts | sort-by start --reverse | first | get hours-per-week) / 5
     let track_away_day = {|day| atl track $"($day)T10:00" - $"($day)T(10 + $hours_per_day):00" project=abwesenheit $reason ...$tags}
     if ($until != null) {
@@ -78,14 +78,14 @@ def get_start_of_day []: datetime -> datetime {
     into record | $"($in.year)-($in.month)-($in.day)" | into datetime
 }
 
-def render_time [] {
+def render_time []: record -> string {
     let rec = $in
     let hour = if ("hour" in $in) {$rec.hour} else {"00"}
     let minute = if ("minute" in $in) {$rec.minute} else {"00"}
     $"($hour):($minute)"
 }
 
-def get_records [...query] {
+def get_records [...query]: nothing -> table {
     let query = if ($query == []) {["today"]} else {$query}
     (
         atl ls ...$query -O json | complete | get stdout | from json --objects |
@@ -97,7 +97,9 @@ def get_records [...query] {
     )
 }
 
-export def "atl hours" [query: string="month", --json] {
+export def "atl hours" [query: string="month", --json]: [
+    nothing -> table<project: string, days: list<error>, sum: string>
+    nothing -> string ] {
     let records = get_records $query | get fields
     let projects = $records | group-by project
 
@@ -118,7 +120,7 @@ export def "atl hours" [query: string="month", --json] {
     if $json {$result | to json} else { $result }
 }
 
-def _cmpl_id [line: string] {
+def _cmpl_id [line: string]: nothing -> table<value: string, description: string> {
   get_records | reverse | reduce --fold [] {
     |it,acc| $acc ++ [{
         value: $it.id,
@@ -127,7 +129,7 @@ def _cmpl_id [line: string] {
   }
 }
 
-def _cmpl_mod [line: string] {
+def _cmpl_mod [line: string]: nothing -> table<value: string, description: string> {
     let words = $line | split row -r `\s+` | skip 2
     match ($words | length) {
         $i if $i <= 1 => {_cmpl_id $line | each {|it| {value: $"id=($it.value)", description: $it.description}}},
