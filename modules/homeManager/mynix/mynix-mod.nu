@@ -14,7 +14,7 @@ export def mynix [ target:string@complete_mynix_target, action?:string@complete_
   match $target {
     "system" => (sudo nixos-rebuild $action --flake $"($flake)#(hostname)")
     "user" => (home-manager $action -b $"bak.(date now | format date "%s")" --flake $"($flake)#(id -un)@(hostname)")
-    "upgrade" => upgrade
+    "upgrade" => (upgrade $flake)
   }
 }
 
@@ -38,17 +38,18 @@ def upgrade-check [flake: string] {
   (git -C $flake status --short . | lines | filter {|x| not ( $x | str contains "flake.lock") } | length) == 0
 }
 
-def upgrade [] {
-  let flake = $env.HOME + "/nixos/"
+def upgrade [flake: string] {
   if not (upgrade-check $flake) {
     print $"($flake) is dirty"
     return
   }
-  nix flake update $flake
+  nix flake update --flake $flake
   let changed = (do {git -C $flake diff --quiet flake.lock} | complete).exit_code != 0
   if not $changed {
     print "Nothing to do"
     return
   }
-  mynix system build; mynix user build; git -C $flake commit -m $"Upgrade" flake.lock
+
+  mynix system build --flake $flake
+  git -C $flake commit -m $"Upgrade" flake.lock
 }

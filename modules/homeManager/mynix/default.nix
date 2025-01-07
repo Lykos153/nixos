@@ -10,6 +10,9 @@ in {
     enable = lib.mkEnableOption "mynix";
   };
   config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [
+      home-manager
+    ];
     home.shellAliases = {
       hmb = "mynix user build";
       hms = "mynix user switch";
