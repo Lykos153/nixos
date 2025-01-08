@@ -12,7 +12,12 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  nixpkgs.hostPlatform = "x86_64-linux";
+  nix.settings.system-features = ["gccarch-raptorlake"];
+  nixpkgs.hostPlatform = {
+    gcc.arch = "raptorlake";
+    gcc.tune = "raptorlake";
+    system = "x86_64-linux";
+  };
 
   boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" "sdhci_pci"];
   boot.initrd.kernelModules = [];
