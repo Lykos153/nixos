@@ -35,7 +35,7 @@ in {
         matchConfig.Name = "en*";
         networkConfig.DHCP = "yes";
         networkConfig.DNSSEC = "no"; # seems to be broken here
-        # dhcpConfig.UseDNS = false;
+        dhcpConfig.UseDNS = false;
         dhcpV4Config.RouteMetric = 1024;
         dhcpV6Config.RouteMetric = 1024;
       };
@@ -43,7 +43,7 @@ in {
         matchConfig.Name = "wl*";
         networkConfig.DHCP = "yes";
         networkConfig.DNSSEC = "no"; # seems to be broken here
-        # dhcpConfig.UseDNS = false;
+        dhcpConfig.UseDNS = false;
         dhcpV4Config.RouteMetric = 1025;
         dhcpV6Config.RouteMetric = 1025;
       };
