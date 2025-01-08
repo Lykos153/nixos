@@ -24,14 +24,20 @@ def nix_prefix_package [package: string] {
   } else {$package}
 }
 
-export def nr [ package: string, --unfree, ...args: string ] {
-  let cmd = (if $unfree {["--impure"]} else []) ++ [(nix_prefix_package $package)] ++ args
-  with-env { NIXPKGS_ALLOW_UNFREE: (if $unfree {"1"} else {"0"})} { nix run ...$cmd }
+export def nr [ package: string, --unfree, --insecure, ...args: string ] {
+  let cmd = (if ($unfree or $insecure) {["--impure"]} else []) ++ [(nix_prefix_package $package)] ++ $args
+  with-env {
+    NIXPKGS_ALLOW_UNFREE: (if $unfree {"1"} else {"0"}),
+    NIXPKGS_ALLOW_INSECURE: (if $insecure {"1"} else {"0"}),
+  } { nix run ...$cmd }
 }
 
-export def nsh [...args: string, --unfree] {
-  let cmd = (if $unfree {["--impure"]} else []) ++ ($args | each {|x| (nix_prefix_package $x)})
-  with-env { NIXPKGS_ALLOW_UNFREE: (if $unfree {"1"} else {"0"})} { nix shell ...$cmd }
+export def nsh [...args: string, --unfree, --insecure] {
+  let cmd = (if ($unfree or $insecure) {["--impure"]} else []) ++ ($args | each {|x| (nix_prefix_package $x)})
+  with-env {
+    NIXPKGS_ALLOW_UNFREE: (if $unfree {"1"} else {"0"}),
+    NIXPKGS_ALLOW_INSECURE: (if $insecure {"1"} else {"0"}),
+  } { nix shell ...$cmd }
 }
 
 def upgrade-check [flake: string] {
