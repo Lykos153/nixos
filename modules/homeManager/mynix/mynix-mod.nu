@@ -6,16 +6,12 @@ def complete_mynix_action [context: string] {
   } | get -i ($context | split words).1
 }
 
-def complete_mynix_target [] {
-  [user system upgrade]
+export def "mynix system" [action?:string@complete_mynix_action, --flake: string = "/etc/nixos" ] {
+    sudo nixos-rebuild $action --flake $"($flake)#(hostname)"
 }
 
-export def mynix [ target:string@complete_mynix_target, action?:string@complete_mynix_action, --flake: string = "/etc/nixos" ] {
-  match $target {
-    "system" => (sudo nixos-rebuild $action --flake $"($flake)#(hostname)")
-    "user" => (home-manager $action -b $"bak.(date now | format date "%s")" --flake $"($flake)#(id -un)@(hostname)")
-    "upgrade" => (upgrade $flake)
-  }
+export def "mynix user" [action?:string@complete_mynix_action, --flake: string = "/etc/nixos"] {
+  home-manager $action -b $"bak.(date now | format date "%s")" --flake $"($flake)#(id -un)@(hostname)"
 }
 
 def nix_prefix_package [package: string] {
@@ -44,7 +40,7 @@ def upgrade-check [flake: string] {
   (git -C $flake status --short . | lines | filter {|x| not ( $x | str contains "flake.lock") } | length) == 0
 }
 
-def upgrade [flake: string] {
+def "mynix upgrade" [--flake: string = "/etc/nixos"] {
   if not (upgrade-check $flake) {
     print $"($flake) is dirty"
     return
