@@ -33,7 +33,6 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
