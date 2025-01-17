@@ -97,24 +97,26 @@ def get_records [...query]: nothing -> table {
     )
 }
 
-export def "atl hours" [query: string="month", --json]: [
+export def "atl hours" [...query: string, --json]: [
     nothing -> table<project: string, days: list<error>, sum: string>
     nothing -> string ] {
-    let records = get_records $query | get fields
+    let query = if ($query == []) {["week"]} else {$query}
+
+    let records = get_records ...$query | get fields
     let projects = $records | group-by project
 
     let result = ($projects | transpose project records | each {
         |project| {
             project: $project.project,
             days: (
-                $project.records | group-by day | transpose day records | each {|day|
+                $project.records | update day {|r| $r.day | format date "%Y-%m-%d" } | group-by day | transpose day records | each {|day|
                     {
-                        day: ($day.day | if ($json) {$in} else {format date "%Y-%m-%d"}),
-                        duration: ($day.records.duration | math sum | if ($json) {$in} else {format duration hr} ),
+                        day: ($day.day),
+                        duration: ($day.records.duration | math sum | if ($json) {$in / 1000 ** 3 } else {$in | format duration hr} ),
                     }
                 }
             ),
-            sum: ($project.records.duration | math sum | if ($json) {$in} else {format duration hr}),
+            sum: ($project.records.duration | math sum | if ($json) {$in / 1000 ** 3 } else {$in | format duration hr}),
         }
     })
     if $json {$result | to json} else { $result }
