@@ -49,6 +49,14 @@ in {
       ];
     };
 
+    users.users.gamer = {
+      uid = 1004;
+      isNormalUser = true;
+      shell = pkgs.nushell;
+      packages = with pkgs; [
+      ];
+    };
+
     users.users.root.shell = pkgs.zsh;
   };
 }

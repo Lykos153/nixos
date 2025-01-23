@@ -18,7 +18,7 @@
       inherit user;
       group = "users";
       mode = "u=rwx,g=,o=";
-    }) ["mine"];
+    }) ["mine" "gamer"];
 
     users.sa = {
       directories = [

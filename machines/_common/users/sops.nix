@@ -19,6 +19,7 @@
     "sa"
     "mine"
     "leila"
+    "gamer"
   ];
 in
   lib.mkIf config.booq.sops.enable (
