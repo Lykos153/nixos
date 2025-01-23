@@ -57,3 +57,24 @@ def "mynix upgrade" [--flake: string = "/etc/nixos"] {
   rm result
   git -C $flake commit -m $"Upgrade" flake.lock
 }
+
+export def "mynix generation list" [] {
+  sudo nix-env --list-generations -p /nix/var/nix/profiles/system | parse -r `^\s(?<gen>[0-9]+)\s+(?<date>[0-9-: ]*)\s*(?<tag>\(current\))?` | upsert date {|i| $i.date | into datetime}
+}
+
+def _cmpl_mynix_generation_switch_gen [] {
+  sudo nix-env --list-generations -p /nix/var/nix/profiles/system | parse -r `^\s(?<value>[0-9]+)\s+(?<description>.*)` | reverse
+}
+
+export def "mynix generation switch" [gen: int@_cmpl_mynix_generation_switch_gen] {
+  sudo nix-env --switch-generation $gen -p /nix/var/nix/profiles/system
+  sudo /nix/var/nix/profiles/system/bin/switch-to-configuration switch
+}
+
+export def "mynix generation diff" [gen: int@_cmpl_mynix_generation_switch_gen, gen2?:int@_cmpl_mynix_generation_switch_gen] {
+  let system_link = {|gen| $"/nix/var/nix/profiles/system-($gen)-link"}
+
+  let gen2 = if ($gen2 == null) {"/run/current-system"} else {do $system_link $gen2}
+
+  nvd diff (do $system_link $gen) $gen2
+}
