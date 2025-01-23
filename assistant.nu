@@ -92,7 +92,7 @@ def user-copy [machine_name: string, user_name: string] {
 	sudo nix copy --to $mount_path $".#homeConfigurations.(user_name).activationPackage" --no-check-sigs
 }
 
-def user-gen-sops [age_file: string, --force] {
+export def user-gen-sops [age_file: string, --force] {
 	if ($force or ($age_file | path exists)) {
 		mkdir ($age_file | path dirname)
 		age-keygen 2>/dev/null | save -f $age_file
@@ -124,18 +124,18 @@ def install [machine_name: string, user_name: string] {
 	user-install $machine_name $user_name
 }
 
-def passwd [user: string] {
+export def passwd [user: string] {
 	let pw = (mkpasswd)
-	let pwfile = "system/modules/users/secrets.yaml"
+	let pwfile = "machines/_common/users/secrets.yaml"
 	#yq -s '.[0] * .[1]' <(sops -d "$pwfile") <(cat <<< "{{user}}: $pw") | sops -e --input-type json /dev/stdin
 	sops --set $'["($user)"] "($pw)"' $pwfile #exposes the hashed password in the process table
 }
 
-def u2fkey-add [] {
+export def u2fkey-add [] {
 	print "Please touch the device..."
 	pamu2fcfg -o "pam://nixos-silvio" | $"($in)\n" | save --append system/modules/security/u2f_keys
 }
 
-def repair-store [] {
+export def repair-store [] {
 	sudo nix-store --repair --verify --check-contents
 }
