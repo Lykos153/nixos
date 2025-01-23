@@ -8,7 +8,7 @@ def boolToExit [] {
     exit (if $in { 0 } else {1})
 }
 
-def handleSops [] -> bool {
+def handleSops []: nothing -> bool {
     open .sops.yaml | get creation_rules | each {
         let regex = if ($in.path_regex | str starts-with "^") {
             $in.path_regex | str substring 1..
@@ -20,7 +20,7 @@ def handleSops [] -> bool {
     } | allTrue
 }
 
-def handleFile [ file: string] -> bool {
+def handleFile [ file: string]: nothing -> bool {
     print -e $"Handling ($file)"
     let result = sops updatekeys --yes $in | complete
     print -e $result.stderr
