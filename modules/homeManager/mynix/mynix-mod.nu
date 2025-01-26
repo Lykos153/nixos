@@ -59,11 +59,11 @@ def "mynix upgrade" [--flake: string = "/etc/nixos"] {
 }
 
 export def "mynix generation list" [] {
-  sudo nix-env --list-generations -p /nix/var/nix/profiles/system | parse -r `^\s(?<gen>[0-9]+)\s+(?<date>[0-9-: ]*)\s*(?<tag>\(current\))?` | upsert date {|i| $i.date | into datetime}
+  sudo nix-env --list-generations -p /nix/var/nix/profiles/system | parse -r `^\s+(?<gen>[0-9]+)\s+(?<date>[0-9-: ]*)\s*(?<tag>\(current\))?` | upsert date {|i| $i.date | into datetime}
 }
 
 def _cmpl_mynix_generation_switch_gen [] {
-  sudo nix-env --list-generations -p /nix/var/nix/profiles/system | parse -r `^\s(?<value>[0-9]+)\s+(?<description>.*)` | reverse
+  sudo nix-env --list-generations -p /nix/var/nix/profiles/system | parse -r `^\s+(?<value>[0-9]+)\s+(?<description>.*)` | reverse
 }
 
 export def "mynix generation switch" [gen: int@_cmpl_mynix_generation_switch_gen] {
