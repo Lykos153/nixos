@@ -39,7 +39,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     bcachefs = {
-      url = "github:koverstreet/bcachefs/4325227868277451df623c89e4472a1d9db5df94";
+      url = "github:koverstreet/bcachefs";
       flake = false;
     };
     yk8s-nu = {
