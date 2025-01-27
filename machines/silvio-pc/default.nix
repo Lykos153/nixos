@@ -13,7 +13,7 @@
     impermanence.enable = true;
     impermanence.persistRoot = "/nix/persist";
     shared-repo.enable = true;
-    # audio.backend = "pipewire";
+    audio.backend = "pipewire";
     local.openvpn-ch.enable = true;
   };
 
@@ -41,5 +41,6 @@
     ./docker.nix
     ./bcachefs.nix
     ./footswitch.nix
+    ./gnome.nix
   ];
 }
