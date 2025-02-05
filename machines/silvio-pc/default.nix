@@ -31,7 +31,7 @@
   };
   imports = [
     ./hardware-configuration.nix
-    ./hdd.nix
+    ./steam-library.nix
     ./disko.nix
     ./ddns
     ./bootloader.nix
