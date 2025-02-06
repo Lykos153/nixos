@@ -19,7 +19,7 @@ in {
           "/var/log"
           "/var/tmp"
           "/var/lib/nixos"
-          "/var/lib/systemd/coredump"
+          "/var/lib/systemd"
         ]
         ++ lib.optional config.hardware.bluetooth.enable "/var/lib/bluetooth"
         ++ lib.optional config.networking.networkmanager.enable "/etc/NetworkManager/system-connections"
