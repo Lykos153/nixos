@@ -42,5 +42,4 @@
   # fileSystems."/btrfs".neededForBoot = true;
   boot.tmp.useTmpfs = true;
   boot.tmp.tmpfsSize = "95%";
-  systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
 }
