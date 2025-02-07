@@ -487,6 +487,29 @@
         "type": "github"
       }
     },
+    "json2nix": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1738243544,
+        "narHash": "sha256-gVPNzXDVrZJjJOG01IHmu70a3Js0wFR7+Vf2w6WQnCs=",
+        "owner": "cloudandheat",
+        "repo": "json2nix",
+        "rev": "67b9d62c55e19a4708474139de3d1bf84a8d8eaf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cloudandheat",
+        "repo": "json2nix",
+        "type": "github"
+      }
+    },
     "lix": {
       "flake": false,
       "locked": {
@@ -771,6 +794,7 @@
         "flake-parts": "flake-parts_2",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
+        "json2nix": "json2nix",
         "lix-module": "lix-module",
         "mynur": "mynur",
         "nix-vscode-extensions": "nix-vscode-extensions",

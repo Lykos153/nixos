@@ -64,6 +64,10 @@
     lykos153.git-rstash
 
     openssl
+
+    json2nix
+    yaml2nix
+    toml2nix
   ];
 
   home = {

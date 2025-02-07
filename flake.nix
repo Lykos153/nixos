@@ -47,6 +47,9 @@
       flake = false;
     };
     desec-nu.url = "git+https://codeberg.org/lykos153/desec-nu.git";
+    json2nix.url = "github:cloudandheat/json2nix";
+    json2nix.inputs.nixpkgs.follows = "nixpkgs";
+    json2nix.inputs.flake-parts.follows = "flake-parts";
   };
 
   outputs = inputs @ {
@@ -64,6 +67,7 @@
           talon-nix = inputs.talon-nix.overlays.default;
           rofi-mum = inputs.rofi-mum.overlays.default;
           nix-vscode-extensions = inputs.nix-vscode-extensions.overlays.default;
+          json2nix = inputs.json2nix.overlays.default;
           linuxes = (
             final: prev: {
               inherit (self.packages.${prev.system}) linux_bcachefs linux_6_11_rc5;
@@ -109,6 +113,7 @@
           sops-nix = inputs.sops-nix.homeManagerModule;
           inherit (inputs.stylix.homeManagerModules) stylix;
           desec-nu = inputs.desec-nu.homeManagerModules.default;
+          json2nix = inputs.json2nix.homeManagerModules.default;
           overlays = {
             nixpkgs.overlays = builtins.attrValues self.overlays;
           };
