@@ -497,11 +497,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738243544,
-        "narHash": "sha256-gVPNzXDVrZJjJOG01IHmu70a3Js0wFR7+Vf2w6WQnCs=",
+        "lastModified": 1738889059,
+        "narHash": "sha256-OYJaZv+OHOsX+QHO0R5ABjcODTWjRcwTPcuecdLBd5E=",
         "owner": "cloudandheat",
         "repo": "json2nix",
-        "rev": "67b9d62c55e19a4708474139de3d1bf84a8d8eaf",
+        "rev": "aaf97d35d709f0a609f497d7eb333843d587b687",
         "type": "github"
       },
       "original": {
