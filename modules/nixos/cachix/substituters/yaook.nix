@@ -2,10 +2,10 @@
   nix = {
     settings = {
       substituters = [
-        "https://yaook.cachix.org"
+        "https://nix-cache.tarook.cloud"
       ];
       trusted-public-keys = [
-        "yaook.cachix.org-1:m85JtxgDjaNa7hcNUB6Vc/BTxpK5qRCqF4yHoAniwjQ="
+        "nix-cache.tarook.cloud-2:2X2yPTrpwmakhSgS83FVB2fKkG6IzfOJ1AGIIcvNyM0="
       ];
     };
   };
