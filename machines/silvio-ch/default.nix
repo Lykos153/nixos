@@ -27,6 +27,7 @@
     freeSwapThreshold = 5;
     enableNotifications = true;
   };
+  virtualisation.multipass.enable = true;
   imports = [
     ./hardware-configuration.nix
     ./bootloader.nix
