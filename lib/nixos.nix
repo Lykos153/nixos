@@ -12,7 +12,7 @@ in rec {
     homeManagerModules,
     machinedir,
     userdir,
-    flakeInputs ? [],
+    flakeInputs ? {},
   }: let
     commonpath = machinedir + "/${commonName}";
     commonmodules =
@@ -52,7 +52,7 @@ in rec {
     userdir,
     nixosModules,
     homeManagerModules,
-    flakeInputs ? [],
+    flakeInputs ? {},
   }:
     builtins.mapAttrs (name: _:
       mkHost {
