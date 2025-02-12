@@ -5,7 +5,7 @@
     home-manager.url = "github:nix-community/home-manager";
     # home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    booq.url = "github:lykos153/nixos";
+    booq.url = "github:maralyla/nixos/fix/default-flake-inputs";
     booq.inputs.nixpkgs.follows = "nixpkgs";
     booq.inputs.home-manager.follows = "home-manager";
   };
