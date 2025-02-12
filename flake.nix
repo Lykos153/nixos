@@ -19,7 +19,7 @@
   } @ inputs: rec {
     nixosConfigurations = booq.lib.nixos.mkHosts {
       inherit (inputs) nixpkgs;
-      nixosModules = builtins.attrValues booq.nixosModules;
+      nixosModules = builtins.attrValues (builtins.removeAttrs booq.nixosModules ["lix-module"]);
       homeManagerModules = builtins.attrValues booq.homeManagerModules;
       machinedir = ./machines;
       userdir = ./users;
