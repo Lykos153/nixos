@@ -242,24 +242,6 @@
         "type": "github"
       }
     },
-    "flake-parts_3": {
-      "inputs": {
-        "nixpkgs-lib": "nixpkgs-lib_2"
-      },
-      "locked": {
-        "lastModified": 1706830856,
-        "narHash": "sha256-a0NYyp+h9hlb7ddVz4LUn1vT/PLwqfrWYcHMvFB1xYg=",
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "rev": "b253292d9c0a5ead9bc98c4e9a26c6312e27d69f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "type": "github"
-      }
-    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -668,24 +650,6 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/e9b51731911566bbf7e4895475a87fe06961de0b.tar.gz"
       }
     },
-    "nixpkgs-lib_2": {
-      "locked": {
-        "dir": "lib",
-        "lastModified": 1706550542,
-        "narHash": "sha256-UcsnCG6wx++23yeER4Hg18CXWbgNpqNXcHIo5/1Y+hc=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "97b17f32362e475016f942bbdfda4a4a72a8a652",
-        "type": "github"
-      },
-      "original": {
-        "dir": "lib",
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-master": {
       "locked": {
         "lastModified": 1738016061,
@@ -747,35 +711,24 @@
         "type": "indirect"
       }
     },
-    "nur_2": {
-      "locked": {
-        "lastModified": 1707306252,
-        "narHash": "sha256-uyOzOyFCnAiawlv1F4uy7Kk3m8zJGwVY6UCYBQTHp7w=",
-        "owner": "nix-community",
-        "repo": "NUR",
-        "rev": "d47dbf43ced4485a2b05eb3430e85358b43f8dd1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "NUR",
-        "type": "github"
-      }
-    },
     "rofi-mum": {
       "inputs": {
-        "flake-parts": "flake-parts_3",
+        "flake-parts": [
+          "flake-parts"
+        ],
         "nixpkgs": [
           "nixpkgs"
         ],
-        "nur": "nur_2"
+        "nur-packages": [
+          "mynur"
+        ]
       },
       "locked": {
-        "lastModified": 1707315046,
-        "narHash": "sha256-1OZBYFrotF50peBi8oWfAqwu52rS5kHaN6u/cNOnl0U=",
+        "lastModified": 1739405015,
+        "narHash": "sha256-zN/g/SlAvwh6O1jgmrMmUx4n3UmAnNvmv4QhwEzWFlc=",
         "owner": "lykos153",
         "repo": "rofi-mum",
-        "rev": "cfebbdf7b1060101d5467a351bc15d58eb69eb2f",
+        "rev": "b6c8d4612154999cdb6cc0cfa36e36bc1c3f8bad",
         "type": "github"
       },
       "original": {
