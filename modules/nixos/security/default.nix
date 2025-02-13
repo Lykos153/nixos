@@ -31,11 +31,13 @@ in {
         u2f = {
           enable = false; # true would enable for all PAM, including ssh, see https://bytemeta.vip/repo/NixOS/nixpkgs/issues/166076
 
-          # debug = true;
-          # control = "required"; # Require password AND Yubikey
-          cue = true; # show prompt
-          origin = "pam://nixos-silvio";
-          authFile = "/etc/${keyfile}";
+          settings = {
+            # debug = true;
+            # control = "required"; # Require password AND Yubikey
+            cue = true; # show prompt
+            origin = "pam://nixos-silvio";
+            authFile = "/etc/${keyfile}";
+          };
         };
         # Only enable Yubikey for the following services
         services.sudo.u2fAuth = true;
