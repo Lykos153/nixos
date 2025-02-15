@@ -1027,11 +1027,11 @@
     "yk8s-nu": {
       "flake": false,
       "locked": {
-        "lastModified": 1736241531,
-        "narHash": "sha256-m5I5gn8NeU9SSwtPHt5a8QEWn/OOJHptXpNS7ip+ZIA=",
+        "lastModified": 1738054950,
+        "narHash": "sha256-2HTMNIInyv47DQV7DLycovXYyADPzfPGG7Qg4pjZWfk=",
         "owner": "lykos153",
         "repo": "yk8s-nu",
-        "rev": "c6d978745b4503c5c39a60b5d05168131882dcc5",
+        "rev": "d74c7f06ab5c67846a0d65472e54f3e67fa23ef1",
         "type": "gitlab"
       },
       "original": {
