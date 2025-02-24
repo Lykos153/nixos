@@ -1,3 +1,9 @@
+export VAULT_TOKEN="$(nu -c '{password: (pass ldap)} | to json | http post $"($env.VAULT_ADDR)/v1/auth/ldap/login/silvio.ankermann" | get auth.client_token')"
+
+if [ -f "$KUBECONFIG" ] && ! yq -r '.users[0].user."client-certificate-data"' "$KUBECONFIG" | base64 -d | openssl x509 -checkend 186400 -noout >/dev/null; then
+  $PWD/managed-k8s/actions/k8s-login.sh
+fi
+
 if ! ip l | grep "${wg_conf_name}:"; then
   $PWD/managed-k8s/actions/wg-up.sh
 fi
