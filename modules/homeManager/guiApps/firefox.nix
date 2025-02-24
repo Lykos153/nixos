@@ -17,6 +17,10 @@ in {
           settings = {
             "browser.translations.neverTranslateLanguages" = "de";
             "browser.tabs.unloadOnLowMemory" = true;
+
+            # DNS over HTTPS
+            "network.trr.mode" = 3; # Max protection (Always use HTTPS)
+            "network.trr.uri" = "https://mozilla.cloudflare-dns.com/dns-query";
           };
           search = {
             force = true;
