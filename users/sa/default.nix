@@ -23,7 +23,7 @@
   '';
   home.packages = with pkgs; [
     rocketchat-desktop
-    konversation
+    kdePackages.konversation
     mumble
     git-crypt
     openstackclient

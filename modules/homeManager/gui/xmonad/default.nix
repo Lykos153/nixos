@@ -96,6 +96,7 @@ in {
     ];
     services.taffybar.enable = true;
     services.xembed-sni-proxy.enable = true;
+    services.xembed-sni-proxy.package = pkgs.kdePackages.plasma-workspace;
     xsession.preferStatusNotifierItems = true;
   };
 }

@@ -10,7 +10,7 @@ with builtins; {
   config = let
     okular-x11 = pkgs.symlinkJoin {
       name = "okular";
-      paths = [pkgs.okular];
+      paths = [pkgs.kdePackages.okular];
       buildInputs = [pkgs.makeWrapper];
       # force okular to use xwayland, because of https://github.com/swaywm/sway/issues/4973
       postBuild = ''
