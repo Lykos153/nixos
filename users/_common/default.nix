@@ -39,7 +39,7 @@
     jless
     yq
     mr
-    lykos153.garden
+    # lykos153.garden
     ripgrep
     # TODO currently broken
     # ripgrep-all # search in docs, pdfs etc.
