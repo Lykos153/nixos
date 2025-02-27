@@ -37,5 +37,6 @@
     ./bcachefs.nix
     ./docker.nix
     ./impermanence.nix
+    ./tarook-cache.nix
   ];
 }
