@@ -17,6 +17,7 @@
     local.openvpn-ch.enable = true;
     nix-ld.enable = true;
   };
+  services.openvpn.servers.ch.autoStart = false;
 
   hardware.logitech.wireless.enable = true;
   hardware.logitech.wireless.enableGraphical = true;
