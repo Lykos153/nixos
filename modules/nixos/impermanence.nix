@@ -20,6 +20,12 @@ in {
           "/var/tmp"
           "/var/lib/nixos"
           "/var/lib/systemd"
+          {
+            directory = "/root";
+            user = "root";
+            group = "root";
+            mode = "u=rwx,g=rx,o=";
+          }
         ]
         ++ lib.optional config.hardware.bluetooth.enable "/var/lib/bluetooth"
         ++ lib.optional config.networking.networkmanager.enable "/etc/NetworkManager/system-connections"
@@ -28,14 +34,6 @@ in {
       files =
         [
           "/etc/machine-id"
-          {
-            file = "/root/.zsh_history";
-            parentDirectory = {
-              user = "root";
-              group = "root";
-              mode = "u=rwx,g=rx,o=";
-            };
-          }
         ]
         ++ lib.optionals config.services.openssh.enable [
           "/etc/ssh/ssh_host_ed25519_key"
