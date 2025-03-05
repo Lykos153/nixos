@@ -41,6 +41,7 @@
     mr
     # TODO currently broken
     # lykos153.garden
+    rclone
     ripgrep
     ripgrep-all # search in docs, pdfs etc.
     fd # simpler find
