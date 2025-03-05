@@ -3,10 +3,10 @@
   config,
   ...
 }: {
-  fileSystems."/home/gamer/.local/share/Steam" = {
-    device = "/dev/disk/by-partlabel/disk-nvme-eui-steam";
+  fileSystems."/home/gamer/.local/share/steam-ext4" = {
+    device = "/home/gamer/.local/share/steam-ext4.img";
     fsType = "ext4";
-    # options = ["casefold"];
+    options = ["loop"];
     # TODO: maybe share steam library between users using ACLs https://askubuntu.com/a/796811
   };
 }
