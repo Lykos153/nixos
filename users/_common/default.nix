@@ -39,10 +39,10 @@
     jless
     yq
     mr
+    # TODO currently broken
     # lykos153.garden
     ripgrep
-    # TODO currently broken
-    # ripgrep-all # search in docs, pdfs etc.
+    ripgrep-all # search in docs, pdfs etc.
     fd # simpler find
     ncdu
     python3Packages.ipython
