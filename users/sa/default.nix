@@ -27,6 +27,7 @@
     mumble
     git-crypt
     openstackclient
+    lykos153.openstack-rs
     sops
     age
     sshuttle
