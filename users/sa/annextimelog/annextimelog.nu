@@ -56,7 +56,12 @@ export def "atl sum" [...query: string]: nothing -> string {
 
 export def "atl away" [day: datetime, reason: string, --until: datetime ...$tags]: nothing -> string {
     let hours_per_day = (_get_contracts | sort-by start --reverse | first | get hours-per-week) / 5
-    let track_away_day = {|day| atl track $"($day)T10:00" - $"($day)T(10 + $hours_per_day):00" project=abwesenheit $reason ...$tags}
+
+    let track_away_day = {|day|
+        let formatted_day = $day | format date "%Y-%m-%d"
+        atl track $"($formatted_day)T10:00" - $"($formatted_day)T(10 + $hours_per_day):00" project=abwesenheit $reason ...$tags
+    }
+
     if ($until != null) {
         generate {|day|
             {
