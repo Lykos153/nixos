@@ -16,6 +16,7 @@
     audio.backend = "pipewire";
     local.openvpn-ch.enable = true;
     nix-ld.enable = true;
+    networking.networkmanager = true;
   };
   services.openvpn.servers.ch.autoStart = false;
 
