@@ -30,6 +30,7 @@
   };
   boot.tmp.useTmpfs = true;
   boot.tmp.tmpfsSize = "95%";
+  systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
   # fileSystems."/nix".neededForBoot = true;
   boot.kernel.sysctl."vm.swappiness" = 0; # Use swap only for hibernate (SSD)
 }
