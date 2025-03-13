@@ -22,7 +22,15 @@ in {
       hardware.onlykey.enable = true;
       environment.systemPackages = [
         pkgs.onlykey
-        pkgs.onlykey-cli
+        (pkgs.onlykey-cli.overrideAttrs (prev: {
+          version = "click";
+          src = pkgs.fetchFromGitHub {
+            owner = "lykos153";
+            repo = "python-onlykey";
+            rev = "refactor-cli";
+            sha256 = "sha256-5ErmqLHWA+aemirqWvi5/2ggOnscFUiCif2GF/qElSs=";
+          };
+        }))
         pkgs.onlykey-agent
       ];
       services.upower.enable = true; # <- onlykey errors... but doesnt work anyway
