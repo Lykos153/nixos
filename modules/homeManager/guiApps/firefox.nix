@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.booq.firefox;
@@ -12,6 +13,16 @@ in {
     booq.gui.defaultApps.browser = "firefox.desktop";
     programs.firefox = {
       enable = true;
+      package = pkgs.wrapFirefox (pkgs.firefox-unwrapped.overrideAttrs (
+        prev: {
+          patches =
+            (prev.patches or [])
+            ++ [
+              ./firefox-disable-ctrl-shift-c.patch
+            ];
+        }
+      )) {};
+
       profiles = {
         default = {
           settings = {
