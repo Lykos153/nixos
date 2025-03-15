@@ -32,5 +32,6 @@ in {
         use ${./functions.nu} *
       '';
     };
+    services.pueue.enable = true; # for background tasks
   };
 }
