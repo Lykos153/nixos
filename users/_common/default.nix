@@ -9,6 +9,7 @@
   booq.gpg.myPubKeys = [
     ./gpg/8D4762947205541C62A49C88F4226CA3971C4E97.gpg
     ./gpg/A63BA766.gpg
+    ./gpg/0F264CB39D5204DFF661EEBCFCC69E84E280E96F.gpg
   ];
 
   home.keyboard.layout = "de";
