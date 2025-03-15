@@ -15,6 +15,7 @@
     neededForBoot = true;
   };
   specialisation.fsck.configuration.fileSystems."/bcachefs".options = ["fsck" "fix_errors"];
+  specialisation.very_degraded.configuration.fileSystems."/bcachefs".options = ["very_degraded" "verbose"];
 
   systemd.services.bcachefs-snapshot-home = {
     description = "Create a snapshot of the home subvolume";
