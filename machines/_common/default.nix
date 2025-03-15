@@ -35,6 +35,9 @@
   };
   services.blueman.enable = true;
 
+  boot.loader.systemd-boot.memtest86.enable = true;
+  boot.loader.grub.memtest86.enable = true;
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
