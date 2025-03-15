@@ -6,7 +6,7 @@
 }:
 with builtins; {
   imports =
-    map (n: "${./.}/${n}") (filter (n: n != "default.nix") (attrNames (readDir ./.)));
+    map (n: "${./.}/${n}") (filter (n: lib.hasSuffix ".nix" n && n != "default.nix") (attrNames (readDir ./.)));
   config = let
     okular-x11 = pkgs.symlinkJoin {
       name = "okular";
