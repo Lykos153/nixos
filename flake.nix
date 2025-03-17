@@ -72,7 +72,7 @@
           json2nix = inputs.json2nix.overlays.default;
           linuxes = (
             final: prev: {
-              inherit (self.packages.${prev.system}) linux_bcachefs linux_6_11_rc5;
+              inherit (self.packages.${prev.system}) linux_bcachefs linux_6_14_rc6;
             }
           );
           other = (
@@ -151,7 +151,7 @@
         packages = rec {
           pre-commit-sops-updatekeys = pkgs.callPackage ./pkgs/pre-commit-sops-updatekeys {};
           linux_bcachefs = pkgs.callPackage ./pkgs/linux_bcachefs_master.nix {src = inputs.bcachefs;};
-          linux_6_11_rc5 = pkgs.callPackage ./pkgs/linux_6_11_rc5.nix {};
+          linux_6_14_rc6 = pkgs.callPackage ./pkgs/linux_6_14_rc6.nix {};
           install-image = inputs.nixos-generators.nixosGenerate {
             inherit system;
             specialArgs = {
