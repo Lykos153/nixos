@@ -13,11 +13,38 @@ in {
   config = lib.mkIf cfg.enable {
     programs.helix = {
       enable = true;
-      settings =
-        (fromTOML (builtins.readFile ./config.toml))
-        // {
-          theme = lib.mkDefault "onedark";
+      settings = {
+        theme = lib.mkDefault "onedark";
+
+        keys = {
+          normal = {
+            Z = {
+              Q = ":quit!";
+              Z = ":x";
+            };
+          };
         };
+
+        editor = {
+          mouse = false;
+          auto-format = false;
+          auto-pairs = true;
+          lsp = {
+            display-messages = true;
+          };
+          cursor-shape = {
+            insert = "bar";
+            normal = "block";
+            select = "underline";
+          };
+          file-picker = {
+            hidden = false;
+          };
+          soft-wrap = {
+            enable = true;
+          };
+        };
+      };
       defaultEditor = true;
     };
     home.packages = lib.optionals cfg.enableLanguageServers [
