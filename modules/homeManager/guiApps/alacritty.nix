@@ -11,6 +11,7 @@
     programs.alacritty = {
       enable = true;
       settings = {
+        scrolling.history = 100000;
         keyboard.bindings = [
           {
             mods = "Control|Shift";
