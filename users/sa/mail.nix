@@ -54,4 +54,7 @@
     };
   };
   programs.thunderbird.profiles.default.withExternalGnupg = true;
+
+  sops.secrets."pgp-aliases.json" = {};
+  programs.thunderbird.settings."mail.openpgp.alias_rules_file" = "file://${config.sops.secrets."pgp-aliases.json".path}";
 }
