@@ -17,12 +17,23 @@ in {
         theme = lib.mkDefault "onedark";
 
         keys = {
-          normal = {
-            Z = {
-              Q = ":quit!";
-              Z = ":x";
-            };
-          };
+          normal =
+            {
+              Z = {
+                Q = ":quit!";
+                Z = ":x";
+              };
+            }
+            // (lib.optionalAttrs config.programs.lazygit.enable {
+              C-g = [
+                ":write-all"
+                ":new"
+                ":insert-output lazygit"
+                ":buffer-close!"
+                ":redraw"
+                ":reload-all"
+              ];
+            });
         };
 
         editor = {
