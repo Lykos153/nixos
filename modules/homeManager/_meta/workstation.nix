@@ -12,7 +12,7 @@ in {
   };
   config.booq = lib.mkIf cfg.enable {
     minimal.enable = true;
-    languageServers = true;
+    languageServers.enable = true;
     timewarrior.enable = true;
     comma.enable = true;
     fonts.enable = true;

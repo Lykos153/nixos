@@ -6,7 +6,7 @@
 }: let
   cfg = config.booq.languageServers;
 in {
-  options.booq.languageServers = lib.mkEnableOption "language servers";
+  options.booq.languageServers.enable = lib.mkEnableOption "language servers";
   config = lib.mkIf cfg.enable {
     home.packages = [
       # Language servers
