@@ -538,11 +538,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1742504350,
-        "narHash": "sha256-4CcciD+BD/AF/lutgv3ke2wexwK8HNbbE4arY1lfGp8=",
+        "lastModified": 1742935647,
+        "narHash": "sha256-5XNNIJ7A00MfTkgAYkOfCUbjWMcW0dEJ+BNHNoQ3HPQ=",
         "owner": "Lykos153",
         "repo": "nur-packages",
-        "rev": "712075f920b1d20cad7a74abb4d933dd5f9da712",
+        "rev": "3b930eadd9e999cb4a83ef69fd8178a571de11a1",
         "type": "github"
       },
       "original": {
@@ -1039,11 +1039,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1701692955,
-        "narHash": "sha256-yHdF+VFAFYATQ7xs4UIIY4MABh44sSRxfKGeGx2hH+M=",
+        "lastModified": 1742936101,
+        "narHash": "sha256-88PGUQ+ci4w/IYG5M/Yx7+X4XV22Ep0xx1oqI5JYXEc=",
         "owner": "lykos153",
         "repo": "toki",
-        "rev": "88346e24154fb2bb425134567a9be1464e73cd82",
+        "rev": "91e462f239a7d5f418c358d617e7f0f8874c741e",
         "type": "github"
       },
       "original": {
