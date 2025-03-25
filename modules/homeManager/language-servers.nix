@@ -26,7 +26,7 @@ in {
       pkgs.rust-analyzer
     ];
 
-    programs.vscode.userSettings = {
+    programs.vscode.profiles.default.userSettings = {
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "nixd";
     };
