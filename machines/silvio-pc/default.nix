@@ -48,5 +48,6 @@
     ./bcachefs.nix
     ./footswitch.nix
     ./gnome.nix
+    ./nullfs.nix
   ];
 }
