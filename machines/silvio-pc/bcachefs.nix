@@ -6,7 +6,7 @@
 }: {
   boot.initrd.systemd.enable = false;
 
-  boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor pkgs.linux_testing);
+  boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor pkgs.linux_bcachefs);
 
   fileSystems."/bcachefs" = {
     # https://github.com/koverstreet/bcachefs/issues/812#issuecomment-2642432386
