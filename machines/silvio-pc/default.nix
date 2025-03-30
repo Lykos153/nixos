@@ -47,7 +47,8 @@
     ./docker.nix
     ./bcachefs.nix
     ./footswitch.nix
-    ./gnome.nix
+    # ./gnome.nix
     ./nullfs.nix
+    ./plasma.nix
   ];
 }
