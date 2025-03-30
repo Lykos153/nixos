@@ -9,8 +9,7 @@
   boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor pkgs.linux_bcachefs);
 
   fileSystems."/bcachefs" = {
-    # https://github.com/koverstreet/bcachefs/issues/812#issuecomment-2642432386
-    device = "/dev/disk/by-uuid/677cf0a7-1abe-4ce3-876c-2ca63301229d";
+    device = "UUID=677cf0a7-1abe-4ce3-876c-2ca63301229d";
     fsType = "bcachefs";
     options = ["compression=zstd"];
     neededForBoot = true;
