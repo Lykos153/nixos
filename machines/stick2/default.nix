@@ -9,6 +9,7 @@
     ./hardware-configuration.nix
     ./bootloader.nix
     ./sops.nix
+    ./disks.nix
   ];
   booq.workstation.enable = true;
   booq.securityKeys.enable = true;
