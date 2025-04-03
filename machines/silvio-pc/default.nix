@@ -31,8 +31,8 @@
   # TODO evaluate https://github.com/vrmiguel/bustd instead
   services.earlyoom = {
     enable = true;
-    freeMemThreshold = 5;
-    freeSwapThreshold = 5;
+    freeMemThreshold = 2;
+    freeSwapThreshold = 2;
     enableNotifications = true;
   };
   imports = [
