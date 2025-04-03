@@ -41,7 +41,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     bcachefs = {
-      url = "github:koverstreet/bcachefs";
+      url = "github:koverstreet/bcachefs/bcachefs-2025-04-03"; # fix for https://github.com/koverstreet/bcachefs/issues/847
       flake = false;
     };
     yk8s-nu = {

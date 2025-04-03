@@ -70,15 +70,16 @@
     "bcachefs": {
       "flake": false,
       "locked": {
-        "lastModified": 1743603900,
-        "narHash": "sha256-ulv5deF1YFyDEN8q3UuoeUgfimy+AnsfGnsTNuZYxCM=",
+        "lastModified": 1743696703,
+        "narHash": "sha256-/t+29VF9qnToNWFMpRoRlV7Vx9BT0T7Huvprg37UQ8o=",
         "owner": "koverstreet",
         "repo": "bcachefs",
-        "rev": "091d6a61bf15ba58adc98683c8fd8992b86c8ed1",
+        "rev": "77ad1df82b9e8d169e3ec9ee8b7caabfa45872ce",
         "type": "github"
       },
       "original": {
         "owner": "koverstreet",
+        "ref": "bcachefs-2025-04-03",
         "repo": "bcachefs",
         "type": "github"
       }
