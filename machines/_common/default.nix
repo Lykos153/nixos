@@ -13,6 +13,7 @@
     gc = {
       automatic = true;
       dates = "weekly";
+      randomizedDelaySec = "120min";
       options = "--delete-older-than 30d";
     };
 
