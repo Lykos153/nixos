@@ -1,13 +1,11 @@
 {
   pkgs,
-  lib,
   config,
   ...
 }: let
-  mum = pkgs.lykos153.mum;
   mum-msglog = pkgs.writeShellApplication {
     name = "mum-msglog";
-    runtimeInputs = [mum pkgs.coreutils pkgs.gnugrep];
+    runtimeInputs = with pkgs; [mum coreutils gnugrep];
     text = ''
       echo "Starting"
       msglog="/run/user/$(id -u)/mum_messages.log"
@@ -42,7 +40,7 @@ in {
 
     Service = {
       ExecStart = ''
-        ${mum}/bin/mumd
+        ${pkgs.mum}/bin/mumd
       '';
       Restart = "always";
     };
