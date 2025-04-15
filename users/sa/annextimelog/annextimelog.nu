@@ -2,7 +2,7 @@ def _get_contracts []: nothing -> table<string: int> {
     atl git cat-file blob main:contracts.yaml | from yaml
 }
 
-def _cmpl_project []: nothing -> list<string> {
+export def _get_projects []: nothing -> list<string> {
     (atl git cat-file blob main:projects.yaml
         | from yaml
         | transpose name details
@@ -16,6 +16,10 @@ def _cmpl_project []: nothing -> list<string> {
                 } else {[]})
         }
     )
+}
+
+def _cmpl_project []: nothing -> list<string> {
+    _get_projects
 }
 
 def _end_of_last []: nothing -> string {
@@ -150,4 +154,32 @@ def _cmpl_mod [line: string]: nothing -> table<value: string, description: strin
 
 export def --wrapped "atl mod" [...args: string@_cmpl_mod] {
     ^atl mod ...$args
+}
+
+# Import data from timewarrior
+# Example: tw export | from json | atl import timew
+export def "atl import timew" []: table -> nothing {
+    let all_records = $in
+    let all_projects = _get_projects
+
+    ($in | each {|rec|
+        let intersect = ($rec | get tags --ignore-errors | default [] | filter {|tag| $tag in $all_projects} | sort-by { str length } )
+        let project = if ($intersect != []) {$intersect | last} else {null}
+        let tags = ($rec | get tags --ignore-errors | default [] | filter {|tag| not ($tag in $intersect)})
+
+        let args = (
+            [
+                $"start=($rec.start)"
+                "imported-from=timew"
+                $"imported-on=(date now | format date "%Y-%m-%d")"
+            ]
+            | append (if ("end" in $rec) {$"end=($rec.end)"} else {[]})
+            | append (if ("annotation" in $rec) {$"note=($rec.annotation)"} else {[]})
+            | append (if ($project != null) {$"project=($project)"} else {[]})
+            | append $tags
+        )
+
+        atl track ...$args
+    })
+    null
 }
