@@ -20,7 +20,6 @@
     mynur.inputs.nixpkgs.follows = "nixpkgs";
     rofi-mum.url = "github:lykos153/rofi-mum";
     rofi-mum.inputs.nixpkgs.follows = "nixpkgs";
-    rofi-mum.inputs.nur-packages.follows = "mynur";
     rofi-mum.inputs.flake-parts.follows = "flake-parts";
     toki.url = "github:lykos153/toki";
     toki.inputs.nixpkgs.follows = "nixpkgs";
