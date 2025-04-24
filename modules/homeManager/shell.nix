@@ -20,6 +20,7 @@ in {
         history_filter = [
           "hvs\.[0-9a-f]+" # hashicorp vault tokens
         ];
+        sync_address = "https://atuin.booq.org";
       };
     };
     programs.zoxide = {
