@@ -10,8 +10,9 @@ export def _get_projects []: nothing -> list<string> {
             $pAcc ++ [$project.name] ++ (
                 if (($project.details != null) and ("tasks" in ($project.details))) {
                     $project.details.tasks
+                        | transpose alias name
                         | reduce --fold [] {|task,tAcc|
-                            $tAcc ++ [$"($project.name).($task)"]
+                            $tAcc ++ [$"($project.name).($task.alias)"]
                         }
                 } else {[]})
         }
