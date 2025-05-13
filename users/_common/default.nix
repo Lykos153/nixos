@@ -70,6 +70,11 @@
     json2nix
     yaml2nix
     toml2nix
+
+    tectonic
+    nixfmt-rfc-style
+
+    gimp
   ];
 
   home = {
