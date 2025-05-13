@@ -33,7 +33,7 @@
     cursorless-talon.flake = false;
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
     };
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
