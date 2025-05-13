@@ -184,7 +184,7 @@ in
     home.file.".local/bin/screenshot".source = ./screenshot.sh;
     home.file.".local/bin/_sway_utils".source = ./lib.sh;
 
-    programs.mako = {
+    services.mako = {
       enable = true;
       anchor = "bottom-right";
       defaultTimeout = 5000;
