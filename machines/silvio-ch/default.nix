@@ -22,7 +22,7 @@
   zramSwap.enable = false;
   # TODO evaluate https://github.com/vrmiguel/bustd instead
   services.earlyoom = {
-    enable = true;
+    enable = false;
     freeMemThreshold = 5;
     freeSwapThreshold = 5;
     enableNotifications = true;
