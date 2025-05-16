@@ -52,7 +52,7 @@ export def "table-to-record" [primary: string] {
 }
 
 # Recursively search and replace in files
-def rsd [search: string, replace: string] {
+export def rsd [search: string, replace: string] {
   rg -l $search | xargs sd $search $replace
 }
 
