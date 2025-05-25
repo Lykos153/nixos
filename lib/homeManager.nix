@@ -34,7 +34,7 @@ in rec {
         };
         home.sessionVariables.NIX_PATH = "nixpkgs=${nixpkgs}";
         # workaround because the above doesnt seem to work in xorg https://github.com/nix-community/home-manager/issues/1011#issuecomment-1365065753
-        programs.zsh.initExtra = ''
+        programs.zsh.initContent = ''
           export NIX_PATH="nixpkgs=${nixpkgs}"
         '';
       }

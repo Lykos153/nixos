@@ -7,7 +7,7 @@
 in {
   config = lib.mkIf cfg.enable {
     programs.zsh = {
-      initExtra = ''
+      initContent = ''
         gesehen () {
           CDIR=$(pwd)
           DIR=$(dirname $1)

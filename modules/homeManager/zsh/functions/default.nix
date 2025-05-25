@@ -10,7 +10,7 @@ in {
   ];
   config = lib.mkIf cfg.enable {
     programs.zsh = {
-      initExtra = ''
+      initContent = ''
         rbtohex() {
           # Convert a raw binary string to a hexadecimal string
           ( od -An -vtx1 | tr -d ' \n' )

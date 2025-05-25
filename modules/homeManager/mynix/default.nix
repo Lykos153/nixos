@@ -27,7 +27,7 @@ in {
       '';
     };
     programs.zsh = {
-      initExtra = ''
+      initContent = ''
         nsh () {
           local nsopts
           local cmd

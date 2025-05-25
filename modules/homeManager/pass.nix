@@ -30,7 +30,7 @@ in {
       storePath = defaultStore;
     };
 
-    programs.zsh.initExtra = ''
+    programs.zsh.initContent = ''
       pass_pop() {
         local codepath="$1"
         pass show "$codepath" | head -n1 | cb

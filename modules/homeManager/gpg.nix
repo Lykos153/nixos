@@ -39,7 +39,7 @@ in {
       maxCacheTtl = 86400;
       maxCacheTtlSsh = 86400;
       enableSshSupport = true;
-      pinentryPackage = pkgs.pinentry-qt;
+      pinentry.package = pkgs.pinentry-qt;
       extraConfig = ''
         allow-loopback-pinentry
       '';

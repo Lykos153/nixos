@@ -134,7 +134,7 @@ in
     };
 
     # Start on tty1
-    programs.zsh.initExtra =
+    programs.zsh.initContent =
       /*
       sh
       */

@@ -23,7 +23,7 @@ in {
       autosuggestion.enable = true;
       enableCompletion = true;
 
-      initExtra = ''
+      initContent = ''
         bindkey '^ ' autosuggest-accept
         AGKOZAK_CMD_EXEC_TIME=5
         AGKOZAK_COLORS_CMD_EXEC_TIME='yellow'

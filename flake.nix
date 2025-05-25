@@ -115,7 +115,7 @@
         homeManagerModules = {
           booq = import ./modules/homeManager;
           sops-nix = inputs.sops-nix.homeManagerModule;
-          inherit (inputs.stylix.homeManagerModules) stylix;
+          inherit (inputs.stylix.homeModules) stylix;
           desec-nu = inputs.desec-nu.homeManagerModules.default;
           json2nix = inputs.json2nix.homeManagerModules.default;
           overlays = {
