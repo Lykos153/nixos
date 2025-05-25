@@ -96,7 +96,10 @@
           inherit (inputs.impermanence.nixosModules) impermanence;
           inherit (inputs.sops-nix.nixosModules) sops;
           inherit (inputs.home-manager.nixosModules) home-manager;
-          lix-module = inputs.lix-module.nixosModules.default;
+          # disable lix until it has builtins.warn:
+          # https://git.lix.systems/lix-project/lix/issues/579
+          # or make home manager use lib.warn
+          # lix-module = inputs.lix-module.nixosModules.default;
           overlays = {
             nixpkgs.overlays = [self.overlays.linuxes];
           };
