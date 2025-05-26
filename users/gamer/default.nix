@@ -12,6 +12,8 @@
   };
   home.packages = with pkgs; [
     discord
+    min-ed-launcher
+    ed-odyssey-materials-helper
   ];
   booq.lib.allowUnfreePackages = ["discord"];
 }
