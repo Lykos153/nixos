@@ -103,7 +103,7 @@ in {
           name = "bugwarrior-env";
           paths = with pkgs; [
             lykos153.bugwarrior
-            taskwarrior
+            taskwarrior3
             pass
           ];
         };
