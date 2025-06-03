@@ -58,7 +58,9 @@ export def rsd [search: string, replace: string] {
 
 # Replace a symlink with a writable copy
 export def editify [filename: string] {
-  let t = ^mktemp -u -p ($filename | path dirname)
+  cd ($filename | path dirname)
+  let filename = ($filename | path basename)
+  let t = ^mktemp -u -p .
   cp $filename $t
   rm $filename
   mv $t $filename
