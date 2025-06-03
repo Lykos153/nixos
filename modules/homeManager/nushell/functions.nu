@@ -66,3 +66,26 @@ export def editify [filename: string] {
   mv $t $filename
   chmod +w $filename
 }
+
+export def wpa_add [ssid: string, --tmp] {
+  let conf_file = "/etc/wpa_supplicant.conf"
+  let secrets_file = "machines/_common/secrets.yaml"
+  let key = "wpa_supplicant.conf"
+
+  let wpa_supplicant_conf = if ($tmp) {
+    (sudo cat $conf_file)
+  } else {
+    (sops -d $secrets_file | from yaml | get $key)
+  }
+
+  let pw = (input --suppress-output $"Password for ($ssid)")
+  let new_entry = (wpa_passphrase $ssid $pw)
+
+  if ($tmp) {
+    sudo rm $conf_file
+    $new_entry | sudo nu --stdin -c $"save ($conf_file)"
+  } else {
+    let wpa_supplicant_conf = $"($wpa_supplicant_conf)\n($new_entry)"
+    {$key: $wpa_supplicant_conf} | to yaml | sops encrypt --filename-override $secrets_file | save -f $secrets_file
+  }
+}
