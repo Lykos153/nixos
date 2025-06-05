@@ -67,9 +67,9 @@ export def editify [filename: string] {
   chmod +w $filename
 }
 
-export def wpa_add [ssid: string, --tmp] {
+export def wpa_add [ssid: string, --tmp, --nixos_conf_dir: string ="/etc/nixos"] {
   let conf_file = "/etc/wpa_supplicant.conf"
-  let secrets_file = "machines/_common/secrets.yaml"
+  let secrets_file = $"($nixos_conf_dir)/machines/_common/secrets.yaml"
   let key = "wpa_supplicant.conf"
 
   let wpa_supplicant_conf = if ($tmp) {
@@ -78,14 +78,15 @@ export def wpa_add [ssid: string, --tmp] {
     (sops -d $secrets_file | from yaml | get $key)
   }
 
-  let pw = (input --suppress-output $"Password for ($ssid)")
+  let pw = (input --suppress-output $"Password for ($ssid): ")
   let new_entry = (wpa_passphrase $ssid $pw)
+  let wpa_supplicant_conf = $"($wpa_supplicant_conf)\n($new_entry)"
 
-  if ($tmp) {
-    sudo rm $conf_file
-    $new_entry | sudo nu --stdin -c $"save ($conf_file)"
-  } else {
-    let wpa_supplicant_conf = $"($wpa_supplicant_conf)\n($new_entry)"
+  if (! $tmp) {
     {$key: $wpa_supplicant_conf} | to yaml | sops encrypt --filename-override $secrets_file | save -f $secrets_file
   }
+
+  sudo rm $conf_file
+  $wpa_supplicant_conf | sudo nu --stdin -c $"save ($conf_file)"
+  sudo systemctl restart wpa_supplicant.service
 }
