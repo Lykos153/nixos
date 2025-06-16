@@ -34,6 +34,7 @@ in {
       tcpdump
       keyutils # for encrypted bcachefs
       cryptsetup
+      wireguard-tools
 
       killall
     ];
