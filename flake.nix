@@ -63,7 +63,7 @@
       flake = {
         lib = import ./lib;
         overlays = {
-          nur = inputs.nur.overlay;
+          nur = inputs.nur.overlays.default;
           mynur = inputs.mynur.overlay;
           talon-nix = inputs.talon-nix.overlays.default;
           rofi-mum = inputs.rofi-mum.overlays.default;
