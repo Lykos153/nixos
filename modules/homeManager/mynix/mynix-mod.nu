@@ -37,7 +37,7 @@ export def nsh [...args: string, --unfree, --insecure] {
 }
 
 def upgrade-check [flake: string] {
-  (git -C $flake status --short . | lines | filter {|x| not ( $x | str contains "flake.lock") } | length) == 0
+  (git -C $flake status --short . | lines | where {|x| not ( $x | str contains "flake.lock") } | length) == 0
 }
 
 def "mynix upgrade" [--flake: string = "/etc/nixos"] {

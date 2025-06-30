@@ -35,7 +35,7 @@ def _cmpl_at []: nothing -> list<string> {
 }
 
 def _cmpl_tag []: nothing -> list<string> {
-    atl git annex metadata -j | from json --objects | get fields | filter {|r| "tag" in ($r | columns)} | get tag | reduce {|r,acc| $acc ++ $r } | uniq -c | sort-by -r count | get value
+    atl git annex metadata -j | from json --objects | get fields | where {|r| "tag" in ($r | columns)} | get tag | reduce {|r,acc| $acc ++ $r } | uniq -c | sort-by -r count | get value
 }
 
 export def "atl start" [--at: string@_cmpl_at="now", project: string@_cmpl_project, ...args: string@_cmpl_tag ]: nothing -> string {
@@ -74,7 +74,7 @@ export def "atl away" [day: datetime, reason: string, --until: datetime ...$tags
                 next: ($day + 1day),
             }
         } $day
-        | filter {not (($in | format date %a) in ["Sun" "Sat" "Sa" "So"]) } # how to ensure english here?
+        | where {not (($in | format date %a) in ["Sun" "Sat" "Sa" "So"]) } # how to ensure english here?
         | take until {$in > $until}
         | each {$in | format date %Y-%m-%d}
         | each {do $track_away_day $in}
@@ -164,9 +164,9 @@ export def "atl import timew" []: table -> nothing {
     let all_projects = _get_projects
 
     ($in | each {|rec|
-        let intersect = ($rec | get tags --ignore-errors | default [] | filter {|tag| $tag in $all_projects} | sort-by { str length } )
+        let intersect = ($rec | get tags --ignore-errors | default [] | where {|tag| $tag in $all_projects} | sort-by { str length } )
         let project = if ($intersect != []) {$intersect | last} else {null}
-        let tags = ($rec | get tags --ignore-errors | default [] | filter {|tag| not ($tag in $intersect)})
+        let tags = ($rec | get tags --ignore-errors | default [] | where {|tag| not ($tag in $intersect)})
 
         let args = (
             [
