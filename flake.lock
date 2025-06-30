@@ -1140,11 +1140,11 @@
     "yk8s-nu": {
       "flake": false,
       "locked": {
-        "lastModified": 1742904264,
-        "narHash": "sha256-SDuE3WbmVMWX0wER7gAL7kkbHnAHIwYqBrpAPu9sXD0=",
+        "lastModified": 1751279975,
+        "narHash": "sha256-Q+W5yG46eGJq/gujvNTHk0u6PeBPfFdT8IU153wHk5Y=",
         "owner": "lykos153",
         "repo": "yk8s-nu",
-        "rev": "41452a9bc97e481df196f4ca25886d1ed8be5807",
+        "rev": "639ef6f05427786b86452a6ec975e509dc3073c9",
         "type": "gitlab"
       },
       "original": {
