@@ -102,11 +102,11 @@
     },
     "desec-nu": {
       "locked": {
-        "lastModified": 1733355871,
-        "narHash": "sha256-VGaczerVN+TgVSUYNTXiy6k7hgRqlgx5IGel/t87gC0=",
+        "lastModified": 1751281483,
+        "narHash": "sha256-J1CHBM71iOnyIs+cJ5SYh1m/+gxYHt0bZQpGKA1EDrg=",
         "ref": "refs/heads/main",
-        "rev": "4e843e074e52d4ce7951d4cba3f427fc26a12c7a",
-        "revCount": 7,
+        "rev": "f83b790aadb5683c3502e5446b638064795a9178",
+        "revCount": 8,
         "type": "git",
         "url": "https://codeberg.org/lykos153/desec-nu.git"
       },
