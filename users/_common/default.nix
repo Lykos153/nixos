@@ -75,6 +75,7 @@
     nixfmt-rfc-style
 
     gimp
+    magic-wormhole
   ];
 
   home = {
