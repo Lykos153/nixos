@@ -29,7 +29,6 @@ with builtins; {
         libreoffice
         nomacs
         okular-x11
-        xfce.thunar
         vlc
         system-config-printer
         wireshark
