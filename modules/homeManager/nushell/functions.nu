@@ -79,10 +79,16 @@ export def wpa_add [ssid: string, --tmp, --nixos_conf_dir: string ="/etc/nixos"]
   }
 
   let pw = (input --suppress-output $"Password for ($ssid): ")
-  let new_entry = (wpa_passphrase $ssid $pw)
+  let new_entry = if ($pw == "") {
+$"network={
+	ssid=\"($ssid)\"
+}"
+    } else {
+      ($pw | wpa_passphrase $ssid)
+    }
   let wpa_supplicant_conf = $"($wpa_supplicant_conf)\n($new_entry)"
 
-  if (! $tmp) {
+  if (not $tmp) {
     {$key: $wpa_supplicant_conf} | to yaml | sops encrypt --filename-override $secrets_file | save -f $secrets_file
   }
 
