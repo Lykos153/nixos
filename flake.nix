@@ -21,8 +21,6 @@
     rofi-mum.url = "github:lykos153/rofi-mum";
     rofi-mum.inputs.nixpkgs.follows = "nixpkgs";
     rofi-mum.inputs.flake-parts.follows = "flake-parts";
-    toki.url = "github:lykos153/toki";
-    toki.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:danth/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
     talon-nix.url = "github:nix-community/talon-nix";
