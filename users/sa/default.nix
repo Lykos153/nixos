@@ -48,7 +48,6 @@
     ./opsi-prepare.nix
     ./mail.nix
     ./tmate.nix
-    ./bugwarrior.nix
     ./mutables
     ./nushell.nix
     ./annextimelog
