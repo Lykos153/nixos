@@ -17,7 +17,7 @@
     local.openvpn-ch.enable = true;
     nix-ld.enable = true;
 
-    gnome.enable = true;
+    gnome.enable = false;
     plasma.enable = true;
   };
   services.openvpn.servers.ch.autoStart = false;
@@ -50,8 +50,6 @@
     ./docker.nix
     ./bcachefs.nix
     ./footswitch.nix
-    # ./gnome.nix
     ./nullfs.nix
-    ./plasma.nix
   ];
 }
