@@ -107,20 +107,20 @@ in
               enable = true;
               primary = true;
               mode = "3840x1080";
-              position = "0x0";
+              position = "1080x271";
               rate = "59.97";
             };
             laptop = {
               enable = true;
               mode = "1920x1080";
-              position = "960x1080";
+              position = "2040x1351";
               rate = "60.00";
             };
             benq = {
               enable = true;
               mode = "1920x1080";
-              position = "3840x0";
-              rotate = "left";
+              position = "0x0";
+              rotate = "right";
               rate = "60.00";
             };
           };
