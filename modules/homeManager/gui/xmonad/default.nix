@@ -93,6 +93,7 @@ in {
     home.packages = with pkgs; [
       screenshot
       toggle-mute
+      dmenu
     ];
     services.taffybar.enable = true;
     services.xembed-sni-proxy.enable = true;
