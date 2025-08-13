@@ -22,7 +22,6 @@ in {
         alsa.enable = true;
         alsa.support32Bit = true;
         pulse.enable = true;
-        # If you want to use JACK applications, uncomment this
         jack.enable = true;
         # Some useful knobs if you want to finetune or debug your setup:
         # NOTE: Arrays are replaced rather than merged with defaults,
@@ -39,6 +38,7 @@ in {
         #     "default.clock.max-quantum" = 8192;
         # };
       };
+      wireplumber.enable = true;
       wireplumber.extraConfig.bluetoothEnhancements = {
         "monitor.bluez.properties" = {
           "bluez5.enable-sbc-xq" = true;
