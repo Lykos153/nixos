@@ -10,9 +10,9 @@
     booq.gui.enable = true;
     xsession.enable = true;
 
+    programs.autorandr.enable = true;
     home.packages = with pkgs; [
       arandr
-      autorandr
       xclip
       dragon-drop
       xorg.xkill
