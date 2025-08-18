@@ -110,6 +110,7 @@ in {
       };
       extraConfig = ''
         riverctl spawn ${pkgs.river-ultitile}/bin/river-ultitile
+        riverctl spawn waybar
         riverctl default-layout river-ultitile
 
         riverctl keyboard-layout de # alternatively XKB_* variables
