@@ -3,7 +3,7 @@ def complete_mynix_action [context: string] {
   {
     system: [build switch test boot]
     user: [build switch]
-  } | get -i ($context | split words).1
+  } | get --optional ($context | split words).1
 }
 
 export def "mynix system" [action?:string@complete_mynix_action, --flake: string = "/etc/nixos" ] {

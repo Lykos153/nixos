@@ -21,10 +21,11 @@ in {
         }
         let external_completer = {|spans|
           # workaround for https://github.com/nushell/nushell/issues/8483
-          let expanded_alias = (help aliases | where name == $spans.0 | get -i 0 | get -i expansion)
+          # taken from https://www.nushell.sh/cookbook/external_completers.html#alias-completions
+          let expanded_alias = (scope aliases | where name == $spans.0 | get --optional 0 | get --optional expansion)
           let spans = (if $expanded_alias != null  {
               # put the first word of the expanded alias first in the span
-              $spans | skip 1 | prepend ($expanded_alias | split row " ")
+              $spans | skip 1 | prepend ($expanded_alias | split row " " | take 1)
           } else { $spans })
           # end workaround
 
