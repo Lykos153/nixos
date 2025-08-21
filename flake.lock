@@ -953,11 +953,11 @@
     "yk8s-nu": {
       "flake": false,
       "locked": {
-        "lastModified": 1751279975,
-        "narHash": "sha256-Q+W5yG46eGJq/gujvNTHk0u6PeBPfFdT8IU153wHk5Y=",
+        "lastModified": 1755778572,
+        "narHash": "sha256-GPY/pAclmsBA19UxFX2yxdiK+/zpf5+tYFmPYf+KVfo=",
         "owner": "lykos153",
         "repo": "yk8s-nu",
-        "rev": "639ef6f05427786b86452a6ec975e509dc3073c9",
+        "rev": "eaaf6952f4638b3132ce5eae4fb9275d73a0ca04",
         "type": "gitlab"
       },
       "original": {
