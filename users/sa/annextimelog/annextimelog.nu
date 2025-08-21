@@ -164,9 +164,9 @@ export def "atl import timew" []: table -> nothing {
     let all_projects = _get_projects
 
     ($in | each {|rec|
-        let intersect = ($rec | get tags --ignore-errors | default [] | where {|tag| $tag in $all_projects} | sort-by { str length } )
+        let intersect = ($rec | get tags --optional | default [] | where {|tag| $tag in $all_projects} | sort-by { str length } )
         let project = if ($intersect != []) {$intersect | last} else {null}
-        let tags = ($rec | get tags --ignore-errors | default [] | where {|tag| not ($tag in $intersect)})
+        let tags = ($rec | get tags --optional | default [] | where {|tag| not ($tag in $intersect)})
 
         let args = (
             [
