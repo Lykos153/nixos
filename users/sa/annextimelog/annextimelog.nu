@@ -64,7 +64,7 @@ export def "atl away" [day: datetime, reason: string, --until: datetime ...$tags
 
     let track_away_day = {|day|
         let formatted_day = $day | format date "%Y-%m-%d"
-        atl track $"($formatted_day)T10:00" - $"($formatted_day)T(10 + $hours_per_day):00" project=abwesenheit $reason ...$tags
+        atl track $"($formatted_day)T10:00" - $"($formatted_day)T(10 + $hours_per_day | into int):00" project=abwesenheit $reason ...$tags
     }
 
     if ($until != null) {
