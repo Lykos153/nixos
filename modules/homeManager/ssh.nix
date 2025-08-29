@@ -17,15 +17,19 @@ in {
   config = lib.mkIf cfg.enable {
     programs.ssh = {
       enable = true;
-      compression = true;
-      forwardAgent = false;
+      enableDefaultConfig = false;
+      matchBlocks."*" = {
+        compression = true;
+        forwardAgent = false;
+        userKnownHostsFile = lib.strings.concatStringsSep " " (["~/.ssh/known_hosts" "~/${knownHostsCommon}"] ++ cfg.extraKnownHostsFiles);
+      };
       extraConfig = ''
         AddKeysToAgent yes
         ServerAliveInterval 30
         ServerAliveCountMax 3
+        HashKnownHosts no
       '';
       includes = ["local.d/*" "config.d/*"];
-      userKnownHostsFile = lib.strings.concatStringsSep " " (["~/.ssh/known_hosts" "~/${knownHostsCommon}"] ++ cfg.extraKnownHostsFiles);
     };
     home.packages = with pkgs; [
       mosh

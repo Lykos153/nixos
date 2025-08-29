@@ -16,7 +16,7 @@ in {
   config =
     lib.mkIf (cfg.enable && cfg.backend == "pipewire") {
       security.rtkit.enable = true;
-      hardware.pulseaudio.enable = false;
+      services.pulseaudio.enable = false;
       services.pipewire = {
         enable = true;
         alsa.enable = true;
@@ -51,7 +51,7 @@ in {
     }
     // lib.mkIf (cfg.enable && cfg.backend == "pulseaudio") {
       services.pipewire.enable = false;
-      hardware.pulseaudio = {
+      services.pulseaudio = {
         enable = true;
         package = pkgs.pulseaudioFull;
       };
