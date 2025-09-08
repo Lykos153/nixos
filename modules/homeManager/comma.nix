@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }: let
   cfg = config.booq.comma;
@@ -10,10 +9,8 @@ in {
     enable = lib.mkEnableOption "comma";
   };
   config = lib.mkIf cfg.enable {
-    booq.nix-index.enable = true;
-    home.packages = [
-      pkgs.comma
-    ];
+    programs.nix-index.enable = true;
+    programs.nix-index-database.comma.enable = true;
     home.shellAliases."," = "comma";
   };
 }
