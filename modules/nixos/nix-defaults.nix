@@ -21,7 +21,7 @@ in {
     gc = lib.mkIf cfg.auto-gc {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 30d";
+      options = "--delete-older-than 90d";
     };
 
     extraOptions = ''
