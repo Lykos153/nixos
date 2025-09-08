@@ -50,6 +50,8 @@ in {
       enable = true;
       settings = {
         git.overrideGpg = true;
+        git.localBranchSortOrder = "recency";
+        # git.remoteBranchSortOrder = "alphabetical";
       };
     };
 
