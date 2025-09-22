@@ -4,7 +4,12 @@
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
-    disko.url = "github:nix-community/disko";
+    # TODO: patch disko input
+    # https://discourse.nixosstag.fcio.net/t/apply-a-patch-to-an-input-flake/36904/2
+    # https://blog.bhasher.com/posts/patching-flake-inputs-with-pull-requests/
+    # https://github.com/NixOS/nix/issues/3920
+    # https://github.com/jfly/flake-input-patcher
+    disko.url = "github:nix-community/disko/pull/1056/head";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     impermanence.url = "github:nix-community/impermanence";
     sops-nix.url = "github:Mic92/sops-nix";
