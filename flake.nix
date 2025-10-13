@@ -61,6 +61,10 @@
     ...
   }:
     flake-parts.lib.mkFlake {inherit inputs;} {
+      imports = [
+        ./machines
+        ./users
+      ];
       flake = {
         lib = import ./lib;
         overlays = {
@@ -102,16 +106,8 @@
           # or make home manager use lib.warn
           # lix-module = inputs.lix-module.nixosModules.default;
           overlays = {
-            nixpkgs.overlays = [self.overlays.linuxes];
+            nixpkgs.overlays = builtins.attrValues self.overlays;
           };
-        };
-        nixosConfigurations = self.lib.nixos.mkHosts {
-          inherit (inputs) nixpkgs;
-          nixosModules = builtins.attrValues self.nixosModules;
-          machinedir = ./machines;
-          userdir = ./users;
-          homeManagerModules = builtins.attrValues self.homeManagerModules;
-          flakeInputs = inputs;
         };
         homeManagerModules = {
           booq = import ./modules/homeManager;
@@ -123,12 +119,6 @@
           overlays = {
             nixpkgs.overlays = builtins.attrValues self.overlays;
           };
-        };
-        homeConfigurations = self.lib.homeManager.mkConfigs {
-          inherit (self) nixosConfigurations;
-          inherit (inputs) nixpkgs home-manager;
-          modules = builtins.attrValues self.homeManagerModules;
-          userdir = ./users;
         };
         templates = {
           # TODO: Check what https://github.com/jonringer/nix-template does
