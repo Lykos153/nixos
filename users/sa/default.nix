@@ -11,8 +11,10 @@
   programs.git = let
     m = config.accounts.email.accounts.cah;
   in {
-    userEmail = m.address;
-    userName = m.realName;
+    settings = {
+      user.email = m.address;
+      user.name = m.realName;
+    };
     signing = {
       key = m.gpg.key;
       signByDefault = true;

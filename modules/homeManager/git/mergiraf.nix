@@ -8,7 +8,7 @@
 in {
   config = lib.mkIf cfg.enable {
     programs.git = {
-      extraConfig = {
+      settings = {
         merge.mergiraf = {
           name = "mergiraf";
           driver = "${pkgs.mergiraf}/bin/mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P";

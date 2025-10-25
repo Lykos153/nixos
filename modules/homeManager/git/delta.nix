@@ -8,7 +8,7 @@
 in {
   config = lib.mkIf cfg.enable {
     programs.git = {
-      extraConfig = {
+      settings = {
         core = {
           pager = "delta";
         };

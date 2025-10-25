@@ -17,14 +17,14 @@ in {
   config = lib.mkIf cfg.enable {
     programs.git = {
       enable = true;
-      aliases = {
-        graph = "log --all --oneline --graph --decorate";
-        squash-all = "!f(){ git reset $(git commit-tree HEAD^{tree} -m \"$${1:-A new start}\");};f";
-        rbi = "rebase -i";
-        fpush = "push --force-with-lease";
-        amend = "commit --amend --no-edit";
-      };
-      extraConfig = {
+      settings = {
+        aliases = {
+          graph = "log --all --oneline --graph --decorate";
+          squash-all = "!f(){ git reset $(git commit-tree HEAD^{tree} -m \"$${1:-A new start}\");};f";
+          rbi = "rebase -i";
+          fpush = "push --force-with-lease";
+          amend = "commit --amend --no-edit";
+        };
         push = {
           default = "simple";
           followtags = true;

@@ -18,7 +18,6 @@ in {
     minimal.enable = true;
     workstation.enable = true;
 
-    adb.enable = true;
     ausweisapp.enable = true;
     dotool.enable = true;
     podman.enable = true;

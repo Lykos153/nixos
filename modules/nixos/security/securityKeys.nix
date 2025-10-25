@@ -20,6 +20,9 @@ in {
       hardware.gpgSmartcards.enable = true;
 
       hardware.onlykey.enable = true;
+      nixpkgs.config.permittedInsecurePackages = [
+        "python3.13-ecdsa-0.19.1" # the actual crypto is done on the hardware token, so no timing attacks through this lib
+      ];
       environment.systemPackages = [
         pkgs.onlykey
         (pkgs.onlykey-cli.overrideAttrs (prev: {

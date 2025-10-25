@@ -5,8 +5,8 @@
   booq.gui.sway.enable = false;
   booq.gui.xmonad.enable = false;
 
-  programs.git.userEmail = "leila@booq.org";
-  programs.git.userName = "Leila Höll";
+  programs.git.settings.user.email = "leila@booq.org";
+  programs.git.settings.user.name = "Leila Höll";
 
   nixpkgs.config.allowUnfree = true;
 
