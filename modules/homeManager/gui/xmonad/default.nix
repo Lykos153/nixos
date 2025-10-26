@@ -52,7 +52,6 @@ in {
       extraPackages = hp: [
         hp.dbus
         hp.monad-logger
-        hp.taffybar
       ];
       config = ./xmonad.hs;
       libFiles = let
@@ -95,7 +94,21 @@ in {
       toggle-mute
       dmenu
     ];
-    services.taffybar.enable = true;
+    xdg.configFile."xmobarrc".source = ./xmobarrc;
+    systemd.user.services.xmobar = {
+      Unit.PartOf = ["hm-graphical-session.target"];
+      Install.WantedBy = ["hm-graphical-session.target"];
+
+      Service = {
+        Environment = [
+          "DISPLAY=:0"
+        ];
+        ExecStart = ''
+          ${pkgs.xmobar}/bin/xmobar ${config.xdg.configHome}/xmobarrc
+        '';
+        Restart = "on-failure";
+      };
+    };
     services.xembed-sni-proxy.enable = true;
     services.xembed-sni-proxy.package = pkgs.kdePackages.plasma-workspace;
     xsession.preferStatusNotifierItems = true;

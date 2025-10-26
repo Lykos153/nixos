@@ -1,18 +1,19 @@
-import           XMonad                             hiding ((|||))
+import           XMonad                          hiding ((|||))
 import           XMonad.Layout.CenterMainFluid
 import           XMonad.Layout.LayoutCombinators
 import           XMonad.Layout.NoBorders
 import           XMonad.Layout.PerScreen
 
-import           System.Taffybar.Support.PagerHints (pagerHints)
 import           XMonad.Hooks.EwmhDesktops
 import           XMonad.Hooks.ManageDocks
+import           XMonad.Hooks.StatusBar
+import           XMonad.Hooks.StatusBar.PP
 
 import           XMonad.Util.Run
 
-import qualified Data.Map                           as M
+import qualified Data.Map                        as M
 import           System.Exit
-import qualified XMonad.StackSet                    as W
+import qualified XMonad.StackSet                 as W
 
 import           PerScreenRatio
 import qualified Tools
@@ -28,7 +29,7 @@ import           XMonad.Prompt
 import           XMonad.Prompt.ConfirmPrompt
 
 main = do
-        xmonad $ ewmhFullscreen . ewmh . docks . pagerHints $ def {
+        xmonad $ withSB mySB . ewmhFullscreen . ewmh . docks $ def {
           modMask = mod4Mask -- Use Super instead of Alt
           , terminal = Tools.terminal
           , keys = myKeys
@@ -41,6 +42,7 @@ main = do
         }
 
 tall = Tall 1 (3/100) (1/2)
+mySB = statusBarProp "xmobar" (pure xmobarPP)
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
   [
