@@ -14,7 +14,7 @@ in {
       enable = true;
       wrapperFeatures.gtk = true;
     };
-    programs.river.enable = true;
+    programs.river-classic.enable = true;
 
     # GTK themes.
     #See https://www.reddit.com/r/NixOS/comments/b255k5/home_manager_cannot_set_gnome_themes/
