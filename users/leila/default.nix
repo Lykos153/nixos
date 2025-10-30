@@ -66,7 +66,7 @@
     librecad
     freecad
 
-    tdesktop # telegram
+    telegram-desktop # telegram
     signal-desktop #signal
     # unfree
     zoom-us

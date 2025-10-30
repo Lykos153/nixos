@@ -8,7 +8,7 @@
 
     Service = {
       ExecStart = ''
-        ${pkgs.tdesktop}/bin/telegram-desktop
+        ${pkgs.telegram-desktop}/bin/telegram-desktop
       '';
       Restart = "on-failure";
     };

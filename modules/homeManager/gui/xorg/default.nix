@@ -14,7 +14,7 @@
       arandr
       autorandr
       xclip
-      xdragon
+      dragon-drop
       xorg.xkill
     ];
     home.file.".xinitrc".text = ''
