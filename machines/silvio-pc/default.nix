@@ -47,7 +47,6 @@
     ./services.nix
     ./virtualisation.nix
     ./sops.nix
-    ./docker.nix
     ./bcachefs.nix
     ./footswitch.nix
     ./nullfs.nix

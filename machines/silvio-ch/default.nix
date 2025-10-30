@@ -35,7 +35,6 @@
     ./sops.nix
     ./disko.nix
     ./bcachefs.nix
-    ./docker.nix
     ./impermanence.nix
   ];
 }
