@@ -82,6 +82,7 @@ in {
       extraConfig = ''
         riverctl spawn ${pkgs.wideriver}/bin/wideriver
         riverctl output-layout wideriver
+        riverctl send-layout-cmd wideriver "--layout wide --stack diminish --count 3 --ratio 0.5"
         riverctl keyboard-layout de # alternatively XKB_* variables
         # TODO: how to set layouts per-input? https://codeberg.org/river/river/issues/400
 
