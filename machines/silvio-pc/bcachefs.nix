@@ -11,7 +11,7 @@
   fileSystems."/bcachefs" = {
     device = "UUID=677cf0a7-1abe-4ce3-876c-2ca63301229d";
     fsType = "bcachefs";
-    options = ["compression=zstd" "rebalance_enabled=0"];
+    options = ["rebalance_enabled=0"];
     neededForBoot = true;
   };
   specialisation.fsck.configuration.fileSystems."/bcachefs".options = ["fsck" "fix_errors"];
