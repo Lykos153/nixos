@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}: {
+{config, ...}: {
   booq.impermanence.enable = true;
 
   # boot.initrd.systemd.enable = false; # due to bcachefs
@@ -31,15 +27,24 @@
           persist = {
             size = "600G";
             content = {
-              type = "filesystem";
-              format = "ext4";
-              # TODO bcachefs with encryption
-              # https://github.com/nix-community/disko/blob/master/example/bcachefs.nix
-              mountpoint = config.booq.impermanence.persistRoot;
+              type = "bcachefs";
+              label = "ssk-portable";
+              filesystem = "ssk-portable";
             };
           };
         };
       };
+    };
+    bcachefs_filesystems.ssk-portable = {
+      type = "bcachefs_filesystem";
+      extraFormatArgs = [
+        "--compression=lz4"
+        "--background_compression=lz4"
+        "--encrypted"
+      ];
+      mountpoint = config.booq.impermanence.persistRoot;
+      # TODO: use submodules instead of bind mounts here once it is fixed
+      # https://github.com/nix-community/disko/issues/1045
     };
     nodev = {
       "/" = {
