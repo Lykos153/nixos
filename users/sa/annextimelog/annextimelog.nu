@@ -2,10 +2,17 @@ def _get_contracts []: nothing -> table<string: int> {
     atl git cat-file blob main:contracts.yaml | from yaml
 }
 
-export def _get_projects []: nothing -> list<string> {
-    (atl git cat-file blob main:projects.yaml
-        | from yaml
+def _get_projects []: nothing -> record {
+    atl git cat-file blob main:projects.yaml | from yaml
+}
+
+export def _list_projects []: nothing -> list<string> {
+    (_get_projects
         | transpose name details
+        | update details {
+            |project| $project.details | default {} | merge {id: ($in | get id -o)}
+        }
+        | sort-by details.id
         | reduce --fold [] {|project,pAcc|
             $pAcc ++ [$project.name] ++ (
                 if (($project.details != null) and ("tasks" in ($project.details))) {
@@ -20,7 +27,7 @@ export def _get_projects []: nothing -> list<string> {
 }
 
 def _cmpl_project []: nothing -> list<string> {
-    _get_projects
+    _list_projects
 }
 
 def _end_of_last []: nothing -> string {
@@ -56,7 +63,7 @@ export def "atl cancel" []: nothing -> string {
 
 export def "atl sum" [...query: string]: nothing -> string {
     let query = if ($query == []) {["today"]} else {$query}
-    get_records ...$query | get fields.duration | math sum | format duration hr
+    get_records ...$query | get fields.duration | math sum | render_time
 }
 
 export def "atl away" [day: datetime, reason: string, --until: datetime ...$tags]: nothing -> string {
@@ -88,11 +95,15 @@ def get_start_of_day []: datetime -> datetime {
     into record | $"($in.year)-($in.month)-($in.day)" | into datetime
 }
 
-def render_time []: record -> string {
-    let rec = $in
-    let hour = if ("hour" in $in) {$rec.hour} else {"00"}
-    let minute = if ("minute" in $in) {$rec.minute} else {"00"}
-    $"($hour):($minute)"
+def pad_num []: int -> string {
+     fill --character "0" --alignment right --width 2
+}
+
+def render_time []: duration -> string {
+    let dur = $in
+    let hours = $dur / 1hr | math floor | pad_num
+    let minutes = $dur mod 1hr / 1min | math ceil | pad_num
+    $"($hours):($minutes)"
 }
 
 def get_records [...query]: nothing -> table {
@@ -115,20 +126,31 @@ export def "atl hours" [...query: string, --json]: [
     let records = get_records ...$query | get fields
     let projects = $records | group-by project
 
+    let project_map = _get_projects
     let result = ($projects | transpose project records | each {
-        |project| {
-            project: $project.project,
+        |project|
+            let parsed = ( $project.project
+                | split column "." pname tname
+                | first
+            )
+            let project_details = $project_map | get -o $parsed.pname | default {}
+            {
+            id: ($project_details | get -o id ),
+            project: ($project_details | get -o name | default $parsed.pname ),
+            task: (if ("tname" in ($parsed | columns)) {
+                ($project_details | get -o tasks | default {} | get -o $parsed.tname | default $parsed.tname)
+            }),
             days: (
                 $project.records | update day {|r| $r.day | format date "%Y-%m-%d" } | group-by day | transpose day records | each {|day|
                     {
                         day: ($day.day),
-                        duration: ($day.records.duration | math sum | if ($json) {$in / 1000 ** 3 } else {$in | format duration hr} ),
+                        duration: ($day.records.duration | math sum | if ($json) {$in / 1000 ** 3 } else {$in | render_time} ),
                     }
                 }
             ),
-            sum: ($project.records.duration | math sum | if ($json) {$in / 1000 ** 3 } else {$in | format duration hr}),
+            sum: ($project.records.duration | math sum | if ($json) {$in / 1000 ** 3 } else {$in | render_time}),
         }
-    })
+    }) | sort-by id
     if $json {$result | to json} else { $result }
 }
 
@@ -161,7 +183,7 @@ export def --wrapped "atl mod" [...args: string@_cmpl_mod] {
 # Example: tw export | from json | atl import timew
 export def "atl import timew" []: table -> nothing {
     let all_records = $in
-    let all_projects = _get_projects
+    let all_projects = _list_projects
 
     ($in | each {|rec|
         let intersect = ($rec | get tags --optional | default [] | where {|tag| $tag in $all_projects} | sort-by { str length } )
