@@ -9,15 +9,16 @@ def boolToExit [] {
 }
 
 def handleSops []: nothing -> bool {
-    open .sops.yaml | get creation_rules | each {
+    let result = (open .sops.yaml | get creation_rules | each {
         let regex = if ($in.path_regex | str starts-with "^") {
             $in.path_regex | str substring 1..
         } else { $in.path_regex }
 
         fd --full-path -u $regex | lines | each {
             handleFile $in
-        } | allTrue
-    } | allTrue
+        } | flatten
+    } | flatten)
+    $result | allTrue
 }
 
 def handleFile [ file: string]: nothing -> bool {
