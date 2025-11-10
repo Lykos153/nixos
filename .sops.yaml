@@ -8,7 +8,6 @@ keys:
   - &device_silvio_pc age18uwq53hx4da5zhq27vpy8e62vxzm2hvdh96uqqyht4u98sl45egqjaeexe
   - &device_silvio_ch age125l0n4ucrvpvg82pu9ftpdu55rq4we24zncw92nvw30eyg50jcts9chj8v
   - &device_stick age1z6ws3fh8wv92l6l2h0adfavmfre4rflr064juepavm98vhs3xdfsza37ns
-  - &device_kalata age1za787rhhxzy68xv0h3fl9340cvuuw4dpjwxkh9s8ahcqpgm3ayasrcgszt
   - &home_silvio_pc_silvio age136kw62em7f2a7r034lqmf8qwsl2d9y2wzk4t209pswp4rduh29hqyjshns
   - &home_silvio_pc_sa age1a8rdwqk9mx0hmuzcq6hujdzx3pa8z9e5xhch9wr9afjpvsk4fuuqglwtw2
   - &home_silvio_ch_silvio age1yjqnze86n8vtx0xagj4vjdlj8sd5yqmyzj6ufqf3z0tn6l8n83rqpc0qnt
@@ -23,7 +22,6 @@ creation_rules:
       - *device_silvio_pc
       - *device_silvio_ch
       - *device_stick
-      - *device_kalata
   - path_regex: ^users/silvio/.*secrets.*$
     key_groups:
     - pgp:
