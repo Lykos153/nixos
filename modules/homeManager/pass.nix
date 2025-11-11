@@ -14,7 +14,10 @@ in {
   config = lib.mkIf cfg.enable {
     programs.password-store = {
       enable = true;
-      package = pkgs.pass.withExtensions (exts: [exts.pass-otp]);
+      package = pkgs.pass.withExtensions (exts: [
+        exts.pass-otp
+        exts.pass-checkup
+      ]);
     };
     programs.rofi.pass = {
       enable = true;
