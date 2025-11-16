@@ -41,5 +41,5 @@ repos:
       - id: nix-fmt
         name: nix-fmt
         language: system
-        entry: nix fmt
+        entry: alejandra
         files: '\.nix$'
