@@ -30,6 +30,7 @@ in {
         $env.config.ls.clickable_links = false
         source ${./keybindings.nu}
         use ${./functions.nu} *
+        use ${./psub.nu}
       '';
     };
     services.pueue.enable = true; # for background tasks
