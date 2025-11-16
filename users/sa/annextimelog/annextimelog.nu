@@ -6,7 +6,7 @@ def _get_projects []: nothing -> record {
     atl git cat-file blob main:projects.yaml | from yaml
 }
 
-export def _list_projects []: nothing -> list<string> {
+def _list_projects []: nothing -> list<string> {
     (_get_projects
         | transpose name details
         | update details {
