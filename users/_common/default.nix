@@ -76,6 +76,7 @@
 
     gimp
     magic-wormhole
+    calibre
   ];
 
   home = {
