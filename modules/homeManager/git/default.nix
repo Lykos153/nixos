@@ -18,7 +18,7 @@ in {
     programs.git = {
       enable = true;
       settings = {
-        aliases = {
+        alias = {
           graph = "log --all --oneline --graph --decorate";
           squash-all = "!f(){ git reset $(git commit-tree HEAD^{tree} -m \"$${1:-A new start}\");};f";
           rbi = "rebase -i";
