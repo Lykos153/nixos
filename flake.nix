@@ -181,7 +181,7 @@
         formatter = pkgs.alejandra;
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
-            formatter
+            self'.formatter
             just
             sops
             ssh-to-age
