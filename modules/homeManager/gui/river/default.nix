@@ -9,6 +9,9 @@ in {
   options.booq.gui.river.enable = lib.mkEnableOption "river";
   config = lib.mkIf cfg.enable {
     booq.gui.wayland.enable = true;
+    home.packages = with pkgs; [
+      river-ultitile
+    ];
     wayland.windowManager.river = {
       enable = true;
       settings = {
@@ -19,6 +22,7 @@ in {
           "passthrough"
         ];
         focus-follows-cursor = "always";
+        set-cursor-warp = "on-focus-change";
         map = let
           menu = pkgs.writeScript "menu" "${pkgs.j4-dmenu-desktop}/bin/j4-dmenu-desktop --usage-log=$HOME/.cache/j4-dmenu-desktop.log --dmenu=\"${pkgs.dmenu-wayland}/bin/dmenu-wl -i -nb '#002b36' -nf '#839496' -sb '#859900' -sf '#073642'\"";
         in {
@@ -29,13 +33,15 @@ in {
               "Super+Shift Q" = "close";
               "Super+Shift E" = "exit";
               "Super J" = "focus-view next";
+              "Super Tab" = "focus-view next";
               "Super K" = "focus-view previous";
+              "Super+Shift Tab" = "focus-view previous";
               "Super+Shift J" = "swap next";
               "Super+Shift K" = "swap previous";
               "Super Period" = "focus-output next";
               "Super Comma" = "focus-output previous";
-              "Super+Shift Period" = "send-to-output next";
-              "Super+Shift Comma" = "send-to-output previous";
+              "Super+Shift Period" = "send-to-output -current-tags next";
+              "Super+Shift Comma" = "send-to-output -current-tags previous";
               "Super+Alt H" = "move left 100";
               "Super+Alt J" = "move down 100";
               "Super+Alt K" = "move up 100";
@@ -79,7 +85,7 @@ in {
               "Super Left " = "send-layout-cmd river-ultitile \"set string layout = main\"";
 
               # Cycle through layouts on all tags/outputs
-              "Super Space" = "spawn \"riverctl send-layout-cmd river-ultitile 'unset-all-local layout'; riverctl send-layout-cmd river-ultitile 'set global string layout @ main hstack vstack'\"";
+              "Super Space" = "send-layout-cmd river-ultitile 'set string layout @ main hstack vstack'";
             }
             // builtins.foldl' (acc: i: let
               pow = n: exp:
@@ -109,7 +115,7 @@ in {
         };
       };
       extraConfig = ''
-        riverctl spawn ${pkgs.river-ultitile}/bin/river-ultitile
+        riverctl spawn river-ultitile
         riverctl spawn waybar
         riverctl default-layout river-ultitile
 
