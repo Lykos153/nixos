@@ -5,6 +5,7 @@
   ...
 }: let
   cfg = config.booq.gui.river;
+  inherit (config.booq.gui.wayland) screenShotCommand lockCommand poweroffMenu;
 in {
   options.booq.gui.river.enable = lib.mkEnableOption "river";
   config = lib.mkIf cfg.enable {
@@ -30,6 +31,8 @@ in {
             {
               "Super Return" = "spawn ${pkgs.foot}/bin/foot";
               "Super D" = "spawn ${menu}";
+              "Super+Shift P" = "spawn ${poweroffMenu}";
+              "None Pause" = "spawn ${lockCommand}";
               "Super+Shift Q" = "close";
               "Super+Shift E" = "exit";
               "Super J" = "focus-view next";
@@ -60,6 +63,8 @@ in {
               "Super+Shift Space" = "toggle-float";
               "Super F" = "toggle-fullscreen";
               "Super F11" = "enter-mode passthrough";
+              "None Print" = "spawn '${screenShotCommand}/bin/screenshot screen'";
+              "Shift Print" = "spawn '${screenShotCommand}/bin/screenshot area'";
 
               "Super A" = "zoom";
               # Rest of river configuration...
@@ -86,6 +91,9 @@ in {
 
               # Cycle through layouts on all tags/outputs
               "Super Space" = "send-layout-cmd river-ultitile 'set string layout @ main hstack vstack'";
+
+              # Misc
+              "Super C" = "spawn 'clipman pick --tool dmenu'";
             }
             // builtins.foldl' (acc: i: let
               pow = n: exp:
