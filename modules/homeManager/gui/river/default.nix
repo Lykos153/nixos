@@ -123,8 +123,8 @@ in {
         };
       };
       extraConfig = ''
-        riverctl spawn river-ultitile
-        riverctl spawn waybar
+        riverctl spawn "pkill river-ultitile; river-ultitile"
+        riverctl spawn "pkill waybar; waybar"
         riverctl default-layout river-ultitile
 
         riverctl keyboard-layout de # alternatively XKB_* variables
