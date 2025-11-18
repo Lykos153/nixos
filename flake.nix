@@ -86,6 +86,7 @@
           other = (
             # Add packages from flake inputs to pkgs
             final: prev: {
+              inherit (self.packages.${prev.system}) cb;
               toki = inputs.toki.outputs.defaultPackage.${prev.system};
               mergiraf = inputs.nixpkgs-master.outputs.legacyPackages.${prev.system}.mergiraf;
               repos = {
@@ -161,6 +162,7 @@
         ...
       }: {
         packages = rec {
+          cb = pkgs.callPackage ./pkgs/cb {};
           pre-commit-sops-updatekeys = pkgs.callPackage ./pkgs/pre-commit-sops-updatekeys {};
           linux_bcachefs = pkgs.callPackage ./pkgs/linux_bcachefs_master.nix {src = inputs.bcachefs;};
           linux_6_14_rc6 = pkgs.callPackage ./pkgs/linux_6_14_rc6.nix {};

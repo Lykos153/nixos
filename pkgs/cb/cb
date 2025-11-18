@@ -1,0 +1,132 @@
+#!/bin/sh
+# adapted from https://github.com/javier-lopez/learn/blob/master/sh/tools/cb
+#description: unify the copy and paste commands into one intelligent chainable command
+              #https://gist.github.com/RichardBronosky/56d8f614fab2bacdd8b048fb58d0c0c7
+#usage: `date | cb`, or `cb` or `date | cb | tee updates.log`
+
+#example:
+#$ date | cb #content is written to the system clipboard as well
+#Thu Jul  6 21:24:30 CDT 2017
+
+_usage() {
+    printf "%s\\n" "Usage: ${PROGNAME} [options]... [clipboard]..."
+    printf "%s\\n" "Unify the copy and paste commands into one intelligent chainable command."
+    printf "\\n"
+    printf "%s\\n" "  -a, --append              append to the given clipboard, do not overwrite"
+    printf "%s\\n" "  -h, --help                show this help message and exit"
+}
+
+_basename() {
+    [ -z "${1}" ] && return 1 || _basename__name="${1%%/}"
+    [ -z "${2}" ] || _basename__suffix="${2}"
+    case "${_basename__name}" in
+        /*|*/*) _basename__name="$(expr "${_basename__name}" : '.*/\([^/]*\)')" ;;
+    esac
+
+    if [ -n "${_basename__suffix}" ] && [ "${#_basename__name}" -gt "${#2}" ]; then
+        if [ X"$(printf "%s\\n" "${_basename__name}" | cut -c"$((${#_basename__name} - ${#_basename__suffix} + 1))"-"${#_basename__name}")" \
+           = X"$(printf "%s\\n" "${_basename__suffix}")" ]; then
+            _basename__name="$(printf "%s\\n" "${_basename__name}" | cut -c1-"$((${#_basename__name} - ${#_basename__suffix}))")"
+        fi
+    fi
+
+    printf "%s\\n" "${_basename__name}"
+}
+
+_die() {
+    [ -z "${1}" ] || printf "%s\\n" "${*}" >&2
+    _usage >&2; exit 1
+}
+
+_cb_copy() {
+    if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+        if command -v "wl-copy" >/dev/null 2>/dev/null; then
+            if [ -n "${append}" ]; then
+                (_cb_paste 2>/dev/null; cat) | wl-copy
+            else
+                cat | wl-copy
+            fi
+        elif command -v "waycopy" >/dev/null 2>/dev/null; then
+            if [ -n "${append}" ]; then
+                (_cb_paste 2>/dev/null; cat) | waycopy
+            else
+                cat | waycopy
+            fi
+        else
+            _die "${PROGNAME}: unrecognized clipboard system"
+        fi
+    else
+        if command -v "xclip" >/dev/null 2>/dev/null; then
+            #dumping xclip's stdout to the bitbucket works around xclip's
+            #failure to properly daemonize: https://sourceforge.net/p/xclip/patches/9/
+            if [ -n "${append}" ]; then
+                (_cb_paste 2>/dev/null; cat) | xclip -selection clipboard -i >/dev/null 2>&1
+            else
+                cat | xclip -selection clipboard -i >/dev/null 2>&1
+            fi
+        elif command -v "xsel" >/dev/null 2>/dev/null; then
+            if [ -n "${append}" ]; then
+                (_cb_paste 2>/dev/null; cat) | xsel --clipboard
+            else
+                cat | xsel --clipboard
+            fi
+        elif command -v "pbcopy" >/dev/null 2>/dev/null; then
+            if [ -n "${append}" ]; then
+                (_cb_paste 2>/dev/null; cat) | pbcopy
+            else
+                cat | pbcopy
+            fi
+        elif [ -e /dev/clipboard ]; then
+            if [ -n "${append}" ]; then
+                (cat /dev/clipboard 2>/dev/null; cat) > /dev/clipboard
+            else
+                cat > /dev/clipboard
+            fi
+        else
+            _die "${PROGNAME}: unrecognized clipboard system"
+        fi
+    fi
+}
+
+_cb_paste() {
+    if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+        if command -v "wl-paste" >/dev/null 2>/dev/null; then
+            wl-paste
+        elif command -v "waypaste" >/dev/null 2>/dev/null; then
+            waypaste
+        else
+            _die "${PROGNAME}: unrecognized clipboard system"
+        fi
+    else
+        if command -v "xclip" >/dev/null 2>/dev/null; then
+            xclip -selection clipboard -o
+        elif command -v "xsel" >/dev/null 2>/dev/null; then
+            xsel --clipboard
+        elif command -v "pbpaste" >/dev/null 2>/dev/null; then
+            pbpaste
+        elif [ -e /dev/clipboard ]; then
+            cat /dev/clipboard
+        else
+            _die "${PROGNAME}: unrecognized clipboard system"
+        fi
+    fi
+}
+
+PROGNAME="$(_basename "${0}")"
+
+[ -p /dev/stdin ] && stdin_is_pipe="1"
+[ -t 0          ] && stdin_is_tty="1"
+[ -t 1          ] && stdout_is_tty="1"
+
+for arg in "${@}"; do
+    case "${arg}" in
+        -h|--help) _usage; exit "${?}" ;;
+        -a|--append) append="1"; shift ;;
+        -*) _die "${PROGNAME}: unrecognized option '${arg}'" ;;
+    esac
+done
+
+if [ -n "${stdin_is_pipe}" ] || [ ! -n "${stdin_is_tty}" ] ; then
+    _cb_copy  #send stdin to the clipboard
+fi
+_cb_paste # always output the clipboard

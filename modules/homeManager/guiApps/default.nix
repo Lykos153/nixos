@@ -32,7 +32,7 @@ with builtins; {
         vlc
         system-config-printer
         wireshark
-        lykos153.cb
+        cb
         feh
       ];
       xdg.mimeApps.defaultApplications = {
