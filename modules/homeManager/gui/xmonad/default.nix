@@ -90,7 +90,6 @@ in {
     };
 
     home.packages = with pkgs; [
-      screenshot
       toggle-mute
       dmenu
     ];

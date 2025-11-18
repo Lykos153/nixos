@@ -5,7 +5,8 @@
   ...
 }: let
   cfg = config.wayland.windowManager.sway.config;
-  lockcmd = "${pkgs.swaylock}/bin/swaylock -f -c000000";
+  lockcmd = config.booq.gui.wayland.lockCommand;
+  poweroffMenu = config.booq.gui.wayland.poweoffMenu;
   workspace_chat = "Chat";
 in
   lib.mkIf (config.booq.gui.enable && config.booq.gui.sway.enable) {
@@ -17,7 +18,7 @@ in
         "${cfg.modifier}+Shift+q" = "kill";
         "${cfg.modifier}+Shift+r" = "reload";
         "${cfg.modifier}+Shift+e" = "exec _sway_exit_menu";
-        "${cfg.modifier}+Shift+p" = "exec _sway_poweroff_menu";
+        "${cfg.modifier}+Shift+p" = "exec ${poweroffMenu}";
 
         # Focus
         "${cfg.modifier}+${cfg.left}" = "focus left";

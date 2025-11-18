@@ -11,6 +11,7 @@
   workspace_chat = "Chat";
 in
   lib.mkIf config.booq.gui.sway.enable {
+    booq.gui.wayland.enable = true;
     wayland.windowManager.sway = {
       enable = true;
       wrapperFeatures.gtk = true;
@@ -165,14 +166,9 @@ in
 
     home.packages = with pkgs; [
       swayidle
-      wl-clipboard
-      wdisplays
-      clipman
       light
       brightnessctl
       i3status
-      sway-contrib.grimshot # screenshots
-      libnotify # screenshots
       bemenu
       avizo # volumectl, lightctl
       pamixer # for avizo. TODO: wrap pamixer inside avizo?
@@ -180,8 +176,6 @@ in
 
     #TODO: maybe make all of those a derivation some day
     home.file.".local/bin/_sway_exit_menu".source = ./exit_menu.sh;
-    home.file.".local/bin/_sway_poweroff_menu".source = ./poweroff_menu.sh;
-    home.file.".local/bin/screenshot".source = ./screenshot.sh;
     home.file.".local/bin/_sway_utils".source = ./lib.sh;
 
     services.mako = {
