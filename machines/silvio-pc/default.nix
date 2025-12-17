@@ -16,6 +16,7 @@
     audio.backend = "pipewire";
     local.openvpn-ch.enable = true;
     nix-ld.enable = true;
+    lix.enable = true;
 
     gnome.enable = false;
     plasma.enable = true;
