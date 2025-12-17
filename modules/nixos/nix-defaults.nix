@@ -20,7 +20,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     nix = {
-      package = pkgs.nixVersions.stable;
+      package = lib.mkOverride 999 pkgs.nixVersions.stable;
       settings.auto-optimise-store = true;
 
       gc = lib.mkIf cfg.auto-gc {
