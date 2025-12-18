@@ -15,6 +15,7 @@
     neededForBoot = true;
   };
   specialisation.fsck.configuration.fileSystems."/bcachefs".options = ["fsck" "fix_errors"];
+  specialisation.upgrade.configuration.fileSystems."/bcachefs".options = ["fsck" "version_upgrade=incompatible"];
   specialisation.very_degraded.configuration.fileSystems."/bcachefs".options = ["very_degraded" "verbose"];
 
   systemd.services.bcachefs-snapshot-home = {
