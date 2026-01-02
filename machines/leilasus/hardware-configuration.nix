@@ -43,6 +43,7 @@ in {
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/5A8B-57C3";
     fsType = "vfat";
+    options = ["umask=0077"];
   };
 
   fileSystems."/home" = {
