@@ -10,6 +10,7 @@
     ./bootloader.nix
     ./sops.nix
     ./disks.nix
+    ./state-version.nix
   ];
   booq.workstation.enable = true;
   booq.securityKeys.enable = true;

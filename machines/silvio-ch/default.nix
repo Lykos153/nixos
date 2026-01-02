@@ -29,6 +29,7 @@
   };
   virtualisation.multipass.enable = true;
   imports = [
+    ./state-version.nix
     ./hardware-configuration.nix
     ./bootloader.nix
     ./ddns

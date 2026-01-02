@@ -40,6 +40,7 @@
     enableNotifications = true;
   };
   imports = [
+    ./state-version.nix
     ./hardware-configuration.nix
     ./steam-library.nix
     ./disko.nix
