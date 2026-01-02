@@ -11,6 +11,9 @@ in {
   config = lib.mkIf cfg.enable {
     virtualisation.podman.enable = config.booq.lib.mkMyDefault true;
     virtualisation.podman.dockerCompat = true;
-    boot.enableContainers = false; # TODO: Maybe set to true after migrating to state version 22.05
+    boot.enableContainers =
+      if lib.versionOlder config.system.stateVersion "22.05"
+      then false
+      else true;
   };
 }
