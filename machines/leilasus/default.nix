@@ -18,4 +18,5 @@
   booq.sops.enable = false;
   booq.gaming.enable = true;
   booq.audio.backend = "pipewire";
+  booq.networking.networkmanager = true;
 }
