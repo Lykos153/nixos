@@ -1,4 +1,4 @@
-let
+{lib}: let
   commonName = "_common";
 in rec {
   mkModules = {
@@ -79,10 +79,10 @@ in rec {
     overlays ? [],
   }: let
     f = acc: hostname: hostConfig: let
-      users = nixpkgs.lib.attrsets.filterAttrs (_: v: v.isNormalUser) hostConfig.config.users.users;
+      users = lib.attrsets.filterAttrs (_: v: v.isNormalUser) hostConfig.config.users.users;
     in
       acc
-      // nixpkgs.lib.mapAttrs' (user: userConfig: {
+      // lib.mapAttrs' (user: userConfig: {
         name = "${user}@${hostname}";
         value = mkConfig {
           inherit nixpkgs home-manager hostConfig userConfig userdir modules overlays;
@@ -90,5 +90,5 @@ in rec {
       })
       users;
   in
-    nixpkgs.lib.attrsets.foldlAttrs f {} nixosConfigurations;
+    lib.attrsets.foldlAttrs f {} nixosConfigurations;
 }

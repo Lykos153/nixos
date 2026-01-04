@@ -1,8 +1,8 @@
-let
+{lib}: let
   commonName = "_common";
-  lib = import ./.;
-  dirWithoutCommon = nixpkgs: dirname:
-    nixpkgs.lib.filterAttrs (name: type: name != commonName && type == "directory")
+  booq-lib = import ./. {inherit lib;};
+  dirWithoutCommon = dirname:
+    lib.filterAttrs (name: type: name != commonName && type == "directory")
     (builtins.readDir dirname);
 in rec {
   mkHost = {
@@ -29,7 +29,7 @@ in rec {
           {
             networking.hostName = hostname;
             # Pin flakes so search, shell etc. are faster. From https://ianthehenry.com/posts/how-to-learn-nix/more-flakes/
-            nix.registry = nixpkgs.lib.mapAttrs (_: flake: {inherit flake;}) (nixpkgs.lib.filterAttrs (_: v: (v._type or null) == "flake") flakeInputs);
+            nix.registry = lib.mapAttrs (_: flake: {inherit flake;}) (lib.filterAttrs (_: v: (v._type or null) == "flake") flakeInputs);
           }
           {
             home-manager.useGlobalPkgs = false;
@@ -38,11 +38,11 @@ in rec {
             home-manager.sharedModules = homeManagerModules;
             home-manager.users = builtins.mapAttrs (
               username: _: {
-                imports = lib.homeManager.mkModules {
+                imports = booq-lib.homeManager.mkModules {
                   inherit nixpkgs hostname userdir username;
                 };
               }
-            ) (dirWithoutCommon nixpkgs userdir);
+            ) (dirWithoutCommon userdir);
           }
         ];
     };
@@ -58,5 +58,5 @@ in rec {
       mkHost {
         hostname = name;
         inherit nixpkgs machinedir userdir nixosModules homeManagerModules flakeInputs;
-      }) (dirWithoutCommon nixpkgs machinedir);
+      }) (dirWithoutCommon machinedir);
 }

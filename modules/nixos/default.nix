@@ -1,13 +1,3 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
-with builtins; {
-  imports =
-    (map (n: "${./.}/${n}") (filter (n: n != "default.nix") (attrNames (readDir ./.))))
-    ++ [
-      ../common
-    ];
-}
+{booq-lib}:
+with booq-lib;
+  updateNoOverride (modulesFrom ./.) {common = ../common;}

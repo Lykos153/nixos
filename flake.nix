@@ -69,8 +69,8 @@
     ...
   }:
     flake-parts.lib.mkFlake {inherit inputs;} {
-      flake = {
-        lib = import ./lib;
+      flake = {lib, ...}: {
+        lib = (import ./lib) {inherit lib;};
         overlays = {
           nur = inputs.nur.overlays.default;
           mynur = inputs.mynur.overlay;
@@ -100,20 +100,21 @@
             }
           );
         };
-        nixosModules = {
-          booq = import ./modules/nixos;
-          inherit (inputs.disko.nixosModules) disko;
-          inherit (inputs.impermanence.nixosModules) impermanence;
-          inherit (inputs.sops-nix.nixosModules) sops;
-          inherit (inputs.home-manager.nixosModules) home-manager;
-          # disable lix until it has builtins.warn:
-          # https://git.lix.systems/lix-project/lix/issues/579
-          # or make home manager use lib.warn
-          # lix-module = inputs.lix-module.nixosModules.default;
-          overlays = {
-            nixpkgs.overlays = [self.overlays.linuxes];
+        nixosModules =
+          self.lib.updateNoOverride (import ./modules/nixos {booq-lib = self.lib;})
+          {
+            inherit (inputs.disko.nixosModules) disko;
+            inherit (inputs.impermanence.nixosModules) impermanence;
+            inherit (inputs.sops-nix.nixosModules) sops;
+            inherit (inputs.home-manager.nixosModules) home-manager;
+            # disable lix until it has builtins.warn:
+            # https://git.lix.systems/lix-project/lix/issues/579
+            # or make home manager use lib.warn
+            # lix-module = inputs.lix-module.nixosModules.default;
+            overlays = {
+              nixpkgs.overlays = [self.overlays.linuxes];
+            };
           };
-        };
         nixosConfigurations = self.lib.nixos.mkHosts {
           inherit (inputs) nixpkgs;
           nixosModules = builtins.attrValues self.nixosModules;
@@ -122,17 +123,18 @@
           homeManagerModules = builtins.attrValues self.homeManagerModules;
           flakeInputs = inputs;
         };
-        homeManagerModules = {
-          booq = import ./modules/homeManager;
-          sops-nix = inputs.sops-nix.homeManagerModule;
-          inherit (inputs.stylix.homeModules) stylix;
-          desec-nu = inputs.desec-nu.homeManagerModules.default;
-          json2nix = inputs.json2nix.homeManagerModules.default;
-          inherit (inputs.nix-index-database.homeModules) nix-index;
-          overlays = {
-            nixpkgs.overlays = builtins.attrValues self.overlays;
+        homeManagerModules =
+          self.lib.updateNoOverride (import ./modules/homeManager {booq-lib = self.lib;})
+          {
+            sops-nix = inputs.sops-nix.homeManagerModule;
+            inherit (inputs.stylix.homeModules) stylix;
+            desec-nu = inputs.desec-nu.homeManagerModules.default;
+            json2nix = inputs.json2nix.homeManagerModules.default;
+            inherit (inputs.nix-index-database.homeModules) nix-index;
+            overlays = {
+              nixpkgs.overlays = builtins.attrValues self.overlays;
+            };
           };
-        };
         homeConfigurations = self.lib.homeManager.mkConfigs {
           inherit (self) nixosConfigurations;
           inherit (inputs) nixpkgs home-manager;
