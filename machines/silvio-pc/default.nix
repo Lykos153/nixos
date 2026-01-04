@@ -17,6 +17,7 @@
     local.openvpn-ch.enable = true;
     nix-ld.enable = true;
     lix.enable = true;
+    networking.networkmanager = true;
 
     gnome.enable = false;
     plasma.enable = true;
