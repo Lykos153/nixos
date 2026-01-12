@@ -33,7 +33,7 @@ in {
         use ${./psub.nu}
 
         # Workaround for https://github.com/nix-community/home-manager/issues/4313
-        if (("__HM_SESS_VARS_SOURCED" in $env) and ($env.__HM_SESS_VARS_SOURCED != "1")) {
+        if ((not ("__HM_SESS_VARS_SOURCED" in $env)) or ($env.__HM_SESS_VARS_SOURCED != "1")) {
           open ${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh | capture-foreign-env | load-env
         }
       '';
