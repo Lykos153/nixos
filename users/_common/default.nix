@@ -72,7 +72,7 @@
     toml2nix
 
     tectonic
-    nixfmt-rfc-style
+    nixfmt
 
     gimp
     magic-wormhole
