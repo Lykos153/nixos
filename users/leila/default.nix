@@ -63,9 +63,6 @@
       ];
     })
 
-    librecad
-    freecad
-
     telegram-desktop # telegram
     signal-desktop #signal
     # unfree
