@@ -57,7 +57,7 @@ in {
     programs.i3lock.enable = true;
     programs.thunar = {
       enable = true;
-      plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman];
+      plugins = with pkgs; [thunar-archive-plugin thunar-volman];
     };
   };
 }
