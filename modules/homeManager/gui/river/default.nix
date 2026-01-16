@@ -29,7 +29,7 @@ in {
         in {
           normal =
             {
-              "Super Return" = "spawn ${pkgs.foot}/bin/foot";
+              "Super Return" = "spawn ${pkgs.alacritty}/bin/alacritty";
               "Super D" = "spawn '${pkgs.rofi}/bin/rofi -show drun'";
               "Super S" = "spawn '${pkgs.rofi}/bin/rofi -show window'";
               "Super+Shift P" = "spawn ${poweroffMenu}";
