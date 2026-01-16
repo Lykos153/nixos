@@ -6,6 +6,7 @@
   booq.gui.enable = true;
   booq.gui.sway.enable = false;
   booq.gui.xmonad.enable = true;
+  booq.gui.river.enable = true;
   booq.talon.enable = false;
 
   programs.git = let
