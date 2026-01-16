@@ -19,6 +19,7 @@
     enable = true;
     routes = "per-ip";
   };
+  booq.networking.networkmanager = true;
   zramSwap.enable = false;
   # TODO evaluate https://github.com/vrmiguel/bustd instead
   services.earlyoom = {
