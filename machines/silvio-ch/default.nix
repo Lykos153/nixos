@@ -27,7 +27,6 @@
     freeSwapThreshold = 5;
     enableNotifications = true;
   };
-  virtualisation.multipass.enable = true;
   imports = [
     ./state-version.nix
     ./hardware-configuration.nix
