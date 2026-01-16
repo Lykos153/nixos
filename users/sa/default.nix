@@ -40,7 +40,6 @@
     ./ssh
     ./autostart.nix
     ./calendar.nix
-    ./gui
     ./glab
     ./zoom.nix
     ./pass.nix
