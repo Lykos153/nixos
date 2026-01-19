@@ -17,6 +17,8 @@ in {
     booq.users.enable = true;
 
     services.openssh.enable = true;
+    services.openssh.settings.PermitRootLogin = lib.mkForce "no";
+
     security.sudo.enable = lib.mkForce true;
     security.sudo-rs.enable = lib.mkForce false;
     security.sudo.wheelNeedsPassword = false;
