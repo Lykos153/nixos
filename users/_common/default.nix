@@ -66,6 +66,8 @@
     lykos153.git-rstash
 
     openssl
+    mtr
+    iperf3
 
     json2nix
     yaml2nix
