@@ -41,10 +41,6 @@
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
     };
-    nixos-generators = {
-      url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     bcachefs = {
       url = "github:koverstreet/bcachefs/bcachefs-2025-04-03"; # fix for https://github.com/koverstreet/bcachefs/issues/847
       flake = false;
@@ -169,19 +165,20 @@
           pre-commit-sops-updatekeys = pkgs.callPackage ./pkgs/pre-commit-sops-updatekeys {};
           linux_bcachefs = pkgs.callPackage ./pkgs/linux_bcachefs_master.nix {src = inputs.bcachefs;};
           linux_6_14_rc6 = pkgs.callPackage ./pkgs/linux_6_14_rc6.nix {};
-          install-image = inputs.nixos-generators.nixosGenerate {
-            inherit system;
-            specialArgs = {
-              inherit pkgs;
-            };
-            modules =
-              builtins.attrValues self.nixosModules
-              ++ [
-                ({...}: {nix.registry.nixpkgs.flake = inputs.nixpkgs;})
-                {booq.install-image.enable = true;}
-              ];
-            format = "install-iso";
-          };
+          install-image =
+            (inputs.nixpkgs.lib.nixosSystem
+              {
+                inherit system;
+                specialArgs = {
+                  inherit pkgs;
+                };
+                modules =
+                  builtins.attrValues self.nixosModules
+                  ++ [
+                    ({...}: {nix.registry.nixpkgs.flake = inputs.nixpkgs;})
+                    {booq.install-image.enable = true;}
+                  ];
+              }).config.system.build.images.iso;
         };
         formatter = pkgs.alejandra;
         devShells.default = pkgs.mkShell {

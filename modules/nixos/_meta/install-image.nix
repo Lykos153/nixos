@@ -19,8 +19,6 @@ in {
     services.openssh.enable = true;
     services.openssh.settings.PermitRootLogin = lib.mkForce "no";
 
-    security.sudo.enable = lib.mkForce true;
-    security.sudo-rs.enable = lib.mkForce false;
     security.sudo.wheelNeedsPassword = false;
 
     # Filesystems from https://github.com/NixOS/nixpkgs/blob/1a88164cc03ff2b7f3e79c042bee932bce7f036d/nixos/modules/profiles/base.nix#L52C2-L53C67
