@@ -43,5 +43,18 @@ in {
         ];
     };
     users.mutableUsers = false;
+
+    # Workaround for 'Directory "/var/lib/private" already exists, but has mode 0755 that is too permissive (0700 was requested), refusing.'
+    # see https://github.com/nix-community/impermanence/issues/254
+    system.activationScripts."createPersistentStorageDirs".deps = ["var-lib-private-permissions" "users" "groups"];
+    system.activationScripts = {
+      "var-lib-private-permissions" = {
+        deps = ["specialfs"];
+        text = ''
+          mkdir -p ${config.booq.impermanence.persistRoot}/var/lib/private
+          chmod 0700 ${config.booq.impermanence.persistRoot}/var/lib/private
+        '';
+      };
+    };
   };
 }
