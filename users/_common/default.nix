@@ -42,6 +42,8 @@
     pwgen
     jc
     jq
+    jo
+    gron
     jless
     yq
     mr
@@ -51,7 +53,7 @@
     ripgrep
     ripgrep-all # search in docs, pdfs etc.
     fd # simpler find
-    ncdu
+    gdu
     python3Packages.ipython
     screen
     pv
@@ -62,6 +64,7 @@
     profanity
     pulsemixer
     termdown
+    dysk
 
     poetry
     just
