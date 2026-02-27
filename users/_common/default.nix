@@ -30,6 +30,11 @@
 
   programs.gh.enable = true;
 
+  programs.tealdeer = {
+    enable = true;
+    settings.updates.auto_update = true;
+    settings.updates.auto_update_interval_hours = 720;
+  };
   programs.zellij.enable = true;
   home.packages = with pkgs; [
     vifm
@@ -52,7 +57,6 @@
     pv
     unzip
     moreutils
-    tldr
     lsd # new ls
     sd # new sed
     profanity
