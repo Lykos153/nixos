@@ -35,6 +35,10 @@ in {
         git_commit.tag_disabled = false;
       };
     };
+
+    home.packages = with pkgs; [
+      oh-my-posh
+    ];
     programs.oh-my-posh = {
       enable = true;
       useTheme = "blue-owl";
