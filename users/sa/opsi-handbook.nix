@@ -1,7 +1,7 @@
 {pkgs, ...}: let
   opsi-handbook = pkgs.writeShellApplication {
     name = "opsi-handbook";
-    runtimeInputs = [pkgs.mdbook pkgs.mdbook-linkcheck];
+    runtimeInputs = [pkgs.mdbook pkgs.mdbook-linkcheck2];
     text = ''
       mdbook serve -p "''${OPSI_HANDBOOK_PORT:-8080}" "''$HOME/opsi-data/operations-handbook"
     '';
