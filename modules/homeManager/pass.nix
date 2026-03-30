@@ -18,6 +18,7 @@ in {
         exts.pass-otp
         exts.pass-checkup
       ]);
+      settings.PASSWORD_STORE_DIR = "${config.xdg.dataHome}/password-store";
     };
     programs.rofi.pass = {
       enable = true;

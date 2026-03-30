@@ -44,6 +44,7 @@ in {
         merge.tool = "kdiff3";
         rerere.enabled = true;
       };
+      signing.format = config.booq.lib.mkMyDefault null; # until stateVersion is raised above 25.05
     };
 
     programs.lazygit = {

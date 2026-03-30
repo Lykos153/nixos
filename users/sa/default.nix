@@ -19,6 +19,7 @@
     signing = {
       key = m.gpg.key;
       signByDefault = true;
+      format = "openpgp";
     };
   };
   programs.ssh.extraConfig = ''

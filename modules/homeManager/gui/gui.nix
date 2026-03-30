@@ -16,6 +16,7 @@
         name = "Materia-dark";
         package = pkgs.materia-theme;
       };
+      gtk4.theme = null; # until stateVersion is raised above 26.05
       iconTheme = {
         name = "Numix";
         package = pkgs.numix-icon-theme;
