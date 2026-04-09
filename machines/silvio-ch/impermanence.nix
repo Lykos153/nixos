@@ -7,6 +7,7 @@
   booq.impermanence.persistRoot = "/nix/persist";
   fileSystems."/home" = {
     device = "/nix/tmp-home/current";
+    fsType = "none";
     options = ["bind"];
     depends = ["/nix"];
     neededForBoot = true;
