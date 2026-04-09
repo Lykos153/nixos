@@ -56,6 +56,9 @@
 
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
+    p.url = "github:tomberek/-";
+    p.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs @ {
