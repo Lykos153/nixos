@@ -29,7 +29,10 @@ in rec {
           {
             networking.hostName = hostname;
             # Pin flakes so search, shell etc. are faster. From https://ianthehenry.com/posts/how-to-learn-nix/more-flakes/
-            nix.registry = lib.mapAttrs (_: flake: {inherit flake;}) (lib.filterAttrs (_: v: (v._type or null) == "flake") flakeInputs);
+            nix.registry = lib.pipe flakeInputs [
+              (lib.filterAttrs (_: v: (v._type or null) == "flake"))
+              (lib.mapAttrs (_: flake: {inherit flake;}))
+            ];
           }
           {
             home-manager.useGlobalPkgs = false;
