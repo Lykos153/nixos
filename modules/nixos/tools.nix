@@ -25,6 +25,7 @@ in {
       keyutils # for encrypted bcachefs
       killall
       lshw
+      nix-output-monitor
       parted #for partprobe
       pciutils
       tcpdump
