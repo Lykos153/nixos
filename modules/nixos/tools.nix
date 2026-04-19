@@ -11,32 +11,28 @@ in {
   };
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      vim
-      helix
-      zellij
-
-      wget
-      curl
-      git
-      dnsutils
-
-      htop
-
-      efibootmgr
-      gptfdisk
-      parted #for partprobe
-      e2fsprogs # for resize2fs
-      btrfs-progs
       bindfs
-      pciutils
-      usbutils
-      lshw
-      tcpdump
-      keyutils # for encrypted bcachefs
+      btrfs-progs
       cryptsetup
-      wireguard-tools
-
+      curl
+      dnsutils
+      e2fsprogs # for resize2fs
+      efibootmgr
+      git
+      gptfdisk
+      helix
+      htop
+      keyutils # for encrypted bcachefs
       killall
+      lshw
+      parted #for partprobe
+      pciutils
+      tcpdump
+      usbutils
+      vim
+      wget
+      wireguard-tools
+      zellij
     ];
   };
 }
