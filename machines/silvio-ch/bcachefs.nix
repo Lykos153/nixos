@@ -8,4 +8,5 @@
     neededForBoot = true;
   };
   specialisation.fsck.configuration.fileSystems."/nix".options = ["fsck" "fix_errors"];
+  specialisation.upgrade.configuration.fileSystems."/nix".options = ["fsck" "version_upgrade=incompatible"];
 }
