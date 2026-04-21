@@ -11,7 +11,7 @@ in rec {
     nixosModules,
     homeManagerModules,
     machinedir,
-    userdir,
+    userdirs,
     flakeInputs ? {},
   }: let
     commonpath = machinedir + "/${commonName}";
@@ -39,27 +39,33 @@ in rec {
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "bak";
             home-manager.sharedModules = homeManagerModules;
-            home-manager.users = builtins.mapAttrs (
-              username: _: {
-                imports = booq-lib.homeManager.mkModules {
-                  inherit nixpkgs hostname userdir username;
-                };
-              }
-            ) (dirWithoutCommon userdir);
+            home-manager.users = lib.foldl (acc: userdir:
+              acc
+              // (builtins.mapAttrs (
+                username: _: {
+                  imports = booq-lib.homeManager.mkModules {
+                    inherit nixpkgs hostname userdir username;
+                  };
+                }
+              ) (dirWithoutCommon userdir))) {}
+            userdirs;
           }
         ];
     };
   mkHosts = {
     nixpkgs,
-    machinedir,
-    userdir,
+    machinedirs,
+    userdirs,
     nixosModules,
     homeManagerModules,
     flakeInputs ? {},
   }:
-    builtins.mapAttrs (name: _:
-      mkHost {
-        hostname = name;
-        inherit nixpkgs machinedir userdir nixosModules homeManagerModules flakeInputs;
-      }) (dirWithoutCommon machinedir);
+    lib.foldl (acc: machinedir:
+      acc
+      // (builtins.mapAttrs (name: _:
+        mkHost {
+          hostname = name;
+          inherit nixpkgs machinedir userdirs nixosModules homeManagerModules flakeInputs;
+        }) (dirWithoutCommon machinedir))) {}
+    machinedirs;
 }
