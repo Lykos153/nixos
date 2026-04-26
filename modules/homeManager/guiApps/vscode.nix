@@ -55,11 +55,11 @@ in {
             vscode-extensions.ms-ceintl.vscode-language-pack-de
             vscode-extensions.redhat.vscode-yaml
             vscode-extensions.kamadorueda.alejandra
-            vscode-extensions.bungcip.better-toml
+            vscode-extensions.tamasfe.even-better-toml
             vscode-extensions.thenuprojectcontributors.vscode-nushell-lang
             vscode-extensions.golang.go
             vscode-extensions.timonwong.shellcheck
-            open-vsx.codeium.codeium
+            vscode-extensions.rust-lang.rust-analyzer
             open-vsx.zardoy.fix-all-json
             open-vsx.hirse.vscode-ungit
             open-vsx.ipedrazas.kubernetes-snippets
