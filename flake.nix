@@ -31,12 +31,6 @@
     rofi-mum.inputs.flake-parts.follows = "flake-parts";
     stylix.url = "github:danth/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
-    talon-nix.url = "github:nix-community/talon-nix";
-    talon-nix.inputs.nixpkgs.follows = "nixpkgs";
-    talon-community.url = "github:Lykos153/talon-community";
-    talon-community.flake = false;
-    cursorless-talon.url = "github:cursorless-dev/cursorless-talon";
-    cursorless-talon.flake = false;
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
@@ -73,7 +67,6 @@
         overlays = {
           nur = inputs.nur.overlays.default;
           mynur = inputs.mynur.overlay;
-          talon-nix = inputs.talon-nix.overlays.default;
           rofi-mum = inputs.rofi-mum.overlays.default;
           nix-vscode-extensions = inputs.nix-vscode-extensions.overlays.default;
           json2nix = inputs.json2nix.overlays.default;
@@ -89,8 +82,6 @@
               repos = {
                 inherit
                   (inputs)
-                  talon-community
-                  cursorless-talon
                   yk8s-nu
                   ;
               };

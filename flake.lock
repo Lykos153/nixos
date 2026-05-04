@@ -85,22 +85,6 @@
         "type": "github"
       }
     },
-    "cursorless-talon": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1774203231,
-        "narHash": "sha256-vXaGgwspW3geR3ejU4UzqCPRntf8kKCGBDZUJKTA0T8=",
-        "owner": "cursorless-dev",
-        "repo": "cursorless-talon",
-        "rev": "fcc8a105ab4469981a12d002fe44cdfd781fba6b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "cursorless-dev",
-        "repo": "cursorless-talon",
-        "type": "github"
-      }
-    },
     "desec-nu": {
       "locked": {
         "lastModified": 1751281483,
@@ -439,27 +423,6 @@
         "type": "github"
       }
     },
-    "nix-github-actions": {
-      "inputs": {
-        "nixpkgs": [
-          "talon-nix",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1737420293,
-        "narHash": "sha256-F1G5ifvqTpJq7fdkT34e/Jy9VCyzd5XfJ9TO8fHhJWE=",
-        "owner": "nix-community",
-        "repo": "nix-github-actions",
-        "rev": "f4158fa080ef4503c8f4c820967d946c2af31ec9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "nix-github-actions",
-        "type": "github"
-      }
-    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -685,7 +648,6 @@
     "root": {
       "inputs": {
         "bcachefs": "bcachefs",
-        "cursorless-talon": "cursorless-talon",
         "desec-nu": "desec-nu",
         "direnv": "direnv",
         "disko": "disko",
@@ -704,8 +666,6 @@
         "rofi-mum": "rofi-mum",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
-        "talon-community": "talon-community",
-        "talon-nix": "talon-nix",
         "yk8s-nu": "yk8s-nu"
       }
     },
@@ -789,43 +749,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "talon-community": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1709667763,
-        "narHash": "sha256-QV5kV9eNOprTF5zBjW9o+Our3B/5JibiIRcUqTzp9uA=",
-        "owner": "Lykos153",
-        "repo": "talon-community",
-        "rev": "555a68e04b14dc7e171ded257fb823106b5e06b7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Lykos153",
-        "repo": "talon-community",
-        "type": "github"
-      }
-    },
-    "talon-nix": {
-      "inputs": {
-        "nix-github-actions": "nix-github-actions",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1776244716,
-        "narHash": "sha256-+qZasmBp556iAiIx5ZdiTS1yI4aiPZ7XHaCRk6UopME=",
-        "owner": "nix-community",
-        "repo": "talon-nix",
-        "rev": "a13f95e0d7b87d0127079245236bcd8705c6b4dd",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "talon-nix",
         "type": "github"
       }
     },

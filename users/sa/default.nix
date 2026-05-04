@@ -7,7 +7,6 @@
   booq.gui.sway.enable = false;
   booq.gui.xmonad.enable = true;
   booq.gui.river.enable = true;
-  booq.talon.enable = false;
 
   programs.git = let
     m = config.accounts.email.accounts.cah;
