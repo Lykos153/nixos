@@ -86,8 +86,6 @@
             # Add packages from flake inputs to pkgs
             final: prev: {
               inherit (self.packages.${prev.system}) cb yamldiff;
-              toki = inputs.toki.outputs.defaultPackage.${prev.system};
-              mergiraf = inputs.nixpkgs-master.outputs.legacyPackages.${prev.system}.mergiraf;
               repos = {
                 inherit
                   (inputs)
