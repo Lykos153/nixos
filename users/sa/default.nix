@@ -36,7 +36,6 @@
     sshuttle
   ];
   imports = [
-    ./style
     ./ssh
     ./autostart.nix
     ./calendar.nix
