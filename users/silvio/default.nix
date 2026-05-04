@@ -14,7 +14,6 @@
     ./mail.nix
     ./sway
     ./sops.nix
-    ./mutables
     ./nushell.nix
     ./codeberg-cli
   ];

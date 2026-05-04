@@ -50,7 +50,6 @@
     ./opsi-prepare.nix
     ./mail.nix
     ./tmate.nix
-    ./mutables
     ./nushell.nix
     ./annextimelog
   ];
