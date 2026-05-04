@@ -100,8 +100,8 @@
         nixosConfigurations = self.lib.nixos.mkHosts {
           inherit (inputs) nixpkgs;
           nixosModules = builtins.attrValues self.nixosModules;
-          machinedir = ./machines;
-          userdir = ./users;
+          machinedirs = [./machines];
+          userdirs = [./users];
           homeManagerModules = builtins.attrValues self.homeManagerModules;
           flakeInputs = inputs;
         };
