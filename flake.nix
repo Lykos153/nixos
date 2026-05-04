@@ -30,9 +30,6 @@
     rofi-mum.inputs.nixpkgs.follows = "nixpkgs";
     rofi-mum.inputs.flake-parts.follows = "flake-parts";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
-    lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
-    };
     bcachefs = {
       url = "github:koverstreet/bcachefs/bcachefs-2025-04-03"; # fix for https://github.com/koverstreet/bcachefs/issues/847
       flake = false;
@@ -93,10 +90,6 @@
             inherit (inputs.impermanence.nixosModules) impermanence;
             inherit (inputs.sops-nix.nixosModules) sops;
             inherit (inputs.home-manager.nixosModules) home-manager;
-            # disable lix until it has builtins.warn:
-            # https://git.lix.systems/lix-project/lix/issues/579
-            # or make home manager use lib.warn
-            # lix-module = inputs.lix-module.nixosModules.default;
             overlays = {
               nixpkgs.overlays = [self.overlays.linuxes];
             };
