@@ -29,8 +29,6 @@
     rofi-mum.url = "github:lykos153/rofi-mum";
     rofi-mum.inputs.nixpkgs.follows = "nixpkgs";
     rofi-mum.inputs.flake-parts.follows = "flake-parts";
-    stylix.url = "github:danth/stylix";
-    stylix.inputs.nixpkgs.follows = "nixpkgs";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
@@ -115,7 +113,6 @@
           self.lib.updateNoOverride (import ./modules/homeManager {booq-lib = self.lib;})
           {
             sops-nix = inputs.sops-nix.homeManagerModule;
-            inherit (inputs.stylix.homeModules) stylix;
             desec-nu = inputs.desec-nu.homeManagerModules.default;
             json2nix = inputs.json2nix.homeManagerModules.default;
             inherit (inputs.nix-index-database.homeModules) nix-index;

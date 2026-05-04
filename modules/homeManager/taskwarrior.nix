@@ -12,7 +12,7 @@ in {
   config = lib.mkIf cfg.enable {
     programs.taskwarrior = {
       enable = true;
-      colorTheme = "${pkgs.taskwarrior3}/share/doc/task/rc/dark-red-256"; # TODO: connect with stylix
+      colorTheme = "${pkgs.taskwarrior3}/share/doc/task/rc/dark-red-256";
       package = pkgs.taskwarrior3;
     };
     home.packages = with pkgs; [
