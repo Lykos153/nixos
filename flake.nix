@@ -12,6 +12,7 @@
     disko.url = "github:nix-community/disko/pull/1056/head";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     impermanence.url = "github:nix-community/impermanence";
+    impermanence.inputs.home-manager.follows = "home-manager";
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -24,12 +25,14 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
+    nur.inputs.flake-parts.follows = "flake-parts";
     mynur.url = "github:Lykos153/nur-packages";
     mynur.inputs.nixpkgs.follows = "nixpkgs";
     rofi-mum.url = "github:lykos153/rofi-mum";
     rofi-mum.inputs.nixpkgs.follows = "nixpkgs";
     rofi-mum.inputs.flake-parts.follows = "flake-parts";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs";
     bcachefs = {
       url = "github:koverstreet/bcachefs/bcachefs-2025-04-03"; # fix for https://github.com/koverstreet/bcachefs/issues/847
       flake = false;
