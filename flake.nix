@@ -9,7 +9,7 @@
     # https://blog.bhasher.com/posts/patching-flake-inputs-with-pull-requests/
     # https://github.com/NixOS/nix/issues/3920
     # https://github.com/jfly/flake-input-patcher
-    disko.url = "github:nix-community/disko/pull/1056/head";
+    disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     impermanence.url = "github:nix-community/impermanence";
     impermanence.inputs.home-manager.follows = "home-manager";
