@@ -52,6 +52,7 @@
     ./sops.nix
     ./bcachefs.nix
     ./footswitch.nix
+    ./nix-serve.nix
     # ./nullfs.nix
   ];
 }

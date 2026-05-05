@@ -12,6 +12,10 @@
   ];
   booq.networking.sopsFile = ./secrets.yaml;
 
+  nix.settings.trusted-public-keys = [
+    "silvio-pc-2:uEEO7zQ5cjsERT0AlNvCnCEgg8h3JivVa1OevxriCzw=#"
+  ];
+
   security.sudo.extraConfig = ''
     # to make <() work with sudo
     Defaults closefrom_override
