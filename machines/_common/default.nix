@@ -9,7 +9,6 @@
 }: {
   imports = [
     ./users
-    ./vpn
   ];
   booq.networking.sopsFile = ./secrets.yaml;
 
