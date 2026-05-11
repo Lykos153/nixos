@@ -21,6 +21,7 @@ in rec {
       else [];
   in
     nixpkgs.lib.nixosSystem {
+      specialArgs = {inputs = flakeInputs;};
       modules =
         nixosModules
         ++ commonmodules
