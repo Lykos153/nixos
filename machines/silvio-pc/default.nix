@@ -14,7 +14,6 @@
     impermanence.persistRoot = "/nix/persist";
     shared-repo.enable = true;
     audio.backend = "pipewire";
-    local.openvpn-ch.enable = true;
     nix-ld.enable = true;
     lix.enable = true;
     networking.networkmanager = true;
@@ -22,7 +21,6 @@
     gnome.enable = false;
     plasma.enable = true;
   };
-  services.openvpn.servers.ch.autoStart = false;
 
   hardware.logitech.wireless.enable = true;
   hardware.logitech.wireless.enableGraphical = true;
