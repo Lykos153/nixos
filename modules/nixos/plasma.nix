@@ -24,7 +24,7 @@ in {
 
     environment.systemPackages = with pkgs; [
       xsettingsd
-      xorg.xrdb
+      xrdb
     ];
   };
 }

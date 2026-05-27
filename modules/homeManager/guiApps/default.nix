@@ -21,7 +21,6 @@ with builtins; {
   in
     lib.mkIf config.booq.gui.enable {
       home.packages = with pkgs; [
-        termite
         gajim
         element-desktop
         fractal

@@ -21,7 +21,21 @@ in {
 
       hardware.onlykey.enable = true;
       nixpkgs.config.permittedInsecurePackages = [
-        "python3.13-ecdsa-0.19.1" # the actual crypto is done on the hardware token, so no timing attacks through this lib
+        # the actual crypto is done on the hardware token, so no timing attacks through this lib
+        "python3.13-ecdsa-0.19.1"
+        "python3.13-ecdsa-0.19.2"
+      ];
+      nixpkgs.overlays = [
+        (_: prev: {
+          python313 = prev.python313.override {
+            packageOverrides = _: pyPrev: {
+              ecdsa = pyPrev.ecdsa.overrideAttrs (oldAttrs: {
+                doCheck = false;
+                doInstallCheck = false;
+              });
+            };
+          };
+        })
       ];
       environment.systemPackages = [
         pkgs.onlykey
