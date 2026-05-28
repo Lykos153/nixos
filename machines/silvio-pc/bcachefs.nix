@@ -4,8 +4,6 @@
   pkgs,
   ...
 }: {
-  boot.initrd.systemd.enable = false;
-
   # boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor pkgs.linux_bcachefs);
 
   fileSystems."/bcachefs" = {
