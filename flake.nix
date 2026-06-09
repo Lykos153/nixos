@@ -114,12 +114,6 @@
               nixpkgs.overlays = builtins.attrValues self.overlays;
             };
           };
-        homeConfigurations = self.lib.homeManager.mkConfigs {
-          inherit (self) nixosConfigurations;
-          inherit (inputs) nixpkgs home-manager;
-          modules = builtins.attrValues self.homeManagerModules;
-          userdir = ./users;
-        };
         templates = {
           # TODO: Check what https://github.com/jonringer/nix-template does
           pythonenv = {
