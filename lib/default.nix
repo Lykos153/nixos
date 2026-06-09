@@ -21,12 +21,4 @@
         }
       ))
     ];
-  updateNoOverride = a:
-    lib.foldlAttrs (
-      acc: name: value:
-        if lib.elem name (lib.attrNames a)
-        then throw "Cannot update attribute set. Would override attribute ${name}."
-        else acc // {${name} = value;}
-    )
-    a;
 }

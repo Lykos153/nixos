@@ -85,7 +85,10 @@
           );
         };
         nixosModules =
-          self.lib.updateNoOverride (import ./modules/nixos {booq-lib = self.lib;})
+          lib.attrsets.unionOfDisjoint (import ./modules/nixos {
+            inherit lib;
+            booq-lib = self.lib;
+          })
           {
             inherit (inputs.disko.nixosModules) disko;
             inherit (inputs.impermanence.nixosModules) impermanence;
@@ -104,7 +107,10 @@
           flakeInputs = inputs;
         };
         homeManagerModules =
-          self.lib.updateNoOverride (import ./modules/homeManager {booq-lib = self.lib;})
+          lib.attrsets.unionOfDisjoint (import ./modules/homeManager {
+            inherit lib;
+            booq-lib = self.lib;
+          })
           {
             sops-nix = inputs.sops-nix.homeManagerModule;
             desec-nu = inputs.desec-nu.homeManagerModules.default;
