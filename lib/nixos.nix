@@ -13,18 +13,11 @@ in rec {
     machinedir,
     userdirs,
     flakeInputs ? {},
-  }: let
-    commonpath = machinedir + "/${commonName}";
-    commonmodules =
-      if builtins.pathExists commonpath
-      then [commonpath]
-      else [];
-  in
+  }:
     nixpkgs.lib.nixosSystem {
       specialArgs = {inputs = flakeInputs;};
       modules =
         nixosModules
-        ++ commonmodules
         ++ [
           (machinedir + "/${hostname}")
           {
@@ -60,13 +53,17 @@ in rec {
     nixosModules,
     homeManagerModules,
     flakeInputs ? {},
-  }:
+  }: let
+    commonpaths = map (d: d + "/${commonName}") machinedirs;
+    commonmodules = lib.filter builtins.pathExists commonpaths;
+  in
     lib.foldl (acc: machinedir:
       acc
       // (builtins.mapAttrs (name: _:
         mkHost {
           hostname = name;
-          inherit nixpkgs machinedir userdirs nixosModules homeManagerModules flakeInputs;
+          nixosModules = nixosModules ++ commonmodules;
+          inherit nixpkgs machinedir userdirs homeManagerModules flakeInputs;
         }) (dirWithoutCommon machinedir))) {}
     machinedirs;
 }
