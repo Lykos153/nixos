@@ -1,4 +1,5 @@
 {lib}: {
+  common = import ./common.nix {inherit lib;};
   nixos = import ./nixos.nix {inherit lib;};
   homeManager = import ./homeManager.nix {inherit lib;};
   modulesFrom = modulePath:

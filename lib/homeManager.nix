@@ -1,6 +1,4 @@
-{lib}: let
-  commonName = "_common";
-in rec {
+{lib}: rec {
   mkModules = {
     nixpkgs,
     username,
@@ -19,12 +17,8 @@ in rec {
       if builtins.pathExists hostpath
       then [hostpath]
       else [];
-    commonpath = "${userdir}/${commonName}";
-    commonmodules =
-      if builtins.pathExists commonpath
-      then [commonpath]
-      else [];
-  in ([
+  in (
+    [
       {
         home.sessionVariables.NIX_PATH = "nixpkgs=${nixpkgs}";
         # workaround because the above doesnt seem to work in xorg https://github.com/nix-community/home-manager/issues/1011#issuecomment-1365065753
@@ -36,5 +30,5 @@ in rec {
     ++ modules
     ++ usermodules
     ++ hostmodules
-    ++ commonmodules);
+  );
 }

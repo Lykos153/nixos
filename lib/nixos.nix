@@ -1,9 +1,14 @@
 {lib}: let
-  commonName = "_common";
   booq-lib = import ./. {inherit lib;};
+  commonName = "_common";
   dirWithoutCommon = dirname:
     lib.filterAttrs (name: type: name != commonName && type == "directory")
     (builtins.readDir dirname);
+  commonmodules = dirs:
+    lib.pipe dirs [
+      (map (d: d + "/${commonName}"))
+      (lib.filter builtins.pathExists)
+    ];
 in rec {
   mkHost = {
     nixpkgs,
@@ -34,11 +39,11 @@ in rec {
             home-manager.backupFileExtension = "bak";
             home-manager.sharedModules = homeManagerModules;
             home-manager.users = lib.foldl (acc: userdir:
-              acc
-              // (builtins.mapAttrs (
+              lib.attrsets.unionOfDisjoint acc (builtins.mapAttrs (
                 username: _: {
                   imports = booq-lib.homeManager.mkModules {
                     inherit nixpkgs hostname userdir username;
+                    modules = commonmodules userdirs;
                   };
                 }
               ) (dirWithoutCommon userdir))) {}
@@ -53,16 +58,12 @@ in rec {
     nixosModules,
     homeManagerModules,
     flakeInputs ? {},
-  }: let
-    commonpaths = map (d: d + "/${commonName}") machinedirs;
-    commonmodules = lib.filter builtins.pathExists commonpaths;
-  in
+  }:
     lib.foldl (acc: machinedir:
-      acc
-      // (builtins.mapAttrs (name: _:
+      lib.attrsets.unionOfDisjoint acc (builtins.mapAttrs (name: _:
         mkHost {
           hostname = name;
-          nixosModules = nixosModules ++ commonmodules;
+          nixosModules = nixosModules ++ (commonmodules machinedirs);
           inherit nixpkgs machinedir userdirs homeManagerModules flakeInputs;
         }) (dirWithoutCommon machinedir))) {}
     machinedirs;
