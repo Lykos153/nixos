@@ -60,13 +60,14 @@ in rec {
     nixosModules,
     homeManagerModules,
     flakeInputs ? {},
+    hmUseGlobalPkgs ? false,
   }:
     lib.foldl (acc: machinedir:
       lib.attrsets.unionOfDisjoint acc (builtins.mapAttrs (name: _:
         mkHost {
           hostname = name;
           nixosModules = nixosModules ++ (commonmodules machinedirs);
-          inherit nixpkgs machinedir userdirs homeManagerModules flakeInputs;
+          inherit nixpkgs machinedir userdirs homeManagerModules flakeInputs hmUseGlobalPkgs;
         }) (dirWithoutCommon machinedir))) {}
     machinedirs;
 }
