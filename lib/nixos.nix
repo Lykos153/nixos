@@ -18,6 +18,7 @@ in rec {
     machinedir,
     userdirs,
     flakeInputs ? {},
+    hmUseGlobalPkgs ? false,
   }:
     nixpkgs.lib.nixosSystem {
       specialArgs = {inputs = flakeInputs;};
@@ -34,7 +35,7 @@ in rec {
             ];
           }
           {
-            home-manager.useGlobalPkgs = false;
+            home-manager.useGlobalPkgs = hmUseGlobalPkgs;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "bak";
             home-manager.sharedModules = homeManagerModules;
