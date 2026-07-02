@@ -34,23 +34,25 @@ in rec {
               (lib.mapAttrs (_: flake: {inherit flake;}))
             ];
           }
-          {
+          ({config, ...}: {
             home-manager.useGlobalPkgs = hmUseGlobalPkgs;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "bak";
             home-manager.sharedModules = homeManagerModules;
             home-manager.extraSpecialArgs = {inputs = flakeInputs;};
-            home-manager.users = lib.foldl (acc: userdir:
-              lib.attrsets.unionOfDisjoint acc (builtins.mapAttrs (
-                username: _: {
-                  imports = booq-lib.homeManager.mkModules {
-                    inherit nixpkgs hostname userdir username;
-                    modules = commonmodules userdirs;
-                  };
-                }
-              ) (dirWithoutCommon userdir))) {}
-            userdirs;
-          }
+            home-manager.users = let
+              allUsers = lib.foldl (acc: userdir:
+                lib.attrsets.unionOfDisjoint acc (builtins.mapAttrs (
+                  username: _: {
+                    imports = booq-lib.homeManager.mkModules {
+                      inherit nixpkgs hostname userdir username;
+                      modules = commonmodules userdirs;
+                    };
+                  }
+                ) (dirWithoutCommon userdir))) {}
+              userdirs;
+            in (lib.filterAttrs (n: _: config.booq.users.filterUsers == null || lib.elem n config.booq.users.filterUsers) allUsers);
+          })
         ];
     };
   mkHosts = {

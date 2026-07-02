@@ -15,7 +15,7 @@ in {
     };
   };
 
-  config = {
+  config = lib.mkIf (cfg != []) {
     nixpkgs.config.allowUnfreePredicate = pkg: let
       pkgName = lib.getName pkg;
       matchPkgs = reg: ! builtins.isNull (builtins.match reg pkgName);
