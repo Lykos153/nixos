@@ -18,7 +18,7 @@ in {
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;
-      matchBlocks."*" = {
+      settings."*" = {
         compression = true;
         forwardAgent = false;
         userKnownHostsFile = lib.strings.concatStringsSep " " (["~/.ssh/known_hosts" "~/${knownHostsCommon}"] ++ cfg.extraKnownHostsFiles);
