@@ -19,37 +19,37 @@ in {
       services.pcscd.enable = true;
       hardware.gpgSmartcards.enable = true;
 
-      hardware.onlykey.enable = true;
-      nixpkgs.config.permittedInsecurePackages = [
-        # the actual crypto is done on the hardware token, so no timing attacks through this lib
-        "python3.13-ecdsa-0.19.1"
-        "python3.13-ecdsa-0.19.2"
-      ];
-      nixpkgs.overlays = [
-        (_: prev: {
-          python313 = prev.python313.override {
-            packageOverrides = _: pyPrev: {
-              ecdsa = pyPrev.ecdsa.overrideAttrs (oldAttrs: {
-                doCheck = false;
-                doInstallCheck = false;
-              });
-            };
-          };
-        })
-      ];
-      environment.systemPackages = [
-        pkgs.onlykey
-        (pkgs.onlykey-cli.overrideAttrs (prev: {
-          version = "click";
-          src = pkgs.fetchFromGitHub {
-            owner = "lykos153";
-            repo = "python-onlykey";
-            rev = "refactor-cli";
-            sha256 = "sha256-5ErmqLHWA+aemirqWvi5/2ggOnscFUiCif2GF/qElSs=";
-          };
-        }))
-        pkgs.onlykey-agent
-      ];
+      # hardware.onlykey.enable = true;
+      # nixpkgs.config.permittedInsecurePackages = [
+      #   # the actual crypto is done on the hardware token, so no timing attacks through this lib
+      #   "python3.13-ecdsa-0.19.1"
+      #   "python3.13-ecdsa-0.19.2"
+      # ];
+      # nixpkgs.overlays = [
+      #   (_: prev: {
+      #     python313 = prev.python313.override {
+      #       packageOverrides = _: pyPrev: {
+      #         ecdsa = pyPrev.ecdsa.overrideAttrs (oldAttrs: {
+      #           doCheck = false;
+      #           doInstallCheck = false;
+      #         });
+      #       };
+      #     };
+      #   })
+      # ];
+      # environment.systemPackages = [
+      #   pkgs.onlykey
+      #   (pkgs.onlykey-cli.overrideAttrs (prev: {
+      #     version = "click";
+      #     src = pkgs.fetchFromGitHub {
+      #       owner = "lykos153";
+      #       repo = "python-onlykey";
+      #       rev = "refactor-cli";
+      #       sha256 = "sha256-5ErmqLHWA+aemirqWvi5/2ggOnscFUiCif2GF/qElSs=";
+      #     };
+      #   }))
+      #   pkgs.onlykey-agent
+      # ];
       services.upower.enable = true; # <- onlykey errors... but doesnt work anyway
       services.udev.packages = [pkgs.yubikey-personalization];
       security.pam = {
