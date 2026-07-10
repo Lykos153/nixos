@@ -13,6 +13,7 @@
     ./cinnamon.nix
     ./amd.nix
     ./state-version.nix
+    ./steam.nix
   ];
   booq.full.enable = true;
   booq.sops.enable = false;
