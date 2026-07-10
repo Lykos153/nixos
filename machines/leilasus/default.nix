@@ -21,5 +21,7 @@
   booq.networking.networkmanager = true;
   environment.systemPackages = with pkgs; [
     ultrastardx
+    proton-vpn-cli
+    proton-vpn
   ];
 }
