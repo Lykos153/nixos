@@ -31,10 +31,6 @@
     rofi-mum.inputs.flake-parts.follows = "flake-parts";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs";
-    bcachefs = {
-      url = "github:koverstreet/bcachefs/bcachefs-2025-04-03"; # fix for https://github.com/koverstreet/bcachefs/issues/847
-      flake = false;
-    };
     yk8s-nu = {
       url = "gitlab:lykos153/yk8s-nu";
       flake = false;
@@ -146,7 +142,6 @@
           cb = pkgs.callPackage ./pkgs/cb {};
           yamldiff = pkgs.callPackage ./pkgs/yamldiff {};
           pre-commit-sops-updatekeys = pkgs.callPackage ./pkgs/pre-commit-sops-updatekeys {};
-          linux_bcachefs = pkgs.callPackage ./pkgs/linux_bcachefs_master.nix {src = inputs.bcachefs;};
           linux_6_14_rc6 = pkgs.callPackage ./pkgs/linux_6_14_rc6.nix {};
           install-image =
             (inputs.nixpkgs.lib.nixosSystem

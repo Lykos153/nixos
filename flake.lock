@@ -1,22 +1,5 @@
 {
   "nodes": {
-    "bcachefs": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1743696703,
-        "narHash": "sha256-/t+29VF9qnToNWFMpRoRlV7Vx9BT0T7Huvprg37UQ8o=",
-        "owner": "koverstreet",
-        "repo": "bcachefs",
-        "rev": "77ad1df82b9e8d169e3ec9ee8b7caabfa45872ce",
-        "type": "github"
-      },
-      "original": {
-        "owner": "koverstreet",
-        "ref": "bcachefs-2025-04-03",
-        "repo": "bcachefs",
-        "type": "github"
-      }
-    },
     "desec-nu": {
       "locked": {
         "lastModified": 1751281483,
@@ -349,7 +332,6 @@
     },
     "root": {
       "inputs": {
-        "bcachefs": "bcachefs",
         "desec-nu": "desec-nu",
         "direnv": "direnv",
         "disko": "disko",
