@@ -84,5 +84,5 @@ in {
       device = "/dev/mapper/${luksDev.swap}";
     }
   ];
-  boot.kernel.sysctl."vm.swappiness" = 0; # Use swap only for hibernate
+  boot.resumeDevice = "/dev/mapper/${luksDev.swap}";
 }
