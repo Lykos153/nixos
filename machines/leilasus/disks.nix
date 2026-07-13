@@ -52,12 +52,12 @@
       };
   };
 in {
-  boot.initrd.luks.devices."${luksDev.root}".device = "/dev/disk/by-uuid/22a113fb-fd79-40bf-8d28-53abe042fcef";
   boot.initrd.luks.devices."${luksDev.home-leila}".device = "/dev/disk/by-uuid/ae264b70-6cfc-49e3-9777-213e0c1b6169";
   boot.initrd.luks.devices."${luksDev.swap}".device = "/dev/disk/by-uuid/7dfd5430-906b-4826-a38a-0fcb0818c1ad";
   boot.initrd.luks.devices.bcachefs1.device = "/dev/disk/by-uuid/b7bf7aea-599c-4ea4-8e3b-d65dc718db30";
   boot.initrd.luks.devices.bcachefs2.device = "/dev/disk/by-uuid/21c65b6f-1169-41e9-a8ad-f011ee288bf9";
   boot.initrd.luks.devices.bcachefs3.device = "/dev/disk/by-uuid/b2aca9eb-ad47-41b8-88b2-da461dae330f";
+  boot.initrd.luks.devices.bcachefs4.device = "/dev/disk/by-uuid/22a113fb-fd79-40bf-8d28-53abe042fcef";
 
   fileSystems =
     {
