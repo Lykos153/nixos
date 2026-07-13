@@ -21,6 +21,7 @@
   booq.audio.backend = "pipewire";
   booq.networking.networkmanager = true;
   environment.systemPackages = with pkgs; [
+    ncdu
     ultrastardx
     proton-vpn-cli
     proton-vpn
