@@ -19,7 +19,7 @@ in {
         # search_mode_shell_up_key_binding = "prefix";
         # filter_mode_shell_up_key_binding = "session";
         history_filter = [
-          "hvs\.[0-9a-f]+" # hashicorp vault tokens
+          "hvs.[0-9a-f]+" # hashicorp vault tokens
         ];
         sync_address = "https://atuin.booq.org";
       };

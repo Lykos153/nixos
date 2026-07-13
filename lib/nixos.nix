@@ -1,9 +1,14 @@
 {lib}: let
-  commonName = "_common";
   booq-lib = import ./. {inherit lib;};
+  commonName = "_common";
   dirWithoutCommon = dirname:
     lib.filterAttrs (name: type: name != commonName && type == "directory")
     (builtins.readDir dirname);
+  commonmodules = dirs:
+    lib.pipe dirs [
+      (map (d: d + "/${commonName}"))
+      (lib.filter builtins.pathExists)
+    ];
 in rec {
   mkHost = {
     nixpkgs,
@@ -13,18 +18,12 @@ in rec {
     machinedir,
     userdirs,
     flakeInputs ? {},
-  }: let
-    commonpath = machinedir + "/${commonName}";
-    commonmodules =
-      if builtins.pathExists commonpath
-      then [commonpath]
-      else [];
-  in
+    hmUseGlobalPkgs ? false,
+  }:
     nixpkgs.lib.nixosSystem {
       specialArgs = {inputs = flakeInputs;};
       modules =
         nixosModules
-        ++ commonmodules
         ++ [
           (machinedir + "/${hostname}")
           {
@@ -35,22 +34,25 @@ in rec {
               (lib.mapAttrs (_: flake: {inherit flake;}))
             ];
           }
-          {
-            home-manager.useGlobalPkgs = false;
+          ({config, ...}: {
+            home-manager.useGlobalPkgs = hmUseGlobalPkgs;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "bak";
             home-manager.sharedModules = homeManagerModules;
-            home-manager.users = lib.foldl (acc: userdir:
-              acc
-              // (builtins.mapAttrs (
-                username: _: {
-                  imports = booq-lib.homeManager.mkModules {
-                    inherit nixpkgs hostname userdir username;
-                  };
-                }
-              ) (dirWithoutCommon userdir))) {}
-            userdirs;
-          }
+            home-manager.extraSpecialArgs = {inputs = flakeInputs;};
+            home-manager.users = let
+              allUsers = lib.foldl (acc: userdir:
+                lib.attrsets.unionOfDisjoint acc (builtins.mapAttrs (
+                  username: _: {
+                    imports = booq-lib.homeManager.mkModules {
+                      inherit nixpkgs hostname userdir username;
+                      modules = commonmodules userdirs;
+                    };
+                  }
+                ) (dirWithoutCommon userdir))) {}
+              userdirs;
+            in (lib.filterAttrs (n: _: config.booq.users.filterUsers == null || lib.elem n config.booq.users.filterUsers) allUsers);
+          })
         ];
     };
   mkHosts = {
@@ -60,13 +62,14 @@ in rec {
     nixosModules,
     homeManagerModules,
     flakeInputs ? {},
+    hmUseGlobalPkgs ? false,
   }:
     lib.foldl (acc: machinedir:
-      acc
-      // (builtins.mapAttrs (name: _:
+      lib.attrsets.unionOfDisjoint acc (builtins.mapAttrs (name: _:
         mkHost {
           hostname = name;
-          inherit nixpkgs machinedir userdirs nixosModules homeManagerModules flakeInputs;
+          nixosModules = nixosModules ++ (commonmodules machinedirs);
+          inherit nixpkgs machinedir userdirs homeManagerModules flakeInputs hmUseGlobalPkgs;
         }) (dirWithoutCommon machinedir))) {}
     machinedirs;
 }

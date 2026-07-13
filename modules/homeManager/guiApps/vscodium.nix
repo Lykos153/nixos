@@ -4,13 +4,13 @@
   config,
   ...
 }: let
-  cfg = config.booq.vscode;
+  cfg = config.booq.vscodium;
 in {
   options = {
-    booq.vscode.useBlack = lib.mkEnableOption "Use Black formatter for Python";
+    booq.vscodium.useBlack = lib.mkEnableOption "Use Black formatter for Python";
   };
   config = lib.mkIf config.booq.gui.enable {
-    programs.vscode = {
+    programs.vscodium = {
       enable = true;
       package = pkgs.vscodium;
       profiles.default = {

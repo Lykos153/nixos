@@ -1,4 +1,5 @@
 {lib}: {
+  common = import ./common.nix {inherit lib;};
   nixos = import ./nixos.nix {inherit lib;};
   homeManager = import ./homeManager.nix {inherit lib;};
   modulesFrom = modulePath:
@@ -20,12 +21,4 @@
         }
       ))
     ];
-  updateNoOverride = a:
-    lib.foldlAttrs (
-      acc: name: value:
-        if lib.elem name (lib.attrNames a)
-        then throw "Cannot update attribute set. Would override attribute ${name}."
-        else acc // {${name} = value;}
-    )
-    a;
 }

@@ -29,11 +29,11 @@ in {
         options = "--delete-older-than 90d";
       };
 
-      extraOptions = ''
-        experimental-features = nix-command flakes
-        min-free = ${toString (1024 * 1024 * 1024)}
-        max-free = ${toString (5 * 1024 * 1024 * 1024)}
-      '';
+      settings = {
+        experimental-features = ["nix-command" "flakes"];
+        min-free = toString (1024 * 1024 * 1024);
+        max-free = toString (5 * 1024 * 1024 * 1024);
+      };
 
       daemonCPUSchedPolicy = "idle";
       daemonIOSchedClass = "idle";

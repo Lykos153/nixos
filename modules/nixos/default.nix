@@ -1,3 +1,5 @@
-{booq-lib}:
-with booq-lib;
-  updateNoOverride (modulesFrom ./.) {common = ../common;}
+{
+  booq-lib,
+  lib,
+}:
+lib.attrsets.unionOfDisjoint (booq-lib.modulesFrom ./.) {common = ../common;}

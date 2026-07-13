@@ -27,5 +27,6 @@ in {
     ];
 
     nix.package = pkgs.lixPackageSets.stable.lix;
+    nix.settings.experimental-features = ["flake-self-attrs"];
   };
 }

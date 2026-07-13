@@ -3,16 +3,7 @@
   config,
   ...
 }: let
-  genUserPasswd = user: {
-    users.users.${user}.hashedPasswordFile = config.sops.secrets."user-passwords/${user}".path;
-
-    sops.secrets."user-passwords/${user}" = {
-      name = "${user}";
-      key = "${user}";
-      sopsFile = ./secrets.yaml;
-      neededForUsers = true;
-    };
-  };
+  inherit (config.booq.users) filterUsers;
   users = [
     "silvio"
     "root"
@@ -21,9 +12,24 @@
     "leila"
     "gamer"
   ];
+  finalUsers =
+    if filterUsers == null
+    then users
+    else lib.intersectLists filterUsers users;
 in
-  lib.mkIf config.booq.sops.enable (
-    lib.mkMerge (
-      builtins.foldl' (acc: user: acc ++ [(genUserPasswd user)]) [] users
-    )
-  )
+  lib.mkIf config.booq.sops.enable {
+    users.users = lib.listToAttrs (lib.map (user:
+      lib.nameValuePair user {
+        hashedPasswordFile = config.sops.secrets."user-passwords/${user}".path;
+      })
+    finalUsers);
+
+    sops.secrets = lib.listToAttrs (lib.map (user:
+      lib.nameValuePair "user-passwords/${user}" {
+        name = user;
+        key = user;
+        sopsFile = ./secrets.yaml;
+        neededForUsers = true;
+      })
+    finalUsers);
+  }
