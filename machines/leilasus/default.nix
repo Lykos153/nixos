@@ -7,13 +7,13 @@
 }: {
   imports = [
     ./hardware-configuration.nix
+    ./disks.nix
     ./bootloader.nix
     ./services.nix
     ./users.nix
     ./cinnamon.nix
     ./amd.nix
     ./state-version.nix
-    ./steam.nix
   ];
   booq.full.enable = true;
   booq.sops.enable = false;

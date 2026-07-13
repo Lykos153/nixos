@@ -7,13 +7,7 @@
   pkgs,
   modulesPath,
   ...
-}: let
-  luksDev = {
-    root = "root";
-    home = "home";
-    swap = "swap";
-  };
-in {
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -24,42 +18,6 @@ in {
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
-
-  # TODO: disko
-  boot.initrd.luks.devices."${luksDev.root}".device = "/dev/disk/by-uuid/22a113fb-fd79-40bf-8d28-53abe042fcef";
-  boot.initrd.luks.devices."${luksDev.home}".device = "/dev/disk/by-uuid/ae264b70-6cfc-49e3-9777-213e0c1b6169";
-  boot.initrd.luks.devices."${luksDev.swap}".device = "/dev/disk/by-uuid/7dfd5430-906b-4826-a38a-0fcb0818c1ad";
-  boot.initrd.luks.devices.bcachefs-1.device = "/dev/disk/by-uuid/b7bf7aea-599c-4ea4-8e3b-d65dc718db30";
-  boot.initrd.luks.devices.bcachefs-2.device = "/dev/disk/by-uuid/21c65b6f-1169-41e9-a8ad-f011ee288bf9";
-  boot.initrd.luks.devices.bcachefs-3.device = "/dev/disk/by-uuid/b2aca9eb-ad47-41b8-88b2-da461dae330f";
-
-  fileSystems."/" = {
-    device = "/dev/mapper/${luksDev.root}";
-    fsType = "ext4";
-  };
-
-  fileSystems."/bcachefs" = {
-    device = "/dev/disk/by-uuid/273588c1-9520-418a-a588-ff7ea33a0c9a";
-    fsType = "bcachefs";
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/5A8B-57C3";
-    fsType = "vfat";
-    options = ["umask=0077"];
-  };
-
-  fileSystems."/home" = {
-    device = "/dev/mapper/${luksDev.home}";
-    fsType = "ext4";
-  };
-
-  swapDevices = [
-    {
-      device = "/dev/mapper/${luksDev.swap}";
-    }
-  ];
-  boot.kernel.sysctl."vm.swappiness" = 0; # Use swap only for hibernate
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
