@@ -66,7 +66,6 @@
     termdown
     dysk
 
-    poetry
     just
 
     lykos153.shrinkpdf
