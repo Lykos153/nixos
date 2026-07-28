@@ -2,11 +2,11 @@
   "nodes": {
     "desec-nu": {
       "locked": {
-        "lastModified": 1751281483,
-        "narHash": "sha256-J1CHBM71iOnyIs+cJ5SYh1m/+gxYHt0bZQpGKA1EDrg=",
+        "lastModified": 1785279848,
+        "narHash": "sha256-U2KHIjceI8fDRl/o9Uggi+3naxfGEeMi3Tpb2b9s6xs=",
         "ref": "refs/heads/main",
-        "rev": "f83b790aadb5683c3502e5446b638064795a9178",
-        "revCount": 8,
+        "rev": "7706d145d9726d9519f4230180d2967162c1bc91",
+        "revCount": 9,
         "type": "git",
         "url": "https://codeberg.org/lykos153/desec-nu.git"
       },
