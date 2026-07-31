@@ -7,6 +7,7 @@
 }: {
   imports = [
     ./hardware-configuration.nix
+    ./disks.nix
     ./bootloader.nix
     ./services.nix
     ./users.nix
@@ -20,6 +21,9 @@
   booq.audio.backend = "pipewire";
   booq.networking.networkmanager = true;
   environment.systemPackages = with pkgs; [
+    ncdu
     ultrastardx
+    proton-vpn-cli
+    proton-vpn
   ];
 }
