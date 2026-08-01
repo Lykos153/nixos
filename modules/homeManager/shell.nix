@@ -11,6 +11,7 @@ in {
   };
   config = lib.mkIf cfg.enable {
     programs.bash.enable = true;
+    programs.fzf.historyWidget.command = ""; # So atuin can server Ctrl-R
     programs.atuin = {
       enable = true;
       flags = ["--disable-up-arrow"];
