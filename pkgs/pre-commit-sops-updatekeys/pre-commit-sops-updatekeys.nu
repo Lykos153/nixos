@@ -15,13 +15,14 @@ def handleSops []: nothing -> bool {
         } else { $in.path_regex }
 
         fd --full-path -u $regex | lines | each {
-            handleFile $in
+            handleFile
         } | flatten
     } | flatten)
     $result | allTrue
 }
 
-def handleFile [ file: string]: nothing -> bool {
+def handleFile []: string -> bool {
+    let file = $in
     print -e $"Handling ($file)"
     let result = sops updatekeys --yes $in | complete
     print -e $result.stderr
@@ -31,6 +32,6 @@ def handleFile [ file: string]: nothing -> bool {
 def main [...args: string] {
     $args | each { match $in {
         ".sops.yaml" => {handleSops},
-        _ => {handleFile $in}
+        _ => {$in | handleFile }
     }}  | allTrue | boolToExit
 }
