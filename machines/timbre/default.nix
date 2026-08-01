@@ -9,6 +9,7 @@
     ./hardware-configuration.nix
     ./bootloader.nix
     ./disks.nix
+    ./sops.nix
     ./state-version.nix
   ];
   booq.workstation.enable = true;
