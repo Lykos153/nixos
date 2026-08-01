@@ -6,16 +6,18 @@
   inherit (config.booq.users) filterUsers;
   users = [
     "silvio"
-    "root"
     "sa"
     "mine"
     "leila"
     "gamer"
   ];
   finalUsers =
-    if filterUsers == null
-    then users
-    else lib.intersectLists filterUsers users;
+    ["root"]
+    ++ (
+      if filterUsers == null
+      then users
+      else lib.intersectLists filterUsers users
+    );
 in
   lib.mkIf config.booq.sops.enable {
     users.users = lib.listToAttrs (lib.map (user:
