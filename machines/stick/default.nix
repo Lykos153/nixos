@@ -14,6 +14,7 @@
   ];
   booq.workstation.enable = true;
   booq.securityKeys.enable = true;
+  booq.networking.networkmanager = true;
 
   boot.tmp.useTmpfs = true;
   boot.tmp.tmpfsSize = "95%";
