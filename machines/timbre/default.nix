@@ -1,0 +1,19 @@
+{
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}: {
+  imports = [
+    ./hardware-configuration.nix
+    ./bootloader.nix
+    ./disks.nix
+    ./state-version.nix
+  ];
+  booq.workstation.enable = true;
+  booq.securityKeys.enable = true;
+  booq.networking.networkmanager = true;
+  booq.users.filterUsers = ["silvio"];
+  booq.shared-repo.enable = true;
+}
