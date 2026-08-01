@@ -23,10 +23,23 @@
         ++ (args.options or []);
     };
 in {
+  booq.impermanence.enable = true;
+  booq.impermanence.persistRoot = "/persist";
+
   boot.initrd.luks.devices = {
     "${luksDev.bcachefs-hdd1}".device = "/dev/disk/by-partlabel/${luksDev.bcachefs-hdd1}";
     "${luksDev.bcachefs-hdd2}".device = "/dev/disk/by-partlabel/${luksDev.bcachefs-hdd2}";
     "${luksDev.swap}".device = "/dev/disk/by-uuid/ee12d6be-a7ba-4ebf-8fde-e8ce976ff1e4";
+  };
+
+  fileSystems."/" = {
+    device = "none";
+    fsType = "tmpfs";
+    options = [
+      "size=95%"
+      "defaults"
+      "mode=755"
+    ];
   };
 
   fileSystems."/boot" = {
@@ -35,8 +48,9 @@ in {
     options = ["fmask=0022" "dmask=0022"];
   };
 
-  fileSystems."/" = mkBcachefsMount {
+  fileSystems."/persist" = mkBcachefsMount {
     subdir = "persist";
+    neededForBoot = true;
   };
   fileSystems."/nix" = mkBcachefsMount {subdir = "nix";};
   fileSystems."/home" = mkBcachefsMount {subdir = "home";};
