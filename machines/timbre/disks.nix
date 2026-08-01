@@ -52,8 +52,14 @@ in {
     subdir = "persist";
     neededForBoot = true;
   };
-  fileSystems."/nix" = mkBcachefsMount {subdir = "nix";};
-  fileSystems."/home" = mkBcachefsMount {subdir = "home";};
+  fileSystems."/nix" = mkBcachefsMount {
+    subdir = "nix";
+    depends = ["/persist"]; # Mounting the same fs in parallel is prone to failure
+  };
+  fileSystems."/home" = mkBcachefsMount {
+    subdir = "home";
+    depends = ["/persist"]; # Mounting the same fs in parallel is prone to failure
+  };
 
   swapDevices = [{device = "/dev/mapper/${luksDev.swap}";}];
   boot.resumeDevice = "/dev/mapper/${luksDev.swap}";
