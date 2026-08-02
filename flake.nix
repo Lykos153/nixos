@@ -14,6 +14,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    colmena-flake.url = "github:juspay/colmena-flake";
     direnv.url = "github:nix-community/nix-direnv";
     direnv.inputs.nixpkgs.follows = "nixpkgs";
     direnv.inputs.flake-parts.follows = "flake-parts";
@@ -56,6 +57,9 @@
     ...
   }:
     flake-parts.lib.mkFlake {inherit inputs;} {
+      imports = [
+        ./colmena.nix
+      ];
       flake = {lib, ...}: {
         lib = (import ./lib) {inherit lib;};
         overlays = {
