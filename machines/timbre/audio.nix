@@ -11,4 +11,11 @@
 
     ffado.enable = true;
   };
+  environment.systemPackages = with pkgs; [
+    ardour
+    lmms
+    non
+    qtractor
+    rosegarden
+  ];
 }
