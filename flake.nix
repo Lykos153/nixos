@@ -39,6 +39,8 @@
     json2nix.url = "github:cloudandheat/json2nix";
     json2nix.inputs.nixpkgs.follows = "nixpkgs";
     json2nix.inputs.flake-parts.follows = "flake-parts";
+    musnix.url = "github:musnix/musnix";
+    musnix.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
@@ -90,6 +92,7 @@
             inherit (inputs.impermanence.nixosModules) impermanence;
             inherit (inputs.sops-nix.nixosModules) sops;
             inherit (inputs.home-manager.nixosModules) home-manager;
+            inherit (inputs.musnix.nixosModules) musnix;
             overlays = {
               nixpkgs.overlays = [self.overlays.linuxes];
             };

@@ -11,6 +11,7 @@
     ./disks.nix
     ./sops.nix
     ./state-version.nix
+    ./audio.nix
   ];
   booq.workstation.enable = true;
   booq.securityKeys.enable = true;
