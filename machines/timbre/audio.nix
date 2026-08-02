@@ -6,6 +6,8 @@
   booq.audio.backend = "pipewire";
   musnix = {
     enable = true;
+    kernel.realtime = true;
+    kernel.packages = pkgs.linuxPackages_latest;
     rtirq.enable = true;
     das_watchdog.enable = true;
 
