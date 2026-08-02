@@ -34,6 +34,8 @@ in {
       wget
       wireguard-tools
       zellij
+      ncdu
+      gdu
     ];
   };
 }
