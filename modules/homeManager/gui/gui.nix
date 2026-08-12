@@ -12,10 +12,6 @@
 
     gtk = {
       enable = true;
-      theme = lib.mkDefault {
-        name = "Materia-dark";
-        package = pkgs.materia-theme;
-      };
       gtk4.theme = null; # until stateVersion is raised above 26.05
       iconTheme = {
         name = "Numix";
