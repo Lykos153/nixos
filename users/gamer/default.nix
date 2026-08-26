@@ -11,5 +11,5 @@
     min-ed-launcher
     ed-odyssey-materials-helper
   ];
-  booq.lib.allowUnfreePackages = ["discord"];
+  booq.lib.allowUnfreePackages = ["discord" "discord-unwrapped"];
 }
