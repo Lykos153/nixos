@@ -58,7 +58,7 @@
   }:
     flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
-        ./colmena.nix
+        # (import ./colmena.nix {localFlake = self;})
       ];
       flake = {lib, ...}: {
         lib = (import ./lib) {inherit lib;};
