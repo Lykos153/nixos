@@ -1,6 +1,6 @@
-{inputs, ...}: {
+{localFlake}: {
   imports = [
-    inputs.colmena-flake.flakeModules.default
+    localFlake.colmena-flake.flakeModules.default
   ];
 
   colmena-flake.deployment.timbre = {
