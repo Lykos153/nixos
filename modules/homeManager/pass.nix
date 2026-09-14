@@ -20,15 +20,6 @@ in {
       ]);
       settings.PASSWORD_STORE_DIR = "${config.xdg.dataHome}/password-store";
     };
-    programs.rofi.pass = {
-      enable = true;
-      stores = [
-        defaultStore
-      ];
-      extraConfig = ''
-        help_color="#4872FF"
-      '';
-    };
     services.pass-secret-service = {
       enable = false;
       storePath = defaultStore;
