@@ -18,5 +18,4 @@
   booq.securityKeys.enable = true;
   booq.networking.networkmanager = true;
   booq.users.filterUsers = ["silvio"];
-  booq.shared-repo.enable = true;
 }

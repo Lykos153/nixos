@@ -12,7 +12,6 @@
     gaming.enable = true;
     impermanence.enable = true;
     impermanence.persistRoot = "/nix/persist";
-    shared-repo.enable = true;
     audio.backend = "pipewire";
     nix-ld.enable = true;
     lix.enable = true;

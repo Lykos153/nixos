@@ -28,6 +28,12 @@ in {
             group = "root";
             mode = "u=rwx,g=rx,o=";
           }
+          {
+            directory = "/etc/nixos";
+            user = "root";
+            group = "root";
+            mode = "u=rwx,g=rx,o=rx";
+          }
         ]
         ++ lib.optional config.hardware.bluetooth.enable "/var/lib/bluetooth"
         ++ lib.optional config.networking.networkmanager.enable "/etc/NetworkManager/system-connections"
