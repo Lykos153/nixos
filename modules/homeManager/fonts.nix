@@ -15,6 +15,7 @@ in {
       roboto
       pkgs.nerd-fonts.fira-code
       pkgs.nerd-fonts.droid-sans-mono
+      pkgs.semplicita
       #google-fonts # google font collection (free)
       #lmodern # Latin Modern for non-latex applications
       #source-han-sans

@@ -76,7 +76,7 @@
           other = (
             # Add packages from flake inputs to pkgs
             final: prev: {
-              inherit (self.packages.${prev.system}) cb yamldiff;
+              inherit (self.packages.${prev.system}) cb yamldiff semplicita;
               repos = {
                 inherit
                   (inputs)
@@ -164,6 +164,7 @@
                     {booq.install-image.enable = true;}
                   ];
               }).config.system.build.images.iso;
+          semplicita = pkgs.callPackage ./pkgs/fonts/semplicita.nix {};
         };
         formatter = pkgs.alejandra;
         devShells.default = pkgs.mkShell {
