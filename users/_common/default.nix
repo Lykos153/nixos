@@ -84,7 +84,7 @@
 
     gimp
     magic-wormhole
-    calibre
+    (calibre.override {speechSupport = false;})
   ];
 
   home = {

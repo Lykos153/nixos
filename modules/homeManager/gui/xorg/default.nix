@@ -65,7 +65,7 @@
 
     programs.rofi = {
       enable = true;
-      terminal = "${pkgs.alacritty}/bin/alacritty";
+      settings.terminal = "${pkgs.alacritty}/bin/alacritty";
       theme = lib.mkDefault (pkgs.fetchurl {
           url = "https://raw.githubusercontent.com/davatorium/rofi/next/themes/arthur.rasi";
           sha256 = "sha256-2wlR+UURxmk9KvSYm/PmwNKDPC/GV0HcQEH7xDW53k0=";
