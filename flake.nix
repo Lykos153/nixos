@@ -76,7 +76,7 @@
           other = (
             # Add packages from flake inputs to pkgs
             final: prev: {
-              inherit (self.packages.${prev.system}) cb yamldiff semplicita;
+              inherit (self.packages.${prev.system}) cb yamldiff semplicita kwm;
               repos = {
                 inherit
                   (inputs)
@@ -165,6 +165,7 @@
                   ];
               }).config.system.build.images.iso;
           semplicita = pkgs.callPackage ./pkgs/fonts/semplicita.nix {};
+          kwm = pkgs.callPackage ./pkgs/kwm/kwm.nix {};
         };
         formatter = pkgs.alejandra;
         devShells.default = pkgs.mkShell {
