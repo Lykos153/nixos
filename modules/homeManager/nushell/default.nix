@@ -15,6 +15,7 @@ in {
     booq.shell.enable = true;
     programs.nushell = {
       enable = true;
+      loadSessionVariables = true;
       shellAliases =
         config.home.shellAliases
         // {
