@@ -24,7 +24,6 @@
   '';
 
   boot.supportedFilesystems = ["ntfs" "bcachefs"];
-  boot.initrd.systemd.enable = config.booq.lib.mkMyDefault true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
   services.fstrim.enable = true;

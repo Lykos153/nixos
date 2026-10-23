@@ -1,8 +1,6 @@
 {config, ...}: {
   booq.impermanence.enable = true;
 
-  boot.initrd.systemd.enable = false; # due to bcachefs
-
   boot.initrd.kernelModules = ["uas"]; # needed by SSK Port able
   booq.impermanence.persistRoot = "/_persist";
   fileSystems."${config.booq.impermanence.persistRoot}".neededForBoot = true;
