@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     # TODO: patch disko input
     # https://discourse.nixosstag.fcio.net/t/apply-a-patch-to-an-input-flake/36904/2
