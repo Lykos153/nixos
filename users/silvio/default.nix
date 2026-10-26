@@ -15,6 +15,5 @@
     ./sway
     ./sops.nix
     ./nushell.nix
-    ./codeberg-cli
   ];
 }
