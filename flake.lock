@@ -4,15 +4,16 @@
       "locked": {
         "lastModified": 1751679594,
         "narHash": "sha256-6XvUrbAK1F+Qj2eAY9SjQ9+PGxCI/nR1csWGuBr6+oE=",
-        "owner": "juspay",
-        "repo": "colmena-flake",
+        "ref": "refs/heads/main",
         "rev": "792fde47352e137ca49294e7333fac52003e8ddd",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/juspay/colmena-flake"
       },
       "original": {
-        "owner": "juspay",
-        "repo": "colmena-flake",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/juspay/colmena-flake"
       }
     },
     "desec-nu": {
@@ -21,11 +22,12 @@
         "narHash": "sha256-y7aySs+RBPJT23HtOhO8GahHmLDs9e1eTCQzXkQz7zc=",
         "ref": "refs/heads/main",
         "rev": "5a1fe668b56e8f17aa0a3d56cd60f31eebe7c632",
-        "revCount": 10,
+        "shallow": true,
         "type": "git",
         "url": "https://codeberg.org/lykos153/desec-nu.git"
       },
       "original": {
+        "shallow": true,
         "type": "git",
         "url": "https://codeberg.org/lykos153/desec-nu.git"
       }
@@ -43,15 +45,16 @@
       "locked": {
         "lastModified": 1792289358,
         "narHash": "sha256-IvIDojvNyH6w99O2E9ofkm47T6H6e0PAQfq8XoIu+3A=",
-        "owner": "nix-community",
-        "repo": "nix-direnv",
         "rev": "df334a4198d6d385c62f6efbfd2e1e01744ee271",
-        "type": "github"
+        "ref": "refs/heads/master",
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/nix-community/nix-direnv"
       },
       "original": {
-        "owner": "nix-community",
-        "repo": "nix-direnv",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/nix-community/nix-direnv"
       }
     },
     "disko": {
@@ -63,15 +66,16 @@
       "locked": {
         "lastModified": 1792526520,
         "narHash": "sha256-3hSJlv8mUVnZPMWK2+CM7a9O+nR6Z4mCh27NfLCmTPc=",
-        "owner": "nix-community",
-        "repo": "disko",
+        "ref": "refs/heads/master",
         "rev": "cedd626e11b635470fa6f9fdb8ad79b0075dd7f9",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/nix-community/disko"
       },
       "original": {
-        "owner": "nix-community",
-        "repo": "disko",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/nix-community/disko"
       }
     },
     "flake-parts": {
@@ -81,15 +85,16 @@
       "locked": {
         "lastModified": 1790898470,
         "narHash": "sha256-zTwuwezD0w3hpga6a6P8emidzAZFyWqlNeRBlpWOOl8=",
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
+        "ref": "refs/heads/main",
         "rev": "024633cd702b10285db5cb19b40ad48d2399ba60",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/hercules-ci/flake-parts"
       },
       "original": {
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/hercules-ci/flake-parts"
       }
     },
     "home-manager": {
@@ -101,15 +106,16 @@
       "locked": {
         "lastModified": 1792773325,
         "narHash": "sha256-bvba9Lts8r8d15MdIDMwJGDxLtJiTlasKtAZyhTDzXk=",
-        "owner": "nix-community",
-        "repo": "home-manager",
         "rev": "6d9655f76459099b0db2f57b13563729c7022aa7",
-        "type": "github"
+        "ref": "refs/heads/master",
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/nix-community/home-manager"
       },
       "original": {
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/nix-community/home-manager"
       }
     },
     "impermanence": {
@@ -122,15 +128,16 @@
       "locked": {
         "lastModified": 1792739756,
         "narHash": "sha256-s0TeXWG5Ci75Y/Hzon0Z7NrN/fG773Rc54/z6oPFszQ=",
-        "owner": "nix-community",
-        "repo": "impermanence",
+        "ref": "refs/heads/master",
         "rev": "fa627f4c8b8e92f58f58a73d99ee4e1304e64eb2",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/nix-community/impermanence"
       },
       "original": {
-        "owner": "nix-community",
-        "repo": "impermanence",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/nix-community/impermanence"
       }
     },
     "json2nix": {
@@ -145,15 +152,16 @@
       "locked": {
         "lastModified": 1777898154,
         "narHash": "sha256-3u6Z8kFlz3j/Lu0/GN7muFOnEr8Hfg1XPhMN4SQe1Dg=",
-        "owner": "cloudandheat",
-        "repo": "json2nix",
+        "ref": "refs/heads/main",
         "rev": "9f6b36d6ca044a21dfab889d903c81d7d8c249c8",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/cloudandheat/json2nix"
       },
       "original": {
-        "owner": "cloudandheat",
-        "repo": "json2nix",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/cloudandheat/json2nix"
       }
     },
     "musnix": {
@@ -165,15 +173,16 @@
       "locked": {
         "lastModified": 1791575145,
         "narHash": "sha256-A4dB6Yv1Q3ygHgYWefX2DLdbELN//mB+PbCxRMdjTeg=",
-        "owner": "musnix",
-        "repo": "musnix",
         "rev": "6e86730c235db14e8cac6605dfc33f300ce9105e",
-        "type": "github"
+        "ref": "refs/heads/master",
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/musnix/musnix"
       },
       "original": {
-        "owner": "musnix",
-        "repo": "musnix",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/musnix/musnix"
       }
     },
     "mynur": {
@@ -185,15 +194,16 @@
       "locked": {
         "lastModified": 1763334791,
         "narHash": "sha256-pDiE+5+7uluLmwOb9JWCMLjjWCfDWl90Wa/W27aZSG4=",
-        "owner": "Lykos153",
-        "repo": "nur-packages",
+        "ref": "refs/heads/master",
         "rev": "ffac42685a1862b2520621eba4ec6901d00aeca0",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/Lykos153/nur-packages"
       },
       "original": {
-        "owner": "Lykos153",
-        "repo": "nur-packages",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/Lykos153/nur-packages"
       }
     },
     "nix-index-database": {
@@ -205,15 +215,16 @@
       "locked": {
         "lastModified": 1792309949,
         "narHash": "sha256-2DAEMk8YkV8OF6N2uw9jQ016cYoNkcgnq50AShwWxNw=",
-        "owner": "nix-community",
-        "repo": "nix-index-database",
         "rev": "1b4d1758fa6053c5d6284254a793134fa602fbff",
-        "type": "github"
+        "ref": "refs/heads/main",
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/nix-community/nix-index-database"
       },
       "original": {
-        "owner": "nix-community",
-        "repo": "nix-index-database",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/nix-community/nix-index-database"
       }
     },
     "nix-vscode-extensions": {
@@ -225,15 +236,16 @@
       "locked": {
         "lastModified": 1792728804,
         "narHash": "sha256-9ylfkYOvq0SiMYaDJ/wVjSD1MPclnewbL2a5SVxXSg8=",
-        "owner": "nix-community",
-        "repo": "nix-vscode-extensions",
         "rev": "38be83a22538cc79c3d14d53e8d312d5c32eedea",
-        "type": "github"
+        "ref": "refs/heads/master",
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/nix-community/nix-vscode-extensions"
       },
       "original": {
-        "owner": "nix-community",
-        "repo": "nix-vscode-extensions",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/nix-community/nix-vscode-extensions"
       }
     },
     "nixpkgs": {
@@ -271,32 +283,34 @@
       "locked": {
         "lastModified": 1792776828,
         "narHash": "sha256-H8MevmuMDrqk0oqkz+obnYuCqqrzjfMlQDe+Hv7/CrI=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
         "rev": "b5f26b432493503432fc2524f2b8b9670335573b",
-        "type": "github"
+        "ref": "master",
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/nixos/nixpkgs"
       },
       "original": {
-        "owner": "nixos",
         "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/nixos/nixpkgs"
       }
     },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1792773339,
         "narHash": "sha256-rZLrzrC6i+jnTAlvPZHogKDulY7WWDEv9hJeHieO7Zw=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
         "rev": "3ec636362e1816bc2f0888fa0fa2c69f1bc9e504",
-        "type": "github"
+        "ref": "nixos-unstable",
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/nixos/nixpkgs"
       },
       "original": {
-        "owner": "nixos",
         "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/nixos/nixpkgs"
       }
     },
     "nur": {
@@ -311,15 +325,16 @@
       "locked": {
         "lastModified": 1792777278,
         "narHash": "sha256-KfvLrDNzzbjfwB3SBAqrGMwkHIJ3BaeDilf45A71Y2g=",
-        "owner": "nix-community",
-        "repo": "NUR",
         "rev": "cb99d18d5cb791a5b3c1e9a85dc26ee8e7bd71ea",
-        "type": "github"
+        "ref": "refs/heads/main",
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/nix-community/NUR"
       },
       "original": {
-        "owner": "nix-community",
-        "repo": "NUR",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/nix-community/NUR"
       }
     },
     "p": {
@@ -331,15 +346,16 @@
       "locked": {
         "lastModified": 1744487124,
         "narHash": "sha256-j8KKZ2kZOinBJX9QCKj67bCg/VwUp0jG3rNvHQt66rI=",
-        "owner": "tomberek",
-        "repo": "-",
+        "ref": "refs/heads/master",
         "rev": "f058aed419b07d63a8b995c9afccd90d5f4f17d3",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/tomberek/-"
       },
       "original": {
-        "owner": "tomberek",
-        "repo": "-",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/tomberek/-"
       }
     },
     "rofi-mum": {
@@ -354,15 +370,16 @@
       "locked": {
         "lastModified": 1744635787,
         "narHash": "sha256-e99xdjMM+Fffxe1QgyTzzxqD8a2A8XEsmEPw/tefOz8=",
-        "owner": "lykos153",
-        "repo": "rofi-mum",
+        "ref": "refs/heads/main",
         "rev": "bad606f7dff2fd48c9d8a94f33e6fd1286ebde4e",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/lykos153/rofi-mum"
       },
       "original": {
-        "owner": "lykos153",
-        "repo": "rofi-mum",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/lykos153/rofi-mum"
       }
     },
     "root": {
@@ -397,15 +414,16 @@
       "locked": {
         "lastModified": 1792655475,
         "narHash": "sha256-4ChDjNgJM5uKwTuecLHxGlafAtoyKo5a7ip23J5IG3M=",
-        "owner": "Mic92",
-        "repo": "sops-nix",
         "rev": "e80b8b733d8452a751a25d0063abc9683b6c8185",
-        "type": "github"
+        "ref": "refs/heads/master",
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/Mic92/sops-nix"
       },
       "original": {
-        "owner": "Mic92",
-        "repo": "sops-nix",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/Mic92/sops-nix"
       }
     },
     "treefmt-nix": {

@@ -1,52 +1,52 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-master.url = "github:nixos/nixpkgs/master";
+    nixpkgs.url = "git+https://github.com/nixos/nixpkgs?shallow=1&ref=nixos-unstable";
+    nixpkgs-master.url = "git+https://github.com/nixos/nixpkgs?shallow=1&ref=master";
     # TODO: patch disko input
     # https://discourse.nixosstag.fcio.net/t/apply-a-patch-to-an-input-flake/36904/2
     # https://blog.bhasher.com/posts/patching-flake-inputs-with-pull-requests/
     # https://github.com/NixOS/nix/issues/3920
     # https://github.com/jfly/flake-input-patcher
-    disko.url = "github:nix-community/disko";
+    disko.url = "git+https://github.com/nix-community/disko?shallow=1";
     disko.inputs.nixpkgs.follows = "nixpkgs";
-    impermanence.url = "github:nix-community/impermanence";
+    impermanence.url = "git+https://github.com/nix-community/impermanence?shallow=1";
     impermanence.inputs.home-manager.follows = "home-manager";
-    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.url = "git+https://github.com/Mic92/sops-nix?shallow=1";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    colmena-flake.url = "github:juspay/colmena-flake";
-    direnv.url = "github:nix-community/nix-direnv";
+    flake-parts.url = "git+https://github.com/hercules-ci/flake-parts?shallow=1";
+    colmena-flake.url = "git+https://github.com/juspay/colmena-flake?shallow=1";
+    direnv.url = "git+https://github.com/nix-community/nix-direnv?shallow=1";
     direnv.inputs.nixpkgs.follows = "nixpkgs";
     direnv.inputs.flake-parts.follows = "flake-parts";
-    # home-manager.url = "github:nix-community/home-manager/release-23.11";
-    # home-manager.url = "github:nix-community/home-manager/release-24.05";
-    home-manager.url = "github:nix-community/home-manager";
+    # home-manager.url = "git+https://github.com/nix-community/home-manager/release-23.11?shallow=1";
+    # home-manager.url = "git+https://github.com/nix-community/home-manager/release-24.05?shallow=1";
+    home-manager.url = "git+https://github.com/nix-community/home-manager?shallow=1";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nur.url = "github:nix-community/NUR";
+    nur.url = "git+https://github.com/nix-community/NUR?shallow=1";
     nur.inputs.nixpkgs.follows = "nixpkgs";
     nur.inputs.flake-parts.follows = "flake-parts";
-    mynur.url = "github:Lykos153/nur-packages";
+    mynur.url = "git+https://github.com/Lykos153/nur-packages?shallow=1";
     mynur.inputs.nixpkgs.follows = "nixpkgs";
-    rofi-mum.url = "github:lykos153/rofi-mum";
+    rofi-mum.url = "git+https://github.com/lykos153/rofi-mum?shallow=1";
     rofi-mum.inputs.nixpkgs.follows = "nixpkgs";
     rofi-mum.inputs.flake-parts.follows = "flake-parts";
-    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    nix-vscode-extensions.url = "git+https://github.com/nix-community/nix-vscode-extensions?shallow=1";
     nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs";
     yk8s-nu = {
       url = "gitlab:lykos153/yk8s-nu";
       flake = false;
     };
-    desec-nu.url = "git+https://codeberg.org/lykos153/desec-nu.git";
-    json2nix.url = "github:cloudandheat/json2nix";
+    desec-nu.url = "git+https://codeberg.org/lykos153/desec-nu.git?shallow=1";
+    json2nix.url = "git+https://github.com/cloudandheat/json2nix?shallow=1";
     json2nix.inputs.nixpkgs.follows = "nixpkgs";
     json2nix.inputs.flake-parts.follows = "flake-parts";
-    musnix.url = "github:musnix/musnix";
+    musnix.url = "git+https://github.com/musnix/musnix?shallow=1";
     musnix.inputs.nixpkgs.follows = "nixpkgs";
 
-    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.url = "git+https://github.com/nix-community/nix-index-database?shallow=1";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
-    p.url = "github:tomberek/-";
+    p.url = "git+https://github.com/tomberek/-?shallow=1";
     p.inputs.nixpkgs.follows = "nixpkgs";
   };
 
