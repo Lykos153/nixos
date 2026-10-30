@@ -40,6 +40,7 @@
   imports = [
     ./state-version.nix
     ./hardware-configuration.nix
+    ./cinnamon.nix
     ./steam-library.nix
     ./disko.nix
     ./ddns
