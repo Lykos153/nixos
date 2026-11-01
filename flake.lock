@@ -296,6 +296,23 @@
         "url": "https://github.com/nixos/nixpkgs"
       }
     },
+    "nixpkgs-river": {
+      "locked": {
+        "lastModified": 1793051909,
+        "narHash": "sha256-eJlttiYXRdM8iAnUDK212+F2XcygNklLTJd/73UAmuw=",
+        "ref": "refs/heads/master",
+        "rev": "a18691e6e36bcda79c6242acf127187b6b658995",
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/nixos/nixpkgs"
+      },
+      "original": {
+        "rev": "a18691e6e36bcda79c6242acf127187b6b658995",
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/nixos/nixpkgs"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1793110635,
@@ -398,6 +415,7 @@
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-master": "nixpkgs-master",
+        "nixpkgs-river": "nixpkgs-river",
         "nur": "nur",
         "p": "p",
         "rofi-mum": "rofi-mum",

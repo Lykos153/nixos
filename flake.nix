@@ -2,6 +2,7 @@
   inputs = {
     nixpkgs.url = "git+https://github.com/nixos/nixpkgs?shallow=1&ref=nixos-unstable";
     nixpkgs-master.url = "git+https://github.com/nixos/nixpkgs?shallow=1&ref=master";
+    nixpkgs-river.url = "git+https://github.com/nixos/nixpkgs?shallow=1&rev=a18691e6e36bcda79c6242acf127187b6b658995";
     # TODO: patch disko input
     # https://discourse.nixosstag.fcio.net/t/apply-a-patch-to-an-input-flake/36904/2
     # https://blog.bhasher.com/posts/patching-flake-inputs-with-pull-requests/
