@@ -12,7 +12,7 @@ in {
   config = lib.mkIf cfg.enable {
     booq.gui.wayland.enable = true;
     home.packages = let
-      river-pkgs = inputs.nixpkgs-river.legacyPackages.${config.nixpkgs.hostPlatform.system};
+      river-pkgs = inputs.nixpkgs-river.legacyPackages.${pkgs.system};
     in [
       river-pkgs.kwim
       (river-pkgs.kwm.overrideAttrs (prev: {
