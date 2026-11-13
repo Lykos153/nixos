@@ -298,16 +298,16 @@
     },
     "nixpkgs-river": {
       "locked": {
-        "lastModified": 1793051909,
-        "narHash": "sha256-eJlttiYXRdM8iAnUDK212+F2XcygNklLTJd/73UAmuw=",
+        "lastModified": 1794570531,
+        "narHash": "sha256-i8FUg6vKz65ALbuF4iwi7uUU0xQjgJBbVvFtceakfLM=",
         "ref": "refs/heads/master",
-        "rev": "a18691e6e36bcda79c6242acf127187b6b658995",
+        "rev": "acf7c0433e4994f8c48885eaf5ab9bc99c2191e1",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nixos/nixpkgs"
       },
       "original": {
-        "rev": "a18691e6e36bcda79c6242acf127187b6b658995",
+        "rev": "acf7c0433e4994f8c48885eaf5ab9bc99c2191e1",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nixos/nixpkgs"
