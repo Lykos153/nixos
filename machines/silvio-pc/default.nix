@@ -52,5 +52,6 @@
     ./footswitch.nix
     ./nix-serve.nix
     # ./nullfs.nix
+    ./users.nix
   ];
 }
