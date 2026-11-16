@@ -43,10 +43,10 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1794103655,
-        "narHash": "sha256-92BafUbHbsvt9FqZ86W9gvTdTf8en28hoEDUxBOocnY=",
+        "lastModified": 1794708448,
+        "narHash": "sha256-viv2T71m28NNkuJWFAC3O+ahR/recq/omUmD8h5OcUc=",
         "ref": "refs/heads/master",
-        "rev": "0f4eeeb8e6f1ed663b6aefdb513fc5dad4d2bd7e",
+        "rev": "2d086079a393f69f16ecb157d33c96c3f7424b63",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/nix-direnv"
@@ -104,10 +104,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1794278858,
-        "narHash": "sha256-rkrJwLgLSHBnXfgoSKIDa+2LLGdTqynsV3GAxOTGhUU=",
+        "lastModified": 1794715309,
+        "narHash": "sha256-awkBBs5ctFKgEYjpNGpi3t/VqF589n5EWfdinRb2gNI=",
         "ref": "refs/heads/master",
-        "rev": "82ce401aa350502897c3f2e85f384d61cd3b0b6d",
+        "rev": "a1293da7dd8e497e08d26173f97e2976b36a31ea",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/home-manager"
@@ -213,10 +213,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1794132860,
-        "narHash": "sha256-iGNtQnUZsi+v6/4NbtYr+dsmASa6GkzXtUcTpE8F3mE=",
+        "lastModified": 1794739050,
+        "narHash": "sha256-PCGNIyAydZcdUXCxEXTjrS1+wWS+k9E+ENqBkUK2Mpg=",
         "ref": "refs/heads/main",
-        "rev": "af9249ca33bc2efaae5d071e4c67ddef19dcb681",
+        "rev": "9bd074026d6db75b59aae8cd6071b5f2fe27a36c",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/nix-index-database"
@@ -234,10 +234,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1794465615,
-        "narHash": "sha256-jGzSqGkZH6hJNAIDlrZ/P44h8RqyLjXqMDC13mCSeEM=",
+        "lastModified": 1794807983,
+        "narHash": "sha256-4cKko7qx9ocmB4RJjBQY1dcYk7M1iCdEfkcWxZzW6as=",
         "ref": "refs/heads/master",
-        "rev": "de72639496ca3ffa504adc1bd854d85b6c959167",
+        "rev": "776d79fe9c3637c4ae66b44fec0bdef61c7681bf",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/nix-vscode-extensions"
@@ -281,10 +281,10 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1794512177,
-        "narHash": "sha256-Pddzf6uFE7SfZS3Vyrc8xPwOxd6xwWywLr3qJwoCxHI=",
+        "lastModified": 1794826620,
+        "narHash": "sha256-2JgJIzYSZ0rkc7roNd7MRputoc2mLLwICOXi6VpcBhE=",
         "ref": "master",
-        "rev": "f72ca2fb8c1028e4a54d140e38c07cc2125f52f3",
+        "rev": "5bf3cca61c3b49a08115a7ce2624f5b34bcfb224",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nixos/nixpkgs"
@@ -315,10 +315,10 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1794386569,
-        "narHash": "sha256-x9sADJvoVG0L6RejZB+/BB4YiGZFBZrfTlhF4uBq1tQ=",
+        "lastModified": 1794537146,
+        "narHash": "sha256-Wpz/7x/YWnDIBu7yj6ixe8j6fIMsidd9Y+o1PqPF3iM=",
         "ref": "nixos-unstable",
-        "rev": "d4f25a3e562008648d45bcf2d70bcc7422cad84e",
+        "rev": "d5cc6833999746cffdfe0598f7bc801a57b887a9",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nixos/nixpkgs"
@@ -340,10 +340,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1794512112,
-        "narHash": "sha256-M7GmPstjef+I68Uy0CtZ+rHulTikOYCz3m/M72zVZrE=",
+        "lastModified": 1794827672,
+        "narHash": "sha256-7CQ8L4d7eXMeDSAZv3RIqWb+Ic7+J+H/bExPLGoymxQ=",
         "ref": "refs/heads/main",
-        "rev": "e2834f969a130e6b4a037bc27d583f8b1d37dd1f",
+        "rev": "094e95444a71dcdf479c4e9db31e9c89fb68420a",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR"
@@ -430,10 +430,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1794261845,
-        "narHash": "sha256-Ivif/kuD68yEOKcZZG3zSwNMFUuIgzUgeJuzcHrQy+8=",
+        "lastModified": 1794624949,
+        "narHash": "sha256-3q/hxp/flW1PnV3Dx+H3p8kHGEHJ7251BqVMNsAAB9E=",
         "ref": "refs/heads/master",
-        "rev": "fe7b4228405aeac2ce7192c2049a6e2bc8637082",
+        "rev": "11e5885d241743ff0193465d533b20e754bc3ce0",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/Mic92/sops-nix"
