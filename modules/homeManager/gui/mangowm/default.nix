@@ -16,5 +16,8 @@ in {
       enable = true;
       systemd.enable = true;
     };
+    xdg.configFile = lib.mkIf (config.booq.mutableFlakeDir != null) {
+      "mango".source = config.lib.file.mkOutOfStoreSymlink "${config.booq.mutableFlakeDir}/modules/homeManager/gui/mangowm/config";
+    };
   };
 }
