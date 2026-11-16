@@ -90,7 +90,7 @@ sloppy_focus = 1
 warp_cursor = 1
 focus_cross_monitor = 0
 focus_cross_tag = 0
-circle_layout = ["tile", "scroller"]
+circle_layout = ["center_tile", "tile", "monocle"]
 enable_floating_snap = 1
 snap_distance = 50
 cursor_size = 24
@@ -103,7 +103,7 @@ single_scratchpad = 1
 repeat_rate = 25
 repeat_delay = 600
 numlock_on = 1
-xkb_rules_layout = "us,ru"
+xkb_rules_layout = "de"
 
 # Trackpad
 disable_trackpad = 0
@@ -150,4 +150,4 @@ source = [
 ]
 
 # run autostart
-exec_once = ["~/.config/mango/autostart.sh"]
+# exec_once = ["~/.config/mango/autostart.sh"]
