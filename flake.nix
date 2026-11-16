@@ -43,7 +43,11 @@
     json2nix.inputs.flake-parts.follows = "flake-parts";
     musnix.url = "git+https://github.com/musnix/musnix?shallow=1";
     musnix.inputs.nixpkgs.follows = "nixpkgs";
-
+    mangowm = {
+      url = "git+https://github.com/mangowm/mango.git?shallow=true";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+    };
     nix-index-database.url = "git+https://github.com/nix-community/nix-index-database?shallow=1";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -120,6 +124,7 @@
             desec-nu = inputs.desec-nu.homeManagerModules.default;
             json2nix = inputs.json2nix.homeManagerModules.default;
             inherit (inputs.nix-index-database.homeModules) nix-index;
+            inherit (inputs.mangowm.hmModules) mango;
             overlays = {
               nixpkgs.overlays = builtins.attrValues self.overlays;
             };
