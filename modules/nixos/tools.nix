@@ -36,6 +36,9 @@ in {
       zellij
       ncdu
       gdu
+      sysstat
+      nvme-cli
+      smartmontools
     ];
   };
 }
