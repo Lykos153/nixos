@@ -33,7 +33,9 @@ in {
         exec kwm &> $HOME/.kwm.log
       '';
     };
-    xdg.configFile."kwm/config.zon".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/modules/homeManager/gui/river/kwm.config.zon";
-    xdg.configFile."kwim/config.zon".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/modules/homeManager/gui/river/kwim.config.zon";
+    xdg.configFile = lib.mkIf (config.booq.mutableFlakeDir != null) {
+      "kwm/config.zon".source = config.lib.file.mkOutOfStoreSymlink "${config.booq.mutableFlakeDir}/modules/homeManager/gui/river/kwm.config.zon";
+      "kwim/config.zon".source = config.lib.file.mkOutOfStoreSymlink "${config.booq.mutableFlakeDir}/modules/homeManager/gui/river/kwim.config.zon";
+    };
   };
 }
