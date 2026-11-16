@@ -30,7 +30,7 @@ in {
       enable = true;
       package = pkgs.river;
       extraConfig = ''
-        exec kwm &> $HOME/.kwm.log
+        kwm &> $HOME/.kwm.log &
       '';
     };
     xdg.configFile = lib.mkIf (config.booq.mutableFlakeDir != null) {
