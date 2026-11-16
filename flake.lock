@@ -97,6 +97,28 @@
         "url": "https://github.com/hercules-ci/flake-parts"
       }
     },
+    "flake-utils": {
+      "inputs": {
+        "systems": [
+          "mangowm",
+          "scenefx",
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -162,6 +184,32 @@
         "shallow": true,
         "type": "git",
         "url": "https://github.com/cloudandheat/json2nix"
+      }
+    },
+    "mangowm": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "scenefx": "scenefx"
+      },
+      "locked": {
+        "lastModified": 1794843562,
+        "narHash": "sha256-njvfXSWsHmGR7bdciYexC5d8lyOUbPhPEb2O5unZVOc=",
+        "ref": "refs/heads/main",
+        "rev": "5ba74a952ffd17033ecd5bea40e874fa875a56a2",
+        "revCount": 2307,
+        "shallow": false,
+        "type": "git",
+        "url": "https://github.com/mangowm/mango.git"
+      },
+      "original": {
+        "shallow": false,
+        "type": "git",
+        "url": "https://github.com/mangowm/mango.git"
       }
     },
     "musnix": {
@@ -409,6 +457,7 @@
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "json2nix": "json2nix",
+        "mangowm": "mangowm",
         "musnix": "musnix",
         "mynur": "mynur",
         "nix-index-database": "nix-index-database",
@@ -421,6 +470,29 @@
         "rofi-mum": "rofi-mum",
         "sops-nix": "sops-nix",
         "yk8s-nu": "yk8s-nu"
+      }
+    },
+    "scenefx": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "mangowm",
+          "nixpkgs"
+        ],
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1782624992,
+        "narHash": "sha256-vUjLG6eubEhJJVa9LPygIcVmNoHwYbSUTJcWEcbxnU4=",
+        "owner": "wlrfx",
+        "repo": "scenefx",
+        "rev": "37ccd723bef49e6891156ffafce8f549f01446cc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wlrfx",
+        "repo": "scenefx",
+        "type": "github"
       }
     },
     "sops-nix": {
@@ -442,6 +514,21 @@
         "shallow": true,
         "type": "git",
         "url": "https://github.com/Mic92/sops-nix"
+      }
+    },
+    "systems": {
+      "locked": {
+        "lastModified": 1689347949,
+        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
+        "owner": "nix-systems",
+        "repo": "default-linux",
+        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default-linux",
+        "type": "github"
       }
     },
     "treefmt-nix": {
