@@ -12,9 +12,7 @@ in {
       enable = true;
       package = pkgs.mango;
     };
-    programs.noctalia = {
-      enable = true;
-      systemd.enable = true;
+    booq.gui.noctalia.enable = true;
     };
     xdg.configFile = lib.mkIf (config.booq.mutableFlakeDir != null) {
       "mango".source = config.lib.file.mkOutOfStoreSymlink "${config.booq.mutableFlakeDir}/modules/homeManager/gui/mangowm/config";
