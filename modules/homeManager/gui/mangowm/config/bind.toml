@@ -128,11 +128,19 @@
 "ALT+SHIFT+R" = "togglegaps"
 
 # brightness and volume
-"XF86AudioRaiseVolume" = "spawn,~/.config/mango/scripts/volume.sh up"
-"XF86AudioLowerVolume" = "spawn,~/.config/mango/scripts/volume.sh down"
-"XF86AudioMute" = "spawn,~/.config/mango/scripts/volume.sh mute"
-"XF86MonBrightnessUp" = "spawn,~/.config/mango/scripts/brightness.sh up"
-"XF86MonBrightnessDown" = "spawn,~/.config/mango/scripts/brightness.sh down"
+"XF86AudioRaiseVolume" = "spawn,noctalia msg volume-up"
+"XF86AudioLowerVolume" = "spawn,noctalia msg volume-down"
+"XF86AudioMute" = "spawn,noctalia msg volume-mute"
+"super+y" = "spawn,noctalia msg mic-mute"
+"XF86MonBrightnessUp" = "spawn,noctalia msg brightness-up"
+"XF86MonBrightnessDown" = "spawn,noctalia msg brightness-down"
+
+# misc
+"print" = "spawn,noctalia msg screenshot-fullscreen"
+"shift+print" = "spawn,noctalia msg screenshot-region"
+"ctrl+print" = "spawn,noctalia msg screenshot-window"
+"super+c" = "spawn,noctalia msg panel-toggle clipboard"
+"pause" = "spawn,noctalia msg session lock"
 
 [bind.default.conflict]
 "SUPER+r" = [

@@ -124,6 +124,11 @@ app_id = "^Google-chrome$"
 [[rule.window_rule]]
 unfocused_opacity = 1.0
 focused_opacity = 1.0
+app_id = "[fF]irefox"
+
+[[rule.window_rule]]
+unfocused_opacity = 1.0
+focused_opacity = 1.0
 app_id = "^QQ$"
 
 # layer rule
