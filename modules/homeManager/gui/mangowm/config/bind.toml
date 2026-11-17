@@ -13,10 +13,10 @@
 "ALT+Tab" = "togglejump"
 "super+tab" = "focusstack,next"
 "super+shift+tab" = "focusstack,last"
-"ALT+Left" = "focusdir,left"
-"ALT+Right" = "focusdir,right"
-"ALT+Up" = "focusdir,up"
-"ALT+Down" = "focusdir,down"
+"super+Left" = "focusdir,left"
+"super+Right" = "focusdir,right"
+"super+Up" = "focusdir,up"
+"super+Down" = "focusdir,down"
 
 # swap window
 "SUPER+SHIFT+Up" = "move_client,up"
@@ -69,9 +69,9 @@
 "SUPER+n" = "switch_layout"
 
 # tag switch
-"SUPER+Left" = "viewtoleft,0"
+# "SUPER+Left" = "viewtoleft,0"
 # "CTRL+Left" = "viewtoleft_have_client,0"
-"SUPER+Right" = "viewtoright,0"
+# "SUPER+Right" = "viewtoright,0"
 # "CTRL+Right" = "viewtoright_have_client,0"
 "CTRL+SUPER+Left" = "tagtoleft,0"
 "CTRL+SUPER+Right" = "tagtoright,0"
