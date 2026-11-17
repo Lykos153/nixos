@@ -2,7 +2,7 @@
 
 # menu and terminal
 "SUPER+Return" = "spawn,$term"
-"SUPER+space" = "spawn,rofi -config ~/.config/mango/rofi/config.rasi -show drun"
+"SUPER+d" = "spawn,rofi -config ~/.config/mango/rofi/config.rasi -show drun"
 
 # kill or exit
 # "SUPER+shift+e" = "quit"
